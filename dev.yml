@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    projects_dir: ~/projects
+  tasks:
+  - name: Create projects dir
+    file: >
+      path={{projects_dir}}
+      state=directory
