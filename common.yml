@@ -38,8 +38,10 @@
     apt: name={{item}} state=absent
     with_items:
     - aptitude
+    - banshee
     - cowsay
     - fortune
+    - totem
 
   - name: Symlink 'refs'
     file: >
