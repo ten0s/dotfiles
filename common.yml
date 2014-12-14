@@ -23,6 +23,11 @@
     - vlc
     - wget
 
+  - name: Remove stuff
+    apt: name={{item}} state=absent
+    with_items:
+    - cowsay
+
   - name: Symlink global configs
     file: >
       src=/home/{{user}}/dotfiles/configs/global/{{item.name}}
