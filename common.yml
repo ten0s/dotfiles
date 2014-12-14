@@ -5,9 +5,17 @@
   vars:
     user: ten0s
   tasks:
-  - name: Update APT cache
+  - name: Update apt cache
     sudo: yes
     apt: update_cache=yes
+
+  - name: Install apt-file
+    sudo: yes
+    apt: name=apt-file state=latest
+
+  - name: Update apt-file cache
+    sudo: yes
+    shell: apt-file update
 
   - name: Install stuff
     sudo: yes
