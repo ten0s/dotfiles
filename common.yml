@@ -16,14 +16,18 @@
 
   - name: Update apt-file cache
     sudo: yes
+    # if local time (secs since Epoch) minus
+    # the folder's last change time (secs since Epoch)
+    # is greater than some given value,
+    # then perform update
     shell: >
-      # if local time (secs since Epoch) minus
-      # the folder's last change time (secs since Epoch)
-      # is greater than some given value,
-      # then perform update
       if [[ $((`date +%s`-`stat /var/cache/apt/apt-file/ -c%Z`)) > {{cache_valid_time}} ]]; then
+        echo "Update is needed"
         apt-file update
+      else
+        echo "Update is NOT needed"
       fi
+      executable=/bin/bash
 
   - name: Install stuff
     sudo: yes
