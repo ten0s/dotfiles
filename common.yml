@@ -33,6 +33,7 @@
       src=/home/{{user}}/Dropbox/refs
       dest=/home/{{user}}/refs
       state=link
+      force=yes
 
   - name: Symlink global configs
     file: >
