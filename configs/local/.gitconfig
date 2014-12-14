@@ -1,0 +1,19 @@
+[core]
+	editor = emacs
+[merge]
+	tool = meld
+[diff]
+	external = meld
+	tool = meld
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+[difftool]
+	prompt = false
+[mergetool]
+	prompt = false
+[user]
+	name = Dmitry Klionsky
+	email = dm.klionsky@gmail.com

@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  connection: local
+  sudo: yes
+  vars:
+    user: ten0s
+  tasks:
+  - name: Update APT cache
+    apt: update_cache=yes
+
+  - name: Install stuff
+    apt: name={{item}} state=latest
+    with_items:
+    - autokey-gtk
+    - curl
+    - dropbox
+    - emacs
+    - htop
+    - git
+    - keepassx
+    - mc
+    - meld
+    - vlc
+    - wget
+
+  - name: Symlink global configs
+    file: >
+      src=/home/{{user}}/dotfiles/configs/global/{{item.name}}
+      dest={{item.path}}/{{item.name}}
+      state=link
+      force=yes
+    with_items:
+    - {name: locale, path: /etc/default/}
+    - {name: 40custom_load-xmodmap, path: /etc/X11/Xsession.d/}
+
+  - name: Symlink local configs
+    file: >
+      src=/home/{{user}}/dotfiles/configs/local/{{item}}
+      dest=/home/{{user}}/{{item}}
+      state=link
+      force=yes
+    with_items:
+    - .bashrc
+    - .gitconfig
+    - .Xmodmap
