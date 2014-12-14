@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   connection: local
+  user: ten0s
   vars:
     projects_dir: ~/projects
   tasks:
