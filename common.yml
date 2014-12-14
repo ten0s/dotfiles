@@ -1,14 +1,16 @@
 ---
 - hosts: localhost
   connection: local
-  sudo: yes
+  user: ten0s
   vars:
     user: ten0s
   tasks:
   - name: Update APT cache
+    sudo: yes
     apt: update_cache=yes
 
   - name: Install stuff
+    sudo: yes
     apt: name={{item}} state=latest
     with_items:
     - autokey-gtk
@@ -24,8 +26,10 @@
     - wget
 
   - name: Remove stuff
+    sudo: yes
     apt: name={{item}} state=absent
     with_items:
+    - aptitude
     - cowsay
 
   - name: Symlink 'refs'
@@ -36,6 +40,7 @@
       force=yes
 
   - name: Symlink global configs
+    sudo: yes
     file: >
       src=/home/{{user}}/dotfiles/configs/global/{{item.name}}
       dest={{item.path}}/{{item.name}}
