@@ -5,6 +5,14 @@
   vars:
     cache_dir: /var/local/lib/ansible/cache
   tasks:
+  - name: Update apt cache
+    sudo: yes
+    apt: update_cache=yes
+
+  - name: Install build-essential
+    sudo: yes
+    apt: name=build-essential state=latest
+
   - name: Create download cache dir
     sudo: yes
     file: >

@@ -5,6 +5,14 @@
   vars:
     projects_dir: ~/projects
   tasks:
+  - name: Update apt cache
+    sudo: yes
+    apt: update_cache=yes
+
+  - name: Install build-essential
+    sudo: yes
+    apt: name=build-essential state=latest
+
   - name: Create projects dir
     file: >
       path={{projects_dir}}
