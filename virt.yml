@@ -1,14 +1,16 @@
 ---
 - hosts: localhost
   connection: local
-  sudo: yes
+  user: ten0s
   vars:
-    cache_dir: /tmp/ansible/virt
+    cache_dir: /var/local/lib/ansible/cache
   tasks:
   - name: Create download cache dir
+    sudo: yes
     file: >
       path={{cache_dir}}
       state=directory
+      mode=0777
 
   - name: Download Vagrant package
     get_url: >
@@ -16,6 +18,7 @@
       dest={{cache_dir}}/vagrant-1.7.1.deb
 
   - name: Install Vagrant
+    sudo: yes
     apt: >
       deb={{cache_dir}}/vagrant-1.7.1.deb
       state=present
@@ -26,6 +29,7 @@
        dest={{cache_dir}}/virtualbox-4.3.20.deb
 
   - name: Install Virtualbox
+    sudo: yes
     apt: >
       deb={{cache_dir}}/virtualbox-4.3.20.deb
       state=present
