@@ -28,6 +28,12 @@
     with_items:
     - cowsay
 
+  - name: Symlink 'refs'
+    file: >
+      src=/home/{{user}}/Dropbox/refs
+      dest=/home/{{user}}/refs
+      state=link
+
   - name: Symlink global configs
     file: >
       src=/home/{{user}}/dotfiles/configs/global/{{item.name}}
