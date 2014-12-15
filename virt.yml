@@ -3,7 +3,7 @@
   connection: local
   user: ten0s
   vars:
-    cache_dir: /var/local/lib/ansible/cache
+    cache_dir: /var/cache/ansible/virt
   tasks:
   - name: Update apt cache
     sudo: yes
