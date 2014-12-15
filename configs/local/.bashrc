@@ -1,20 +1,31 @@
+source .bashrc.local
+
 export EDITOR="emacs" # -nw"
 export VISUAL=$EDITOR
 
+export PATH=~/bin:$PATH
 export PATH=/opt/bin:$PATH
 export PATH=/opt/mongodb/bin:$PATH
 export PATH=/opt/rabbitmq/sbin:$PATH
 
-export HISTCONTROL=erasedups:ignorespace #:ignoredups
+# don't overwrite history of another session
+shopt -s histappend
+export HISTCONTROL=erasedups:ignorespace:ignoredups
 export HISTTIMEFORMAT='%F %T '
 
 alias bashrc="$EDITOR ~/.bashrc && source ~/.bashrc"
 
 alias open=gnome-open
 
+alias sudo="sudo "
 alias ls="ls --color=auto"
 alias ll="ls -lF --color=auto"
-alias la="ls -laF --color=auto"
+alias llh="ls -lFh --color=auto"
+alias lla="ls -lFa --color=auto"
+alias llah="ls -lFah --color=auto"
+alias llha="ls -lFah --color=auto"
+alias l="ls -lF --color=auto"
+alias l.="ls -d .* --color=auto"
 #alias less="less -R" don't needed as above is auto
 alias grep="grep -i"
 # test aliases
@@ -22,20 +33,29 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
 alias bc="bc -l -q"
+alias uuid="uuid -v4"
 alias t="task"
 alias ta="task add"
 alias td="task delete"
 
+alias cdv="$_KERL_ACTIVE_DIR/lib/observer-*/priv/bin/cdv"
+
+alias perror='python -c "import os, sys; print os.strerror(int(sys.argv[1]))"'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-#alias wget="wget --limit-rate=256k"
+function b64e() { echo `base64 <<< $1`; }
+function b64d() { echo `base64 -d <<< $1`; }
 
 ########### FUNs ##############
 
 function notify {
-    local timeout="$1"
-    local message="$2"
-    $(sleep $timeout && notify-send $message) &
+	local timeout="$1"
+	local message="$2"
+	$(sleep $timeout && notify-send $message) &
+}
+
+function jc {
+    curl http://localhost:8080/just/reconfigure
 }
 
 ########### GIT SPECIFIC ##############
@@ -55,46 +75,46 @@ alias gdtc="git difftool --cached"
 alias gdf="git diff"
 alias gdfc="git diff --cached"
 alias gcommit="git commit -m"
-alias gcommita="git commit -am"
+alias gcommita="git commit --amend -m"
+alias gcommite="git commit --allow-empty -m"
+alias gmerge="git merge --no-off"
 alias gbr="git branch"
 alias gco="git checkout"
 alias gpull="git pull"
 alias gpullod="git pull origin develop"
 alias gpullom="git pull origin master"
 alias gcl="git clone"
+alias grem="git remote -v"
+
+function gsshurl() {
+    local OldUrl=`git remote -v | sed -E -n 's/origin\s*(.*) \(push\)/\1/p'`
+    local NewUrl=`echo $OldUrl | sed -E 's#(https|git)://(.*)/(.*)/(.*)#git@\2:\3/\4#'`
+    echo "old url:" $OldUrl
+    echo "new url:" $NewUrl
+    git remote set-url origin $NewUrl
+}
 
 function parse_git_dirty {
-    [[ -n $(git status --porcelain) ]] && echo "*"
+	[[ -n $(git status --porcelain) ]] && echo "*"
 }
 
 function parse_git_branch {
-    if [[ `git branch 2> /dev/null` ]]; then
-        git branch --no-color | sed -e "/^[^*]/d" -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
-    fi
+	if [[ `git branch 2> /dev/null` ]]; then
+		git branch --no-color | sed -e "/^[^*]/d" -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+	fi
 }
 
 #http://techcommons.stanford.edu/topics/git/show-git-branch-bash-prompt
 PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]$(parse_git_branch)\[\033[01;34m\] \$\[\033[00m\] '
 
-function efind() {
-    local ROOTDIR=`which erl | sed -ne '/^ROOTDIR=/s///p'`
-    find $ROOTDIR -name $1.erl | awk -F / '{print $(NF-2)}' | awk -F - '{print $1}'
-}
-
 ########### SHOULD BE THE LAST SECTION ##############
 
-function set-erlang-root() {
-    export ERL_ROOT=$1
-    export ERL_MANPATH=$ERL_ROOT/lib/erlang/man
-    export PATH=$ERL_ROOT/bin:$PATH
-}
-
 function set-r16b03-1() {
-    set-erlang-root "/opt/otp-r16b03-1"
+    source /opt/r16b03-1/activate
 }
 
-function set-r17() {
-    set-erlang-root "/opt/otp-r17"
+function set-r17.1() {
+    source /opt/r17.1/activate
 }
 
 set-r16b03-1
