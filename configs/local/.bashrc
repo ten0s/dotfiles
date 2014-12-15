@@ -1,4 +1,4 @@
-source .bashrc.local
+source ~/.bashrc.local
 
 export EDITOR="emacs" # -nw"
 export VISUAL=$EDITOR

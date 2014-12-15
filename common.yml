@@ -84,3 +84,10 @@
     - .bashrc
     - .gitconfig
     - .Xmodmap
+
+  - name: Copy host specific configs
+    copy: src=/home/{{user}}/dotfiles/configs/local/{{item}}
+      dest=/home/{{user}}/{{item}}
+      force=no
+    with_items:
+    - .bashrc.local
