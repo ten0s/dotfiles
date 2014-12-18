@@ -9,7 +9,7 @@ $ cd ~
 $ git clone git@github.com:ten0s/dotfiles.git
 </pre>
 
-## Compilation
+## Provision
 
 <pre>
 $ cd dotfiles
