@@ -45,6 +45,7 @@
     - tig
     - vlc
     - wget
+    - youtube-dl
 
   - name: Remove stuff
     sudo: yes
