@@ -29,3 +29,4 @@
     - python-matplotlib
     - python-tk
     - ipython
+    - ipython-notebook
