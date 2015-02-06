@@ -119,3 +119,5 @@ function set-r17.1() {
 set-r16b03-1
 
 ########### DO NOT MODIFY PATH AFTER HERE ##########
+
+alias cdv="$_KERL_ACTIVE_DIR/lib/observer-*/priv/bin/cdv"
