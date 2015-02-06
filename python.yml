@@ -1,0 +1,37 @@
+---
+- hosts: localhost
+  connection: local
+  user: ten0s
+  tasks:
+  - name: Update apt cache
+    sudo: yes
+    apt: update_cache=yes cache_valid_time=86400
+
+  - name: Install python 2.7 (already installed actually)
+    sudo: yes
+    apt: name=python state=latest
+
+  - name: Install python-setuptools
+    sudo: yes
+    apt: name=python-setuptools state=latest
+
+  - name: Install pip
+    sudo: yes
+    easy_install: name=pip
+
+  - name: Install the SciPy stack
+    # http://www.scipy.org/install.html
+    sudo: yes
+    apt: name={{item}} state=latest
+    with_items:
+    - python-dev
+    - python-numpy
+    - python-scipy
+    - python-pandas
+    - python-sympy
+    - python-nose
+    - python-matplotlib
+    - python-networkx
+    - python-tk
+    - ipython
+    - ipython-notebook

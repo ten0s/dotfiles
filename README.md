@@ -15,5 +15,6 @@ $ git clone git@github.com:ten0s/dotfiles.git
 $ cd dotfiles
 $ ansible-playbook common.yml
 $ ansible-playbook dev.yml
+$ ansible-playbook erl.yml
 $ ansible-playbook virt.yml
 </pre>

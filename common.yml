@@ -4,11 +4,11 @@
   user: ten0s
   vars:
     user: ten0s
-    cache_valid_time: 86400
   tasks:
   - name: Update apt cache
     sudo: yes
-    apt: update_cache=yes cache_valid_time={{cache_valid_time}}
+    # update cache once a day
+    apt: update_cache=yes cache_valid_time=86400
 
   - name: Install apt-file
     sudo: yes
@@ -18,10 +18,10 @@
     sudo: yes
     # if local time (secs since Epoch) minus
     # the folder's last change time (secs since Epoch)
-    # is greater than some given value,
+    # is greater than some given value (once a month),
     # then perform update
     shell: >
-      if [[ $((`date +%s`-`stat /var/cache/apt/apt-file/ -c%Z`)) > {{cache_valid_time}} ]]; then
+      if [[ $((`date +%s`-`stat /var/cache/apt/apt-file/ -c%Z`)) > 2592000 ]]; then
         echo "Update is needed"
         apt-file update
       else
@@ -42,6 +42,7 @@
     - keepassx
     - mc
     - meld
+    - skype
     - tig
     - vlc
     - wget
