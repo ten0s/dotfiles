@@ -37,8 +37,6 @@ alias t="task"
 alias ta="task add"
 alias td="task delete"
 
-alias cdv="$_KERL_ACTIVE_DIR/lib/observer-*/priv/bin/cdv"
-
 alias perror='python -c "import os, sys; print os.strerror(int(sys.argv[1]))"'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
