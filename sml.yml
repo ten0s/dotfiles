@@ -14,8 +14,3 @@
     - mlton-compiler
     - smlnj
     - sml-mode
-
-#https://github.com/dellsystem/smlunit
-#http://www.cs.cornell.edu/~clarkson/courses/csci4223/2013sp/install-sml-emacs.php
-#http://www.cs.cmu.edu/afs/cs/local/sml/common/smlguide/smlnj.htm
-#http://sml-family.org/Basis/index.html
