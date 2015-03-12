@@ -43,6 +43,8 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 function b64e() { echo `base64 <<< $1`; }
 function b64d() { echo `base64 -d <<< $1`; }
 
+alias sml="rlwrap sml"
+
 ########### FUNs ##############
 
 function notify {

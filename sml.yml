@@ -12,5 +12,6 @@
     with_items:
     - libsmlnj-smlnj
     - mlton-compiler
+    - rlwrap
     - smlnj
     - sml-mode
