@@ -14,20 +14,18 @@
     sudo: yes
     apt: name=apt-file state=latest
 
+  - name: Register apt-file change time
+    # local time (secs since Epoch) minus
+    # the folder's last change time (secs since Epoch)
+    shell: echo $((`date +%s`-`stat /var/cache/apt/apt-file/ -c%Z`))
+    register: ctime
+    changed_when: false
+
   - name: Update apt-file cache
     sudo: yes
-    # if local time (secs since Epoch) minus
-    # the folder's last change time (secs since Epoch)
-    # is greater than some given value (once a month),
-    # then perform update
-    shell: >
-      if [[ $((`date +%s`-`stat /var/cache/apt/apt-file/ -c%Z`)) > 2592000 ]]; then
-        echo "Update is needed"
-        apt-file update
-      else
-        echo "Update is NOT needed"
-      fi
-      executable=/bin/bash
+    # update once a month
+    command: apt-file update
+    when: ctime.stdout|int > 2592000
 
   - name: Install stuff
     sudo: yes
