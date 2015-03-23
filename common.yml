@@ -58,6 +58,17 @@
     - fortune
     - totem
 
+  - name: Ensure NTP installed
+    sudo: yes
+    apt: name={{item}} state=latest
+    with_items:
+    - ntp
+    - ntpdate
+
+  - name: Ensure NTP started
+    sudo: yes
+    service: name=ntp enabled=yes
+
   - name: Symlink 'refs'
     file: >
       src=/home/{{user}}/Dropbox/refs
