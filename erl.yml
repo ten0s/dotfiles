@@ -6,7 +6,7 @@
   - build-essential
   - default-jdk
   - fop
-  - libglu-dev
+  - libglu1-mesa-dev
   - libncurses5-dev
   - libssl-dev
   - libtk-img-dev
