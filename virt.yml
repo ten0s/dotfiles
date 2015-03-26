@@ -1,42 +1,34 @@
 ---
-- hosts: localhost
-  connection: local
-  user: ten0s
-  vars:
-    cache_dir: /var/cache/ansible/virt
-  tasks:
-  - name: Create download cache dir
-    sudo: yes
-    file: >
-      path={{cache_dir}}
-      state=directory
-      mode=0777
+- name: Ensure download cache dir is created
+  sudo: yes
+  file: >
+    path={{cache_dir}}
+    state=directory
+    mode=0777
 
-  - name: Download Vagrant package
-    get_url: >
-      url=https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.1_x86_64.deb
-      dest={{cache_dir}}/vagrant-1.7.1.deb
+- name: Download Vagrant package
+  get_url: >
+    url=https://dl.bintray.com/mitchellh/vagrant/vagrant_{{vagrant_ver}}_x86_64.deb
+    dest={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
 
-  - name: Install Vagrant
-    sudo: yes
-    apt: >
-      deb={{cache_dir}}/vagrant-1.7.1.deb
-      state=present
+- name: Ensure Vagrant is installed
+  sudo: yes
+  apt: >
+    deb={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
+    state=present
 
-  - name: Install Vagrant's plugins
-    # https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins
-    shell: (vagrant plugin list | grep {{item}}) || vagrant plugin install {{item}}
-    with_items:
-    - vagrant-vbox-snapshot
-    - vagrant-vbguest
+- name: Ensure Vagrant's plugins are installed
+  # https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins
+  shell: (vagrant plugin list | grep {{item}}) || vagrant plugin install {{item}}
+  with_items:
+  - vagrant-vbox-snapshot
+  - vagrant-vbguest
 
-  - name: Download Virtualbox package
-    get_url: >
-       url=http://download.virtualbox.org/virtualbox/4.3.20/virtualbox-4.3_4.3.20-96996~Ubuntu~raring_amd64.deb
-       dest={{cache_dir}}/virtualbox-4.3.20.deb
+#
+# TODO: Setup apt source
+# https://www.virtualbox.org/wiki/Linux_Downloads
+#
 
-  - name: Install Virtualbox
-    sudo: yes
-    apt: >
-      deb={{cache_dir}}/virtualbox-4.3.20.deb
-      state=present
+- name: Ensure Virtualbox is installed
+  sudo: yes
+  apt: name=virtualbox-{{vbox_ver}} state=latest

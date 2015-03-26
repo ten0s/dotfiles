@@ -1,11 +1,5 @@
 ---
-- hosts: localhost
-  connection: local
-  user: ten0s
-  vars:
-    projects_dir: ~/projects
-  tasks:
-  - name: Create projects dir
-    file: >
-      path={{projects_dir}}
-      state=directory
+- name: Ensure projects dir exists
+  file: >
+    path={{projects_dir}}
+    state=directory

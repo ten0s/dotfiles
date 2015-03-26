@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  user: ten0s
+  vars:
+    user: ten0s
+  tasks:
+  - include: common.yml
+  - include: dev.yml projects_dir=~/projects/
+  - include: erl.yml
+  - include: python.yml
+  - include: sml.yml
+  - include: virt.yml cache_dir=/var/cache/ansible/virt/ vagrant_ver=1.7.2 vbox_ver=4.3

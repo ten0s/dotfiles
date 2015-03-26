@@ -1,33 +1,29 @@
 ---
-- hosts: localhost
-  connection: local
-  user: ten0s
-  tasks:
-  - name: Install python 2.7 (already installed actually)
-    sudo: yes
-    apt: name=python state=latest
+- name: Ensure python 2.7 is installed
+  sudo: yes
+  apt: name=python state=latest
 
-  - name: Install python-setuptools
-    sudo: yes
-    apt: name=python-setuptools state=latest
+- name: Ensure python-setuptools is installed
+  sudo: yes
+  apt: name=python-setuptools state=latest
 
-  - name: Install pip
-    sudo: yes
-    easy_install: name=pip
+- name: Ensure pip is installed
+  sudo: yes
+  easy_install: name=pip
 
-  - name: Install the SciPy stack
-    # http://www.scipy.org/install.html
-    sudo: yes
-    apt: name={{item}} state=latest
-    with_items:
-    - python-dev
-    - python-numpy
-    - python-scipy
-    - python-pandas
-    - python-sympy
-    - python-nose
-    - python-matplotlib
-    - python-networkx
-    - python-tk
-    - ipython
-    - ipython-notebook
+- name: Ensure SciPy stack is installed
+  # http://www.scipy.org/install.html
+  sudo: yes
+  apt: name={{item}} state=latest
+  with_items:
+  - python-dev
+  - python-numpy
+  - python-scipy
+  - python-pandas
+  - python-sympy
+  - python-nose
+  - python-matplotlib
+  - python-networkx
+  - python-tk
+  - ipython
+  - ipython-notebook

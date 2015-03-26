@@ -1,13 +1,10 @@
 ---
-- hosts: localhost
-  connection: local
-  tasks:
-  - name: Install SML deps
-    sudo: yes
-    apt: name={{item}} state=latest
-    with_items:
-    - libsmlnj-smlnj
-    - mlton-compiler
-    - rlwrap
-    - smlnj
-    - sml-mode
+- name: Ensure SML deps are installed
+  sudo: yes
+  apt: name={{item}} state=latest
+  with_items:
+  - libsmlnj-smlnj
+  - mlton-compiler
+  - rlwrap
+  - smlnj
+  - sml-mode

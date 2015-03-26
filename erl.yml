@@ -1,21 +1,15 @@
 ---
-- hosts: localhost
-  connection: local
-  user: ten0s
-  vars:
-    projects_dir: ~/projects
-  tasks:
-  - name: Install Erlang deps
-    sudo: yes
-    apt: name={{item}} state=latest
-    with_items:
-    - build-essential
-    - default-jdk
-    - fop
-    - libglu-dev
-    - libncurses5-dev
-    - libssl-dev
-    - libtk-img-dev
-    - libwxgtk2.8-dev
-    - unixodbc-dev
-    - xsltproc
+- name: Ensure Erlang deps are installed
+  sudo: yes
+  apt: name={{item}} state=latest
+  with_items:
+  - build-essential
+  - default-jdk
+  - fop
+  - libglu-dev
+  - libncurses5-dev
+  - libssl-dev
+  - libtk-img-dev
+  - libwxgtk2.8-dev
+  - unixodbc-dev
+  - xsltproc

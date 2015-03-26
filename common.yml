@@ -1,105 +1,99 @@
 ---
-- hosts: localhost
-  connection: local
-  user: ten0s
-  vars:
-    user: ten0s
-  tasks:
-  - name: Update apt cache
-    sudo: yes
-    # update cache once a day
-    apt: update_cache=yes cache_valid_time=86400
+- name: Ensure apt cache is updated
+  sudo: yes
+  # update cache once a day
+  apt: update_cache=yes cache_valid_time=86400
 
-  - name: Install apt-file
-    sudo: yes
-    apt: name=apt-file state=latest
+- name: Ensure apt-file is installed
+  sudo: yes
+  apt: name=apt-file state=latest
 
-  - name: Register apt-file change time
-    # local time (secs since Epoch) minus
-    # the folder's last change time (secs since Epoch)
-    shell: echo $((`date +%s`-`stat /var/cache/apt/apt-file/ -c%Z`))
-    register: ctime
-    changed_when: false
+- name: Register apt-file change time
+  # local time (secs since Epoch) minus
+  # the folder's last change time (secs since Epoch)
+  shell: echo $((`date +%s`-`stat /var/cache/apt/apt-file/ -c%Z`))
+  register: ctime
+  changed_when: false
 
-  - name: Update apt-file cache
-    sudo: yes
-    # update once a month
-    command: apt-file update
-    when: ctime.stdout|int > 2592000
+- name: Ensure apt-file cache is updated
+  sudo: yes
+  # update once a month
+  command: apt-file update
+  when: ctime.stdout|int > 2592000
 
-  - name: Install stuff
-    sudo: yes
-    apt: name={{item}} state=latest
-    with_items:
-    - autokey-gtk
-    - build-essential
-    - curl
-    - dropbox
-    - emacs
-    - htop
-    - git
-    - keepassx
-    - mc
-    - meld
-    - skype
-    - tig
-    - vlc
-    - wget
-    - youtube-dl
+- name: Ensure common stuff is installed
+  sudo: yes
+  apt: name={{item}} state=latest
+  with_items:
+  - autokey-gtk
+  - build-essential
+  - curl
+  - dropbox
+  - emacs
+  - htop
+  - git
+  - keepassx
+  - mc
+  - meld
+  - skype
+  - tig
+  - vlc
+  - wget
+  - youtube-dl
 
-  - name: Remove stuff
-    sudo: yes
-    apt: name={{item}} state=absent
-    with_items:
-    - aptitude
-    - banshee
-    - cowsay
-    - fortune
-    - totem
+- name: Ensure unneeded stuff is removed
+  sudo: yes
+  apt: name={{item}} state=absent
+  with_items:
+  - aptitude
+  - banshee
+  - cowsay
+  - fortune
+  - totem
 
-  - name: Ensure NTP installed
-    sudo: yes
-    apt: name={{item}} state=latest
-    with_items:
-    - ntp
-    - ntpdate
+- name: Ensure NTP is installed
+  sudo: yes
+  apt: name={{item}} state=latest
+  with_items:
+  - ntp
+  - ntpdate
 
-  - name: Ensure NTP started
-    sudo: yes
-    service: name=ntp enabled=yes
+- name: Ensure NTP is started
+  sudo: yes
+  service: name=ntp enabled=yes
 
-  - name: Symlink 'refs'
-    file: >
-      src=/home/{{user}}/Dropbox/refs
-      dest=/home/{{user}}/refs
-      state=link
-      force=yes
+- name: Symlink 'refs'
+  file: >
+    src=/home/{{user}}/Dropbox/refs
+    dest=/home/{{user}}/refs
+    state=link
+    force=yes
 
-  - name: Symlink global configs
-    sudo: yes
-    file: >
-      src=/home/{{user}}/dotfiles/configs/global/{{item.name}}
-      dest={{item.path}}/{{item.name}}
-      state=link
-      force=yes
-    with_items:
-    - {name: locale, path: /etc/default/}
-    - {name: 40custom_load-xmodmap, path: /etc/X11/Xsession.d/}
+- name: Symlink global configs
+  sudo: yes
+  file: >
+    src=/home/{{user}}/dotfiles/configs/global/{{item.name}}
+    dest={{item.path}}/{{item.name}}
+    state=link
+    force=yes
+  with_items:
+  - {name: locale, path: /etc/default/}
+  - {name: 40custom_load-xmodmap, path: /etc/X11/Xsession.d/}
 
-  - name: Symlink local configs
-    file: >
-      src=/home/{{user}}/dotfiles/configs/local/{{item}}
-      dest=/home/{{user}}/{{item}}
-      state=link
-      force=yes
-    with_items:
-    - .bashrc
-    - .gitconfig
-    - .Xmodmap
+- name: Symlink local configs
+  file: >
+    src=/home/{{user}}/dotfiles/configs/local/{{item}}
+    dest=/home/{{user}}/{{item}}
+    state=link
+    force=yes
+  with_items:
+  - .bashrc
+  - .gitconfig
+  - .Xmodmap
 
-  - name: Copy host specific configs
-    copy: src=/home/{{user}}/dotfiles/configs/local/{{item}}
-      dest=/home/{{user}}/{{item}}
-      force=no
-    with_items:
-    - .bashrc.local
+- name: Copy host specific configs
+  copy: src=/home/{{user}}/dotfiles/configs/local/{{item}}
+    dest=/home/{{user}}/{{item}}
+    force=no
+  with_items:
+  - .bashrc.local
