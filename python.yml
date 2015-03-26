@@ -3,10 +3,6 @@
   connection: local
   user: ten0s
   tasks:
-  - name: Update apt cache
-    sudo: yes
-    apt: update_cache=yes cache_valid_time=86400
-
   - name: Install python 2.7 (already installed actually)
     sudo: yes
     apt: name=python state=latest

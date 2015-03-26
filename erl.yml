@@ -5,10 +5,6 @@
   vars:
     projects_dir: ~/projects
   tasks:
-  - name: Update apt cache
-    sudo: yes
-    apt: update_cache=yes cache_valid_time=86400
-
   - name: Install Erlang deps
     sudo: yes
     apt: name={{item}} state=latest
