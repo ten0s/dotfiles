@@ -95,3 +95,12 @@
         force=false
   with_items:
   - .bashrc.local
+
+- name: Setup `megalodon` scripts
+  file: src=/home/{{user}}/dotfiles/files/scripts/{{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        state=link
+        force=true
+  with_items:
+  - setup-right-monitor.sh
+  when: '"{{ansible_hostname}}" == "megalodon"'
