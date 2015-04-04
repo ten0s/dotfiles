@@ -121,3 +121,6 @@ set-r16b03-1
 ########### DO NOT MODIFY PATH AFTER HERE ##########
 
 alias cdv="$_KERL_ACTIVE_DIR/lib/observer-*/priv/bin/cdv"
+
+PERL_MB_OPT="--install_base \"/home/ten0s/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/ten0s/perl5"; export PERL_MM_OPT;

@@ -1,11 +1,11 @@
 ---
 - name: Ensure apt cache is updated
-  sudo: yes
+  sudo: true
   # update cache once a day
-  apt: update_cache=yes cache_valid_time=86400
+  apt: update_cache=true cache_valid_time=86400
 
 - name: Ensure apt-file is installed
-  sudo: yes
+  sudo: true
   apt: name=apt-file state=latest
 
 - name: Register apt-file change time
@@ -16,13 +16,13 @@
   changed_when: false
 
 - name: Ensure apt-file cache is updated
-  sudo: yes
+  sudo: true
   # update once a month
   command: apt-file update
   when: ctime.stdout|int > 2592000
 
 - name: Ensure common stuff is installed
-  sudo: yes
+  sudo: true
   apt: name={{item}} state=latest
   with_items:
   - autokey-gtk
@@ -43,7 +43,7 @@
   - youtube-dl
 
 - name: Ensure unneeded stuff is removed
-  sudo: yes
+  sudo: true
   apt: name={{item}} state=absent
   with_items:
   - aptitude
@@ -53,48 +53,45 @@
   - totem
 
 - name: Ensure NTP is installed
-  sudo: yes
+  sudo: true
   apt: name={{item}} state=latest
   with_items:
   - ntp
   - ntpdate
 
 - name: Ensure NTP is started
-  sudo: yes
-  service: name=ntp enabled=yes
+  sudo: true
+  service: name=ntp enabled=true
 
 - name: Symlink 'refs'
-  file: >
-    src=/home/{{user}}/Dropbox/refs
-    dest=/home/{{user}}/refs
-    state=link
-    force=yes
+  file: src=/home/{{user}}/Dropbox/refs
+        dest=/home/{{user}}/refs
+        state=link
+        force=true
 
 - name: Symlink global configs
-  sudo: yes
-  file: >
-    src=/home/{{user}}/dotfiles/configs/global/{{item.name}}
-    dest={{item.path}}/{{item.name}}
-    state=link
-    force=yes
+  sudo: true
+  file: src=/home/{{user}}/dotfiles/files/configs/global/{{item.name}}
+        dest={{item.path}}/{{item.name}}
+        state=link
+        force=true
   with_items:
   - {name: locale, path: /etc/default/}
   - {name: 40custom_load-xmodmap, path: /etc/X11/Xsession.d/}
 
 - name: Symlink local configs
-  file: >
-    src=/home/{{user}}/dotfiles/configs/local/{{item}}
-    dest=/home/{{user}}/{{item}}
-    state=link
-    force=yes
+  file: src=/home/{{user}}/dotfiles/files/configs/local/{{item}}
+        dest=/home/{{user}}/{{item}}
+        state=link
+        force=true
   with_items:
   - .bashrc
   - .gitconfig
   - .Xmodmap
 
 - name: Copy host specific configs
-  copy: src=/home/{{user}}/dotfiles/configs/local/{{item}}
-    dest=/home/{{user}}/{{item}}
-    force=no
+  copy: src=/home/{{user}}/dotfiles/files/configs/local/{{item}}
+        dest=/home/{{user}}/{{item}}
+        force=false
   with_items:
   - .bashrc.local
