@@ -6,6 +6,8 @@
     user: ten0s
   tasks:
   - include: tasks/common.yml
+  - include: tasks/megalodon.yml
+    when: '"{{ansible_hostname}}" == "megalodon"'
   - include: tasks/dev.yml projects_dir=~/projects/
   - include: tasks/erl.yml
   - include: tasks/python.yml

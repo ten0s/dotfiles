@@ -69,38 +69,38 @@
         state=link
         force=true
 
-- name: Symlink global configs
+- name: Copy global configs
   sudo: true
-  file: src=/home/{{user}}/dotfiles/files/configs/global/{{item.name}}
+  copy: src=files/configs/global/{{item.name}}
         dest={{item.path}}/{{item.name}}
-        state=link
         force=true
   with_items:
   - {name: locale, path: /etc/default/}
-  - {name: 40custom_load-xmodmap, path: /etc/X11/Xsession.d/}
 
-- name: Symlink local configs
-  file: src=/home/{{user}}/dotfiles/files/configs/local/{{item}}
+- name: Copy local configs
+  copy: src=files/configs/local/{{item}}
         dest=/home/{{user}}/{{item}}
-        state=link
-        force=true
   with_items:
   - .bashrc
   - .gitconfig
   - .Xmodmap
 
 - name: Copy host specific configs
-  copy: src=/home/{{user}}/dotfiles/files/configs/local/{{item}}
+  copy: src=files/configs/local/{{item}}
         dest=/home/{{user}}/{{item}}
-        force=false
   with_items:
   - .bashrc.local
 
-- name: Setup `megalodon` scripts
-  file: src=/home/{{user}}/dotfiles/files/scripts/{{item}}
+- name: Copy generic scripts
+  copy: src=files/scripts/{{item}}
         dest=/home/{{user}}/bin/{{item}}
-        state=link
-        force=true
+        mode=0755
   with_items:
-  - setup-right-monitor.sh
-  when: '"{{ansible_hostname}}" == "megalodon"'
+  - capslock-to-control.sh
+
+- name: Copy generic autostart configs
+  copy: src=files/configs/local/{{item}}
+        dest=/home/{{user}}/.config/autostart/{{item}}
+  with_items:
+  - autokey.desktop
+  - capslock-to-control.desktop
