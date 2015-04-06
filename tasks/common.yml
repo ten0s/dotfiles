@@ -73,7 +73,6 @@
   sudo: true
   copy: src=files/configs/global/{{item.name}}
         dest={{item.path}}/{{item.name}}
-        force=true
   with_items:
   - {name: locale, path: /etc/default/}
 
@@ -88,6 +87,7 @@
 - name: Copy host specific configs
   copy: src=files/configs/local/{{item}}
         dest=/home/{{user}}/{{item}}
+        force=false
   with_items:
   - .bashrc.local
 
