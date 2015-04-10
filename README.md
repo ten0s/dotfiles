@@ -13,5 +13,5 @@ $ git clone git@github.com:ten0s/dotfiles.git
 
 <pre>
 $ cd dotfiles
-$ ansible-playbook main.yml
+$ ansible-playbook provision.yml
 </pre>
