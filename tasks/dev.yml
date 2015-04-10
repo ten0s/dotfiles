@@ -1,5 +1,4 @@
 ---
 - name: Ensure projects dir exists
-  file: >
-    path={{projects_dir}}
-    state=directory
+  file: path={{projects_dir}}
+        state=directory
