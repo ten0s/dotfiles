@@ -15,6 +15,10 @@
   sudo: yes
   pip: name=virtualenv
 
+- name: Ensure ansible-lint is installed
+  sudo: yes
+  pip: name=ansible-lint
+
 - name: Ensure SciPy stack is installed
   # http://www.scipy.org/install.html
   sudo: yes
