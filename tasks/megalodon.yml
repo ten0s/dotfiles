@@ -4,6 +4,14 @@
         mode=0755
   with_items:
   - add-monitor.sh
+  - gtag
+  - meld
+  - rabbitmq-delete-all
+  - rabbitmq-list-all
+  - rabbitmq-list-nempty
+  - rabbitmq-purge-all
+  - start-alley-env
+  - watch-rmq-queues
 
 - name: Copy `megalodon` autostart configs
   copy: src=files/configs/local/{{item}}

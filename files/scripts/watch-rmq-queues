@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo -e 'watch -n1 \x27rabbitmqctl list_queues name messages messages_ready messages_unacknowledged consumers -q | column -t | sort\x27'

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+FUNNEL_DIR=funnel_mini
+KELLY_DIR=kelly
+SOAP_DIR=soap/soap_srv
+MM_DIR=mm_srv
+ONEAPI=oneapi_srv
+JUST_DIR=just_mini
+
+#"echo -e 'watch -n1 \x27rabbitmqctl list_queues name messages messages_ready messages_unacknowledged consumers -q | column -t | sort\x27'"
+
+xfce4-terminal --geometry=380x60 --maximize \
+--tab --title="1. RabbitMQ" --working-directory=/home/$USER/projects --command="bash -c 'echo rabbitmq-server -detached; echo rabbitmqctl stop; echo rabbitmqctl status; echo rabbitmq-list-all; echo rabbitmq-list-nempty; echo rabbitmq-purge-all; echo rabbitmq-delete-all; watch-rmq-queues; exec bash'" \
+--tab --title="2. Funnel" --working-directory=/home/$USER/projects/$FUNNEL_DIR --command="bash -c 'echo make; echo make console; echo make develop; exec bash'" \
+--tab --title="3. SOAP" --working-directory=/home/$USER/projects/$SOAP_DIR --command="bash -c 'echo make; echo make console; echo make develop; exec bash'" \
+--tab --title="4. MM" --working-directory=/home/$USER/projects/$MM_DIR --command="bash -c 'echo make; echo make console; echo make develop; exec bash'" \
+--tab --title="5. OneAPI" --working-directory=/home/$USER/projects/$ONEAPI_DIR --command="bash -c 'echo make; echo make console; echo make develop; exec bash'" \
+--tab --title="6. Kelly" --working-directory=/home/$USER/projects/$KELLY_DIR --command="bash -c 'echo make; echo make console; echo make develop; exec bash'" \
+--tab --title="7. Just" --working-directory=/home/$USER/projects/$JUST_DIR --command="bash -c 'echo make; echo make console; echo make develop; exec bash'" \
+--tab --title="8. SendSMS" --working-directory=/home/$USER/projects/$KELLY_DIR/rel/files --command="bash -c 'echo ./kelly_http_configure; echo smppload -s375296660002 -d375296543210 -v -D; echo ./send_mo_msgs -c1; exec bash'" \
+--tab --title="9. Git" --working-directory=/home/$USER/projects/$KELLY_DIR \
+--tab --title="10. Mongo" --working-directory=/home/$USER/tmp --command="bash -c 'echo mongod --dbpath data --logpath data/mongodb.log --fork; echo mongo; exec bash'"
+
+# see also
+# http://unix.stackexchange.com/questions/3850/how-to-run-commands-automatically-on-gnome-terminal-after-log-in
+# http://fredschoeneman.posterous.com/opening-multiple-command-prompts-with-multipl
