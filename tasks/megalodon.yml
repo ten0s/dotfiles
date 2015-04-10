@@ -11,6 +11,7 @@
   - rabbitmq-list-nempty
   - rabbitmq-purge-all
   - start-alley-env
+  - start-alley-test-env
   - watch-rmq-queues
 
 - name: Copy `megalodon` autostart configs
