@@ -45,7 +45,7 @@
 
 - name: Ensure unneeded stuff is removed
   sudo: true
-  apt: name={{item}} state=absent
+  apt: name={{item}} state=absent purge=true
   with_items:
   - aptitude
   - banshee
