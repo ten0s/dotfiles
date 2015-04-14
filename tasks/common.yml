@@ -51,6 +51,7 @@
   - banshee
   - cowsay
   - fortune
+  - mono-runtime
   - totem
 
 - name: Ensure NTP is installed
