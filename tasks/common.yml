@@ -21,6 +21,17 @@
   command: apt-file update
   when: ctime.stdout|int > 2592000
 
+- name: Ensure unneeded stuff is removed
+  sudo: true
+  apt: name={{item}} state=absent purge=true
+  with_items:
+  - aptitude
+  - banshee
+  - cowsay
+  - fortune
+  - mono-runtime
+  - totem
+
 - name: Ensure common stuff is installed
   sudo: true
   apt: name={{item}} state=latest
@@ -42,17 +53,6 @@
   - vlc
   - wget
   - youtube-dl
-
-- name: Ensure unneeded stuff is removed
-  sudo: true
-  apt: name={{item}} state=absent purge=true
-  with_items:
-  - aptitude
-  - banshee
-  - cowsay
-  - fortune
-  - mono-runtime
-  - totem
 
 - name: Ensure NTP is installed
   sudo: true
