@@ -30,6 +30,7 @@
   - cowsay
   - fortune
   - mono-runtime
+  - tomboy
   - totem
 
 - name: Ensure common stuff is installed
@@ -43,6 +44,7 @@
   - emacs
   - git
   - gnuplot
+  - gnuplot-x11 # conflicts with gnuplot-nox
   - htop
   - jq
   - keepassx
