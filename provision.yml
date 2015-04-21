@@ -5,11 +5,10 @@
   vars:
     user: ten0s
   tasks:
-  - include: tasks/common.yml
-  - include: tasks/megalodon.yml
-    when: '"{{ansible_hostname}}" == "megalodon"'
-  - include: tasks/dev.yml projects_dir=~/projects/
-  - include: tasks/erl.yml
-  - include: tasks/python.yml
-  - include: tasks/sml.yml
-  - include: tasks/virt.yml cache_dir=/var/cache/ansible/virt/ vagrant_ver=1.7.2 vbox_ver=4.3
+  - {include: tasks/common.yml, tags: ["common"]}
+  - {include: tasks/megalodon.yml, tags: ["megalodon"], when: '"{{ansible_hostname}}" == "megalodon"'}
+  - {include: tasks/dev.yml projects_dir=~/projects/, tags: ["dev"]}
+  - {include: tasks/erl.yml, tags: ["erl"]}
+  - {include: tasks/python.yml, tags: ["python"]}
+  - {include: tasks/sml.yml, tags: ["sml"]}
+  - {include: tasks/virt.yml cache_dir=/var/cache/ansible/virt/ vagrant_ver=1.7.2 vbox_ver=4.3, tags: ["virt"]}
