@@ -6,6 +6,7 @@
     user: ten0s
   tasks:
   - {include: tasks/common.yml, tags: ["common"]}
+  - {include: tasks/anki.yml, tags: ["anki"]}
   - {include: tasks/megalodon.yml, tags: ["megalodon"], when: '"{{ansible_hostname}}" == "megalodon"'}
   - {include: tasks/dev.yml projects_dir=~/projects/, tags: ["dev"]}
   - {include: tasks/erl.yml, tags: ["erl"]}
