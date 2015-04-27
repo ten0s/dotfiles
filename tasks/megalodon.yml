@@ -2,6 +2,7 @@
   copy: src=files/scripts/{{item}}
         dest=/home/{{user}}/bin/{{item}}
         mode=0755
+        backup=true
   with_items:
   - add-monitor.sh
   - gtag
@@ -17,5 +18,6 @@
 - name: Copy `megalodon` autostart configs
   copy: src=files/configs/local/{{item}}
         dest=/home/{{user}}/.config/autostart/{{item}}
+        backup=true
   with_items:
   - add-monitor.desktop

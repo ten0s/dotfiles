@@ -77,12 +77,14 @@
   sudo: true
   copy: src=files/configs/global/{{item.name}}
         dest={{item.path}}/{{item.name}}
+        backup=true
   with_items:
   - {name: locale, path: /etc/default/}
 
 - name: Copy local configs
   copy: src=files/configs/local/{{item}}
         dest=/home/{{user}}/{{item}}
+        backup=true
   with_items:
   - .bashrc
   - .gitconfig
@@ -99,12 +101,14 @@
   copy: src=files/scripts/{{item}}
         dest=/home/{{user}}/bin/{{item}}
         mode=0755
+        backup=true
   with_items:
   - capslock-to-control.sh
 
 - name: Copy generic autostart configs
   copy: src=files/configs/local/{{item}}
         dest=/home/{{user}}/.config/autostart/{{item}}
+        backup=true
   with_items:
   - autokey.desktop
   - capslock-to-control.desktop
