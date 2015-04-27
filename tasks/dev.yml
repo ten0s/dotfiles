@@ -2,3 +2,24 @@
 - name: Ensure projects dir exists
   file: path={{projects_dir}}
         state=directory
+
+##
+# http://docs.mongodb.org/v2.6/tutorial/install-mongodb-on-ubuntu/
+##
+- name: Add MongoDB apt key
+  sudo: true
+  apt_key: keyserver=keyserver.ubuntu.com
+           id=7F0CEB10
+           state=present
+
+- name: Add MongoDB 2.6 repo
+  sudo: true
+  apt_repository: repo='deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen'
+                  state=present
+
+- name: Install MongoDB 2.6 tools
+  sudo: true
+  apt: name={{item}} state=present
+  with_items:
+  - mongodb-org-shell
+  - mongodb-org-tools
