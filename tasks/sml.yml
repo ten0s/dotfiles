@@ -1,6 +1,6 @@
 ---
-- name: Ensure SML deps are installed
-  sudo: yes
+- name: Install SML's deps
+  sudo: true
   apt: name={{item}} state=latest
   with_items:
   - libsmlnj-smlnj

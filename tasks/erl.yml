@@ -1,6 +1,6 @@
 ---
-- name: Ensure Erlang deps are installed
-  sudo: yes
+- name: Install Erlang's deps
+  sudo: true
   apt: name={{item}} state=latest
   with_items:
   - build-essential

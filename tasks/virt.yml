@@ -1,6 +1,6 @@
 ---
-- name: Ensure download cache dir is created
-  sudo: yes
+- name: Create download cache dir
+  sudo: true
   file: path={{cache_dir}}
         state=directory
         mode=0777
@@ -9,8 +9,8 @@
   get_url: url=https://dl.bintray.com/mitchellh/vagrant/vagrant_{{vagrant_ver}}_x86_64.deb
            dest={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
 
-- name: Ensure Vagrant is installed
-  sudo: yes
+- name: Install Vagrant
+  sudo: true
   apt: deb={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
        state=present
 
@@ -19,7 +19,7 @@
   register: plugins
   changed_when: false
 
-- name: Ensure Vagrant's plugins are installed
+- name: Install Vagrant's plugins
   # https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins
   shell: vagrant plugin install {{item}}
   with_items:
@@ -32,6 +32,6 @@
 # https://www.virtualbox.org/wiki/Linux_Downloads
 #
 
-- name: Ensure Virtualbox is installed
-  sudo: yes
+- name: Install Virtualbox
+  sudo: true
   apt: name=virtualbox-{{vbox_ver}} state=latest

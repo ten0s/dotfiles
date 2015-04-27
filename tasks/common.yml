@@ -1,10 +1,10 @@
 ---
-- name: Ensure apt cache is updated
+- name: Update apt' cache
   sudo: true
   # update cache once a day
   apt: update_cache=true cache_valid_time=86400
 
-- name: Ensure apt-file is installed
+- name: Install apt-file
   sudo: true
   apt: name=apt-file state=latest
 
@@ -15,13 +15,13 @@
   register: ctime
   changed_when: false
 
-- name: Ensure apt-file cache is updated
+- name: Update apt-file's cache
   sudo: true
   # update once a month
   command: apt-file update
   when: ctime.stdout|int > 2592000
 
-- name: Ensure unneeded stuff is removed
+- name: Remove unneeded stuff
   sudo: true
   apt: name={{item}} state=absent purge=true
   with_items:
@@ -38,7 +38,7 @@
   apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main universe'
                   state=present
 
-- name: Ensure common stuff is installed
+- name: Install common stuff
   sudo: true
   apt: name={{item}} state=latest
   with_items:
@@ -61,14 +61,14 @@
   - wget
   - youtube-dl
 
-- name: Ensure NTP is installed
+- name: Install NTP
   sudo: true
   apt: name={{item}} state=latest
   with_items:
   - ntp
   - ntpdate
 
-- name: Ensure NTP is started
+- name: Start NTP
   sudo: true
   service: name=ntp enabled=true
 

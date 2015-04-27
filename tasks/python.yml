@@ -1,27 +1,27 @@
 ---
-- name: Ensure python dev deps are installed
-  sudo: yes
+- name: Install Python's dev deps
+  sudo: true
   apt: name={{item}} state=present
   with_items:
   - build-essential
   - python-dev
   - python-setuptools
 
-- name: Ensure pip is installed
-  sudo: yes
+- name: Install pip
+  sudo: true
   easy_install: name=pip
 
-- name: Ensure virtualenv is installed
-  sudo: yes
+- name: Install virtualenv
+  sudo: true
   pip: name=virtualenv
 
-- name: Ensure ansible-lint is installed
-  sudo: yes
+- name: Install ansible-lint
+  sudo: true
   pip: name=ansible-lint
 
-- name: Ensure SciPy stack is installed
+- name: Install SciPy stack
   # http://www.scipy.org/install.html
-  sudo: yes
+  sudo: true
   apt: name={{item}} state=present
   with_items:
   - python-dev
