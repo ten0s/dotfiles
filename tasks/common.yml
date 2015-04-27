@@ -33,6 +33,11 @@
   - tomboy
   - totem
 
+- name: Add trusty-backports ubuntu repo (for jq-1.4)
+  sudo: true
+  apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main universe'
+                  state=present
+
 - name: Ensure common stuff is installed
   sudo: true
   apt: name={{item}} state=latest
