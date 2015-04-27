@@ -1,0 +1,17 @@
+- name: Install Anki's deps
+  sudo: true
+  apt: name={{item}}
+       state=present
+  with_items:
+  - mplayer
+
+- name: Install Anki 1.2.11
+  sudo: true
+  apt: deb=/home/ten0s/refs/python/anki/anki-1.2.11.deb
+       state=present
+
+- name: Hold Anki 1.2.11
+  sudo: true
+  command: apt-mark hold anki
+  register: anki_hold
+  changed_when: anki_hold.stdout == 'anki set on hold.'
