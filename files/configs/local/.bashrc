@@ -54,7 +54,7 @@ function notify {
 }
 
 function jc {
-    curl http://localhost:8080/just/reconfigure
+    curl http://localhost:8080/v1/just/reconfigure
 }
 
 ########### GIT SPECIFIC ##############
