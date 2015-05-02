@@ -109,6 +109,8 @@
         backup=true
   with_items:
   - capslock-to-control.sh
+  - gtag
+  - meld
 
 - name: Copy generic autostart configs
   copy: src=files/configs/local/{{item}}

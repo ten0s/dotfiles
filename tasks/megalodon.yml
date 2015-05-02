@@ -5,8 +5,6 @@
         backup=true
   with_items:
   - add-monitor.sh
-  - gtag
-  - meld
   - rabbitmq-delete-all
   - rabbitmq-list-all
   - rabbitmq-list-nempty
