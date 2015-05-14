@@ -45,6 +45,7 @@
   - autokey-gtk
   - build-essential
   - curl
+  - dos2unix
   - dropbox
   - emacs
   - git
