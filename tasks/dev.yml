@@ -23,3 +23,18 @@
   with_items:
   - mongodb-org-shell
   - mongodb-org-tools
+
+- name: Update /etc/security/limits.conf file
+  sudo: yes
+  lineinfile: dest=/etc/security/limits.conf
+              insertbefore='# End of file'
+              line='ten0s hard nofile 40960'
+              state=present
+
+- name: Update /etc/pam.d/su file
+  sudo: yes
+  lineinfile: dest=/etc/pam.d/su
+              regexp="^session    required   pam_limits.so"
+              insertafter='^# session    required   pam_limits.so'
+              line="session    required   pam_limits.so"
+              state=present
