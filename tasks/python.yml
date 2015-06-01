@@ -35,3 +35,7 @@
   - python-tk
   - ipython
   - ipython-notebook
+
+- name: Install bumpversion
+  sudo: true
+  pip: name=bumpversion
