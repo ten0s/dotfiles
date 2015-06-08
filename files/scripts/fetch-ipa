@@ -1,0 +1,17 @@
+#!/bin/bash
+
+Url="http://dictionary.reference.com/browse/"
+
+function usage() {
+	echo "Usage: $(basename $0) <word>"
+}
+
+if [ $# -lt 1 ]; then
+	usage
+	exit 1
+fi
+
+Word=$1
+curl -s $Url$Word | \
+xmllint --html --xpath '//section[@id="source-luna"]//span[@class="pron ipapron"]/text()' - 2>/dev/null
+echo

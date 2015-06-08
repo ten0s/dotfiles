@@ -54,6 +54,7 @@
   - htop
   - jq
   - keepassx
+  - libxml2-utils # provides xmllint
   - mc
   - meld
   - skype
@@ -112,6 +113,8 @@
   - capslock-to-control.sh
   - gtag
   - meld
+  - pjson
+  - pxml
 
 - name: Copy generic autostart configs
   copy: src=files/configs/local/{{item}}
