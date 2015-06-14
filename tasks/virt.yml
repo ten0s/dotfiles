@@ -25,6 +25,7 @@
   with_items:
   - vagrant-vbguest
   - vagrant-vbox-snapshot
+  - vagrant-winrm
   when: "'{{item}}' not in plugins.stdout"
 
 #
