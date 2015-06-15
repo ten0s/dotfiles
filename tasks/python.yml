@@ -39,3 +39,7 @@
 - name: Install bumpversion
   sudo: true
   pip: name=bumpversion
+
+- name: Install pywinrm
+  sudo: true
+  pip: name=http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm

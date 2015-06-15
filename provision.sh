@@ -1,3 +1,5 @@
 #!/bin/bash
 
-ansible-playbook provision.yml
+tags=${1-all}
+
+ansible-playbook provision.yml --tags=${tags}
