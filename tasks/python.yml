@@ -35,6 +35,7 @@
   - python-tk
   - ipython
   - ipython-notebook
+  - ipython-qtconsole
 
 - name: Install bumpversion
   sudo: true
