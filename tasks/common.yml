@@ -66,6 +66,13 @@
   - wget
   - youtube-dl
 
+- name: Use correct time zone
+  sudo: true
+  file: src=/usr/share/zoneinfo/Europe/Minsk
+        dest=/etc/localtime
+        state=link
+        force=true
+
 - name: Install NTP
   sudo: true
   apt: name={{item}} state=latest
