@@ -4,6 +4,7 @@ FUNNEL_DIR=funnel_mini/test
 SOAP_DIR=soap/soap_srv/test
 MM_DIR=mm_srv/test
 ONEAPI_DIR=oneapi_srv/test
+EMAIL_DIR=email2sms/test
 KELLY_DIR=kelly/test
 
 xfce4-terminal --geometry=380x60 --maximize \
@@ -11,4 +12,5 @@ xfce4-terminal --geometry=380x60 --maximize \
 --tab --title="2. SOAP" --working-directory=/home/$USER/projects/$SOAP_DIR --command="bash -c 'echo source env/bin/activate; echo source dev_env; echo source stg_env; echo py.test -v \*.py; echo py.test -v soap_test.py -k SOME_TESTS; exec bash'" \
 --tab --title="3. MM" --working-directory=/home/$USER/projects/$MM_DIR --command="bash -c 'echo source env/bin/activate; echo source dev_env; echo source stg_env; echo py.test -v test.py; echo py.test -v test.py -k SOME_TESTS; exec bash'" \
 --tab --title="4. OneAPI" --working-directory=/home/$USER/projects/$ONEAPI_DIR --command="bash -c 'echo source env/bin/activate; echo source dev_env; echo source stg_env; echo py.test -v test.py; echo py.test -v test.py -k SOME_TESTS; exec bash'" \
---tab --title="5. Kelly" --working-directory=/home/$USER/projects/$KELLY_DIR --command="bash -c 'echo source env/bin/activate; echo source dev_env; echo source stg_env; echo py.test -v \*.py; echo py.test -v http_blacklist_test.py -k SOME_TESTS; exec bash'"
+--tab --title="5. EMAIL" --working-directory=/home/$USER/projects/$EMAIL_DIR --command="bash -c 'echo source env/bin/activate; echo source dev_env; echo source stg_env; echo py.test -v test.py; echo py.test -v test.py -k SOME_TESTS; exec bash'" \
+--tab --title="6. Kelly" --working-directory=/home/$USER/projects/$KELLY_DIR --command="bash -c 'echo source env/bin/activate; echo source dev_env; echo source stg_env; echo py.test -v \*.py; echo py.test -v http_blacklist_test.py -k SOME_TESTS; exec bash'"
