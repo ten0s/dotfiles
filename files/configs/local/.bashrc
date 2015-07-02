@@ -7,7 +7,7 @@ export PATH=~/bin:$PATH
 export PATH=/opt/bin:$PATH
 export PATH=/opt/mongodb/bin:$PATH
 export PATH=/opt/rabbitmq/sbin:$PATH
-export PATH=~/miniconda/bin:$PATH
+export PATH=~/anaconda/bin:$PATH
 
 # don't overwrite history of another session
 shopt -s histappend
