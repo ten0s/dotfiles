@@ -7,7 +7,7 @@
 
 - name: Install Anki 1.2.11
   sudo: true
-  apt: deb=/home/ten0s/refs/python/anki/anki-1.2.11.deb
+  apt: deb=/home/ten0s/refs/py/anki/anki-1.2.11.deb
        state=present
 
 - name: Hold Anki 1.2.11
