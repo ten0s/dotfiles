@@ -19,7 +19,7 @@ xfce4-terminal --geometry=380x60 --maximize \
 --tab --title="8. Just" --working-directory=/home/$USER/projects/$JUST_DIR --command="bash -c 'echo make; echo make console; echo make develop; exec bash'" \
 --tab --title="9. SendSMS" --working-directory=/home/$USER/projects/$KELLY_DIR/rel/files --command="bash -c 'echo ./http_conf.sh; echo smppload -t10001 -s375296660001 -d375296543210 -v -D; echo ./send_mo_msgs -H192.168.33.10 -s375296543210 -d0011,6,0 -c1; exec bash'" \
 --tab --title="10. Git" --working-directory=/home/$USER/projects/$KELLY_DIR \
---tab --title="11. Mongo" --working-directory=/home/$USER/tmp --command="bash -c 'echo mongod --dbpath data --logpath data/mongodb.log --fork; echo mongo; exec bash'"
+--tab --title="11. Mongo" --working-directory=/home/$USER/tmp --command="bash -c 'echo mongo 192.168.33.10/kelly; exec bash'"
 
 # see also
 # http://unix.stackexchange.com/questions/3850/how-to-run-commands-automatically-on-gnome-terminal-after-log-in
