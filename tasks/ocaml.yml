@@ -1,0 +1,65 @@
+---
+#
+# https://github.com/realworldocaml/book/wiki/Installation-Instructions
+#
+
+- name: Add OCaml repo
+  sudo: true
+  apt_repository: repo='ppa:avsm/ppa'
+                  state=present
+
+- name: Install OCaml's deps
+  sudo: true
+  apt: name={{item}} state=latest
+  with_items:
+  - darcs
+  - libssl-dev
+  - m4
+  - mercurial
+  - ocaml
+  - ocaml-doc
+  - ocaml-mode
+  - ocaml-native-compilers
+  - opam
+  - tuareg-mode
+  - zlib1g-dev
+
+- name: Configure OPAM
+  command: opam init --auto-setup creates=~/.opam/
+
+- name: Help message
+  debug: msg='Open a new terminal if below installation of OPAM packages fails'
+
+- name: Install OPAM packages
+  command: opam install -y {{item}}
+  register: opam_result
+  changed_when: not ("Package {{item}} is already installed" in opam_result.stderr)
+  with_items:
+  - core
+  - utop
+  - async
+  - yojson
+  - core_extended
+  - core_bench
+  - cohttp
+  - async_graphics
+  - cryptokit
+  - menhir
+
+- name: Configure utop (1/6)
+  lineinfile: dest=~/.ocamlinit line="#use \"topfind\";;"
+
+- name: Configure utop (2/6)
+  lineinfile: dest=~/.ocamlinit line="#thread;;"
+
+- name: Configure utop (3/6)
+  lineinfile: dest=~/.ocamlinit line="#camlp4o;;"
+
+- name: Configure utop (4/6)
+  lineinfile: dest=~/.ocamlinit line="#require \"core.top\";;"
+
+- name: Configure utop (4/6)
+  lineinfile: dest=~/.ocamlinit line="#require \"core.syntax\";;"
+
+- name: Configure utop (4/6)
+  lineinfile: dest=~/.ocamlinit line="open Core.Std;;"

@@ -57,6 +57,7 @@
   - libxml2-utils # provides xmllint
   - mc
   - meld
+  - mercurial
   - mpg321 # for mpg123 :)
   - nmap
   - rdesktop
