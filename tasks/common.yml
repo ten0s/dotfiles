@@ -134,3 +134,12 @@
   with_items:
   - autokey.desktop
   - capslock-to-control.desktop
+
+- name: Pull emacs repo
+  git: repo=https://github.com/ten0s/emacs
+       dest=/home/{{user}}/emacs
+
+- name: Create link to .emacs
+  file: src=/home/{{user}}/emacs/.emacs
+        dest=/home/{{user}}/.emacs
+        state=link
