@@ -48,6 +48,7 @@
   - dos2unix
   - dropbox
   - emacs
+  - gdb
   - git
   - gnuplot
   - gnuplot-x11 # conflicts with gnuplot-nox
