@@ -42,7 +42,7 @@
   - yojson
   - core_extended
   - core_bench
-  # - cohttp disabled due to: async.113.00.00 is in conflict with cohttp.0.19.2
+  - cohttp
   - sexplib
   - async_graphics
   - async_ssl
