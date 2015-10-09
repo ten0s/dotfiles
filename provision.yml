@@ -13,5 +13,5 @@
   - {include: tasks/python.yml, tags: ["python"]}
   - {include: tasks/sml.yml, tags: ["sml"]}
   - {include: tasks/ocaml.yml, tags: ["ocaml"]}
-  - {include: tasks/virt.yml cache_dir=/var/cache/ansible/virt/ vagrant_ver=1.7.2 vbox_ver=4.3, tags: ["virt"]}
+  - {include: tasks/virt.yml cache_dir=/var/cache/ansible/virt/ vagrant_ver=1.7.4 vbox_ver=4.3, tags: ["virt"]}
   - {include: tasks/wine.yml, tags: ["wine"]}

@@ -16,7 +16,7 @@
 
 - name: Register `vagrant plugin list` output
   shell: vagrant plugin list
-  register: plugins
+  register: vagrant_plugin_list
   changed_when: false
 
 - name: Install Vagrant's plugins
@@ -26,7 +26,12 @@
   - vagrant-vbguest
   - vagrant-vbox-snapshot
   - vagrant-winrm
-  when: "'{{item}}' not in plugins.stdout"
+  when: "'{{item}}' not in vagrant_plugin_list.stdout"
+
+- name: Update Vagrant's plugins
+  shell: vagrant plugin update
+  register: vagrant_plugin_update
+  changed_when: "'Updated' in vagrant_plugin_update.stdout"
 
 #
 # TODO: Setup apt source
