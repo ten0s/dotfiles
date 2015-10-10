@@ -48,6 +48,7 @@
   - async_ssl
   - cryptokit
   - menhir
+  - atdgen
 
 - name: Configure utop (1/6)
   lineinfile: dest=~/.ocamlinit line="#use \"topfind\";;"
