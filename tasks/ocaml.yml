@@ -49,6 +49,7 @@
   - cryptokit
   - menhir
   - atdgen
+  - textwrap
 
 - name: Configure utop (1/6)
   lineinfile: dest=~/.ocamlinit line="#use \"topfind\";;"
