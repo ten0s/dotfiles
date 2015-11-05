@@ -38,6 +38,16 @@
   apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main universe'
                   state=present
 
+- name: Add Chrome key
+  sudo: true
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
+           state=present
+
+- name: Add Chrome repo
+  sudo: true
+  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main'
+                  state=present
+
 - name: Install common stuff
   sudo: true
   apt: name={{item}} state=latest
@@ -52,6 +62,7 @@
   - git
   - gnuplot
   - gnuplot-x11 # conflicts with gnuplot-nox
+  - google-chrome-stable
   - htop
   - jq
   - keepassx
