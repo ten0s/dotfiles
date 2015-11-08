@@ -1,0 +1,33 @@
+---
+- name: Install deps
+  sudo: true
+  apt: name={{item}}
+       state=present
+  with_items:
+  - autoconf
+  - autoconf-archive
+
+- name: Install Clang
+  sudo: true
+  apt: name={{item}}
+       state=present
+  with_items:
+  - clang-3.6
+  - llvm
+
+## sudo update-alternatives --config c++
+- name: Install Clang as main c++ alternative
+  sudo: true
+  command: update-alternatives --install {{item.link}} {{item.name}} {{item.path}} 100
+  with_items:
+  - {link: '/usr/bin/cc' , name: 'cc' , path: '/usr/bin/clang-3.6'}
+  - {link: '/usr/bin/c++', name: 'c++', path: '/usr/bin/clang++-3.6'}
+
+- name: Install Boost
+  sudo: true
+  apt: name=libboost-all-dev
+       state=present
+
+#- name: Download Boost
+#  get_url: url=http://sourceforge.net/projects/boost/files/boost/1.41.0/boost_1_41_0.tar.gz
+#           dest=/tmp/boost_1_41_0.tar.gz
