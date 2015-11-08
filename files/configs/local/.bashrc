@@ -118,7 +118,11 @@ function set-r17.1() {
     source /opt/r17.1/activate
 }
 
-set-r16b03-1
+function set-r18.1() {
+    source /opt/r18.1/activate
+}
+
+set-r18.1
 
 ########### DO NOT MODIFY PATH AFTER HERE ##########
 

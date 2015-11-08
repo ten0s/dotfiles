@@ -13,3 +13,52 @@
   - libwxgtk2.8-dev
   - unixodbc-dev
   - xsltproc
+
+- name: Install kerl
+  get_url: url=https://raw.githubusercontent.com/yrashk/kerl/master/kerl
+           dest=/home/{{user}}/bin/
+           mode=0755
+
+- name: Provision kerl config
+  copy: src=configs/local/.kerlrc
+        dest=/home/{{user}}/.kerlrc
+        backup=true
+
+- name: Update Erlang versions
+  command: kerl update releases
+
+- name: Build Erlang versions
+  command: kerl build {{item.release}} {{item.name}} creates=/opt/{{item.name}}
+  with_items:
+  - {release: 'R16B03-1', name: 'r16b03-1'}
+  - {release: '18.1'    , name: 'r18.1'}
+
+- name: Pull syntaxerl repo
+  git: repo=https://github.com/ten0s/syntaxerl.git
+       dest=/home/{{user}}/projects/syntaxerl
+       version=HEAD
+  register: syntaxerl
+
+- name: Build syntaxerl
+  command: make chdir=/home/{{user}}/projects/syntaxerl/
+  when: syntaxerl.changed
+
+- name: Create syntaxerl link
+  file: src=/home/{{user}}/projects/syntaxerl/syntaxerl
+        dest=/home/{{user}}/bin/syntaxerl
+        state=link
+
+- name: Pull rebar repo
+  git: repo=https://github.com/rebar/rebar.git
+       dest=/home/{{user}}/projects/rebar
+       version=2.6.1
+  register: rebar
+
+- name: Build rebar
+  command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
+  when: rebar.changed
+
+- name: Create rebar link
+  file: src=/home/{{user}}/projects/rebar/rebar
+        dest=/home/{{user}}/bin/rebar
+        state=link
