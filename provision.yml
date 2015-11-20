@@ -7,6 +7,7 @@
   tasks:
   - {include: tasks/common.yml, tags: ["common"]}
   - {include: tasks/megalodon.yml, tags: ["megalodon"], when: '"{{ansible_hostname}}" == "megalodon"'}
+  - {include: tasks/orca.yml, tags: ["orca"], when: '"{{ansible_hostname}}" == "orca"'}
   - {include: tasks/dev.yml projects_dir=~/projects/, tags: ["dev"]}
   - {include: tasks/erl.yml, tags: ["erl"]}
   - {include: tasks/cpp.yml, tags: ["cpp"]}
