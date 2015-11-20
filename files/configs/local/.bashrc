@@ -110,14 +110,6 @@ PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]$(parse_git_branch)\[\033
 
 ########### SHOULD BE THE LAST SECTION ##############
 
-function set-r16b03-1() {
-    source /opt/r16b03-1/activate
-}
-
-function set-r17.1() {
-    source /opt/r17.1/activate
-}
-
 function set-r18.1() {
     source /opt/r18.1/activate
 }

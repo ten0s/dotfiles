@@ -30,13 +30,11 @@
 - name: Build Erlang versions
   command: kerl build {{item.release}} {{item.name}} creates=/home/{{user}}/.kerl/builds/{{item.name}}
   with_items:
-  - {release: 'R16B03-1', name: 'r16b03-1'}
-  - {release: '18.1'    , name: 'r18.1'}
+  - {release: '18.1', name: 'r18.1'}
 
 - name: Install Erlang versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
-  - 'r16b03-1'
   - 'r18.1'
 
 - name: Pull syntaxerl repo
