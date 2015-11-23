@@ -47,3 +47,5 @@ $ git clone git@github.com:ten0s/dotfiles.git
 $ cd dotfiles
 $ ansible-playbook provision.yml
 </pre>
+
+Install https://github.com/ten0s/autokey
