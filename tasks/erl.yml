@@ -45,7 +45,6 @@
 
 - name: Build syntaxerl
   command: make chdir=/home/{{user}}/projects/syntaxerl/
-  when: syntaxerl.changed
 
 - name: Create syntaxerl link
   file: src=/home/{{user}}/projects/syntaxerl/syntaxerl
@@ -60,7 +59,6 @@
 
 - name: Build rebar
   command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
-  when: rebar.changed
 
 - name: Create rebar link
   file: src=/home/{{user}}/projects/rebar/rebar

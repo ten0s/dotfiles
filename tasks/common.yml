@@ -72,6 +72,7 @@
   - mercurial
   - mpg321 # for mpg123 :)
   - nmap
+  - python-gpgme
   - rdesktop
   - skype
   - tig
@@ -128,6 +129,10 @@
   with_items:
   - .bashrc.local
 
+- name: Create user's bin dir
+  file: path=/home/{{user}}/bin
+        state=directory    
+
 - name: Copy generic scripts
   copy: src=files/scripts/{{item}}
         dest=/home/{{user}}/bin/{{item}}
@@ -139,6 +144,10 @@
   - meld
   - pjson
   - pxml
+
+- name: Ensure user's config autostart exists
+  file: path=/home/{{user}}/.config/autostart
+        state=directory        
 
 - name: Copy generic autostart configs
   copy: src=files/configs/local/{{item}}
