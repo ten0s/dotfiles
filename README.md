@@ -48,4 +48,5 @@ $ cd dotfiles
 $ ansible-playbook provision.yml
 </pre>
 
+dropbox start -i
 Install https://github.com/ten0s/autokey
