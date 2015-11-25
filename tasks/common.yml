@@ -55,6 +55,8 @@
   - autokey-gtk
   - build-essential
   - curl
+  - dia
+  - dia-shapes
   - dos2unix
   - dropbox
   - emacs
@@ -63,6 +65,7 @@
   - gnuplot
   - gnuplot-x11 # conflicts with gnuplot-nox
   - google-chrome-stable
+  - gsfonts-x11 # dia recommends
   - htop
   - jq
   - keepassx
@@ -131,7 +134,7 @@
 
 - name: Create user's bin dir
   file: path=/home/{{user}}/bin
-        state=directory    
+        state=directory
 
 - name: Copy generic scripts
   copy: src=files/scripts/{{item}}
@@ -147,7 +150,7 @@
 
 - name: Ensure user's config autostart exists
   file: path=/home/{{user}}/.config/autostart
-        state=directory        
+        state=directory
 
 - name: Copy generic autostart configs
   copy: src=files/configs/local/{{item}}
