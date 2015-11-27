@@ -67,6 +67,7 @@
   - google-chrome-stable
   - gsfonts-x11 # dia recommends
   - htop
+  - inotify-tools
   - jq
   - keepassx
   - libxml2-utils # provides xmllint
@@ -143,6 +144,8 @@
         backup=true
   with_items:
   - capslock-to-control.sh
+  - flip-args
+  - fmon.sh
   - gtag
   - meld
   - pjson
