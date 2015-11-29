@@ -62,6 +62,7 @@
   - emacs
   - gdb
   - git
+  - giggle
   - gnuplot
   - gnuplot-x11 # conflicts with gnuplot-nox
   - google-chrome-stable
