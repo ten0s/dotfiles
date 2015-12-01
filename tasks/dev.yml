@@ -1,7 +1,10 @@
 ---
 - name: Create projects dir
-  file: path={{projects_dir}}
+  file: path={{item}}
         state=directory
+  with_items:
+  - /home/{{user}}/projects
+  - /home/{{user}}/projects/tmp
 
 ##
 # http://docs.mongodb.org/v2.6/tutorial/install-mongodb-on-ubuntu/
