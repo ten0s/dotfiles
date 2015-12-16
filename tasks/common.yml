@@ -84,6 +84,7 @@
   - vlc
   - vpnc
   - wget
+  - wireshark
   - youtube-dl
 
 - name: Use correct time zone
