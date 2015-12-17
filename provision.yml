@@ -18,3 +18,4 @@
   - {include: tasks/sml.yml      , tags: ["sml"]}
   - {include: tasks/ocaml.yml    , tags: ["ocaml"]}
   - {include: tasks/vagrant.yml  , tags: ["vagrant"]}
+  - {include: tasks/docker.yml   , tags: ["docker"]}
