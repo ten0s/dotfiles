@@ -62,3 +62,15 @@
   file: src=/home/{{user}}/projects/rebar/rebar
         dest=/home/{{user}}/bin/rebar
         state=link
+
+- name: Pull erlang-history
+  git: repo=https://github.com/ferd/erlang-history.git
+       dest=/home/{{user}}/projects/erlang-history
+       version=HEAD
+
+- name: Make erlang-history
+  command: make chdir=/home/{{user}}/projects/erlang-history
+
+- name: Install erlang-history to current Erlang release
+  sudo: true
+  command: make install chdir=/home/{{user}}/projects/erlang-history
