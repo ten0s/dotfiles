@@ -41,7 +41,6 @@
   git: repo=https://github.com/ten0s/syntaxerl.git
        dest=/home/{{user}}/projects/syntaxerl
        version=HEAD
-  register: syntaxerl
 
 - name: Build syntaxerl
   command: make chdir=/home/{{user}}/projects/syntaxerl/
@@ -55,7 +54,6 @@
   git: repo=https://github.com/rebar/rebar.git
        dest=/home/{{user}}/projects/rebar
        version=2.6.1
-  register: rebar
 
 - name: Build rebar
   command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
