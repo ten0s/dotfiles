@@ -24,6 +24,7 @@
   - opam
   - tuareg-mode
   - zlib1g-dev
+  - libzmq3-dev # for iocaml
 
 - name: Configure OPAM
   command: opam init --auto-setup creates=~/.opam/
@@ -50,6 +51,9 @@
   - menhir
   - atdgen
   - textwrap
+  - ssl
+  - websocket
+  - iocaml
 
 - name: Configure utop (1/6)
   lineinfile: dest=~/.ocamlinit line="#use \"topfind\";;"
@@ -68,5 +72,3 @@
 
 - name: Configure utop (4/6)
   lineinfile: dest=~/.ocamlinit line="#require \"core.top\";;"
-
-# TODO: https://github.com/andrewray/iocaml
