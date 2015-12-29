@@ -66,6 +66,8 @@
   - gnuplot
   - gnuplot-x11 # conflicts with gnuplot-nox
   - google-chrome-stable
+  - graphviz
+  - graphviz-doc
   - gsfonts-x11 # dia recommends
   - htop
   - inotify-tools
