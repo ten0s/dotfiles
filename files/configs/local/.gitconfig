@@ -1,19 +1,19 @@
 [user]
-	name = Dmitry Klionsky
-	email = dm.klionsky@gmail.com
+    name = Dmitry Klionsky
+    email = dm.klionsky@gmail.com
 [core]
-	editor = emacs
+    editor = emacs
 [diff]
-	tool = meld
+    tool = meld
 [merge]
-	tool = meld
+    tool = meld
 [difftool]
-	prompt = false
+    prompt = false
 [mergetool]
-	prompt = false
+    prompt = false
 [color]
-	status = auto
-	branch = auto
-	diff = auto
-	interactive = auto
-	ui = true
+    status = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    ui = true
