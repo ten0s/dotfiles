@@ -17,3 +17,5 @@
     diff = auto
     interactive = auto
     ui = true
+[url "https://"]
+    insteadOf = git://
