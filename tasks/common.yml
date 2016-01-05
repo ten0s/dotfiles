@@ -42,6 +42,7 @@
   sudo: true
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
            state=present
+           validate_certs=false
 
 - name: Add Chrome repo
   sudo: true
