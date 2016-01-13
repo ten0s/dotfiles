@@ -80,6 +80,8 @@
   - mercurial
   - mpg321 # for mpg123 :)
   - nmap
+  - openssh-client
+  - openssh-server
   - python-gpgme
   - rdesktop
   - skype
