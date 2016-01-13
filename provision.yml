@@ -4,8 +4,8 @@
   user: ten0s
   vars:
     user: ten0s
-    cache_dir: /var/cache/ansible/
-    vagrant_ver: 1.7.4
+    cache_dir: /var/cache/ansible
+    vagrant_ver: 1.8.1
     vbox_ver: 4.3
   tasks:
   - {include: tasks/common.yml   , tags: ["common"]}

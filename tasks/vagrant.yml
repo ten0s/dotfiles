@@ -6,7 +6,7 @@
         mode=0777
 
 - name: Download Vagrant package
-  get_url: url=https://dl.bintray.com/mitchellh/vagrant/vagrant_{{vagrant_ver}}_x86_64.deb
+  get_url: url=https://releases.hashicorp.com/vagrant/{{vagrant_ver}}/vagrant_{{vagrant_ver}}_x86_64.deb
            dest={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
 
 - name: Install Vagrant
