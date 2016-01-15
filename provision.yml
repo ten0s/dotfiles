@@ -16,6 +16,7 @@
   - {include: tasks/cpp.yml      , tags: ["cpp"]}
   - {include: tasks/py.yml       , tags: ["py"]}
   - {include: tasks/sml.yml      , tags: ["sml"]}
+  - {include: tasks/js.yml       , tags: ["js"]}
   - {include: tasks/ocaml.yml    , tags: ["ocaml"]}
   - {include: tasks/vagrant.yml  , tags: ["vagrant"]}
   - {include: tasks/docker.yml   , tags: ["docker"]}

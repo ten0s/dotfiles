@@ -38,7 +38,7 @@
   apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main universe'
                   state=present
 
-- name: Add Chrome key
+- name: Add Chrome signing key
   sudo: true
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
            state=present
