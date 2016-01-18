@@ -36,6 +36,9 @@
 - name: Help message
   debug: msg='Open a new terminal if below installation of OPAM packages fails'
 
+- name: Update OPAM
+  command: opam update
+
 - name: Install OPAM packages
   command: opam install -y {{item}}
   register: opam_result
