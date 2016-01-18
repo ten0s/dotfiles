@@ -1,6 +1,6 @@
 ---
 - name: Create download cache dir
-  sudo: true
+  become: true
   file: path={{cache_dir}}
         state=directory
         mode=0777
@@ -10,7 +10,7 @@
            dest={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
 
 - name: Install Vagrant
-  sudo: true
+  become: true
   apt: deb={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
        state=present
 
@@ -39,5 +39,5 @@
 #
 
 - name: Install Virtualbox
-  sudo: true
+  become: true
   apt: name=virtualbox-{{vbox_ver}} state=present

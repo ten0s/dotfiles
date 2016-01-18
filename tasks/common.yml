@@ -1,11 +1,11 @@
 ---
 - name: Update apt's cache
-  sudo: true
+  become: true
   # update cache once a day
   apt: update_cache=true cache_valid_time=86400
 
 - name: Install apt-file
-  sudo: true
+  become: true
   apt: name=apt-file state=latest
 
 - name: Register apt-file change time
@@ -16,13 +16,13 @@
   changed_when: false
 
 - name: Update apt-file's cache
-  sudo: true
+  become: true
   # update once a month
   command: apt-file update
   when: ctime.stdout|int > 2592000
 
 - name: Remove unneeded stuff
-  sudo: true
+  become: true
   apt: name={{item}} state=absent purge=true
   with_items:
   - aptitude
@@ -34,23 +34,23 @@
   - totem
 
 - name: Add trusty-backports ubuntu repo (for jq-1.4)
-  sudo: true
+  become: true
   apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main universe'
                   state=present
 
 - name: Add Chrome signing key
-  sudo: true
+  become: true
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
            state=present
            validate_certs=false
 
 - name: Add Chrome repo
-  sudo: true
+  become: true
   apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main'
                   state=present
 
 - name: Install common stuff
-  sudo: true
+  become: true
   apt: name={{item}} state=latest
   with_items:
   - autokey-gtk
@@ -94,21 +94,21 @@
   - youtube-dl
 
 - name: Use correct time zone
-  sudo: true
+  become: true
   file: src=/usr/share/zoneinfo/Europe/Minsk
         dest=/etc/localtime
         state=link
         force=true
 
 - name: Install NTP
-  sudo: true
+  become: true
   apt: name={{item}} state=latest
   with_items:
   - ntp
   - ntpdate
 
 - name: Start NTP
-  sudo: true
+  become: true
   service: name=ntp enabled=true
 
 - name: Symlink 'refs'
@@ -118,7 +118,7 @@
         force=true
 
 - name: Copy global configs
-  sudo: true
+  become: true
   copy: src=files/configs/global/{{item.name}}
         dest={{item.path}}/{{item.name}}
         backup=true

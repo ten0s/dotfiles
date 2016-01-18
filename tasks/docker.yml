@@ -1,12 +1,12 @@
 ---
 - name: Add Docker key
-  sudo: true
+  become: true
   apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80
            id=58118E89F3A912897C070ADBF76221572C52609D
            state=present
 
 - name: Add Docker repo
-  sudo: true
+  become: true
   apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-trusty main'
                   state=present
 
@@ -16,14 +16,14 @@
   changed_when: false
 
 - name: Install Docker deps
-  sudo: true
+  become: true
   apt: name={{item}} state=present
   with_items:
   - "linux-image-extra-{{kernel_version.stdout}}"
   - cgroup-lite
 
 - name: Install Docker
-  sudo: true
+  become: true
   apt: name=docker-engine
        state=present
 
@@ -33,18 +33,18 @@
 #
 
 - name: Create docker group
-  sudo: true
+  become: true
   group: name=docker
          state=present
 
 - name: Append user to docker group
-  sudo: true
+  become: true
   user: name={{user}}
         groups=docker
         append=true
 
 - name: Start and enable Docker daemon
-  sudo: true
+  become: true
   service: name=docker
            enabled=true
            state=started

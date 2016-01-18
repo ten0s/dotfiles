@@ -1,6 +1,6 @@
 ---
 - name: Install Python's dev deps
-  sudo: true
+  become: true
   apt: name={{item}} state=present
   with_items:
   - build-essential
@@ -8,20 +8,20 @@
   - python-setuptools
 
 - name: Install pip
-  sudo: true
+  become: true
   easy_install: name=pip
 
 - name: Install virtualenv
-  sudo: true
+  become: true
   pip: name=virtualenv
 
 - name: Install ansible-lint
-  sudo: true
+  become: true
   pip: name=ansible-lint
 
 - name: Install SciPy stack
   # http://www.scipy.org/install.html
-  sudo: true
+  become: true
   apt: name={{item}} state=present
   with_items:
   - python-dev
@@ -38,9 +38,9 @@
   - ipython-qtconsole
 
 - name: Install bumpversion
-  sudo: true
+  become: true
   pip: name=bumpversion
 
 - name: Install pywinrm
-  sudo: true
+  become: true
   pip: name=http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm

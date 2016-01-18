@@ -1,6 +1,6 @@
 ---
 - name: Install Erlang's deps
-  sudo: true
+  become: true
   apt: name={{item}} state=latest
   with_items:
   - build-essential
@@ -72,5 +72,5 @@
   command: make chdir=/home/{{user}}/projects/erlang-history
 
 - name: Install erlang-history to current Erlang release
-  sudo: true
+  become: true
   command: make install chdir=/home/{{user}}/projects/erlang-history

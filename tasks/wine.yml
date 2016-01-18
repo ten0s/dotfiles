@@ -1,10 +1,10 @@
 - name: Add WineHQ repo
-  sudo: true
+  become: true
   apt_repository: repo='ppa:ubuntu-wine/ppa'
                   state=present
 
 - name: Install Wine
-  sudo: true
+  become: true
   apt: name=wine1.7
        state=present
 

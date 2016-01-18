@@ -3,13 +3,17 @@
 # https://github.com/realworldocaml/book/wiki/Installation-Instructions
 #
 
+# https://launchpad.net/~avsm/+archive/ubuntu/ppa
 - name: Add OCaml repo
-  sudo: true
-  apt_repository: repo='ppa:avsm/ppa'
+  become: true
+  apt_repository: repo="{{item}}"
                   state=present
+  with_items:
+  - "deb http://ppa.launchpad.net/avsm/ppa/ubuntu trusty main"
+  - "deb-src http://ppa.launchpad.net/avsm/ppa/ubuntu trusty main"
 
 - name: Install OCaml's deps
-  sudo: true
+  become: true
   apt: name={{item}} state=latest
   with_items:
   - darcs

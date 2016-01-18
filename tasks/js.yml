@@ -3,24 +3,24 @@
 # https://deb.nodesource.com/setup_5.x
 #
 - name: Add NodeSource signing key
-  sudo: true
+  become: true
   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
            state=present
 
 - name: Add NodeSource Node.js 5.x repo
-  sudo: true
+  become: true
   apt_repository: repo="{{item}}"
                   state=present
   with_items:
-  - 'deb https://deb.nodesource.com/node_5.x trusty main'
-  - 'deb-src https://deb.nodesource.com/node_5.x trusty main'
+  - "deb https://deb.nodesource.com/node_5.x trusty main"
+  - "deb-src https://deb.nodesource.com/node_5.x trusty main"
 
 - name: Install Node.js
-  sudo: true
+  become: true
   apt: name=nodejs state=present
 
 - name: Install global Node's packages
-  sudo: true
+  become: true
   npm: name={{item.name}}
        version={{item.version}}
        global=true
