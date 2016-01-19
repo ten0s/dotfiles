@@ -6,6 +6,7 @@
   with_items:
   - autoconf
   - autoconf-archive
+  - automake
 
 - name: Install Clang
   become: true
