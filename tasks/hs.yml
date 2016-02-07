@@ -3,6 +3,7 @@
   become: true
   apt: name={{item}} state=latest
   with_items:
-  - cabal-install
-  - ghc
+  - haskell-platform
+  - haskell-platform-doc
+  - haskell-platform-prof
   - hugs
