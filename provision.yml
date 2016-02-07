@@ -17,6 +17,7 @@
   - {include: tasks/py.yml       , tags: ["py"]}
   - {include: tasks/sml.yml      , tags: ["sml"]}
   - {include: tasks/js.yml       , tags: ["js"]}
+  - {include: tasks/hs.yml       , tags: ["hs"]}
   - {include: tasks/ocaml.yml    , tags: ["ocaml"]}
   - {include: tasks/vagrant.yml  , tags: ["vagrant"]}
   - {include: tasks/docker.yml   , tags: ["docker"]}
