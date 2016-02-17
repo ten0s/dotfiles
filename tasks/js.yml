@@ -26,4 +26,4 @@
        global=true
        state=present
   with_items:
-  - {name: "bower", version: "1.7.2"}
+  - {name: "bower", version: "1.7.7"}
