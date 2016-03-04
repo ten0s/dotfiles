@@ -42,7 +42,7 @@
   become: true
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
            state=present
-           validate_certs=false
+           validate_certs=true
 
 - name: Add Chrome repo
   become: true
