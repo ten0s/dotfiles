@@ -78,6 +78,7 @@
   - mc
   - meld
   - mercurial
+  - moreutils # for errno
   - mpg321 # for mpg123 :)
   - nmap
   - openssh-client
