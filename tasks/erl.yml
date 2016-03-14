@@ -41,6 +41,21 @@
   - 'r18.1'
   - 'r18.2'
 
+- name: Build Dialyzer lookup tables
+  shell: >
+    source /opt/{{item}}/activate && dialyzer --build_plt
+    --output_plt /home/{{user}}/.{{item}}.plt
+    --apps kernel stdlib erts crypto public_key mnesia sasl common_test eunit
+    ssh ssl asn1 compiler syntax_tools tools inets snmp xmerl
+    creates=/home/{{user}}/.{{item}}.plt
+  args:
+     executable: /bin/bash
+  register: dialyzer_result
+  failed_when: dialyzer_result.rc == 1
+  with_items:
+  - 'r18.1'
+  - 'r18.2'
+
 - name: Pull syntaxerl repo
   git: repo=https://github.com/ten0s/syntaxerl.git
        dest=/home/{{user}}/projects/syntaxerl
