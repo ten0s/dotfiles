@@ -28,7 +28,9 @@
   command: kerl update releases
 
 - name: Build Erlang versions
-  command: kerl build {{item.release}} {{item.name}} creates=/home/{{user}}/.kerl/builds/{{item.name}}
+  command: >
+    kerl build {{item.release}} {{item.name}}
+    creates=/home/{{user}}/.kerl/builds/{{item.name}}
   with_items:
   - {release: '18.1', name: 'r18.1'}
   - {release: '18.2', name: 'r18.2'}
