@@ -1,4 +1,11 @@
 ---
+- name: Create libs dirs
+  file: path={{item}}
+        state=directory
+  with_items:
+  - /home/{{user}}/.erl_libs
+  - /home/{{user}}/.erl_libs/ebin
+
 - name: Install Erlang's deps
   become: true
   apt: name={{item}} state=latest
@@ -55,6 +62,32 @@
   with_items:
   - 'r18.1'
   - 'r18.2'
+
+- name: Pull user_default repo
+  git: repo=https://github.com/ten0s/user_default.git
+       dest=/home/{{user}}/projects/user_default
+       version=HEAD
+
+- name: Build user_default
+  command: make chdir=/home/{{user}}/projects/syntaxerl/
+
+- name: Create user_default link
+  file: src=/home/{{user}}/projects/user_default/user_default.beam
+        dest=/home/{{user}}/.erl_libs/ebin/user_default.beam
+        state=link
+
+- name: Pull sync repo
+  git: repo=https://github.com/rustyio/sync.git
+       dest=/home/{{user}}/.erl_libs/sync
+       version=HEAD
+
+- name: Build sync
+  command: make chdir=/home/{{user}}/.erl_libs/sync/
+
+- name: Provision .erlang config
+  copy: src=configs/local/.erlang
+        dest=/home/{{user}}/.erlang
+        backup=true
 
 - name: Pull syntaxerl repo
   git: repo=https://github.com/ten0s/syntaxerl.git
