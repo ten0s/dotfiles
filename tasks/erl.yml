@@ -69,7 +69,7 @@
        version=HEAD
 
 - name: Build user_default
-  command: make chdir=/home/{{user}}/projects/syntaxerl/
+  command: erlc user_default.erl chdir=/home/{{user}}/projects/user_default/
 
 - name: Create user_default link
   file: src=/home/{{user}}/projects/user_default/user_default.beam
