@@ -79,10 +79,18 @@
 - name: Pull sync repo
   git: repo=https://github.com/rustyio/sync.git
        dest=/home/{{user}}/.erl_libs/sync
-       version=HEAD
+       version=11df81d
 
 - name: Build sync
   command: make chdir=/home/{{user}}/.erl_libs/sync/
+
+- name: Pull eper repo
+  git: repo=https://github.com/massemanet/eper.git
+       dest=/home/{{user}}/.erl_libs/eper
+       version=0.97.3
+
+- name: Build eper
+  command: make chdir=/home/{{user}}/.erl_libs/eper/
 
 - name: Provision .erlang config
   copy: src=configs/local/.erlang
