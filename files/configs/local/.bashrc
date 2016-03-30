@@ -118,7 +118,11 @@ function set-r18.2() {
     source /opt/r18.2/activate
 }
 
-set-r18.2
+function set-r18.3() {
+    source /opt/r18.3/activate
+}
+
+set-r18.3
 
 ########### DO NOT MODIFY PATH AFTER HERE ##########
 

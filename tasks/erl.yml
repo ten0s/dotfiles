@@ -41,12 +41,14 @@
   with_items:
   - {release: '18.1', name: 'r18.1'}
   - {release: '18.2', name: 'r18.2'}
+  - {release: '18.3', name: 'r18.3'}
 
 - name: Install Erlang versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
   - 'r18.1'
   - 'r18.2'
+  - 'r18.3'
 
 - name: Build Dialyzer lookup tables
   shell: >
@@ -62,6 +64,7 @@
   with_items:
   - 'r18.1'
   - 'r18.2'
+  - 'r18.3'
 
 - name: Pull user_default repo
   git: repo=https://github.com/ten0s/user_default.git
