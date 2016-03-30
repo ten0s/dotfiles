@@ -46,7 +46,7 @@
 
 - name: Add Chrome repo
   become: true
-  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main'
+  apt_repository: repo='deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
                   state=present
 
 - name: Install common stuff
