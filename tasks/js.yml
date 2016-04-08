@@ -26,4 +26,5 @@
        global=true
        state=present
   with_items:
-  - {name: "bower", version: "1.7.7"}
+  - {name: "bower", version: "1.7.9"}
+  - {name: "jslint", version: "0.9.6"}
