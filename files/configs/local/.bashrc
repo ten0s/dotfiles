@@ -110,19 +110,11 @@ PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]$(parse_git_branch)\[\033
 
 ########### SHOULD BE THE LAST SECTION ##############
 
-function set-r18.1() {
-    source /opt/r18.1/activate
-}
-
-function set-r18.2() {
-    source /opt/r18.2/activate
-}
-
-function set-r18.3() {
+function activate-erlang() {
     source /opt/r18.3/activate
 }
 
-set-r18.3
+activate-erlang
 
 ########### DO NOT MODIFY PATH AFTER HERE ##########
 

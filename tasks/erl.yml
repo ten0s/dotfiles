@@ -34,20 +34,43 @@
 - name: Update Erlang versions
   command: kerl update releases
 
+- name: Delete Erlang installations
+  become: true
+  command: >
+    kerl delete installation /opt/{{item}}
+    removes=/opt/{{item}}
+  with_items:
+  - r16b03-1
+  - r18.1
+  - r18.2
+
+- name: Delete Erlang builds
+  command: >
+    kerl delete build {{item}}
+    removes=/home/{{user}}/.kerl/builds/{{item}}
+  with_items:
+  - r16b03-1
+  - r18.1
+  - r18.2
+
+- name: Delete Dialyzer lookup tables
+  file: path=/home/{{user}}/.{{item}}.plt
+        state=absent
+  with_items:
+  - r16b03-1
+  - r18.1
+  - r18.2
+
 - name: Build Erlang versions
   command: >
     kerl build {{item.release}} {{item.name}}
     creates=/home/{{user}}/.kerl/builds/{{item.name}}
   with_items:
-  - {release: '18.1', name: 'r18.1'}
-  - {release: '18.2', name: 'r18.2'}
   - {release: '18.3', name: 'r18.3'}
 
 - name: Install Erlang versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
-  - 'r18.1'
-  - 'r18.2'
   - 'r18.3'
 
 - name: Build Dialyzer lookup tables
@@ -62,12 +85,10 @@
   register: dialyzer_result
   failed_when: dialyzer_result.rc == 1
   with_items:
-  - 'r18.1'
-  - 'r18.2'
   - 'r18.3'
 
 - name: Pull user_default repo
-  git: repo=https://github.com/ten0s/user_default.git
+  git: repo=git@github.com:ten0s/user_default.git
        dest=/home/{{user}}/projects/user_default
        version=HEAD
 
@@ -101,7 +122,7 @@
         backup=true
 
 - name: Pull syntaxerl repo
-  git: repo=https://github.com/ten0s/syntaxerl.git
+  git: repo=git@github.com:ten0s/syntaxerl.git
        dest=/home/{{user}}/projects/syntaxerl
        version=HEAD
 
