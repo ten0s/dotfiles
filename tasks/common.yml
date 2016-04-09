@@ -181,3 +181,8 @@
   file: src=/home/{{user}}/emacs/.emacs
         dest=/home/{{user}}/.emacs
         state=link
+
+- name: Pull autokey repo
+  git: repo=git@github.com:ten0s/autokey
+       dest=/home/{{user}}/.config/autokey
+       force=true

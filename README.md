@@ -48,5 +48,5 @@ $ cd dotfiles
 $ ./provision.yml [common | erl | ...]
 </pre>
 
+## TODO
 dropbox start -i
-Install https://github.com/ten0s/autokey
