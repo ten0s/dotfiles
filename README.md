@@ -45,7 +45,7 @@ $ git clone git@github.com:ten0s/dotfiles.git
 
 <pre>
 $ cd dotfiles
-$ ansible-playbook provision.yml
+$ ./provision.yml [common | erl | ...]
 </pre>
 
 dropbox start -i
