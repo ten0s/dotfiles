@@ -172,6 +172,7 @@
   with_items:
   - autokey.desktop
   - capslock-to-control.desktop
+  - my-dropbox.desktop
 
 - name: Pull emacs repo
   git: repo=git@github.com:ten0s/emacs

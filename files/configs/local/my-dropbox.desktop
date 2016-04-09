@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=My Dropbox
+GenericName=File Synchronizer
+Comment=Fixes dropbox icon on Linux Mint
+Exec=dbus-launch dropbox start -i
+Terminal=false
+Type=Application
+Icon=dropbox
+Categories=Network;FileTransfer;
+StartupNotify=false
