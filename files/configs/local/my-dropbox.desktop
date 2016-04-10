@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=My Dropbox
 GenericName=File Synchronizer
-Comment=Fixes icon on Linux Mint and prevents creation of dropbox.desktop
-Exec=dbus-launch dropbox start && sleep 60 && dropbox autostart n
+Comment=Fixes icon on Linux Mint
+Exec=dbus-launch dropbox start
 Terminal=false
 Type=Application
 Icon=dropbox
