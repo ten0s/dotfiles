@@ -6,6 +6,8 @@ export VISUAL=$EDITOR
 export PATH=~/bin:$PATH
 export PATH=/opt/bin:$PATH
 
+export ORACLE_HOME=/usr/lib/oracle/12.1/client64
+
 # don't overwrite history of another session
 shopt -s histappend
 export HISTCONTROL=erasedups:ignorespace:ignoredups
