@@ -5,8 +5,6 @@ export VISUAL=$EDITOR
 
 export PATH=~/bin:$PATH
 export PATH=/opt/bin:$PATH
-export PATH=/opt/mongodb/bin:$PATH
-export PATH=/opt/rabbitmq/sbin:$PATH
 
 # don't overwrite history of another session
 shopt -s histappend
