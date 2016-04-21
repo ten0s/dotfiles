@@ -22,7 +22,7 @@
   - xsltproc
 
 - name: Install kerl
-  get_url: url=https://raw.githubusercontent.com/yrashk/kerl/master/kerl
+  get_url: url=https://raw.githubusercontent.com/kerl/kerl/master/kerl
            dest=/home/{{user}}/bin/
            mode=0755
 
