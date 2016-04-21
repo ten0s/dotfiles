@@ -53,10 +53,6 @@ function notify {
 	$(sleep $timeout && notify-send $message) &
 }
 
-function jc {
-    curl http://localhost:8080/v1/just/reconfigure
-}
-
 ########### GIT SPECIFIC ##############
 
 alias gst="git status"
