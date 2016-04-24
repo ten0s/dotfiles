@@ -39,27 +39,18 @@
   command: >
     kerl delete installation /opt/{{item}}
     removes=/opt/{{item}}
-  with_items:
-  - r16b03-1
-  - r18.1
-  - r18.2
+  with_items: []
 
 - name: Delete Erlang builds
   command: >
     kerl delete build {{item}}
     removes=/home/{{user}}/.kerl/builds/{{item}}
-  with_items:
-  - r16b03-1
-  - r18.1
-  - r18.2
+  with_items: []
 
 - name: Delete Dialyzer lookup tables
   file: path=/home/{{user}}/.{{item}}.plt
         state=absent
-  with_items:
-  - r16b03-1
-  - r18.1
-  - r18.2
+  with_items: []
 
 - name: Build Erlang versions
   command: >
