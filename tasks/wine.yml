@@ -7,5 +7,7 @@
   become: true
   apt: name=wine1.7
        state=present
+  register: wine
 
 - debug: msg='Now run Wine -> Configure Wine and install everything it will ask'
+  when: wine | changed
