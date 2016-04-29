@@ -68,6 +68,10 @@
   - include
   - rdbms/public
 
+- name: Configure SQL*Plus
+  copy: src=files/configs/local/login.sql
+        dest=/home/{{user}}/login.sql
+
 # http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index.html
 
 - name: Install SQL Developer
