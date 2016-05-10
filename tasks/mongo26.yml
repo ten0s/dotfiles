@@ -2,7 +2,7 @@
 ##
 # http://docs.mongodb.org/v2.6/tutorial/install-mongodb-on-ubuntu/
 ##
-- name: Add MongoDB apt key
+- name: Add MongoDB key
   become: true
   apt_key: keyserver=keyserver.ubuntu.com
            id=7F0CEB10
