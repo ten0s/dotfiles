@@ -75,6 +75,7 @@
 # http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index.html
 
 - name: Install SQL Developer
+  become: true
   command: >
            alien -c -i /home/{{user}}/refs/db/oracle/sqldeveloper-4.1.3.20.78-1.noarch.rpm
            creates=/opt/sqldeveloper/sqldeveloper.sh
