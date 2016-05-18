@@ -72,6 +72,7 @@
   - graphviz
   - graphviz-doc
   - gsfonts-x11 # dia recommends
+  - hexdiff
   - htop
   - inotify-tools
   - jq
