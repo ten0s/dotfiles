@@ -84,12 +84,11 @@
   - moreutils # for errno
   - mpg321 # for mpg123 :)
   - nmap
-  - openssh-client
-  - openssh-server
   - python-gpgme
   - rdesktop
   - skype
   - software-properties-common # add-apt-repository
+  - sysv-rc-conf
   - tig
   - tree
   - vlc
@@ -115,7 +114,22 @@
 
 - name: Start NTP
   become: true
-  service: name=ntp enabled=true
+  service: name=ntp
+           enabled=true
+           state=started
+
+- name: Install SSH
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - openssh-client
+  - openssh-server
+
+- name: Start SSH
+  become: true
+  service: name=ssh
+           enabled=true
+           state=started
 
 - name: Symlink 'refs'
   file: src=/home/{{user}}/Dropbox/refs
