@@ -23,6 +23,7 @@
   # https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins
   shell: vagrant plugin install {{item}}
   with_items:
+  - vagrant-cachier
   - vagrant-vbguest
   - vagrant-vbox-snapshot
   - vagrant-winrm
