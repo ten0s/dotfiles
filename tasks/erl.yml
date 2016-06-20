@@ -1,10 +1,11 @@
 ---
-- name: Create libs dirs
+- name: Create dirs
   file: path={{item}}
         state=directory
   with_items:
   - /home/{{user}}/.erl_libs
   - /home/{{user}}/.erl_libs/ebin
+  - /home/{{user}}/.rebar
 
 - name: Install Erlang's deps
   become: true
@@ -137,6 +138,10 @@
   file: src=/home/{{user}}/projects/rebar/rebar
         dest=/home/{{user}}/bin/rebar
         state=link
+
+- name: Copy template.config
+  copy: src=files/configs/local/template.config
+        dest=/home/{{user}}/.rebar/template.config
 
 - name: Pull erlang-history
   git: repo=https://github.com/ferd/erlang-history.git
