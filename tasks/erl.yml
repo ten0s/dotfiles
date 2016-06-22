@@ -108,6 +108,19 @@
 - name: Build eper
   command: make chdir=/home/{{user}}/.erl_libs/eper/
 
+- name: Pull entop repo
+  git: repo=https://github.com/mazenharake/entop.git
+       dest=/home/{{user}}/.erl_libs/entop
+       version=e0dff37
+
+- name: Build entop
+  shell: ./rebar get-deps && ./rebar compile chdir=/home/{{user}}/.erl_libs/entop/
+
+- name: Create entop link
+  file: src=/home/{{user}}/.erl_libs/entop/entop
+        dest=/home/{{user}}/bin/entop
+        state=link
+
 - name: Provision .erlang config
   copy: src=configs/local/.erlang
         dest=/home/{{user}}/.erlang
