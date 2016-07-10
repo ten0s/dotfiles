@@ -5,11 +5,15 @@
   with_items:
   - build-essential
   - python-dev
+  - python-pip
+  - python3-pip
   - python-setuptools
 
-- name: Install pip
+- name: Upgrade pip
   become: true
-  easy_install: name=pip
+  command: pip install --upgrade pip
+  register: pip_upgrade
+  changed_when: "'Successfully installed' in pip_upgrade.stdout"
 
 - name: Install virtualenv
   become: true
@@ -18,6 +22,18 @@
 - name: Install ansible-lint
   become: true
   pip: name=ansible-lint
+
+- name: Install Jupiter
+  become: true
+  pip: name=jupyter
+
+- name: Remove old IPython 1.x
+  become: true
+  apt: name={{item}} state=absent
+  with_items:
+  - ipython
+  - ipython-notebook
+  - ipython-qtconsole
 
 - name: Install SciPy stack
   # http://www.scipy.org/install.html
@@ -33,9 +49,6 @@
   - python-matplotlib
   - python-networkx
   - python-tk
-  - ipython
-  - ipython-notebook
-  - ipython-qtconsole
 
 - name: Install bumpversion
   become: true
