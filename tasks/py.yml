@@ -27,14 +27,6 @@
   become: true
   pip: name=jupyter
 
-- name: Remove old IPython 1.x
-  become: true
-  apt: name={{item}} state=absent
-  with_items:
-  - ipython
-  - ipython-notebook
-  - ipython-qtconsole
-
 - name: Install SciPy stack
   # http://www.scipy.org/install.html
   become: true
