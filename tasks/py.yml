@@ -23,9 +23,18 @@
   become: true
   pip: name=ansible-lint
 
-- name: Install Jupiter
+- name: Install Jupyter
   become: true
   pip: name=jupyter
+
+# https://github.com/takluyver/bash_kernel
+- name: Install IBash kernel 1/2
+  become: true
+  pip: name=bash_kernel
+
+- name: Install IBash kernel 2/2
+  become: true
+  command: python -m bash_kernel.install
 
 - name: Install SciPy stack
   # http://www.scipy.org/install.html
