@@ -41,6 +41,15 @@
   become: true
   pip: name=graphviz
 
+- name: Install gvmagic 1/2
+  git: repo=https://github.com/cjdrake/ipython-magic.git
+       dest=/home/{{user}}/projects/ipython-gvmagic
+       version=HEAD
+
+- name: Install gvmagic 2/2
+  become: true
+  command: python setup.py install chdir=/home/{{user}}/projects/ipython-gvmagic
+
 - name: Install SciPy stack
   # http://www.scipy.org/install.html
   become: true
