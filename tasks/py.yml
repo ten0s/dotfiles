@@ -36,6 +36,10 @@
   become: true
   command: python -m bash_kernel.install
 
+- name: Install Graphviz
+  become: true
+  pip: name=graphviz
+
 - name: Install SciPy stack
   # http://www.scipy.org/install.html
   become: true
