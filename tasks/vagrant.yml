@@ -19,12 +19,17 @@
   register: vagrant_plugin_list
   changed_when: false
 
+- name: Uninstall Vagrant's plugins
+  shell: vagrant plugin uninstall {{item}}
+  with_items:
+  - vagrant-vbguest
+  when: "'{{item}}' in vagrant_plugin_list.stdout"
+
 - name: Install Vagrant's plugins
   # https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins
   shell: vagrant plugin install {{item}}
   with_items:
   - vagrant-cachier
-  - vagrant-vbguest
   - vagrant-vbox-snapshot
   - vagrant-winrm
   when: "'{{item}}' not in vagrant_plugin_list.stdout"
