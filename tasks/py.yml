@@ -36,7 +36,7 @@
   become: true
   command: python -m bash_kernel.install
 
- # http://graphviz.readthedocs.io/en/latest/manual.html
+# http://graphviz.readthedocs.io/en/latest/manual.html
 - name: Install Graphviz
   become: true
   pip: name=graphviz
