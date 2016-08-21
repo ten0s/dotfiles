@@ -22,18 +22,18 @@ sudo visudo
 %sudo ALL=NOPASSWD: ALL
 </pre>
 
+## Bootstrap
+
+<pre>
+curl https://raw.githubusercontent.com/ten0s/dotfiles/master/bootstrap.sh | bash
+</pre>
+
 ## Clone dotfiles
 
 <pre>
 cd ~
 git clone git@github.com:ten0s/dotfiles.git
 cd dotfiles
-</pre>
-
-## Bootstrap Ansible
-
-<pre>
-./bootstrap.sh
 </pre>
 
 ## Provision
