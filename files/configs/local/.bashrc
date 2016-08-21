@@ -123,4 +123,4 @@ activate-erlang
 alias cdv="$_KERL_ACTIVE_DIR/lib/observer-*/priv/bin/cdv"
 
 # OCaml specific config
-eval `opam config env`
+which opam >/dev/null && eval `opam config env`
