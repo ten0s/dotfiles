@@ -1,26 +1,14 @@
-## Prerequisites
-
-In order to run the commands below you need to have **git** and [Ansible](http://www.ansible.com) installed.
-
-## Install Git
+## Generate a new ssh key and add it to github.com
 
 <pre>
-$ sudo apt-get install git
+ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 </pre>
-
-## Install Ansible
-
-### [Latest Releases Via Apt (Ubuntu)](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu)
-
-<pre>
-$ sudo apt-add-repository ppa:ansible/ansible
-$ sudo apt-get update
-$ sudo apt-get install ansible
-</pre>
-
-### [Latest Release Via Yum](http://docs.ansible.com/ansible/intro_installation.html#latest-release-via-yum)
 
 ## Adjust /etc/sudoers
+
+<pre>
+sudo visudo
+</pre>
 
 - Disable secure_path
 
@@ -34,18 +22,22 @@ $ sudo apt-get install ansible
 %sudo ALL=NOPASSWD: ALL
 </pre>
 
-## Setup dotfiles
+## Clone dotfiles
 
 <pre>
-$ cd ~
-$ git clone git@github.com:ten0s/dotfiles.git
+cd ~
+git clone git@github.com:ten0s/dotfiles.git
+cd dotfiles
+</pre>
+
+## Bootstrap Ansible
+
+<pre>
+./bootstrap.sh
 </pre>
 
 ## Provision
 
 <pre>
-$ cd dotfiles
-$ ./provision.yml [common | erl | ...]
+./provision.sh [common | erl | ...]
 </pre>
-
-## TODO
