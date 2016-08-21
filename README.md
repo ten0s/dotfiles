@@ -33,11 +33,11 @@ curl https://raw.githubusercontent.com/ten0s/dotfiles/master/bootstrap.sh | bash
 <pre>
 cd ~
 git clone git@github.com:ten0s/dotfiles.git
-cd dotfiles
 </pre>
 
 ## Provision
 
 <pre>
+cd ~/dotfiles
 ./provision.sh [common | erl | ...]
 </pre>
