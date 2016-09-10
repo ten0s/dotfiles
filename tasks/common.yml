@@ -93,6 +93,8 @@
   - tig
   - tree
   - uuid
+  - vino     # VNC server
+  - vinagre  # VNC client
   - vlc
   - vpnc
   - wget
