@@ -86,6 +86,7 @@
   - mpg321 # for mpg123 :)
   - nmap
   - python-gpgme
+  - pwgen
   - rdesktop
   - skype
   - software-properties-common # add-apt-repository
