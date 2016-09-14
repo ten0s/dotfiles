@@ -77,3 +77,8 @@
 - name: Install AWSCLI
   become: true
   pip: name=awscli
+
+# Requirement for EC2 modules
+- name: Install Boto
+  become: true
+  pip: name=boto
