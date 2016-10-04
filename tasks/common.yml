@@ -94,6 +94,7 @@
   - tig
   - tree
   - uuid
+  - valgrind
   - vino     # VNC server
   - vinagre  # VNC client
   - vlc
