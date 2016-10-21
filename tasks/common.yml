@@ -77,6 +77,10 @@
   - htop
   - inotify-tools
   - jq
+  - kcachegrind
+  - kdelibs-bin      # to fix kde apps crashes
+  - kdelibs5-data    # to fix kde apps crashes
+  - kdelibs5-plugins # to fix kde apps crashes
   - keepassx
   - libxml2-utils # provides xmllint
   - mc

@@ -121,6 +121,16 @@
         dest=/home/{{user}}/bin/entop
         state=link
 
+- name: Pull erlgrind repo
+  git: repo=https://github.com/isacssouza/erlgrind.git
+       dest=/home/{{user}}/.erl_libs/erlgrind
+       version=357a47e
+
+- name: Create erlgrind link
+  file: src=/home/{{user}}/.erl_libs/erlgrind/src/erlgrind
+        dest=/home/{{user}}/bin/erlgrind
+        state=link
+
 - name: Provision .erlang config
   copy: src=configs/local/.erlang
         dest=/home/{{user}}/.erlang
