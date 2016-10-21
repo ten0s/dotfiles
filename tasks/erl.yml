@@ -95,7 +95,7 @@
 - name: Pull sync repo
   git: repo=https://github.com/rustyio/sync.git
        dest=/home/{{user}}/.erl_libs/sync
-       version=11df81d
+       version=ce67012
 
 - name: Build sync
   command: make chdir=/home/{{user}}/.erl_libs/sync/
