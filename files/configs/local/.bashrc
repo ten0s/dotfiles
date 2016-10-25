@@ -124,3 +124,7 @@ alias cdv="$_KERL_ACTIVE_DIR/lib/observer-*/priv/bin/cdv"
 
 # OCaml specific config
 which opam >/dev/null && eval `opam config env`
+
+# Enable AWS CLI Bash completion
+# http://docs.aws.amazon.com/cli/latest/userguide/cli-command-completion.html
+complete -C '/usr/local/bin/aws_completer' aws
