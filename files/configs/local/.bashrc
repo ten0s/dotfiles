@@ -20,6 +20,8 @@ alias bashrc="$EDITOR ~/.bashrc && source ~/.bashrc"
 
 alias open=gnome-open
 
+alias docker_gci="for image in $(docker images | grep '<none>' | awk '{ print $3 }'); do docker rmi -f $image; done"
+
 alias sudo="sudo "
 alias ls="ls --color=auto -v"
 alias ll="ls -lF --color=auto -v"
