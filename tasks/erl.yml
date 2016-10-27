@@ -131,6 +131,15 @@
         dest=/home/{{user}}/bin/erlgrind
         state=link
 
+# http://proper.softlab.ntua.gr/User_Guide.html
+- name: Pull PropEr
+  git: repo=http://github.com/manopapad/proper.git
+       dest=/home/{{user}}/.erl_libs/proper
+       version=v1.2
+
+- name: Build PropEr
+  command: make chdir=/home/{{user}}/.erl_libs/proper/
+
 - name: Provision .erlang config
   copy: src=configs/local/.erlang
         dest=/home/{{user}}/.erlang
