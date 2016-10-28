@@ -208,7 +208,7 @@
        dest=/home/{{user}}/emacs
 
 - name: Create link to .emacs
-  file: src=/home/{{user}}/emacs/.emacs
+  file: src=/home/{{user}}/emacs/emacs
         dest=/home/{{user}}/.emacs
         state=link
 
