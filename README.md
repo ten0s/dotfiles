@@ -39,5 +39,5 @@ git clone git@github.com:ten0s/dotfiles.git
 
 <pre>
 cd ~/dotfiles
-./provision.sh [common | erl | ...]
+./provision.sh [common[,...]]
 </pre>
