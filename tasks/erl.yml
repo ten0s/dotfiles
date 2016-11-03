@@ -140,6 +140,15 @@
 - name: Build PropEr
   command: make chdir=/home/{{user}}/.erl_libs/proper/
 
+- name: Pull Triq
+  git: repo=https://github.com/triqng/triq.git
+       dest=/home/{{user}}/.erl_libs/triq
+       force=true
+       version=2c49739
+
+- name: Build Triq
+  shell: chmod +x rebar && make chdir=/home/{{user}}/.erl_libs/triq/
+
 - name: Provision .erlang config
   copy: src=configs/local/.erlang
         dest=/home/{{user}}/.erlang
