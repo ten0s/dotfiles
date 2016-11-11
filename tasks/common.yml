@@ -94,6 +94,7 @@
   - rdesktop
   - skype
   - software-properties-common # add-apt-repository
+  - spell
   - sysv-rc-conf
   - tig
   - tree
