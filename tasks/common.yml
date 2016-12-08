@@ -64,6 +64,7 @@
   - dos2unix
   - dropbox
   - emacs
+  - expect
   - gdb
   - git
   - giggle
