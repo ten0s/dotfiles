@@ -27,8 +27,10 @@
 
 - name: Install Vagrant's plugins
   # https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins
+  # https://github.com/mitchellh/vagrant-aws
   shell: vagrant plugin install {{item}}
   with_items:
+  - vagrant-aws
   - vagrant-cachier
   - vagrant-vbox-snapshot
   - vagrant-winrm
