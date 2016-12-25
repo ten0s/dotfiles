@@ -93,3 +93,7 @@
 - name: Install Boto
   become: true
   pip: name=boto
+
+- name: Install Hypothesis
+  become: true
+  pip: name=hypothesis
