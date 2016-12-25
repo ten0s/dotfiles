@@ -23,6 +23,8 @@
   become: true
   pip: name=ansible-lint
 
+#  fonts-font-awesome fonts-mathjax ipython-notebook-common libjs-highlight
+#  libjs-jquery-ui libjs-marked libjs-mathjax python-simplegeneric python-zmq
 - name: Install Jupyter
   become: true
   pip: name=jupyter
