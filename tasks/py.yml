@@ -99,3 +99,7 @@
 - name: Install Hypothesis
   become: true
   pip: name=hypothesis
+
+- name: Install PyTest
+  become: true
+  pip: name=pytest
