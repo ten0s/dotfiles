@@ -140,6 +140,20 @@
 - name: Build proper
   command: make chdir=/home/{{user}}/.erl_libs/proper/
 
+# http://concuerror.com
+- name: Pull concuerror
+  git: repo=https://github.com/ten0s/Concuerror.git
+       dest=/home/{{user}}/.erl_libs/concuerror
+       version=symlink
+
+- name: Build concuerror
+  command: make chdir=/home/{{user}}/.erl_libs/concuerror/
+
+- name: Create concuerror link
+  file: src=/home/{{user}}/.erl_libs/concuerror/concuerror
+        dest=/home/{{user}}/bin/concuerror
+        state=link
+
 - name: Pull triq
   git: repo=https://github.com/triqng/triq.git
        dest=/home/{{user}}/.erl_libs/triq
