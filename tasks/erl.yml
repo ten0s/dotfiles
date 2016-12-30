@@ -103,7 +103,7 @@
 - name: Pull eper repo
   git: repo=https://github.com/massemanet/eper.git
        dest=/home/{{user}}/.erl_libs/eper
-       version=0.97.3
+       version=0.97.6
 
 - name: Build eper
   command: make chdir=/home/{{user}}/.erl_libs/eper/
@@ -187,7 +187,7 @@
 - name: Pull erlang-history
   git: repo=https://github.com/ferd/erlang-history.git
        dest=/home/{{user}}/projects/erlang-history
-       version=HEAD
+       version=9f6e419
 
 - name: Make erlang-history
   command: make chdir=/home/{{user}}/projects/erlang-history
