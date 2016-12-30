@@ -142,9 +142,9 @@
 
 # http://concuerror.com
 - name: Pull concuerror
-  git: repo=https://github.com/ten0s/Concuerror.git
+  git: repo=https://github.com/parapluu/Concuerror.git
        dest=/home/{{user}}/.erl_libs/concuerror
-       version=symlink
+       version=3c15bbb
 
 - name: Build concuerror
   command: make chdir=/home/{{user}}/.erl_libs/concuerror/
