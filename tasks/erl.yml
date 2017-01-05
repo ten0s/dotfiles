@@ -140,6 +140,23 @@
 - name: Build proper
   command: make chdir=/home/{{user}}/.erl_libs/proper/
 
+# http://parapluu.github.io/nifty/
+- name: Install nifty deps
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - libclang-dev
+  - libclang1
+  - llvm
+
+- name: Pull nifty
+  git: repo=https://github.com/parapluu/nifty.git
+       dest=/home/{{user}}/.erl_libs/nifty
+       version=2ed15ad
+
+- name: Build nifty
+  shell: NIFTY_ROOT=/home/{{user}}/.erl_libs/nifty/ make chdir=/home/{{user}}/.erl_libs/nifty/
+
 # http://concuerror.com
 - name: Pull concuerror
   git: repo=https://github.com/parapluu/Concuerror.git
