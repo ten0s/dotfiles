@@ -89,6 +89,7 @@
   - mercurial
   - moreutils # for errno
   - mpg321 # for mpg123 :)
+  - mscgen # http://www.mcternan.me.uk/mscgen/index.html
   - nmap
   - python-gpgme
   - pwgen
