@@ -1,11 +1,11 @@
 ---
 #
 # https://deb.nodesource.com/setup_5.x
+# https://github.com/nodesource/ansible-nodejs-role/issues/33
 #
 - name: Add NodeSource signing key
   become: true
-  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-           state=present
+  shell: curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
 - name: Add NodeSource Node.js 5.x repo
   become: true
