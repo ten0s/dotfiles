@@ -86,9 +86,11 @@
   git: repo=git@github.com:ten0s/user_default.git
        dest=/home/{{user}}/projects/user_default
        version=HEAD
+  register: user_default
 
 - name: Build user_default
   command: erlc user_default.erl chdir=/home/{{user}}/projects/user_default/
+  when: user_default.changed
 
 - name: Create user_default link
   file: src=/home/{{user}}/projects/user_default/user_default.beam
@@ -99,25 +101,31 @@
   git: repo=https://github.com/rustyio/sync.git
        dest=/home/{{user}}/.erl_libs/sync
        version=ce67012
+  register: sync
 
 - name: Build sync
   command: make chdir=/home/{{user}}/.erl_libs/sync/
+  when: sync.changed
 
 - name: Pull eper
   git: repo=https://github.com/massemanet/eper.git
        dest=/home/{{user}}/.erl_libs/eper
        version=0.97.6
+  register: eper
 
 - name: Build eper
   command: make chdir=/home/{{user}}/.erl_libs/eper/
+  when: eper.changed
 
 - name: Pull entop
   git: repo=https://github.com/mazenharake/entop.git
        dest=/home/{{user}}/.erl_libs/entop
        version=e0dff37
+  register: entop
 
 - name: Build entop
   shell: ./rebar get-deps && ./rebar compile chdir=/home/{{user}}/.erl_libs/entop/
+  when: entop.changed
 
 - name: Create entop link
   file: src=/home/{{user}}/.erl_libs/entop/entop
@@ -128,6 +136,7 @@
   git: repo=https://github.com/isacssouza/erlgrind.git
        dest=/home/{{user}}/.erl_libs/erlgrind
        version=357a47e
+  register: erlgrind
 
 - name: Create erlgrind link
   file: src=/home/{{user}}/.erl_libs/erlgrind/src/erlgrind
@@ -139,9 +148,11 @@
   git: repo=http://github.com/manopapad/proper.git
        dest=/home/{{user}}/.erl_libs/proper
        version=v1.2
+  register: proper
 
 - name: Build proper
   command: make chdir=/home/{{user}}/.erl_libs/proper/
+  when: proper.changed
 
 # http://parapluu.github.io/nifty/
 - name: Install nifty deps
@@ -156,18 +167,22 @@
   git: repo=https://github.com/parapluu/nifty.git
        dest=/home/{{user}}/.erl_libs/nifty
        version=2ed15ad
+  register: nifty
 
 - name: Build nifty
   shell: NIFTY_ROOT=/home/{{user}}/.erl_libs/nifty/ make chdir=/home/{{user}}/.erl_libs/nifty/
+  when: nifty.changed
 
 # http://concuerror.com
 - name: Pull concuerror
   git: repo=https://github.com/parapluu/Concuerror.git
        dest=/home/{{user}}/.erl_libs/concuerror
        version=3c15bbb
+  register: concuerror
 
 - name: Build concuerror
   command: make chdir=/home/{{user}}/.erl_libs/concuerror/
+  when: concuerror.changed
 
 - name: Create concuerror link
   file: src=/home/{{user}}/.erl_libs/concuerror/concuerror
@@ -179,9 +194,11 @@
        dest=/home/{{user}}/.erl_libs/triq
        force=true
        version=2c49739
+  register: triq
 
 - name: Build triq
   shell: chmod +x rebar && make chdir=/home/{{user}}/.erl_libs/triq/
+  when: triq.changed
 
 - name: Provision .erlang config
   copy: src=configs/local/.erlang
@@ -192,9 +209,11 @@
   git: repo=git@github.com:ten0s/syntaxerl.git
        dest=/home/{{user}}/projects/syntaxerl
        version=HEAD
+  register: syntaxerl
 
 - name: Build syntaxerl
   command: make chdir=/home/{{user}}/projects/syntaxerl/
+  when: syntaxerl.changed
 
 - name: Create syntaxerl link
   file: src=/home/{{user}}/projects/syntaxerl/syntaxerl
@@ -205,9 +224,11 @@
   git: repo=https://github.com/rebar/rebar.git
        dest=/home/{{user}}/projects/rebar
        version=2.6.1
+  register: rebar
 
 - name: Build rebar
   command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
+  when: rebar.changed
 
 - name: Create rebar link
   file: src=/home/{{user}}/projects/rebar/rebar
@@ -222,10 +243,13 @@
   git: repo=https://github.com/ferd/erlang-history.git
        dest=/home/{{user}}/projects/erlang-history
        version=9f6e419
+  register: erlang_history
 
 - name: Make erlang-history
   command: make chdir=/home/{{user}}/projects/erlang-history
+  when: erlang_history.changed
 
 - name: Install erlang-history to current Erlang release
   become: true
   command: make install chdir=/home/{{user}}/projects/erlang-history
+  when: erlang_history.changed
