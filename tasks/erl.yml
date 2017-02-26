@@ -59,11 +59,13 @@
     creates=/home/{{user}}/.kerl/builds/{{item.name}}
   with_items:
   - {release: '18.3', name: 'r18.3'}
+  - {release: '19.2', name: 'r19.2'}
 
 - name: Install erlang versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
   - 'r18.3'
+  - 'r19.2'
 
 - name: Build dialyzer lookup tables
   shell: >
@@ -78,6 +80,7 @@
   failed_when: dialyzer_result.rc == 1
   with_items:
   - 'r18.3'
+  - 'r19.2'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git
