@@ -235,6 +235,21 @@
         dest=/home/{{user}}/bin/rebar
         state=link
 
+- name: Pull rebar3
+  git: repo=https://github.com/erlang/rebar3.git
+       dest=/home/{{user}}/projects/rebar3
+       version=3.3.5
+  register: rebar3
+
+- name: Build rebar3
+  command: ./bootstrap chdir=/home/{{user}}/projects/rebar3/
+  when: rebar3.changed
+
+- name: Create rebar3 link
+  file: src=/home/{{user}}/projects/rebar3/rebar3
+        dest=/home/{{user}}/bin/rebar3
+        state=link
+
 - name: Copy template.config
   copy: src=files/configs/local/template.config
         dest=/home/{{user}}/.rebar/template.config
