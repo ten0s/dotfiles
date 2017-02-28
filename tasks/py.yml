@@ -107,3 +107,7 @@
 - name: Install PyTest
   become: true
   pip: name=pytest
+
+- name: Install json2yaml
+  become: true
+  pip: name=json2yaml
