@@ -100,7 +100,7 @@
 - name: Pull sync
   git: repo=https://github.com/rustyio/sync.git
        dest=/home/{{user}}/.erl_libs/sync
-       version=ce67012
+       version=20846b0
   register: sync
 
 - name: Build sync
