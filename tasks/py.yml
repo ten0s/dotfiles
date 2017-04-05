@@ -111,3 +111,7 @@
 - name: Install json2yaml
   become: true
   pip: name=json2yaml
+
+- name: Install youtube-dl
+  become: true
+  pip: name=youtube-dl

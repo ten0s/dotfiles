@@ -32,6 +32,7 @@
   - mono-runtime
   - tomboy
   - totem
+  - youtube-dl
 
 - name: Add trusty-backports ubuntu repo (for jq-1.4)
   become: true
@@ -109,7 +110,6 @@
   - wget
   - whois
   - wireshark
-  - youtube-dl
 
 - name: Use correct time zone
   become: true
