@@ -32,7 +32,6 @@
   - mono-runtime
   - tomboy
   - totem
-  - youtube-dl
 
 - name: Add trusty-backports ubuntu repo (for jq-1.4)
   become: true
