@@ -7,6 +7,8 @@ export PATH=~/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
 export PATH=/opt/bin:$PATH
 
+export SHELLCHECK_OPTS="-f gcc -e SC1090 -e SC2087"
+
 export ORACLE_HOME=/usr/lib/oracle/12.1/client64
 export SQLPATH=$HOME:$SQLPATH
 alias sqlplus="rlwrap sqlplus64"
