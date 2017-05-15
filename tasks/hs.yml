@@ -6,3 +6,20 @@
   - haskell-platform
   - haskell-platform-doc
   - haskell-platform-prof
+
+- name: Update cabal
+  command: cabal update
+
+- name: Uninstall legacy
+  become: true
+  command: ghc-pkg unregister {{item}}
+  register: unregister
+  failed_when: unregister.rc == 1 and not "'cannot find package' in unregister.stderr"
+  with_items:
+  - regex-compat-0.95.1
+  - regex-posix-0.95.2
+
+
+# https://github.com/koalaman/shellcheck
+- name: Install ShellCheck
+  command: cabal install ShellCheck

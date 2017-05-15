@@ -4,6 +4,7 @@ export EDITOR="emacs" # -nw"
 export VISUAL=$EDITOR
 
 export PATH=~/bin:$PATH
+export PATH=~/.cabal/bin:$PATH
 export PATH=/opt/bin:$PATH
 
 export ORACLE_HOME=/usr/lib/oracle/12.1/client64
