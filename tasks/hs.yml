@@ -19,7 +19,6 @@
   - regex-compat-0.95.1
   - regex-posix-0.95.2
 
-
 # https://github.com/koalaman/shellcheck
 - name: Install ShellCheck
   command: cabal install ShellCheck
