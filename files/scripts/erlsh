@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]] && [[ $# -ne 2 ]]; then
+    echo "Usage: $(basename $0) <NAME@IP> [<ping> | remsh]"
+    exit 1
+fi
+
+node=$1
+cmd=${2-ping}
+
+ip=$(echo $node | awk -F@ '{print $2}')
+case $ip in
+10.249.*)
+    echo Connecting to Prod...
+    cookie=$(ssh $ip 'cat .erlang.cookie')
+    ;;
+10.252.*)
+    echo Connecting to Sandbox...
+    cookie=$(ssh $ip 'sudo cat /home/*/.erlang.cookie')
+    ;;
+*)
+    echo "Unknown host: $ip"
+    exit 1
+esac
+
+echo "Exit with double Ctrl-C"
+case $cmd in
+ping)
+    erl -name adm$$@127.0.0.1 -setcookie $cookie -eval "net_adm:ping('$node')."
+    ;;
+remsh)
+    erl -name adm$$@127.0.0.1 -setcookie $cookie -remsh $node
+    ;;
+*)
+    echo "Unknown command: $cmd"
+    exit 1
+esac
