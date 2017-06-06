@@ -48,8 +48,8 @@ alias td="task delete"
 alias perror='python -c "import os, sys; print os.strerror(int(sys.argv[1]))"'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-function b64e() { echo `base64 <<< $1`; }
-function b64d() { echo `base64 -d <<< $1`; }
+function b64e() { base64 <<< $1; }
+function b64d() { base64 -d <<< $1; }
 
 alias sml="rlwrap sml"
 
