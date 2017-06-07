@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $# -ne 1 ]] && [[ $# -ne 2 ]]; then
-    echo "Usage: $(basename $0) <NAME@IP> [<ping> | remsh]"
+    echo "Usage: $(basename $0) <NAME@IP> [<ping> | remsh | entop | cookie]"
     exit 1
 fi
 
@@ -23,13 +23,20 @@ case $ip in
     exit 1
 esac
 
-echo "Exit with double Ctrl-C"
 case $cmd in
+cookie)
+    echo $cookie
+    ;;
 ping)
+    echo "Exit with double Ctrl-C"
     erl -name adm$$@127.0.0.1 -setcookie $cookie -eval "net_adm:ping('$node')."
     ;;
 remsh)
+    echo "Exit with double Ctrl-C"
     erl -name adm$$@127.0.0.1 -setcookie $cookie -remsh $node
+    ;;
+entop)
+    entop $node -name adm$$@127.0.0.1 -setcookie $cookie
     ;;
 *)
     echo "Unknown command: $cmd"
