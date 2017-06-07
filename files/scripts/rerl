@@ -1,7 +1,13 @@
 #!/bin/bash
 
 if [[ $# -ne 1 ]] && [[ $# -ne 2 ]]; then
+    echo "[R]emote [ERL]ang node helper"
     echo "Usage: $(basename $0) <NAME@IP> [<ping> | remsh | entop | cookie]"
+    echo "Where:"
+    echo "  ping   - Start local node and ping remote node (default)"
+    echo "  remsh  - Connect to remote node"
+    echo "  entop  - Connect entop to remote node"
+    echo "  cookie - Print remote node's cookie"
     exit 1
 fi
 

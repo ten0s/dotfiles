@@ -184,13 +184,13 @@
         backup=true
   with_items:
   - capslock-to-control.sh
-  - erlsh
   - flip-args
   - fmon.sh
   - gtag
   - meld
   - pjson
   - pxml
+  - rerl
   - tags
 
 - name: Ensure user's config autostart exists

@@ -50,7 +50,6 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 function b64e() { base64 <<< $1; }
 function b64d() { base64 -d <<< $1; }
-function remsh() { erlsh $1 remsh; }
 
 alias sml="rlwrap sml"
 
