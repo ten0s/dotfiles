@@ -91,6 +91,7 @@
   - mpg321 # for mpg123 :)
   - mscgen # http://www.mcternan.me.uk/mscgen/index.html
   - nmap
+  - nmon
   - python-gpgme
   - pwgen
   - rdesktop
