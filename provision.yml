@@ -6,7 +6,7 @@
     user: ten0s
     cache_dir: /var/cache/ansible
     vagrant_ver: 1.9.5
-    vbox_ver: 4.3
+    vbox_ver: 5.0
   tasks:
   - {include: tasks/common.yml   , tags: ["common"]}
   - {include: tasks/megalodon.yml, tags: ["megalodon"], when: '"{{ansible_hostname}}" == "megalodon"'}
