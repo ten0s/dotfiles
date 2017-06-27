@@ -248,7 +248,7 @@
 - name: Pull rebar3
   git: repo=https://github.com/erlang/rebar3.git
        dest=/home/{{user}}/projects/rebar3
-       version=3.3.5
+       version=3.4.1
   register: rebar3
 
 - name: Build rebar3
