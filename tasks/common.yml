@@ -98,6 +98,7 @@
   - skype
   - software-properties-common # add-apt-repository
   - spell
+  - sysbench
   - sysstat # iostat
   - sysv-rc-conf
   - tig
