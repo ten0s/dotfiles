@@ -41,7 +41,7 @@ cookie)
     ;;
 ping)
     echo "Exit with double Ctrl-C"
-    erl $name -hidden -setcookie $cookie -eval "net_adm:ping('$node')."
+    erl $name -setcookie $cookie -eval "net_adm:ping('$node')."
     ;;
 remsh)
     echo "Exit with double Ctrl-C"
