@@ -1,13 +1,14 @@
 #!/bin/bash
 
-if [[ $# -ne 1 ]] && [[ $# -ne 2 ]]; then
+if [[ $# -ne 1 ]] && [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
     echo "[R]emote [ERL]ang node helper"
-    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie]"
+    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <CALL>]"
     echo "Where:"
     echo "  ping   - Start local node and ping remote node (default)"
     echo "  remsh  - Connect to remote node"
     echo "  entop  - Connect entop to remote node"
     echo "  cookie - Print remote node's cookie"
+    echo "  call   - Make RPC call. CALL must be \"Module, Function, Args\""
     exit 1
 fi
 
@@ -50,6 +51,10 @@ remsh)
 entop)
     entop $node $name -setcookie $cookie
     ;;
+call)
+   code=${3-"erlang,node,[]"}
+   erl $name -hidden -noshell -setcookie $cookie -eval "io:format(\"~p~n\", [rpc:call('$node', $code)]), init:stop()."
+   ;;
 *)
     echo "Unknown command: $cmd"
     exit 1
