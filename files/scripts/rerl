@@ -18,12 +18,10 @@ cmd=${2-ping}
 host=$(echo $node | awk -F@ '{print $2}')
 case $host in
 10.249.*)
-    echo Connecting to Prod...
     name="-name adm$$@127.0.0.1"
     cookie=$(ssh $host 'cat .erlang.cookie')
     ;;
 10.252.*)
-    echo Connecting to Sandbox...
     name="-name adm$$@127.0.0.1"
     cookie=$(ssh $host 'sudo cat /home/*/.erlang.cookie')
     ;;
