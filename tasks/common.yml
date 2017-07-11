@@ -29,14 +29,15 @@
   - banshee
   - cowsay
   - fortune
+  - jq
   - mono-runtime
   - tomboy
   - totem
 
-- name: Add trusty-backports ubuntu repo (for jq-1.4)
+- name: Remove trusty-backports ubuntu repo (for jq-1.4)
   become: true
   apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main universe'
-                  state=present
+                  state=absent
 
 - name: Add Chrome signing key
   become: true
@@ -113,6 +114,13 @@
   - wget
   - whois
   - wireshark
+
+- name: Install jq 1.5
+  become: true
+  get_url:
+    url: https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+    dest: /usr/local/bin/jq
+    mode: 755
 
 - name: Use correct time zone
   become: true
