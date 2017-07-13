@@ -40,7 +40,8 @@
   command: >
     kerl delete installation /opt/{{item}}
     removes=/opt/{{item}}
-  with_items: []
+  with_items:
+  - 'r19.2'
 
 - name: Delete erlang builds
   command: >
