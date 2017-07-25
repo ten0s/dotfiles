@@ -161,23 +161,23 @@
   when: proper.changed
 
 # http://parapluu.github.io/nifty/
-- name: Install nifty deps
-  become: true
-  apt: name={{item}} state=latest
-  with_items:
-  - libclang-dev
-  - libclang1
-  - llvm
+#- name: Install nifty deps
+#  become: true
+#  apt: name={{item}} state=latest
+#  with_items:
+#  - libclang-dev
+#  - libclang1
+#  - llvm
 
-- name: Pull nifty
-  git: repo=https://github.com/parapluu/nifty.git
-       dest=/home/{{user}}/.erl_libs/nifty
-       version=2ed15ad
-  register: nifty
+#- name: Pull nifty
+#  git: repo=https://github.com/parapluu/nifty.git
+#       dest=/home/{{user}}/.erl_libs/nifty
+#       version=2ed15ad
+#  register: nifty
 
-- name: Build nifty
-  shell: NIFTY_ROOT=/home/{{user}}/.erl_libs/nifty/ make chdir=/home/{{user}}/.erl_libs/nifty/
-  when: nifty.changed
+#- name: Build nifty
+#  shell: NIFTY_ROOT=/home/{{user}}/.erl_libs/nifty/ make chdir=/home/{{user}}/.erl_libs/nifty/
+#  when: nifty.changed
 
 # http://concuerror.com
 - name: Pull concuerror
