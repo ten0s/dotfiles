@@ -115,7 +115,7 @@ PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]$(parse_git_branch)\[\033
 ########### SHOULD BE THE LAST SECTION ##############
 
 function activate-erlang() {
-    source /opt/r18.3/activate
+    source /opt/r19.3/activate
 
     # FIX: /opt/REL/bin/start takes precedence over /sbin/start
     export PATH=/sbin:$PATH
