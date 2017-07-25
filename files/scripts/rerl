@@ -8,7 +8,7 @@ if [[ $# -ne 1 ]] && [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
     echo "  remsh  - Connect to the remote node"
     echo "  entop  - Connect entop to the remote node"
     echo "  cookie - Print remote node's cookie"
-    echo "  call   - Make a RPC call. MFA must be \"Module Function Args\""
+    echo "  call   - Make a RPC call. MFA must be \"Module, Function, [Args]\""
     exit 1
 fi
 
@@ -50,8 +50,7 @@ entop)
     entop $node $name -setcookie $cookie
     ;;
 call)
-   call=${3-"erlang node []"}
-   mfa=${call// /,}
+   mfa=${3-"erlang, node, []"}
    erl $name -hidden -noshell -setcookie $cookie -eval "io:format(\"~p~n\", [rpc:call('$node', $mfa)]), init:stop()."
    ;;
 *)
