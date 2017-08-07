@@ -58,6 +58,7 @@
   - ansible
   - apache2-utils # ab, rotatelogs
   - autokey-gtk
+  - bmon # bandwidth monitor and rate estimator
   - build-essential
   - curl
   - dia
@@ -77,6 +78,7 @@
   - gsfonts-x11 # dia recommends
   - hexdiff
   - htop
+  - iftop # display bandwidth usage on an interface by host
   - inotify-tools
   - jq
   - kcachegrind
