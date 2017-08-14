@@ -34,11 +34,6 @@
   - tomboy
   - totem
 
-- name: Remove trusty-backports ubuntu repo (for jq-1.4)
-  become: true
-  apt_repository: repo='deb http://archive.ubuntu.com/ubuntu trusty-backports main universe'
-                  state=absent
-
 - name: Add Chrome signing key
   become: true
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
@@ -80,7 +75,6 @@
   - htop
   - iftop # display bandwidth usage on an interface by host
   - inotify-tools
-  - jq
   - kcachegrind
   - kdelibs-bin      # to fix kde apps crashes
   - kdelibs5-data    # to fix kde apps crashes
