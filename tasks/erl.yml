@@ -40,21 +40,18 @@
   command: >
     kerl delete installation /opt/{{item}}
     removes=/opt/{{item}}
-  with_items:
-  - 'r19.2'
+  with_items: []
 
 - name: Delete erlang builds
   command: >
     kerl delete build {{item}}
     removes=/home/{{user}}/.kerl/builds/{{item}}
-  with_items:
-  - 'r19.2'
+  with_items: []
 
 - name: Delete dialyzer lookup tables
   file: path=/home/{{user}}/.{{item}}.plt
         state=absent
-  with_items:
-  - 'r19.2'
+  with_items: []
 
 - name: Build erlang versions
   command: >
