@@ -1,19 +1,4 @@
 ---
-- name: Uninstall HP #1
-  become: true
-  apt: name={{item}} state=absent
-  with_items:
-  - haskell-platform
-  - haskell-platform-doc
-  - haskell-platform-prof
-  - ghc
-
-- name: Uninstall HP #2
-  file: path=/home/{{user}}/{{item}} state=absent
-  with_items:
-  - .cabal
-  - .ghc
-
 # https://docs.haskellstack.org/en/stable/README/
 - name: Install Stack
   shell: curl -sSL https://get.haskellstack.org/ | sh creates=/usr/local/bin/stack
