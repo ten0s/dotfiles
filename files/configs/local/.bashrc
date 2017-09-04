@@ -4,7 +4,7 @@ export EDITOR="emacs" # -nw"
 export VISUAL=$EDITOR
 
 export PATH=~/bin:$PATH
-export PATH=~/.cabal/bin:$PATH
+export PATH=~/.local/bin:$PATH
 export PATH=/opt/bin:$PATH
 
 export SHELLCHECK_OPTS="-f gcc -e SC1090 -e SC2086 -e SC2087"

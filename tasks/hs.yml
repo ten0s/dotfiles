@@ -1,24 +1,35 @@
 ---
-- name: Install Haskell's deps
+- name: Uninstall HP #1
   become: true
-  apt: name={{item}} state=latest
+  apt: name={{item}} state=absent
   with_items:
   - haskell-platform
   - haskell-platform-doc
   - haskell-platform-prof
+  - ghc
 
-- name: Update cabal
-  command: cabal update
-
-- name: Uninstall legacy
-  become: true
-  command: ghc-pkg unregister {{item}}
-  register: unregister
-  failed_when: unregister.rc == 1 and not "'cannot find package' in unregister.stderr"
+- name: Uninstall HP #2
+  file: path=/home/{{user}}/{{item}} state=absent
   with_items:
-  - regex-compat-0.95.1
-  - regex-posix-0.95.2
+  - .cabal
+  - .ghc
+
+# https://docs.haskellstack.org/en/stable/README/
+- name: Install Stack
+  shell: curl -sSL https://get.haskellstack.org/ | sh creates=/usr/local/bin/stack
+
+- name: Update Stack
+  command: stack update
+
+- name: Setup GHC
+  command: stack setup
+
+# ensure ~/.local/bin: in PATH
 
 # https://github.com/koalaman/shellcheck
 - name: Install ShellCheck
-  command: cabal install ShellCheck
+  command: stack install ShellCheck
+
+# https://github.com/idris-lang/Idris-dev/blob/master/INSTALL.md
+- name: Install Idris
+  command: stack install idris
