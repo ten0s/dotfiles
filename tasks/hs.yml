@@ -4,6 +4,7 @@
   apt: name={{item}} state=latest
   with_items:
   - build-essential
+  - libffi-dev
   - libgmp3-dev
 
 # https://docs.haskellstack.org/en/stable/README/
