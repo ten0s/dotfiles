@@ -7,7 +7,7 @@
   - /home/{{user}}/.erl_libs/ebin
   - /home/{{user}}/.rebar
 
-- name: Install erlang deps
+- name: Install deps
   become: true
   apt: name={{item}} state=latest
   with_items:
@@ -40,32 +40,33 @@
   command: >
     kerl delete installation /opt/{{item}}
     removes=/opt/{{item}}
-  with_items: []
+  with_items:
+  - 'r18.3'
 
 - name: Delete erlang builds
   command: >
     kerl delete build {{item}}
     removes=/home/{{user}}/.kerl/builds/{{item}}
-  with_items: []
+  with_items:
+  - 'r18.3'
 
 - name: Delete dialyzer lookup tables
   file: path=/home/{{user}}/.{{item}}.plt
         state=absent
-  with_items: []
+  with_items:
+  - 'r18.3'
 
 - name: Build erlang versions
   command: >
     kerl build {{item.release}} {{item.name}}
     creates=/home/{{user}}/.kerl/builds/{{item.name}}
   with_items:
-  - {release: '18.3', name: 'r18.3'}
   - {release: '19.3', name: 'r19.3'}
   - {release: '20.0', name: 'r20.0'}
 
 - name: Install erlang versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
-  - 'r18.3'
   - 'r19.3'
   - 'r20.0'
 
@@ -81,7 +82,6 @@
   register: dialyzer_result
   failed_when: dialyzer_result.rc == 1
   with_items:
-  - 'r18.3'
   - 'r19.3'
   - 'r20.0'
 
