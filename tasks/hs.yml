@@ -1,4 +1,11 @@
 ---
+- name: Install deps
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - build-essential
+  - libgmp3-dev
+
 # https://docs.haskellstack.org/en/stable/README/
 - name: Install Stack
   shell: curl -sSL https://get.haskellstack.org/ | sh creates=/usr/local/bin/stack
