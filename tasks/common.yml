@@ -111,7 +111,12 @@
   - whois
   - wireshark
 
-- name: Install jq 1.5
+- name: Install jq 1.5 1/2
+  become: true
+  file: path=/usr/local/bin
+        state=directory
+
+- name: Install jq 1.5 2/2
   become: true
   get_url:
     url: https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
