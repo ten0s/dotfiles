@@ -2,13 +2,14 @@
 
 if [[ $# -ne 1 ]] && [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
     echo "[R]emote [ERL]ang node helper"
-    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA>]"
+    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA>] | load <BEAM>"
     echo "Where:"
     echo "  ping   - Start the local node and ping the remote node (default)"
     echo "  remsh  - Connect to the remote node"
     echo "  entop  - Connect entop to the remote node"
     echo "  cookie - Print remote node's cookie"
     echo "  call   - Make a RPC call. MFA must be \"Module, Function, [Args]\""
+    echo "  load   - Load BEAM to the remote node"
     exit 1
 fi
 
@@ -34,6 +35,14 @@ $(hostname))
     exit 1
 esac
 
+function rpc_call() {
+    local node=$1
+    local name=$2
+    local cookie=$3
+    local mfa=$4
+    erl $name -hidden -noshell -setcookie $cookie -eval "io:format(\"~p~n\", [rpc:call('$node', $mfa)]), init:stop()."
+}
+
 case $cmd in
 cookie)
     echo $cookie
@@ -50,8 +59,20 @@ entop)
     entop $node $name -setcookie $cookie
     ;;
 call)
-   mfa=${3-"erlang, node, []"}
-   erl $name -hidden -noshell -setcookie $cookie -eval "io:format(\"~p~n\", [rpc:call('$node', $mfa)]), init:stop()."
+   mfa=${3-"erlang,node,[]"}
+   rpc_call "$node" "$name" "$cookie" "$mfa"
+   ;;
+load)
+   if [[ $3 ]]; then
+       beam=${3}
+       module=$(basename ${beam%.*})
+       path=$(rpc_call "$node" "$name" "$cookie" "code,which,['$module']")
+       ssh $host "sudo tee $path >/dev/null" < $beam || exit 1
+       rpc_call "$node" "$name" "$cookie" "c,l,['$module']"
+   else
+       echo "BEAM param expected"
+       exit 1
+   fi
    ;;
 *)
     echo "Unknown command: $cmd"
