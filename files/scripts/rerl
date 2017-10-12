@@ -20,7 +20,7 @@ host=$(echo $node | awk -F@ '{print $2}')
 case $host in
 10.249.*)
     name="-name adm$$@127.0.0.1"
-    cookie=$(ssh $host 'cat .erlang.cookie')
+    cookie=$(ssh $host 'cat ~/.erlang.cookie')
     ;;
 10.252.*)
     name="-name adm$$@127.0.0.1"
@@ -67,7 +67,17 @@ load)
        beam=${3}
        module=$(basename ${beam%.*})
        path=$(rpc_call "$node" "$name" "$cookie" "code,which,['$module']")
-       ssh $host "sudo tee $path >/dev/null" < $beam || exit 1
+       case $host in
+       10.249.*)
+           ssh $host "tee $path >/dev/null" < $beam || exit 1
+       ;;
+       10.252.*)
+           ssh $host "sudo tee $path >/dev/null" < $beam || exit 1
+       ;;
+       $(hostname))
+           tee $path >/dev/null < $beam
+       ;;
+       esac
        rpc_call "$node" "$name" "$cookie" "c,l,['$module']"
    else
        echo "BEAM param expected"
