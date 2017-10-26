@@ -2,7 +2,7 @@
 
 if [[ $# -ne 1 ]] && [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
     echo "[R]emote [ERL]ang node helper"
-    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA>] | load <BEAM>"
+    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA> | load <BEAM>]"
     echo "Where:"
     echo "  ping   - Start the local node and ping the remote node (default)"
     echo "  remsh  - Connect to the remote node"
