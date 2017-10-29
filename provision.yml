@@ -13,6 +13,7 @@
   - {include: tasks/orca.yml     , tags: ["orca"]     , when: '"{{ansible_hostname}}" == "orca"'}
   - {include: tasks/dev.yml      , tags: ["dev"]}
   - {include: tasks/java.yml     , tags: ["java"]}
+  - {include: tasks/scala.yml    , tags: ["scala"]}
   - {include: tasks/erl.yml      , tags: ["erl"]}
   - {include: tasks/cpp.yml      , tags: ["cpp"]}
   - {include: tasks/py.yml       , tags: ["py"]}

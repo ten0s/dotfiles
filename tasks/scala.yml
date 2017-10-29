@@ -1,0 +1,7 @@
+---
+- name: Install Scala 2.9.2
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - scala
+  - scala-doc
