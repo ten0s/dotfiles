@@ -90,6 +90,7 @@
   - mscgen # http://www.mcternan.me.uk/mscgen/index.html
   - nmap
   - nmon
+  - openvpn
   - python-gpgme
   - pwgen
   - rdesktop
