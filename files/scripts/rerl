@@ -26,6 +26,10 @@ case $host in
     name="-name adm$$@127.0.0.1"
     cookie=$(ssh $host 'sudo cat /home/*/.erlang.cookie')
     ;;
+127.0.0.1)
+    name="-name adm$$@127.0.0.1"
+    cookie=$(cat ~/.erlang.cookie)
+    ;;
 $(hostname))
     name="-sname adm$$"
     cookie=$(cat ~/.erlang.cookie)
@@ -73,6 +77,9 @@ load)
        ;;
        10.252.*)
            ssh $host "sudo tee $path >/dev/null" < $beam || exit 1
+       ;;
+       127.0.0.1)
+           tee $path >/dev/null < $beam
        ;;
        $(hostname))
            tee $path >/dev/null < $beam
