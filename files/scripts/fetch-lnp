@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]; then
+   echo "Usage: $(basename $0) <ENV>"
+   exit 1
+fi
+
+ENV=$1
+HOST=$(hosts.sh $ENV v2.4 dmu | head -1)
+OUT=$(ssh $HOST 'ls -ltr /home/hermes/dmu/var/data/rds/LNP_BINARY_* | tail -1')
+SIZE=$(echo $OUT | awk '{print $5}')
+PATH=$(echo $OUT | awk '{print $9}')
+NAME=${PATH##*/}
+
+ssh $HOST "sudo cat $PATH" | pv -s $SIZE > $NAME

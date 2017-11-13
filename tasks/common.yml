@@ -201,6 +201,7 @@
         backup=true
   with_items:
   - capslock-to-control.sh
+  - fetch-lnp
   - flip-args
   - fmon.sh
   - gtag
