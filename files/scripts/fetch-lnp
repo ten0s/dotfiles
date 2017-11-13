@@ -5,11 +5,11 @@ if [[ $# -ne 1 ]]; then
    exit 1
 fi
 
-ENV=$1
-HOST=$(hosts.sh $ENV v2.4 dmu | head -1)
-OUT=$(ssh $HOST 'ls -ltr /home/hermes/dmu/var/data/rds/LNP_BINARY_* | tail -1')
-SIZE=$(echo $OUT | awk '{print $5}')
-PATH=$(echo $OUT | awk '{print $9}')
-NAME=${PATH##*/}
+env=$1
+host=$(hosts.sh $env v2.4 dmu | head -1)
+out=$(ssh $host 'ls -ltr /home/hermes/dmu/var/data/rds/LNP_BINARY_* | tail -1')
+size=$(echo $out | awk '{print $5}')
+path=$(echo $out | awk '{print $9}')
+name=${path##*/}
 
-ssh $HOST "sudo cat $PATH" | pv -s $SIZE > $NAME
+ssh $host "sudo cat $path" | pv -s $size > $name
