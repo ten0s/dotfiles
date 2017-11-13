@@ -10,6 +10,6 @@ host=$(hosts.sh $env v2.4 dmu | head -1)
 out=$(ssh $host 'ls -ltr /home/hermes/dmu/var/data/rds/LNP_BINARY_* | tail -1')
 size=$(echo $out | awk '{print $5}')
 path=$(echo $out | awk '{print $9}')
-name=${path##*/}
+name=$(basename $path)
 
 ssh $host "sudo cat $path" | pv -s $size > $name
