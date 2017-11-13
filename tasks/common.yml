@@ -92,6 +92,7 @@
   - nmap
   - nmon
   - openvpn
+  - pv # monitor the progress of data through a pipe
   - python-gpgme
   - pwgen
   - rdesktop
