@@ -12,4 +12,4 @@ size=$(echo $out | awk '{print $5}')
 path=$(echo $out | awk '{print $9}')
 name=$(basename $path)
 
-ssh $host "sudo cat $path" | pv -s $size > $name
+ssh $host "sudo cat $path" | pv -s $size >$name
