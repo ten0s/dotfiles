@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]]; then
+   echo "Usage: $(basename $0) <ENV> <RDS>"
+   exit 1
+fi
+
+env=$1
+rds=$2
+host=$(hosts.sh $env v2.4 dmu | head -1)
+out=$(ssh $host "ls -ltr /home/hermes/dmu/var/data/rds/$rds")
+size=$(echo $out | awk '{print $5}')
+path=$(echo $out | awk '{print $9}')
+name=$(basename $path)
+
+ssh $host "sudo cat $path" | pv -s $size >$name
