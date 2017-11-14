@@ -105,6 +105,7 @@
   - sysv-rc-conf
   - tig
   - tree
+  - tzdata # for DMU
   - uuid
   - valgrind
   - vino     # VNC server
