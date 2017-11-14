@@ -73,16 +73,16 @@ load)
        path=$(rpc_call "$node" "$name" "$cookie" "code,which,['$module']")
        case $host in
        10.249.*)
-           ssh $host "tee $path >/dev/null" < $beam || exit 1
+           ssh $host "tee $path >/dev/null" <$beam || exit 1
        ;;
        10.252.*)
-           ssh $host "sudo tee $path >/dev/null" < $beam || exit 1
+           ssh $host "sudo tee $path >/dev/null" <$beam || exit 1
        ;;
        127.0.0.1)
-           tee $path >/dev/null < $beam
+           tee $path >/dev/null <$beam
        ;;
        $(hostname))
-           tee $path >/dev/null < $beam
+           tee $path >/dev/null <$beam
        ;;
        esac
        rpc_call "$node" "$name" "$cookie" "c,l,['$module']"
