@@ -49,7 +49,6 @@
   become: true
   apt: name={{item}} state=latest
   with_items:
-  - alien # rpm to deb
   - ansible
   - apache2-utils # ab, rotatelogs
   - autokey-gtk

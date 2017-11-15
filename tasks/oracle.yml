@@ -5,6 +5,10 @@
 
 # Download RPMs from http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
 
+- name: Install RPM to DEB
+  become: true
+  apt: name=alien state=latest
+
 - name: Install Oracle client
   become: true
   command: >
@@ -63,3 +67,10 @@
 
 - debug: msg='Now run /opt/sqldeveloper/sqldeveloper.sh and enter "/usr/lib/jvm/java-8-oracle"'
   when: sqldeveloper | changed
+
+- name: Uninstall RPM to DEB
+  become: true
+  apt: name={{item}} state=absent purge=true
+  with_items:
+  - alien
+  - rpm
