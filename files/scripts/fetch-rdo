@@ -1,0 +1,23 @@
+#!/bin/bash -e
+
+if [[ $# -ne 2 ]]; then
+   echo "Usage: $(basename $0) <ENV> <RDO>"
+   exit 1
+fi
+
+env=$1
+rdo=$2
+host=$(hosts.sh $env v2.4 dmu | head -1)
+case $rdo in
+RATE_TRIE*)
+  out=$(ssh $host "ls -ltr /home/hermes/dmu/var/data/rds/rates/$rdo")
+  ;;
+*)
+  out=$(ssh $host "ls -ltr /home/hermes/dmu/var/data/rds/$rdo")
+  ;;
+esac
+size=$(echo $out | awk '{print $5}')
+path=$(echo $out | awk '{print $9}')
+name=$(basename $path)
+
+ssh $host "sudo cat $path" | pv -s $size >$name

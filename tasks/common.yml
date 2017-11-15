@@ -202,6 +202,7 @@
   with_items:
   - capslock-to-control.sh
   - fetch-lnp
+  - fetch-rdo
   - fetch-rds
   - flip-args
   - fmon.sh
