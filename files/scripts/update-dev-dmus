@@ -9,7 +9,7 @@ function update() {
         ec2=$(ssh $ip 'curl -s http://169.254.169.254/latest/meta-data/instance-id')
         echo "Terminating $ip ($ec2)"
         aws ec2 terminate-instances --instance-ids $ec2
-        sleep 300
+        sleep 600
     done
 }
 
