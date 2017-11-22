@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+function usage() {
+    echo "Usage: $(basename $0)"
+}
+
+function update() {
+    for ip in $(hosts.sh Dev v2.4 dmu); do
+        ec2=$(ssh $ip 'curl -s http://169.254.169.254/latest/meta-data/instance-id')
+        echo "Terminating $ip ($ec2)"
+        aws ec2 terminate-instances --instance-ids $ec2
+        sleep 300
+    done
+}
+
+if [[ $# -ne 0 ]]; then
+   usage
+   exit 1
+fi
+
+echo "Do you really want to update Dev DMU nodes?: "
+PS3="> "
+opts="Yes No"
+select opt in $opts; do
+   case $opt in
+   Yes)
+       update
+       exit
+       ;;
+   No)
+       exit
+       ;;
+   esac
+done

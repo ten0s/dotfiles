@@ -212,6 +212,7 @@
   - pxml
   - rerl
   - tags
+  - update-dev-dmus
 
 - name: Ensure user's config autostart exists
   file: path=/home/{{user}}/.config/autostart
