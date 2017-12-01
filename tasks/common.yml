@@ -31,6 +31,7 @@
   - fortune
   - jq
   - mono-runtime
+  - skype
   - tomboy
   - totem
 
@@ -95,7 +96,6 @@
   - python-gpgme
   - pwgen
   - rdesktop
-  - skype
   - software-properties-common # add-apt-repository
   - spell
   - stress  # see also stress-ng
@@ -126,6 +126,15 @@
     url: https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
     dest: /usr/local/bin/jq
     mode: 755
+
+- name: Install Skype 1/2
+  get_url: url=https://go.skype.com/skypeforlinux-64.deb
+           dest={{cache_dir}}/skypeforlinux-64.deb
+
+- name: Install Skype 2/2
+  become: true
+  apt: deb={{cache_dir}}/skypeforlinux-64.deb
+       state=present
 
 - name: Use correct time zone
   become: true
