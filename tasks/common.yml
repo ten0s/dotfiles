@@ -32,7 +32,7 @@
   - jq
   - mono-runtime
   - skype
-  - skype-bin
+  - skype-bin:i386
   - tomboy
   - totem
 
