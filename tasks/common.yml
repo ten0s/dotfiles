@@ -211,6 +211,7 @@
         backup=true
   with_items:
   - capslock-to-control.sh
+  - docker-gci
   - fetch-lnp
   - fetch-rdo
   - fetch-rds
