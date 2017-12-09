@@ -97,6 +97,7 @@
   - python-gpgme
   - pwgen
   - rdesktop
+  - sip-tester
   - software-properties-common # add-apt-repository
   - spell
   - stress  # see also stress-ng
@@ -211,6 +212,8 @@
         backup=true
   with_items:
   - capslock-to-control.sh
+  - docker-gc
+  - docker-gci
   - fetch-lnp
   - fetch-rdo
   - fetch-rds

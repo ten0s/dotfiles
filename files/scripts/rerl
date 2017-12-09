@@ -34,6 +34,10 @@ $(hostname))
     name="-sname adm$$"
     cookie=$(cat ~/.erlang.cookie)
     ;;
+devstorm*)
+    name="-sname adm$$"
+    cookie=$(ssh $host 'cat ~/.erlang.cookie')
+    ;;
 *)
     echo "Unknown host: $host"
     exit 1

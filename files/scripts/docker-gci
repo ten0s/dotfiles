@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#
+# GC unnamed docker images
+#
+
+docker images | tail -n+2 | awk '/<none>/ {print $3}' | xargs -I{} docker rmi -f {}
