@@ -180,7 +180,7 @@
 - name: Pull concuerror
   git: repo=https://github.com/parapluu/Concuerror.git
        dest=/home/{{user}}/.erl_libs/concuerror
-       version=3c15bbb
+       version=cac7c44
   register: concuerror
 
 - name: Build concuerror
