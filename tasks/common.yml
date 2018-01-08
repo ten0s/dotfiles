@@ -90,6 +90,7 @@
   - moreutils # for errno
   - mpg321 # for mpg123 :)
   - mscgen # http://www.mcternan.me.uk/mscgen/index.html
+  - ngrep # network grep
   - nmap
   - nmon
   - openvpn
@@ -97,7 +98,8 @@
   - python-gpgme
   - pwgen
   - rdesktop
-  - sip-tester
+  - sip-tester # SIPp
+  - sipsak # SIP Swiss Army Knife
   - software-properties-common # add-apt-repository
   - spell
   - stress  # see also stress-ng
