@@ -57,6 +57,7 @@
         state=absent
   with_items:
   - 'r18.3'
+  - 'r19.3'
   - 'r20.0'
 
 - name: Build erlang versions
@@ -71,19 +72,19 @@
   with_items:
   - 'r19.3'
 
-- name: Build dialyzer lookup tables
-  shell: >
-    source /opt/{{item}}/activate && dialyzer --build_plt
-    --output_plt /home/{{user}}/.{{item}}.plt
-    --apps kernel stdlib erts crypto public_key mnesia sasl common_test eunit
-    ssh ssl asn1 compiler syntax_tools tools inets snmp xmerl
-    creates=/home/{{user}}/.{{item}}.plt
-  args:
-     executable: /bin/bash
-  register: dialyzer_result
-  failed_when: dialyzer_result.rc == 1
-  with_items:
-  - 'r19.3'
+#- name: Build dialyzer lookup tables
+#  shell: >
+#    source /opt/{{item}}/activate && dialyzer --build_plt
+#    --output_plt /home/{{user}}/.{{item}}.plt
+#    --apps kernel stdlib erts crypto public_key mnesia sasl common_test eunit
+#    ssh ssl asn1 compiler syntax_tools tools inets snmp xmerl
+#    creates=/home/{{user}}/.{{item}}.plt
+#  args:
+#     executable: /bin/bash
+#  register: dialyzer_result
+#  failed_when: dialyzer_result.rc == 1
+#  with_items:
+#  - 'r19.3'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git
