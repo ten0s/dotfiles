@@ -119,14 +119,14 @@
   - whois
   - wireshark
 
-- name: Install jq 1.5 1/2
+- name: Install jq 1/2
   become: true
   file: path=/usr/local/bin
         state=directory
 
-- name: Install jq 1.5 2/2
+- name: Install jq 2/2
   become: true
-  get_url: url=https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+  get_url: url=https://github.com/stedolan/jq/releases/download/jq-{{jq_ver}}/jq-linux64
            dest=/usr/local/bin/jq
            mode=755
 

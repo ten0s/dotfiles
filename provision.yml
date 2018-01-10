@@ -7,6 +7,7 @@
     cache_dir: /var/cache/ansible
     vagrant_ver: 1.9.5
     vbox_ver: 5.0
+    jq_ver: 1.5
     skype_ver: 8.11.0.4
     slack_ver: 3.0.2
   tasks:
