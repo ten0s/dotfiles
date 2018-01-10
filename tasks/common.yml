@@ -130,28 +130,17 @@
            dest=/usr/local/bin/jq
            mode=755
 
-- name: Install Skype 1/5
-  get_url: url=https://go.skype.com/skypeforlinux-64.deb
-           dest={{cache_dir}}/skypeforlinux-64.deb
-
-- name: Install Skype 2/5
+- name: Install Skype 1/2
   become: true
-  apt: deb={{cache_dir}}/skypeforlinux-64.deb
-       state=present
+  apt_repository:
+    repo: 'deb [arch=amd64] https://repo.skype.com/deb stable main'
+    state: present
 
-# curl -sI https://repo.skype.com/latest/skypeforlinux-64.deb
-- name: Install Skype 3/5
-  uri: url=https://repo.skype.com/latest/skypeforlinux-64.deb
-       method=HEAD
-  register: remote_skype
-
-- name: Install Skype 4/5
-  stat: path={{cache_dir}}/skypeforlinux-64.deb
-  register: local_skype
-
-- name: Install Skype 5/5
-  debug: msg="A new update is available! To update remove {{cache_dir}}/skypeforlinux-64.deb and re-run this playbook again"
-  when: remote_skype.content_length|int != local_skype.stat.size
+- name: Install Skype 2/2
+  become: true
+  apt:
+    name: skypeforlinux={{skype_ver}}
+    state: present
 
 - name: Install Slack 1/2
   get_url: url=https://downloads.slack-edge.com/linux_releases/slack-desktop-{{slack_ver}}-amd64.deb
