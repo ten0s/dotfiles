@@ -12,8 +12,8 @@
     slack_ver: 3.0.2
   tasks:
   - {include: tasks/common.yml   , tags: ["common"]}
-  - {include: tasks/megalodon.yml, tags: ["megalodon"], when: '"{{ansible_hostname}}" == "megalodon"'}
-  - {include: tasks/orca.yml     , tags: ["orca"]     , when: '"{{ansible_hostname}}" == "orca"'}
+  - {include: tasks/megalodon.yml, tags: ["megalodon"], when: ansible_hostname == "megalodon"}
+  - {include: tasks/orca.yml     , tags: ["orca"]     , when: ansible_hostname == "orca"}
   - {include: tasks/dev.yml      , tags: ["dev"]}
   - {include: tasks/java.yml     , tags: ["java"]}
   - {include: tasks/scala.yml    , tags: ["scala"]}

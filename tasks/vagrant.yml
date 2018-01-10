@@ -23,7 +23,7 @@
   shell: vagrant plugin uninstall {{item}}
   with_items:
   - vagrant-vbguest
-  when: "'{{item}}' in vagrant_plugin_list.stdout"
+  when: item in vagrant_plugin_list.stdout
 
 - name: Install Vagrant's plugins
   # https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins
@@ -34,7 +34,7 @@
   - vagrant-cachier
   - vagrant-vbox-snapshot
   - vagrant-winrm
-  when: "'{{item}}' not in vagrant_plugin_list.stdout"
+  when: item not in vagrant_plugin_list.stdout
 
 - name: Update Vagrant's plugins
   shell: vagrant plugin update

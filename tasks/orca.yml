@@ -1,2 +1,3 @@
+---
 - name: Setup `orca` specifics
   assert: {that: true}
