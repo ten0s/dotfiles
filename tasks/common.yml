@@ -153,6 +153,15 @@
   debug: msg="A new update is available! To update remove {{cache_dir}}/skypeforlinux-64.deb and re-run this playbook again"
   when: remote_skype.content_length|int != local_skype.stat.size
 
+- name: Install Slack 1/2
+  get_url: url=https://downloads.slack-edge.com/linux_releases/slack-desktop-{{slack_ver}}-amd64.deb
+           dest={{cache_dir}}/slack-desktop-{{slack_ver}}-amd64.deb
+
+- name: Install Slack 2/2
+  become: true
+  apt: deb={{cache_dir}}/slack-desktop-{{slack_ver}}-amd64.deb
+       state=present
+
 - name: Use correct time zone
   become: true
   file: src=/usr/share/zoneinfo/Europe/Minsk
