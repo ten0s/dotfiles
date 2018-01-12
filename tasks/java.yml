@@ -1,4 +1,10 @@
 ---
+- name: Create dirs
+  file: path="{{item}}"
+        state=directory
+  with_items:
+  - /home/{{user}}/.java_libs
+
 ##
 # http://tecadmin.net/install-oracle-java-8-jdk-8-ubuntu-via-ppa/
 ##
@@ -29,10 +35,30 @@
   apt: name=oracle-java8-set-default
        state=present
 
-- name: Install Maven
+##
+# https://maven.apache.org/download.cgi
+##
+
+- name: Install Maven 1/4
   become: true
   apt: name=maven
-       state=present
+       state=absent
+       purge=true
+
+- name: Install Maven 2/4
+  get_url:
+    url=http://mirror.cogentco.com/pub/apache/maven/maven-3/{{mvn_ver}}/binaries/apache-maven-{{mvn_ver}}-bin.tar.gz
+    dest={{cache_dir}}/apache-maven-{{mvn_ver}}-bin.tar.gz
+
+- name: Install Maven 3/4
+  unarchive:
+    src={{cache_dir}}/apache-maven-{{mvn_ver}}-bin.tar.gz
+    dest=/home/{{user}}/.java_libs/
+
+- name: Install Maven 4/4
+  file: src=/home/{{user}}/.java_libs/apache-maven-{{mvn_ver}}/bin/mvn
+        dest=/home/{{user}}/bin/mvn
+        state=link
 
 ##
 # sudo update-alternatives --config java

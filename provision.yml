@@ -10,6 +10,7 @@
     jq_ver: 1.5
     skype_ver: 8.11.0.4
     slack_ver: 3.0.2
+    mvn_ver: 3.5.2
   tasks:
   - {include: tasks/common.yml   , tags: ["common"]}
   - {include: tasks/megalodon.yml, tags: ["megalodon"], when: ansible_hostname == "megalodon"}
