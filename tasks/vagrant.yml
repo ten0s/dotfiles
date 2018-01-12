@@ -1,10 +1,4 @@
 ---
-- name: Create download cache dir
-  become: true
-  file: path={{cache_dir}}
-        state=directory
-        mode=0777
-
 - name: Download Vagrant package
   get_url: url=https://releases.hashicorp.com/vagrant/{{vagrant_ver}}/vagrant_{{vagrant_ver}}_x86_64.deb
            dest={{cache_dir}}/vagrant-{{vagrant_ver}}.deb

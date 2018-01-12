@@ -1,4 +1,20 @@
 ---
+- name: Create sys dirs
+  become: true
+  file: path={{item.path}}
+        mode={{item.mode}}
+        state=directory
+  with_items:
+  - {path: /usr/local/bin, mode: 755}
+  - {path: "{{cache_dir}}", mode: 777}
+
+- name: Create user dirs
+  file: path={{item.path}}
+        mode={{item.mode}}
+        state=directory
+  with_items:
+  - {path: "/home/{{user}}/bin", mode: 755}
+
 - name: Update apt's cache
   become: true
   # update cache once a day
@@ -119,12 +135,7 @@
   - whois
   - wireshark
 
-- name: Install jq 1/2
-  become: true
-  file: path=/usr/local/bin
-        state=directory
-
-- name: Install jq 2/2
+- name: Install jq
   become: true
   get_url: url=https://github.com/stedolan/jq/releases/download/jq-{{jq_ver}}/jq-linux64
            dest=/usr/local/bin/jq
@@ -213,10 +224,6 @@
         force=false
   with_items:
   - .bashrc.local
-
-- name: Create user's bin dir
-  file: path=/home/{{user}}/bin
-        state=directory
 
 - name: Copy generic scripts
   copy: src=files/scripts/{{item}}
