@@ -51,6 +51,7 @@
   - skype-bin:i386
   - tomboy
   - totem
+  - xtightvncviewer
 
 - name: Add Chrome signing key
   become: true
@@ -160,6 +161,15 @@
 - name: Install Slack 2/2
   become: true
   apt: deb={{cache_dir}}/slack-desktop-{{slack_ver}}-amd64.deb
+       state=present
+
+- name: Install RealVNC Viewer 1/2
+  get_url: url=https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-{{realvnc_viewer_ver}}-Linux-x64.deb
+           dest={{cache_dir}}/VNC-Viewer-{{realvnc_viewer_ver}}-Linux-x64.deb
+
+- name: Install RealVNC Viewer 2/2
+  become: true
+  apt: deb={{cache_dir}}/VNC-Viewer-6.17.1113-Linux-x64.deb
        state=present
 
 - name: Use correct time zone
