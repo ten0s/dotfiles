@@ -169,7 +169,7 @@
 
 - name: Install RealVNC Viewer 2/2
   become: true
-  apt: deb={{cache_dir}}/VNC-Viewer-6.17.1113-Linux-x64.deb
+  apt: deb={{cache_dir}}/VNC-Viewer-{{realvnc_viewer_ver}}-Linux-x64.deb
        state=present
 
 - name: Use correct time zone
