@@ -135,6 +135,7 @@
   - wget
   - whois
   - wireshark
+  - xclip
 
 - name: Install jq
   become: true
