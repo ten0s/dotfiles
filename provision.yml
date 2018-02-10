@@ -13,18 +13,19 @@
     mvn_ver: 3.5.2
     realvnc_viewer_ver: 6.17.1113
   tasks:
-  - {include: tasks/common.yml   , tags: ["common"]}
-  - {include: tasks/megalodon.yml, tags: ["megalodon"], when: ansible_hostname == "megalodon"}
-  - {include: tasks/orca.yml     , tags: ["orca"]     , when: ansible_hostname == "orca"}
-  - {include: tasks/dev.yml      , tags: ["dev"]}
-  - {include: tasks/java.yml     , tags: ["java"]}
-  - {include: tasks/scala.yml    , tags: ["scala"]}
-  - {include: tasks/erl.yml      , tags: ["erl"]}
-  - {include: tasks/cpp.yml      , tags: ["cpp"]}
-  - {include: tasks/py.yml       , tags: ["py"]}
-  - {include: tasks/js.yml       , tags: ["js"]}
-  - {include: tasks/hs.yml       , tags: ["hs"]}
-  - {include: tasks/vagrant.yml  , tags: ["vagrant"]}
-  - {include: tasks/docker.yml   , tags: ["docker"]}
-  - {include: tasks/oracle.yml   , tags: ["oracle"]}
-  - {include: tasks/xymon.yml    , tags: ["xymon"]}
+  - {include: tasks/common.yml     , tags: ["common"]}
+  - {include: tasks/carcharodon.yml, tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
+  - {include: tasks/megalodon.yml  , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}
+  - {include: tasks/orca.yml       , tags: ["orca"]       , when: ansible_hostname == "orca"}
+  - {include: tasks/dev.yml        , tags: ["dev"]}
+  - {include: tasks/java.yml       , tags: ["java"]}
+  - {include: tasks/scala.yml      , tags: ["scala"]}
+  - {include: tasks/erl.yml        , tags: ["erl"]}
+  - {include: tasks/cpp.yml        , tags: ["cpp"]}
+  - {include: tasks/py.yml         , tags: ["py"]}
+  - {include: tasks/js.yml         , tags: ["js"]}
+  - {include: tasks/hs.yml         , tags: ["hs"]}
+  - {include: tasks/vagrant.yml    , tags: ["vagrant"]}
+  - {include: tasks/docker.yml     , tags: ["docker"]}
+  - {include: tasks/oracle.yml     , tags: ["oracle"]}
+  - {include: tasks/xymon.yml      , tags: ["xymon"]}

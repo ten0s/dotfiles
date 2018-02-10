@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rlwrap ssh rpi wolfram $@
