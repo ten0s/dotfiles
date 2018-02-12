@@ -115,3 +115,14 @@
 - name: Install youtube-dl
   become: true
   pip: name=youtube-dl
+
+# To fix [Errno 1] _ssl.c:510: error:14077410:SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure.
+# for python 2.7.6
+- name: Install security updates
+  become: true
+  command: pip install -U {{item}}
+  with_items:
+  - urllib3
+  - pyopenssl
+  - pyasn1
+  - ndg-httpsclient
