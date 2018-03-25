@@ -1,5 +1,10 @@
 ---
-- name: Install Python's dev deps
+
+#
+# TODO: freeze deps and use requirements.txt
+#
+
+- name: Install Python dev deps
   become: true
   apt: name={{item}} state=present
   with_items:
@@ -11,9 +16,20 @@
 
 - name: Upgrade pip
   become: true
-  command: pip install --upgrade pip
+  pip: name=pip state=latest
   register: pip_upgrade
   changed_when: "'Successfully installed' in pip_upgrade.stdout"
+
+# 1. To fix [Errno 1] _ssl.c:510: error:14077410:SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure for Python 2.7.6
+# 2. https://urllib3.readthedocs.io/en/latest/user-guide.html#ssl-py2
+- name: Install security updates
+  become: true
+  pip: name={{item}} state=latest
+  with_items:
+  - urllib3[secure]
+  - pyopenssl
+  - pyasn1
+  - ndg-httpsclient
 
 - name: Install virtualenv
   become: true
@@ -68,11 +84,11 @@
 
 - name: Upgrade SymPy
   become: true
-  command: pip install -U sympy
+  pip: name=sympy state=latest
 
 - name: Install iPyWidgets
   become: true
-  command: pip install -U ipywidgets
+  pip: name=ipywidgets state=present
 
 - name: Enable iPyWidgets
   become: true
@@ -89,24 +105,24 @@
 # http://docs.aws.amazon.com/cli/latest/userguide/installing.html#install-with-pip
 - name: Install AWSCLI
   become: true
-  pip: name=awscli
+  pip: name=awscli state=latest
 
 # Requirement for EC2 modules (see Install AWSCLI)
 - name: Install Boto
   become: true
-  pip: name=boto
+  pip: name=boto state=latest
 
 - name: Install Boto3
   become: true
-  pip: name=boto3
+  pip: name=boto3 state=latest
 
 - name: Install Hypothesis
   become: true
-  pip: name=hypothesis
+  pip: name=hypothesis state=latest
 
 - name: Install PyTest
   become: true
-  pip: name=pytest
+  pip: name=pytest state=latest
 
 - name: Install json2yaml
   become: true
@@ -114,15 +130,4 @@
 
 - name: Install youtube-dl
   become: true
-  pip: name=youtube-dl
-
-# To fix [Errno 1] _ssl.c:510: error:14077410:SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure.
-# for python 2.7.6
-- name: Install security updates
-  become: true
-  command: pip install -U {{item}}
-  with_items:
-  - urllib3
-  - pyopenssl
-  - pyasn1
-  - ndg-httpsclient
+  pip: name=youtube-dl state=latest
