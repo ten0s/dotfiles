@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]; then
+   echo "Usage: $(basename $0) <Dev | QA | PROD2>"
+   exit 1
+fi
+
+env=$1
+for h in `hosts.sh $env v2.4 dmu`; do echo $h; rerl dmu@$h call 'dmu_debug,last_rds,[]'; done

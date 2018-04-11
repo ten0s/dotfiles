@@ -245,6 +245,8 @@
         backup=true
   with_items:
   - capslock-to-control.sh
+  - dmu_conf_reload
+  - dmu_last_rds
   - docker-gc
   - docker-gci
   - fetch-lnp
