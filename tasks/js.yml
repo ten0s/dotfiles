@@ -7,18 +7,32 @@
   become: true
   shell: curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
-- name: Add NodeSource Node.js 5.x repo
+- name: Remove Node.js 5.x
+  become: true
+  apt: name=nodejs
+       state=absent
+
+- name: Remove NodeSource Node.js 5.x repo
   become: true
   apt_repository: repo="{{item}}"
-                  state=present
+                  state=absent
   with_items:
   - "deb https://deb.nodesource.com/node_5.x trusty main"
   - "deb-src https://deb.nodesource.com/node_5.x trusty main"
 
+- name: Add NodeSource Node.js 6.x repo
+  become: true
+  apt_repository: repo="{{item}}"
+                  state=present
+  with_items:
+  - "deb https://deb.nodesource.com/node_6.x trusty main"
+
 - name: Install Node.js
   become: true
-  apt: name=nodejs state=present
+  apt: name=nodejs
+       state=latest
 
+# sudo npm install --global <PACKAGE>
 - name: Install global Node's packages
   become: true
   npm: name={{item.name}}
@@ -26,6 +40,7 @@
        global=true
        state=present
   with_items:
-  - {name: "bower", version: "1.8.0"}
+  - {name: "bower", version: "1.8.2"}
   - {name: "elasticdump", version: "3.0.0"}
   - {name: "jslint", version: "0.9.6"}
+  - {name: "yarn", version: "1.5.1"}
