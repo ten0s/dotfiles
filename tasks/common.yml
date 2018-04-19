@@ -246,6 +246,7 @@
   with_items:
   - capslock-to-control.sh
   - dmu_conf_reload
+  - dmu_do
   - dmu_last_rds
   - docker-gc
   - docker-gci

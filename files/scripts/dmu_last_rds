@@ -6,4 +6,4 @@ if [[ $# -ne 1 ]]; then
 fi
 
 env=$1
-for h in `hosts.sh $env v2.4 dmu`; do echo $h; rerl dmu@$h call 'dmu_debug,last_rds,[]'; done
+dmu_do $env call 'dmu_debug,last_rds,[]'

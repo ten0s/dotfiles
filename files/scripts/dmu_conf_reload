@@ -6,4 +6,4 @@ if [[ $# -ne 1 ]]; then
 fi
 
 env=$1
-for h in `hosts.sh $env v2.4 dmu`; do echo $h; rerl dmu@$h call 'conf_request,retrieve_config,[]'; done
+dmu_do $env call 'conf_request,retrieve_config,[]'

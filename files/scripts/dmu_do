@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
+   echo "Usage: $(basename $0) <Dev | QA | PROD2> <CMD> [ARGS]"
+   exit 1
+fi
+
+env=$1
+shift
+cmd=$1
+shift
+args="$*"
+#echo $cmd
+#echo $args
+for h in `hosts.sh $env v2.4 dmu`; do echo $h; rerl dmu@$h $cmd "$args"; done
