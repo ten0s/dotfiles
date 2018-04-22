@@ -1,24 +1,10 @@
 ---
 #
-# https://deb.nodesource.com/setup_5.x
 # https://github.com/nodesource/ansible-nodejs-role/issues/33
 #
 - name: Add NodeSource signing key
   become: true
   shell: curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
-
-- name: Remove Node.js 5.x
-  become: true
-  apt: name=nodejs
-       state=absent
-
-- name: Remove NodeSource Node.js 5.x repo
-  become: true
-  apt_repository: repo="{{item}}"
-                  state=absent
-  with_items:
-  - "deb https://deb.nodesource.com/node_5.x trusty main"
-  - "deb-src https://deb.nodesource.com/node_5.x trusty main"
 
 - name: Add NodeSource Node.js 6.x repo
   become: true
