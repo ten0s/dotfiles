@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rerl $1 cookie
