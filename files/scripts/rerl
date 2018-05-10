@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-if [[ $# -ne 1 ]] && [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
+if [[ $# -lt 1 ]] ; then
     echo "[R]emote [ERL]ang node helper"
-    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA> | load <BEAM>]"
+    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA> | load <BEAM> | redbug <TRACE> [TIME [MSGS [PROC]]]]"
     echo "Where:"
     echo "  ping   - Start the local node and ping the remote node (default)"
     echo "  remsh  - Connect to the remote node"
@@ -10,6 +10,7 @@ if [[ $# -ne 1 ]] && [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
     echo "  cookie - Print remote node's cookie"
     echo "  call   - Make a RPC call. MFA must be \"Module, Function, [Args]\""
     echo "  load   - Load BEAM to the remote node"
+    echo "  redbug - Debug the remote node"
     exit 1
 fi
 
@@ -94,6 +95,10 @@ load)
        echo "BEAM param expected"
        exit 1
    fi
+   ;;
+redbug)
+   echo "Exit with double Ctrl-C"
+   redbug -setcookie $cookie $name $node $3 $4 $5 $6
    ;;
 *)
     echo "Unknown command: $cmd"

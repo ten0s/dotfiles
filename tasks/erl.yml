@@ -99,6 +99,11 @@
   command: make chdir=/home/{{user}}/.erl_libs/eper/
   when: eper.changed
 
+- name: Create redbug link
+  file: src=/home/{{user}}/.erl_libs/eper/priv/bin/redbug
+        dest=/home/{{user}}/bin/redbug
+        state=link
+
 - name: Pull entop
   git: repo=https://github.com/mazenharake/entop.git
        dest=/home/{{user}}/.erl_libs/entop
