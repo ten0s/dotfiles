@@ -80,6 +80,7 @@
   - dropbox
   - emacs
   - expect
+  - expect-dev # autoexpect
   - fping
   - fswebcam
   - gdb
