@@ -25,6 +25,7 @@
   - {include: tasks/py.yml         , tags: ["py"]}
   - {include: tasks/js.yml         , tags: ["js"]}
   - {include: tasks/hs.yml         , tags: ["hs"]}
+  - {include: tasks/racket.yml     , tags: ["racket"]}
   - {include: tasks/vagrant.yml    , tags: ["vagrant"]}
   - {include: tasks/docker.yml     , tags: ["docker"]}
   - {include: tasks/oracle.yml     , tags: ["oracle"]}
