@@ -207,10 +207,10 @@
   shell: chmod +x rebar && make chdir=/home/{{user}}/.erl_libs/triq/
   when: triq.changed
 
-%- name: Download EQC Mini
-%  unarchive: src=http://www.quviq.com/wp-content/uploads/2015/09/eqcmini-2.01.0.zip
-%             dest=/home/{{user}}/.erl_libs/
-%             remote_src=true
+#- name: Download EQC Mini
+#  unarchive: src=http://www.quviq.com/wp-content/uploads/2015/09/eqcmini-2.01.0.zip
+#             dest=/home/{{user}}/.erl_libs/
+#             remote_src=true
 
 - name: Pull syntaxerl
   git: repo=git@github.com:ten0s/syntaxerl.git
