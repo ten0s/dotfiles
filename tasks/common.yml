@@ -261,9 +261,6 @@
   - dmu_last_rds
   - docker-gc
   - docker-gci
-  - fetch-lnp
-  - fetch-rdo
-  - fetch-rds
   - flip-args
   - fmon.sh
   - gtag
