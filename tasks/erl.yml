@@ -150,6 +150,16 @@
         dest=/home/{{user}}/bin/erlgrind
         state=link
 
+- name: Pull eep
+  git: repo=https://github.com/virtan/eep
+       dest=/home/{{user}}/.erl_libs/eep
+       version=8f6e5e3
+  register: eep
+
+- name: Build eep
+  command: rebar compile chdir=/home/{{user}}/.erl_libs/eep/
+  when: eep.changed
+
 # http://proper.softlab.ntua.gr/User_Guide.html
 - name: Pull proper
   git: repo=http://github.com/manopapad/proper.git
