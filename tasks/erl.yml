@@ -64,21 +64,6 @@
   with_items:
   - 'r19.3'
 
-- name: Pull docsh
-  git: repo=https://github.com/erszcz/docsh.git
-       dest=/home/{{user}}/.erl_libs/docsh
-       version=0.5.0
-  register: docsh
-
-- name: Build docsh
-  command: rebar3 compile chdir=/home/{{user}}/.erl_libs/docsh/
-  when: docsh.changed
-
-- name: Create docsh link
-  file: src=/home/{{user}}/.erl_libs/docsh/_build/default/lib/docsh/ebin
-        dest=/home/{{user}}/.erl_libs/docsh/ebin
-        state=link
-
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git
        dest=/home/{{user}}/projects/user_default
