@@ -150,6 +150,7 @@
         dest=/home/{{user}}/bin/erlgrind
         state=link
 
+# Erlang Easy Profiling (eep)
 - name: Pull eep
   git: repo=https://github.com/virtan/eep
        dest=/home/{{user}}/.erl_libs/eep
