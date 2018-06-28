@@ -2,13 +2,14 @@
 
 if [[ $# -lt 1 ]] ; then
     echo "[R]emote [ERL]ang node helper"
-    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA> | load <BEAM> | redbug <TRACE> [TIME [MSGS [PROC]]]]"
+    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA> | eval <EXPR> | load <BEAM> | redbug <TRACE> [TIME [MSGS [PROC]]]]"
     echo "Where:"
     echo "  ping   - Start local node and ping remote node (default)"
     echo "  remsh  - Connect to remote node"
     echo "  entop  - Connect entop to remote node"
     echo "  cookie - Print remote node's cookie"
     echo "  call   - Make RPC call. MFA must be \"Module, Function, [Args]\""
+    echo "  eval   - Eval EXPR on remote node"
     echo "  load   - Load BEAM to remote node"
     echo "  redbug - Trace on remote node"
     exit 1
@@ -52,6 +53,14 @@ function rpc_call() {
     erl $name -hidden -noshell -setcookie $cookie -eval "io:format(\"~p~n\", [rpc:call('$node', $mfa)]), init:stop()."
 }
 
+function eval_call() {
+    local node=$1
+    local name=$2
+    local cookie=$3
+    local mfa=$4
+    erl $name -hidden -noshell -setcookie $cookie -eval "{ok, Ts, _} = erl_scan:string(\"$expr\"), {ok, [F]} = erl_parse:parse_exprs(Ts), {value, V, _} = rpc:call('$node', erl_eval, expr, [F, []]), io:format(\"~p~n\", [V]), init:stop()."
+}
+
 case $cmd in
 cookie)
     echo $cookie
@@ -70,6 +79,10 @@ entop)
 call)
    mfa=${3-"erlang,node,[]"}
    rpc_call "$node" "$name" "$cookie" "$mfa"
+   ;;
+eval)
+   expr=${3-"erlang:node()."}
+   eval_call "$node" "$name" "$cookie" "$expr"
    ;;
 load)
    if [[ $3 ]]; then
