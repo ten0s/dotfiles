@@ -4,13 +4,13 @@ if [[ $# -lt 1 ]] ; then
     echo "[R]emote [ERL]ang node helper"
     echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA> | load <BEAM> | redbug <TRACE> [TIME [MSGS [PROC]]]]"
     echo "Where:"
-    echo "  ping   - Start the local node and ping the remote node (default)"
-    echo "  remsh  - Connect to the remote node"
-    echo "  entop  - Connect entop to the remote node"
+    echo "  ping   - Start local node and ping remote node (default)"
+    echo "  remsh  - Connect to remote node"
+    echo "  entop  - Connect entop to remote node"
     echo "  cookie - Print remote node's cookie"
-    echo "  call   - Make a RPC call. MFA must be \"Module, Function, [Args]\""
-    echo "  load   - Load BEAM to the remote node"
-    echo "  redbug - Debug the remote node"
+    echo "  call   - Make RPC call. MFA must be \"Module, Function, [Args]\""
+    echo "  load   - Load BEAM to remote node"
+    echo "  redbug - Trace on remote node"
     exit 1
 fi
 
