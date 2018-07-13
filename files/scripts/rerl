@@ -115,7 +115,7 @@ redbug)
    redbug -setcookie $cookie $name $node $3 $4 $5 $6
    ;;
 observer)
-    erl $name -noshell -setcookie $cookie -eval "pong = net_adm:ping('$node'), observer:start(), Wait = fun W() -> case whereis(observer) of Pid when is_pid(Pid) -> timer:sleep(500), W(); _ -> stop end end, Wait(), init:stop()."
+   erl $name -noshell -setcookie $cookie -eval "pong = net_adm:ping('$node'), observer:start(), {ok, Ns} = net_adm:names(), Id = (catch lists:foldl(fun ('$node', Idx) -> throw(Idx); (_, Idx) -> 1 + Idx end, 1001, lists:usort([list_to_atom(N) || {N, _} <- Ns] ++ nodes()))), observer ! {wx,Id,ign,ing,{wxCommand,command_menu_selected,ign,ign,ign}}, Wait = fun W() -> case whereis(observer) of Pid when is_pid(Pid) -> timer:sleep(500), W(); _ -> stop end end, Wait(), init:stop()."
     ;;
 *)
     echo "Unknown command: $cmd"
