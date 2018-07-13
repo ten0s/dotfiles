@@ -2,16 +2,17 @@
 
 if [[ $# -lt 1 ]] ; then
     echo "[R]emote [ERL]ang node helper"
-    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | remsh | entop | cookie | call <MFA> | eval <EXPR> | load <BEAM> | redbug <TRACE> [TIME [MSGS [PROC]]]]"
+    echo "Usage: $(basename $0) <NAME@HOST> [<ping> | cookie | remsh | entop | observer | call <MFA> | eval <EXPR> | load <BEAM> | redbug <TRACE> [TIME [MSGS [PROC]]]]"
     echo "Where:"
-    echo "  ping   - Start local node and ping remote node (default)"
-    echo "  remsh  - Connect to remote node"
-    echo "  entop  - Connect entop to remote node"
-    echo "  cookie - Print remote node's cookie"
-    echo "  call   - Make RPC call. MFA must be \"Module, Function, [Args]\""
-    echo "  eval   - Eval EXPR on remote node"
-    echo "  load   - Load BEAM to remote node"
-    echo "  redbug - Trace on remote node"
+    echo "  ping     - Start local node and ping remote node (default)"
+    echo "  cookie   - Print remote node's cookie"
+    echo "  remsh    - Connect to remote node"
+    echo "  entop    - Connect entop to remote node"
+    echo "  observer - Ping remote node and start observer"
+    echo "  call     - Make RPC call. MFA must be \"Module, Function, [Args]\""
+    echo "  eval     - Eval EXPR on remote node"
+    echo "  load     - Load BEAM to remote node"
+    echo "  redbug   - Trace on remote node"
     exit 1
 fi
 
@@ -113,6 +114,9 @@ redbug)
    echo "Exit with double Ctrl-C"
    redbug -setcookie $cookie $name $node $3 $4 $5 $6
    ;;
+observer)
+    erl $name -noshell -setcookie $cookie -eval "pong = net_adm:ping('$node'), observer:start(), Wait = fun W() -> case whereis(observer) of Pid when is_pid(Pid) -> timer:sleep(500), W(); _ -> stop end end, Wait(), init:stop()."
+    ;;
 *)
     echo "Unknown command: $cmd"
     exit 1
