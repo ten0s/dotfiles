@@ -22,6 +22,7 @@
 
 # 1. To fix [Errno 1] _ssl.c:510: error:14077410:SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure for Python 2.7.6
 # 2. https://urllib3.readthedocs.io/en/latest/user-guide.html#ssl-py2
+# 3. sudo pip install --ignore-installed -U urllib3 urllib3[secure]
 - name: Install security updates
   become: true
   pip: name={{item}} state=latest
@@ -39,6 +40,12 @@
   become: true
   pip: name=ansible-lint
 
+# To workaround
+# Tornado requires an up-to-date SSL module. This means Python 2.7.9+ or 3.4+
+- name: Install Tornado for Jupyter
+  become: true
+  pip: name=tornado version=4.5.3
+
 #  fonts-font-awesome fonts-mathjax ipython-notebook-common libjs-highlight
 #  libjs-jquery-ui libjs-marked libjs-mathjax python-simplegeneric python-zmq
 - name: Install Jupyter
@@ -46,6 +53,7 @@
   pip: name=jupyter
 
 # https://github.com/takluyver/bash_kernel
+# sudo pip install -U bash_kernel --ignore-installed
 - name: Install IBash kernel 1/2
   become: true
   pip: name=bash_kernel
@@ -82,7 +90,8 @@
   - python-networkx
   - python-tk
 
-- name: Upgrade SymPy
+# sudo pip install -U sympy --ignore-installed
+- name: Upgrade SymPyy
   become: true
   pip: name=sympy state=latest
 
@@ -98,6 +107,7 @@
   become: true
   pip: name=bumpversion
 
+# sudo pip install -U pywinrm --ignore-installed
 - name: Install pywinrm
   become: true
   pip: name=http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
