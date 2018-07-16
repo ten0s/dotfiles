@@ -14,6 +14,7 @@
         state=directory
   with_items:
   - {path: "/home/{{user}}/bin", mode: 755}
+  - {path: "/home/{{user}}/tmp", mode: 755}
 
 - name: Update apt's cache
   become: true
