@@ -91,7 +91,7 @@
   - python-tk
 
 # sudo pip install -U sympy --ignore-installed
-- name: Upgrade SymPyy
+- name: Upgrade SymPy
   become: true
   pip: name=sympy state=latest
 
