@@ -58,8 +58,8 @@ function eval_call() {
     local node=$1
     local name=$2
     local cookie=$3
-    local mfa=$4
-    erl $name -hidden -noshell -setcookie $cookie -eval "{ok, Ts, _} = erl_scan:string(\"$expr\"), {ok, [F]} = erl_parse:parse_exprs(Ts), {value, V, _} = rpc:call('$node', erl_eval, expr, [F, []]), io:format(\"~p~n\", [V]), init:stop()."
+    local expr=$4
+    erl $name -hidden -noshell -setcookie $cookie -eval "{ok, Ts, _} = erl_scan:string(\"$expr\"), {ok, Fs} = erl_parse:parse_exprs(Ts), {value, V, _} = rpc:call('$node', erl_eval, exprs, [Fs, []]), io:format(\"~p~n\", [V]), init:stop()."
 }
 
 case $cmd in
