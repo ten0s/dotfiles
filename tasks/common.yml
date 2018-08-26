@@ -102,6 +102,7 @@
   - kdelibs5-data    # to fix kde apps crashes
   - kdelibs5-plugins # to fix kde apps crashes
   - keepassx
+  - libav-tools # avconv like ffmpeg
   - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
   - libxml2-utils # provides xmllint
   - mc
