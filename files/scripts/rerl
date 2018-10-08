@@ -29,7 +29,7 @@ case $host in
     name="-name adm$$@127.0.0.1"
     cookie=$(ssh $host 'sudo cat /home/*/.erlang.cookie')
     ;;
-127.0.0.1)
+127.0.0.*)
     name="-name adm$$@127.0.0.1"
     cookie=$(cat ~/.erlang.cookie)
     ;;
