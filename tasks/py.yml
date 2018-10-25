@@ -141,3 +141,7 @@
 - name: Install youtube-dl
   become: true
   pip: name=youtube-dl state=latest
+
+- name: Install PyInstaller
+  become: true
+  pip: name=pyinstaller state=latest
