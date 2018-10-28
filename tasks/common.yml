@@ -124,6 +124,7 @@
   - sipsak # SIP Swiss Army Knife
   - software-properties-common # add-apt-repository
   - spell
+  - stoken
   - stress  # see also stress-ng
   - sysbench
   - sysstat # iostat
