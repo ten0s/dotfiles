@@ -6,26 +6,26 @@
   - /home/{{user}}/.java_libs
 
 ##
-# http://tecadmin.net/install-oracle-java-8-jdk-8-ubuntu-via-ppa/
+# Java 8
+# http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
 ##
 
 # https://launchpad.net/~webupd8team/+archive/ubuntu/java
-- name: Add Java Ubuntu key
+- name: Add Java 8 Ubuntu key
   become: true
   apt_key: keyserver=keyserver.ubuntu.com
            id=EEA14886
            state=present
 
-- name: Add Java Ubuntu repo
+- name: Add Java 8 Ubuntu repo
   become: true
   apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main'
                   state=present
 
-# http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
 - name: Enable automated installation
-  shell: echo oracle-java9-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 
-- name: Install Java 8 Installer
+- name: Install Java 8
   become: true
   apt: name=oracle-java8-installer
        state=present
@@ -34,6 +34,50 @@
   become: true
   apt: name=oracle-java8-set-default
        state=present
+
+##
+# Java 10,11
+# https://www.linuxuprising.com/2018/04/install-oracle-java-10-in-ubuntu-or.html
+# https://www.linuxuprising.com/2018/10/how-to-install-oracle-java-11-in-ubuntu.html
+# Doesn't work in Ubuntu 14.04 LTS
+##
+
+# https://launchpad.net/~linuxuprising/+archive/ubuntu/java
+#- name: Add Java 10,11 Ubuntu key
+#  become: true
+#  apt_key: keyserver=keyserver.ubuntu.com
+#           id=73C3DB2A
+#           state=present
+#
+#- name: Add Java 10,11 Ubuntu repo
+#  become: true
+#  apt_repository: repo='deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main'
+#                  state=present
+#
+#- name: Enable Java 10 automated installation 1/2
+#  shell: echo oracle-java10-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+#
+#- name: Enable Java 10 automated installation 2/2
+#  shell: echo oracle-java10-installer shared/accepted-oracle-license-v1-1 boolean true | sudo /usr/bin/debconf-set-selections
+#
+#- name: Enable Java 11 automated installation 1/2
+#  shell: echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | sudo /usr/bin/debconf-set-selections
+#
+#- name: Enable Java 11 automated installation 2/2
+#  shell: echo oracle-java11-installer shared/accepted-oracle-license-v1-2 boolean true | sudo /usr/bin/debconf-set-selections
+#
+#- name: Install Java 10,11
+#  become: true
+#  apt: name=oracle-{{item}}-installer
+#       state=present
+#  with_items:
+#  - java10
+#  - java11
+#
+#- name: Set Java 10 as default
+#  become: true
+#  apt: name=oracle-java10-set-default
+#       state=present
 
 ##
 # https://maven.apache.org/download.cgi

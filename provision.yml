@@ -10,7 +10,7 @@
     jq_ver: 1.5
     skype_ver: 8.18.0.6
     slack_ver: 3.0.2
-    mvn_ver: 3.5.2
+    mvn_ver: 3.5.4
     realvnc_viewer_ver: 6.17.1113
   tasks:
   - {include: tasks/common.yml     , tags: ["common"]}
