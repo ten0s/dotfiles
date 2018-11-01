@@ -30,3 +30,5 @@
   - {include: tasks/docker.yml     , tags: ["docker"]}
   - {include: tasks/oracle.yml     , tags: ["oracle"]}
   - {include: tasks/xymon.yml      , tags: ["xymon"]}
+  - {include: tasks/vscode.yml     , tags: ["vscode"]}
+  - {include: tasks/algs4.yml      , tags: ["algs4"]}

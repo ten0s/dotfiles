@@ -1,9 +1,11 @@
 ---
 - name: Create dirs
+  become: true
   file: path="{{item}}"
         state=directory
   with_items:
   - /home/{{user}}/.java_libs
+  - /usr/java/packages/lib/ext
 
 ##
 # Java 8

@@ -1,0 +1,38 @@
+---
+- name: Create dirs
+  file: path="{{item}}"
+        state=directory
+  with_items:
+  - /home/{{user}}/projects/algs4
+
+##
+# https://lift.cs.princeton.edu/java/linux/
+##
+
+# 1. Install Java - see java.yml
+
+# 2. Install libs
+
+- name: Pull algs4
+  git: repo=https://github.com/kevin-wayne/algs4.git
+       dest=/home/{{user}}/projects/algs4/lib/
+       force=true
+  register: algs4
+
+- name: Build algs4
+  shell: mvn package chdir=/home/{{user}}/projects/algs4/lib/
+  when: algs4.changed
+
+- name: Register algs4
+  become: true
+  file: src=/home/{{user}}/projects/algs4/lib/target/algs4-1.0.0.0.jar
+        dest=/usr/java/packages/lib/ext/algs4.jar
+        state=link
+  when: algs4.changed
+
+- name: Download test data
+  get_url:
+    url=https://algs4.cs.princeton.edu/code/algs4-data.zip
+    dest=/home/{{user}}/projects/algs4/algs4-data.zip
+
+# 3. Install VSCode - see vscode.yml
