@@ -1,3 +1,11 @@
+- name: Install Anki2's deps
+  become: true
+  apt: name={{item}}
+       state=present
+  with_items:
+  - dvipng
+  - texlive-latex-base
+
 - name: Install Anki2 1/3
   get_url: url=https://apps.ankiweb.net/downloads/current/anki-{{anki2_ver}}-linux-amd64.tar.bz2
            dest={{cache_dir}}/anki-{{anki2_ver}}-linux-amd64.tar.bz2
