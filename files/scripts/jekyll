@@ -8,5 +8,12 @@
 # $ jekyll build
 # $ jekyll serve
 
+opts[k++]=-it
+opts[k++]=--rm
+opts[k++]=--volume="$PWD:/srv/jekyll"
+if [[ `echo $@ | grep serve` ]]; then
+    opts[k++]=--publish=4000:4000
+fi
+
 export JEKYLL_VERSION=3.8
-docker run --rm --publish=4000:4000 --volume="$PWD:/srv/jekyll" -it jekyll/jekyll:$JEKYLL_VERSION jekyll "$@"
+docker run ${opts[@]} jekyll/jekyll:$JEKYLL_VERSION jekyll "$@"
