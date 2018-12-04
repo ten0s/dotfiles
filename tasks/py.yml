@@ -138,6 +138,12 @@
   become: true
   pip: name=json2yaml
 
+# jq wrapper for YAML/XML
+# sudo pip install -U pyyaml --ignore-installed
+- name: Install yq
+  become: true
+  pip: name=yq
+
 - name: Install youtube-dl
   become: true
   pip: name=youtube-dl state=latest
