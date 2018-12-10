@@ -17,3 +17,6 @@
 - name: Install Anki2 3/3
   become: true
   command: make install chdir=/home/{{user}}/tmp/anki-{{anki2_ver}}-linux-amd64/
+
+# Add-ons used:
+# https://foosoft.net/projects/anki-connect/
