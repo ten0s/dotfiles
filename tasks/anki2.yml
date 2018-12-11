@@ -19,4 +19,5 @@
   command: make install chdir=/home/{{user}}/tmp/anki-{{anki2_ver}}-linux-amd64/
 
 # Add-ons used:
-# https://foosoft.net/projects/anki-connect/
+# https://ankiweb.net/shared/info/2055492159
+# https://ankiweb.net/shared/info/208879074
