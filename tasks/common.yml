@@ -75,6 +75,7 @@
   - bmon # bandwidth monitor and rate estimator
   - build-essential
   - curl
+  - ddd # debuggers front-end
   - dia
   - dia-shapes
   - dos2unix
