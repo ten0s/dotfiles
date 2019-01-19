@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rsync -av ~/Dropbox/.anki2/ ~/.local/share/Anki2/
+anki
+rsync -av ~/.local/share/Anki2/ ~/Dropbox/.anki2/
