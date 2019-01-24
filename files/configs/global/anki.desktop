@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Anki
+GenericName=Flashcards
+Comment=An intelligent spaced-repetition memory training program
+Icon=anki
+TryExec=anki-dropbox-sync
+Exec=anki-dropbox-sync %f
+NoDisplay=false
+Categories=Education;KDE;Languages;Qt;
+MimeType=application/x-apkg;application/x-anki;
+StartupNotify=false
+Terminal=false

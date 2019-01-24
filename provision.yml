@@ -12,7 +12,7 @@
     slack_ver: 3.0.2
     mvn_ver: 3.5.4
     realvnc_viewer_ver: 6.17.1113
-    anki2_ver: 2.1.5
+    anki2_ver: 2.1.5-linux-amd64
   tasks:
   - {include: tasks/common.yml     , tags: ["common"]}
   - {include: tasks/carcharodon.yml, tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}

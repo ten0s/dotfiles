@@ -15,6 +15,7 @@
 - name: MIME associations 2/3
   copy: src=files/scripts/{{item}}
         dest=/home/{{user}}/bin/{{item}}
+        mode=0755
         backup=true
   with_items:
   - evincex.sh
@@ -36,17 +37,36 @@
   - dvipng
   - texlive-latex-base
 
-- name: Install Anki2 1/3
-  get_url: url=https://apps.ankiweb.net/downloads/current/anki-{{anki2_ver}}-linux-amd64.tar.bz2
-           dest={{cache_dir}}/anki-{{anki2_ver}}-linux-amd64.tar.bz2
+- name: Install Anki2 1/5
+  get_url: url=https://apps.ankiweb.net/downloads/current/anki-{{anki2_ver}}.tar.bz2
+           dest={{cache_dir}}/anki-{{anki2_ver}}.tar.bz2
 
-- name: Install Anki2 2/3
-  unarchive: src={{cache_dir}}/anki-{{anki2_ver}}-linux-amd64.tar.bz2
+- name: Install Anki2 2/5
+  unarchive: src={{cache_dir}}/anki-{{anki2_ver}}.tar.bz2
              dest=/home/{{user}}/tmp/
+             creates=/home/{{user}}/tmp/anki-{{anki2_ver}}
+  register: anki
 
-- name: Install Anki2 3/3
+- name: Install Anki2 3/5
   become: true
-  command: make install chdir=/home/{{user}}/tmp/anki-{{anki2_ver}}-linux-amd64/
+  command: make install chdir=/home/{{user}}/tmp/anki-{{anki2_ver}}/
+  when: anki.changed
+
+- name: Install Anki2 4/5
+  copy: src=files/scripts/{{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - anki-dropbox-sync
+
+- name: Install Anki2 5/5
+  become: true
+  copy: src=files/configs/global/{{item}}
+        dest=/usr/local/share/applications/{{item}}
+        backup=true
+  with_items:
+  - anki.desktop
 
 # Add-ons used:
 # https://ankiweb.net/shared/info/2055492159
