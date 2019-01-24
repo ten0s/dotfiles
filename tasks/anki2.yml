@@ -1,4 +1,34 @@
-- name: Install Anki2's deps
+---
+- name: Symlink $HOME/anki2
+  file: src=/home/{{user}}/Dropbox/refs/anki2
+        dest=/home/{{user}}/anki2
+        state=link
+        force=true
+
+- name: MIME associations 1/3
+  copy: src=files/configs/local/{{item}}
+        dest=/home/{{user}}/.local/share/applications/{{item}}
+        backup=true
+  with_items:
+  - evincex.desktop
+
+- name: MIME associations 2/3
+  copy: src=files/scripts/{{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        backup=true
+  with_items:
+  - evincex.sh
+
+- name: MIME associations 3/3
+  lineinfile:
+    path: /home/{{user}}/.local/share/applications/mimeapps.list
+    backup: true
+    regexp: "x-scheme-handler/evincex=evincex.desktop"
+    insertafter: "^[Added Associations]"
+    line: "x-scheme-handler/evincex=evincex.desktop;"
+    state: present
+
+- name: Install Anki2 deps
   become: true
   apt: name={{item}}
        state=present

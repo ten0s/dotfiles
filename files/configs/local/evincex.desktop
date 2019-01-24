@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Evince page label launcher
+Exec=evincex.sh %u
+Icon=evince
+Type=Application
+Terminal=false
+MimeType=x-scheme-handler/evincex;
