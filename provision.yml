@@ -9,10 +9,10 @@
     vbox_ver: 5.0
     jq_ver: 1.5
     skype_ver: 8.18.0.6
-    slack_ver: 3.0.2
+    slack_ver: 3.0.2-amd64
     mvn_ver: 3.5.4
-    realvnc_viewer_ver: 6.17.1113
     anki2_ver: 2.1.5-linux-amd64
+    realvnc_viewer_ver: 6.17.1113-Linux-x64
   tasks:
   - {include: tasks/common.yml     , tags: ["common"]}
   - {include: tasks/carcharodon.yml, tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
