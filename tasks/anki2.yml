@@ -58,7 +58,7 @@
         mode=0755
         backup=true
   with_items:
-  - anki-dropbox-sync
+  - anki-dropbox-sync.sh
 
 - name: Install Anki2 5/5
   become: true
