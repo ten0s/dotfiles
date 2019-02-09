@@ -5,8 +5,8 @@
   vars:
     user: ten0s
     cache_dir: /var/cache/ansible
-    vagrant_ver: 1.9.5
-    vbox_ver: 5.0
+    vagrant_ver: 2.2.3
+    virtualbox_ver: 6.0
     jq_ver: 1.5
     skype_ver: 8.18.0.6
     slack_ver: 3.0.2-amd64
@@ -28,6 +28,7 @@
   - {include: tasks/hs.yml         , tags: ["hs"]}
   - {include: tasks/racket.yml     , tags: ["racket"]}
   - {include: tasks/vagrant.yml    , tags: ["vagrant"]}
+  - {include: tasks/virtualbox.yml , tags: ["virtualbox"]}
   - {include: tasks/docker.yml     , tags: ["docker"]}
   - {include: tasks/oracle.yml     , tags: ["oracle"]}
   - {include: tasks/xymon.yml      , tags: ["xymon"]}

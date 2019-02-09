@@ -34,12 +34,3 @@
   shell: vagrant plugin update
   register: vagrant_plugin_update
   changed_when: "'Updated' in vagrant_plugin_update.stdout"
-
-#
-# TODO: Setup apt source
-# https://www.virtualbox.org/wiki/Linux_Downloads
-#
-
-- name: Install Virtualbox
-  become: true
-  apt: name=virtualbox-{{vbox_ver}} state=present
