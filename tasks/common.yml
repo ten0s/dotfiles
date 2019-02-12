@@ -97,6 +97,7 @@
   - hexdiff
   - htop
   - iftop # display bandwidth usage on an interface by host
+  - imagemagick
   - inotify-tools
   - kcachegrind
   - kdelibs-bin      # to fix kde apps crashes
