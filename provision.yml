@@ -15,6 +15,7 @@
     realvnc_viewer_ver: 6.17.1113-Linux-x64
   tasks:
   - {include: tasks/common.yml     , tags: ["common"]}
+  - {include: tasks/emacs.yml      , tags: ["emacs"]}
   - {include: tasks/carcharodon.yml, tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
   - {include: tasks/megalodon.yml  , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}
   - {include: tasks/orca.yml       , tags: ["orca"]       , when: ansible_hostname == "orca"}

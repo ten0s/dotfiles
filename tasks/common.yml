@@ -294,15 +294,6 @@
   - capslock-to-control.desktop
   - my-dropbox.desktop
 
-- name: Pull emacs repo
-  git: repo=git@github.com:ten0s/emacs
-       dest=/home/{{user}}/emacs
-
-- name: Create link to .emacs
-  file: src=/home/{{user}}/emacs/emacs
-        dest=/home/{{user}}/.emacs
-        state=link
-
 - name: Pull autokey repo
   git: repo=git@github.com:ten0s/autokey
        dest=/home/{{user}}/.config/autokey

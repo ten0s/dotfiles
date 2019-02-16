@@ -1,0 +1,15 @@
+---
+- name: Pull emacs repo
+  git: repo=git@github.com:ten0s/emacs
+       dest=/home/{{user}}/emacs
+
+- name: Create link to .emacs
+  file: src=/home/{{user}}/emacs/emacs
+        dest=/home/{{user}}/.emacs
+        state=link
+
+- name: Install Org mode deps
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - ditaa
