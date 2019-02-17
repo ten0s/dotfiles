@@ -7,9 +7,3 @@
   file: src=/home/{{user}}/emacs/emacs
         dest=/home/{{user}}/.emacs
         state=link
-
-- name: Install Org mode deps
-  become: true
-  apt: name={{item}} state=latest
-  with_items:
-  - ditaa
