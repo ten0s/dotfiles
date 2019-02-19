@@ -46,6 +46,7 @@
   - banshee
   - cowsay
   - fortune
+  - gimp
   - jq
   - mono-runtime
   - skype
@@ -117,6 +118,7 @@
   - nmap
   - nmon
   - openvpn
+  - pinta # Image editor
   - pv # monitor the progress of data through a pipe
   - python-gpgme
   - pwgen
