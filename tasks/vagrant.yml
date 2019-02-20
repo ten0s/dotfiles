@@ -15,8 +15,7 @@
 
 - name: Uninstall Vagrant's plugins
   shell: vagrant plugin uninstall {{item}}
-  with_items:
-  - vagrant-vbguest
+  with_items: []
   when: item in vagrant_plugin_list.stdout
 
 - name: Install Vagrant's plugins
@@ -26,6 +25,7 @@
   with_items:
   - vagrant-aws
   - vagrant-cachier
+  - vagrant-vbguest
   - vagrant-vbox-snapshot
   - vagrant-winrm
   when: item not in vagrant_plugin_list.stdout
