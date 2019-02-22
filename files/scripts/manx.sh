@@ -11,9 +11,9 @@ URI="$1"
 PAGE=$(echo $URI | sed -E 's;manx://;;' | sed -E 's;(.*)#(.*);\1;')
 SEARCH=$(echo $URI | sed -En 's;(.*)#(.*);\2;p' | sed -E 's;\+; ;g')
 
-echo "$URI"
-echo "$PAGE"
-echo "$SEARCH"
+#echo "$URI"
+#echo "$PAGE"
+#echo "$SEARCH"
 
 if [[ -n "$SEARCH" ]]; then
     xfce4-terminal -e "bash -c 'man $PAGE | less +/\"$SEARCH\"'"
