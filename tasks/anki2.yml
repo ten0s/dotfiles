@@ -1,4 +1,9 @@
 ---
+- set_fact:
+    launchers:
+    - evincex
+    - manx
+
 - name: Symlink $HOME/anki2
   file: src=/home/{{user}}/Dropbox/refs/anki2
         dest=/home/{{user}}/anki2
@@ -6,28 +11,30 @@
         force=true
 
 - name: MIME associations 1/3
-  copy: src=files/configs/local/{{item}}
-        dest=/home/{{user}}/.local/share/applications/{{item}}
+  copy: src=files/configs/local/{{item}}.desktop
+        dest=/home/{{user}}/.local/share/applications/{{item}}.desktop
         backup=true
   with_items:
-  - evincex.desktop
+  - "{{launchers}}"
 
 - name: MIME associations 2/3
-  copy: src=files/scripts/{{item}}
-        dest=/home/{{user}}/bin/{{item}}
+  copy: src=files/scripts/{{item}}.sh
+        dest=/home/{{user}}/bin/{{item}}.sh
         mode=0755
         backup=true
   with_items:
-  - evincex.sh
+  - "{{launchers}}"
 
 - name: MIME associations 3/3
   lineinfile:
     path: /home/{{user}}/.local/share/applications/mimeapps.list
     backup: true
-    regexp: "x-scheme-handler/evincex=evincex.desktop"
+    regexp: "x-scheme-handler/{{item}}={{item}}.desktop"
     insertafter: "^[Added Associations]"
-    line: "x-scheme-handler/evincex=evincex.desktop;"
+    line: "x-scheme-handler/{{item}}={{item}}.desktop;"
     state: present
+  with_items:
+  - "{{launchers}}"
 
 - name: Install Anki2 deps
   become: true

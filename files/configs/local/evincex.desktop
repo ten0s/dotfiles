@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Evince page label launcher
+Name=Evince URI launcher
 Exec=evincex.sh %u
 Icon=evince
 Type=Application

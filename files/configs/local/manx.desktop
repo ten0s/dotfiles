@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Man URI launcher
+Exec=manx.sh %u
+Icon=man
+Type=Application
+Terminal=false
+MimeType=x-scheme-handler/manx;
