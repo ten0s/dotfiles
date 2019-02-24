@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Evince URI launcher
+Name=Pdf advanced launcher
 Exec=evincex.sh %u
 Icon=evince
 Type=Application
 Terminal=false
-MimeType=x-scheme-handler/evincex;
+MimeType=x-scheme-handler/pdfx;

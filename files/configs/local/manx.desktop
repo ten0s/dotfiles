@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Man URI launcher
+Name=Man advanced launcher
 Exec=manx.sh %u
 Icon=man
 Type=Application

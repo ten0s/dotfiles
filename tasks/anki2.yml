@@ -1,8 +1,9 @@
 ---
 - set_fact:
-    launchers:
-    - evincex
-    - manx
+    handlers:
+    - {scheme: djvux, desktop: djvue.desktop, handler: evincex.sh}
+    - {scheme: manx , desktop: manx.desktop , handler: manx.sh}
+    - {scheme: pdfx , desktop: pdfx.desktop , handler: evincex.sh}
 
 - name: Symlink $HOME/anki2
   file: src=/home/{{user}}/Dropbox/refs/anki2
@@ -11,30 +12,30 @@
         force=true
 
 - name: MIME associations 1/3
-  copy: src=files/configs/local/{{item}}.desktop
-        dest=/home/{{user}}/.local/share/applications/{{item}}.desktop
+  copy: src=files/configs/local/{{item.desktop}}
+        dest=/home/{{user}}/.local/share/applications/{{item.desktop}}
         backup=true
   with_items:
-  - "{{launchers}}"
+  - "{{handlers}}"
 
 - name: MIME associations 2/3
-  copy: src=files/scripts/{{item}}.sh
-        dest=/home/{{user}}/bin/{{item}}.sh
+  copy: src=files/scripts/{{item.handler}}
+        dest=/home/{{user}}/bin/{{item.handler}}
         mode=0755
         backup=true
   with_items:
-  - "{{launchers}}"
+  - "{{handlers}}"
 
 - name: MIME associations 3/3
   lineinfile:
     path: /home/{{user}}/.local/share/applications/mimeapps.list
     backup: true
-    regexp: "x-scheme-handler/{{item}}={{item}}.desktop"
+    regexp: "x-scheme-handler/{{item.scheme}}={{item.desktop}}"
     insertafter: "^[Added Associations]"
-    line: "x-scheme-handler/{{item}}={{item}}.desktop;"
+    line: "x-scheme-handler/{{item.scheme}}={{item.desktop}};"
     state: present
   with_items:
-  - "{{launchers}}"
+  - "{{handlers}}"
 
 - name: Install Anki2 deps
   become: true

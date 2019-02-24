@@ -1,17 +1,21 @@
 #!/bin/bash
 
+# https://www.gnu.org/software/emacs/manual/html_node/org/External-links.html#External-links
+# https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
+
 if [[ $# -ne 1 ]]; then
-    echo "usage: $(basename $0) <evincex://FILE[#PAGE]>"
+    echo "Usage: $(basename $0) <pdfx://FILE[::PAGE]>"
+    echo "Usage: $(basename $0) <djvux://FILE[::PAGE]>"
     exit 1
 fi
 
 URI="$1"
-FILE=$(echo $URI | sed -E 's;evincex://;;' | sed -E 's;(.*)#(.*);\1;')
-PAGE=$(echo $URI | sed -En 's;(.*)#(.*);\2;p')
+FILE=$(echo $URI | sed -rn 's;(pdfx|djvux)://(.+\.(pdf|djvu)).*;\2;p')
+PAGE=$(echo $URI | sed -rn 's;(pdfx|djvux)://.+::([[:digit:]]+).*;\2;p')
 [[ -z "$PAGE" ]] && PAGE=1
 
-#echo "$URI"
-#echo "$FILE"
-#echo "$PAGE"
+echo "URI : $URI"
+echo "FILE: $FILE"
+echo "PAGE: $PAGE"
 
 evince "$(bash -c "ls $FILE")" --page-label="$PAGE"
