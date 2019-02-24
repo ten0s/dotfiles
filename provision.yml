@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  gather_facts: no
   connection: local
   user: ten0s
   vars:
@@ -11,7 +12,6 @@
     skype_ver: 8.18.0.6
     slack_ver: 3.0.2-amd64
     mvn_ver: 3.5.4
-    anki2_ver: 2.1.5-linux-amd64
     realvnc_viewer_ver: 6.17.1113-Linux-x64
   tasks:
   - {include: tasks/common.yml     , tags: ["common"]}
@@ -35,4 +35,4 @@
   - {include: tasks/xymon.yml      , tags: ["xymon"]}
   - {include: tasks/vscode.yml     , tags: ["vscode"]}
   - {include: tasks/algs4.yml      , tags: ["algs4"]}
-  - {include: tasks/anki2.yml      , tags: ["anki2"]}
+  - {import_role: name=anki2       , tags: ["anki2"]}
