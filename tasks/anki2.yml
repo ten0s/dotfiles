@@ -1,7 +1,7 @@
 ---
 - set_fact:
     handlers:
-    - {scheme: djvux, desktop: djvue.desktop, handler: evincex.sh}
+    - {scheme: djvux, desktop: djvux.desktop, handler: evincex.sh}
     - {scheme: manx , desktop: manx.desktop , handler: manx.sh}
     - {scheme: pdfx , desktop: pdfx.desktop , handler: evincex.sh}
 
