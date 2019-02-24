@@ -1,0 +1,32 @@
+---
+#
+# https://github.com/nodesource/ansible-nodejs-role/issues/33
+#
+- name: Add apt key
+  become: true
+  shell: curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+
+- name: Add Node.js 6.x apt repo
+  become: true
+  apt_repository: repo="{{item}}"
+                  state=present
+  with_items:
+  - "deb https://deb.nodesource.com/node_6.x trusty main"
+
+- name: Install
+  become: true
+  apt: name=nodejs
+       state=latest
+
+# sudo npm install --global <PACKAGE>
+- name: Install global packages
+  become: true
+  npm: name={{item.name}}
+       version={{item.version}}
+       global=true
+       state=present
+  with_items:
+  - {name: "bower", version: "1.8.2"}
+  - {name: "elasticdump", version: "3.0.0"}
+  - {name: "jslint", version: "0.12.0"}
+  - {name: "yarn", version: "1.5.1"}

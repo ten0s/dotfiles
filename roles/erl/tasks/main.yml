@@ -1,0 +1,271 @@
+---
+- name: Create dirs
+  file: path={{item}}
+        state=directory
+  with_items:
+  - /home/{{user}}/.erl_libs
+  - /home/{{user}}/.erl_libs/ebin
+  - /home/{{user}}/.rebar
+
+- name: Install deps
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - build-essential
+  - default-jdk
+  - fop
+  - libglu1-mesa-dev
+  - libncurses5-dev
+  - libssl-dev
+  - libtk-img-dev
+  - libwxgtk2.8-dev
+  - unixodbc-dev
+  - xsltproc
+
+- name: Install kerl
+  get_url: url=https://raw.githubusercontent.com/kerl/kerl/master/kerl
+           dest=/home/{{user}}/bin/
+           mode=0755
+
+- name: Provision kerl config
+  copy: src=.kerlrc
+        dest=/home/{{user}}/.kerlrc
+        backup=true
+
+- name: Update erlang versions
+  command: kerl update releases
+
+- name: Delete erlang installations
+  become: true
+  command: >
+    kerl delete installation /opt/{{item}}
+    removes=/opt/{{item}}
+  with_items: []
+
+- name: Delete erlang builds
+  command: >
+    kerl delete build {{item}}
+    removes=/home/{{user}}/.kerl/builds/{{item}}
+  with_items: []
+
+- name: Build erlang versions
+  command: >
+    kerl build {{item.release}} {{item.name}}
+    creates=/home/{{user}}/.kerl/builds/{{item.name}}
+  with_items:
+  - {release: '19.3', name: 'r19.3'}
+  - {release: '20.3', name: 'r20.3'}
+
+- name: Install erlang versions
+  command: sudo kerl install {{item}} creates=/opt/{{item}}
+  with_items:
+  - 'r19.3'
+  - 'r20.3'
+
+- name: Pull user_default
+  git: repo=git@github.com:ten0s/user_default.git
+       dest=/home/{{user}}/projects/user_default
+       version=HEAD
+  register: user_default
+
+- name: Build user_default
+  command: erlc user_default.erl chdir=/home/{{user}}/projects/user_default/
+  when: user_default.changed
+
+- name: Create user_default link
+  file: src=/home/{{user}}/projects/user_default/user_default.beam
+        dest=/home/{{user}}/.erl_libs/ebin/user_default.beam
+        state=link
+
+- name: Provision .erlang config
+  copy: src=/home/{{user}}/projects/user_default/dot_erlang
+        dest=/home/{{user}}/.erlang
+        backup=true
+
+- name: Pull sync
+  git: repo=https://github.com/rustyio/sync.git
+       dest=/home/{{user}}/.erl_libs/sync
+       version=20846b0
+  register: sync
+
+- name: Build sync
+  command: make chdir=/home/{{user}}/.erl_libs/sync/
+  when: sync.changed
+
+- name: Pull eper
+  git: repo=https://github.com/massemanet/eper.git
+       dest=/home/{{user}}/.erl_libs/eper
+       version=0.97.6
+  register: eper
+
+- name: Build eper
+  command: make chdir=/home/{{user}}/.erl_libs/eper/
+  when: eper.changed
+
+- name: Create redbug link
+  file: src=/home/{{user}}/.erl_libs/eper/priv/bin/redbug
+        dest=/home/{{user}}/bin/redbug
+        state=link
+
+- name: Pull entop
+  git: repo=https://github.com/mazenharake/entop.git
+       dest=/home/{{user}}/.erl_libs/entop
+       version=e0dff37
+  register: entop
+
+- name: Build entop
+  shell: ./rebar get-deps && ./rebar compile chdir=/home/{{user}}/.erl_libs/entop/
+  when: entop.changed
+
+- name: Create entop link
+  file: src=/home/{{user}}/.erl_libs/entop/entop
+        dest=/home/{{user}}/bin/entop
+        state=link
+
+- name: Pull erlgrind
+  git: repo=https://github.com/isacssouza/erlgrind.git
+       dest=/home/{{user}}/.erl_libs/erlgrind
+       version=357a47e
+  register: erlgrind
+
+- name: Create erlgrind link
+  file: src=/home/{{user}}/.erl_libs/erlgrind/src/erlgrind
+        dest=/home/{{user}}/bin/erlgrind
+        state=link
+
+# Erlang Easy Profiling (eep)
+- name: Pull eep
+  git: repo=https://github.com/virtan/eep
+       dest=/home/{{user}}/.erl_libs/eep
+       version=8f6e5e3
+  register: eep
+
+- name: Build eep
+  command: rebar compile chdir=/home/{{user}}/.erl_libs/eep/
+  when: eep.changed
+
+# http://proper.softlab.ntua.gr/User_Guide.html
+- name: Pull proper
+  git: repo=http://github.com/manopapad/proper.git
+       dest=/home/{{user}}/.erl_libs/proper
+       version=v1.3
+  register: proper
+
+- name: Build proper
+  command: make chdir=/home/{{user}}/.erl_libs/proper/
+  when: proper.changed
+
+# http://parapluu.github.io/nifty/
+#- name: Install nifty deps
+#  become: true
+#  apt: name={{item}} state=latest
+#  with_items:
+#  - libclang-dev
+#  - libclang1
+#  - llvm
+
+#- name: Pull nifty
+#  git: repo=https://github.com/parapluu/nifty.git
+#       dest=/home/{{user}}/.erl_libs/nifty
+#       version=2ed15ad
+#  register: nifty
+
+#- name: Build nifty
+#  shell: NIFTY_ROOT=/home/{{user}}/.erl_libs/nifty/ make chdir=/home/{{user}}/.erl_libs/nifty/
+#  when: nifty.changed
+
+# http://concuerror.com
+- name: Pull concuerror
+  git: repo=https://github.com/parapluu/Concuerror.git
+       dest=/home/{{user}}/.erl_libs/concuerror
+       version=cac7c44
+  register: concuerror
+
+- name: Build concuerror
+  command: make chdir=/home/{{user}}/.erl_libs/concuerror/
+  when: concuerror.changed
+
+- name: Create concuerror link
+  file: src=/home/{{user}}/.erl_libs/concuerror/concuerror
+        dest=/home/{{user}}/bin/concuerror
+        state=link
+
+#- name: Pull triq
+#  git: repo=https://github.com/triqng/triq.git
+#       dest=/home/{{user}}/.erl_libs/triq
+#       force=true
+#       version=2c49739
+#  register: triq
+
+#- name: Build triq
+#  shell: chmod +x rebar && make chdir=/home/{{user}}/.erl_libs/triq/
+#  when: triq.changed
+
+#- name: Download EQC Mini
+#  unarchive: src=http://www.quviq.com/wp-content/uploads/2015/09/eqcmini-2.01.0.zip
+#             dest=/home/{{user}}/.erl_libs/
+#             remote_src=true
+
+- name: Pull syntaxerl
+  git: repo=git@github.com:ten0s/syntaxerl.git
+       dest=/home/{{user}}/projects/syntaxerl
+       version=HEAD
+  register: syntaxerl
+
+- name: Build syntaxerl
+  command: make chdir=/home/{{user}}/projects/syntaxerl/
+  when: syntaxerl.changed
+
+- name: Create syntaxerl link
+  file: src=/home/{{user}}/projects/syntaxerl/syntaxerl
+        dest=/home/{{user}}/bin/syntaxerl
+        state=link
+
+#- name: Pull rebar
+#  git: repo=https://github.com/rebar/rebar.git
+#       dest=/home/{{user}}/projects/rebar
+#       version=2.6.1
+#  register: rebar
+
+#- name: Build rebar
+#  command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
+#  when: rebar.changed
+
+#- name: Create rebar link
+#  file: src=/home/{{user}}/projects/rebar/rebar
+#        dest=/home/{{user}}/bin/rebar
+#        state=link
+
+- name: Pull rebar3
+  git: repo=https://github.com/erlang/rebar3.git
+       dest=/home/{{user}}/projects/rebar3
+       version=3.4.1
+  register: rebar3
+
+- name: Build rebar3
+  command: ./bootstrap chdir=/home/{{user}}/projects/rebar3/
+  when: rebar3.changed
+
+- name: Create rebar3 link
+  file: src=/home/{{user}}/projects/rebar3/rebar3
+        dest=/home/{{user}}/bin/rebar3
+        state=link
+
+- name: Copy template.config
+  copy: src=template.config
+        dest=/home/{{user}}/.rebar/template.config
+
+#- name: Pull erlang-history
+#  git: repo=https://github.com/ferd/erlang-history.git
+#       dest=/home/{{user}}/projects/erlang-history
+#       version=9f6e419
+#  register: erlang_history
+
+#- name: Make erlang-history
+#  command: make chdir=/home/{{user}}/projects/erlang-history
+#  when: erlang_history.changed
+
+#- name: Install erlang-history to current Erlang release
+#  become: true
+#  command: make install chdir=/home/{{user}}/projects/erlang-history
+#  when: erlang_history.changed

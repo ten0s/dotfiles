@@ -1,0 +1,302 @@
+---
+- name: Create sys dirs
+  become: true
+  file: path={{item.path}}
+        mode={{item.mode}}
+        state=directory
+  with_items:
+  - {path: /usr/local/bin, mode: 755}
+  - {path: "{{cache_dir}}", mode: 777}
+
+- name: Create user dirs
+  file: path={{item.path}}
+        mode={{item.mode}}
+        state=directory
+  with_items:
+  - {path: "/home/{{user}}/bin", mode: 755}
+  - {path: "/home/{{user}}/tmp", mode: 755}
+
+- name: Update apt's cache
+  become: true
+  # update cache once a day
+  apt: update_cache=true cache_valid_time=86400
+
+- name: Install apt-file
+  become: true
+  apt: name=apt-file state=latest
+
+- name: Register apt-file change time
+  # local time (secs since Epoch) minus
+  # the folder's last change time (secs since Epoch)
+  shell: echo $((`date +%s`-`stat /var/cache/apt/apt-file/ -c%Z`))
+  register: ctime
+  changed_when: false
+
+- name: Update apt-file's cache
+  become: true
+  # update once a month
+  command: apt-file update
+  when: ctime.stdout|int > 2592000
+
+- name: Remove unneeded stuff
+  become: true
+  apt: name={{item}} state=absent purge=true
+  with_items:
+  - aptitude
+  - banshee
+  - cowsay
+  - fortune
+  - gimp
+  - jq
+  - mono-runtime
+  - skype
+  - skype-bin:i386
+  - tomboy
+  - totem
+  - xtightvncviewer
+
+- name: Add Chrome apt key
+  become: true
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
+           state=present
+           validate_certs=true
+
+- name: Add apt repo
+  become: true
+  apt_repository: repo='deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
+                  state=present
+
+- name: Install common stuff
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - ansible
+  - apache2-utils # ab, rotatelogs
+  - autokey-gtk
+  - bmon # bandwidth monitor and rate estimator
+  - build-essential
+  - curl
+  - ddd # debuggers front-end
+  - dia
+  - dia-shapes
+  - dos2unix
+  - dropbox
+  - emacs
+  - expect
+  - expect-dev # autoexpect
+  - fping
+  - fswebcam
+  - gdb
+  - git
+  - giggle
+  - gnuplot
+  - gnuplot-x11 # conflicts with gnuplot-nox
+  - google-chrome-stable
+  - graphviz
+  - graphviz-doc
+  - gsfonts-x11 # dia recommends
+  - hexdiff
+  - htop
+  - iftop # display bandwidth usage on an interface by host
+  - imagemagick
+  - inotify-tools
+  - kcachegrind
+  - kdelibs-bin      # to fix kde apps crashes
+  - kdelibs5-data    # to fix kde apps crashes
+  - kdelibs5-plugins # to fix kde apps crashes
+  - keepassx
+  - libav-tools # avconv like ffmpeg
+  - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
+  - libxml2-utils # provides xmllint
+  - mc
+  - meld
+  - mercurial
+  - moreutils # for errno
+  - mpg321 # for mpg123 :)
+  - mscgen # http://www.mcternan.me.uk/mscgen/index.html
+  - ngrep # network grep
+  - nmap
+  - nmon
+  - openvpn
+  - pinta # Image editor
+  - pv # monitor the progress of data through a pipe
+  - python-gpgme
+  - pwgen
+  - rdesktop
+  - rlwrap
+  - sip-tester # SIPp
+  - sipsak # SIP Swiss Army Knife
+  - software-properties-common # add-apt-repository
+  - spell
+  - stoken
+  - stress  # see also stress-ng
+  - sysbench
+  - sysstat # iostat
+  - sysv-rc-conf
+  - tig
+  - tree
+  - tzdata # for DMU
+  - uuid
+  - valgrind
+  - vino     # VNC server
+  - vinagre  # VNC client
+  - vlc
+  - vpnc
+  - wget
+  - whois
+  - wireshark
+  - xclip
+
+- name: Install jq
+  become: true
+  get_url: url=https://github.com/stedolan/jq/releases/download/jq-{{jq_ver}}/jq-linux64
+           dest=/usr/local/bin/jq
+           mode=755
+
+- name: Install Skype 1/3
+  become: true
+  apt_key: url=https://repo.skype.com/data/SKYPE-GPG-KEY
+           state=present
+           validate_certs=true
+
+- name: Install Skype 2/3
+  become: true
+  apt_repository:
+    repo: 'deb [arch=amd64] https://repo.skype.com/deb stable main'
+    state: present
+
+- name: Install Skype 3/3
+  become: true
+  apt:
+    name: skypeforlinux={{skype_ver}}
+    state: present
+
+- name: Install Slack 1/2
+  get_url: url=https://downloads.slack-edge.com/linux_releases/slack-desktop-{{slack_ver}}.deb
+           dest={{cache_dir}}/slack-desktop-{{slack_ver}}.deb
+
+- name: Install Slack 2/2
+  become: true
+  apt: deb={{cache_dir}}/slack-desktop-{{slack_ver}}.deb
+       state=present
+
+- name: Install Zoom 1/2
+  get_url: url=https://zoom.us/client/latest/zoom_amd64.deb
+           dest={{cache_dir}}/zoom_amd64.deb
+
+- name: Install Zoom 2/2
+  become: true
+  apt: deb={{cache_dir}}/zoom_amd64.deb
+       state=present
+
+- name: Install RealVNC Viewer 1/2
+  get_url: url=https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-{{realvnc_viewer_ver}}.deb
+           dest={{cache_dir}}/VNC-Viewer-{{realvnc_viewer_ver}}.deb
+
+- name: Install RealVNC Viewer 2/2
+  become: true
+  apt: deb={{cache_dir}}/VNC-Viewer-{{realvnc_viewer_ver}}.deb
+       state=present
+
+- name: Use correct time zone
+  become: true
+  file: src=/usr/share/zoneinfo/Europe/Minsk
+        dest=/etc/localtime
+        state=link
+        force=true
+
+- name: Install NTP
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - ntp
+  - ntpdate
+
+- name: Start NTP
+  become: true
+  service: name=ntp
+           enabled=true
+           state=started
+
+- name: Install SSH
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - openssh-client
+  - openssh-server
+
+- name: Start SSH
+  become: true
+  service: name=ssh
+           enabled=true
+           state=started
+
+- name: Symlink 'refs'
+  file: src=/home/{{user}}/Dropbox/refs
+        dest=/home/{{user}}/refs
+        state=link
+        force=true
+
+- name: Copy global configs
+  become: true
+  copy: src={{item.name}}
+        dest={{item.path}}/{{item.name}}
+        backup=true
+  with_items:
+  - {name: locale, path: /etc/default/}
+
+- name: Copy local configs
+  copy: src={{item}}
+        dest=/home/{{user}}/{{item}}
+        backup=true
+  with_items:
+  - .bashrc
+  - .gitconfig
+  - .Xmodmap
+
+- name: Copy host specific configs
+  copy: src={{item}}
+        dest=/home/{{user}}/{{item}}
+        force=false
+  with_items:
+  - .bashrc.local
+
+- name: Copy generic scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - capslock-to-control.sh
+  - cookie
+  - dmu_conf_reload
+  - dmu_do
+  - dmu_last_rds
+  - docker-gc
+  - docker-gci
+  - flip-args
+  - fmon.sh
+  - gtag
+  - meld
+  - pxml
+  - rerl
+  - tags
+  - update-dev-dmus
+
+- name: Ensure user's config autostart exists
+  file: path=/home/{{user}}/.config/autostart
+        state=directory
+
+- name: Copy generic autostart configs
+  copy: src={{item}}
+        dest=/home/{{user}}/.config/autostart/{{item}}
+        backup=true
+  with_items:
+  - autokey.desktop
+  - capslock-to-control.desktop
+  - my-dropbox.desktop
+
+- name: Pull autokey repo
+  git: repo=git@github.com:ten0s/autokey
+       dest=/home/{{user}}/.config/autokey
+       force=true

@@ -1,0 +1,21 @@
+---
+# https://launchpad.net/~couchdb/+archive/ubuntu/stable
+
+- name: Install deps
+  apt: name={{item}}
+       state=present
+  with_items:
+  - libmozjs185-dev
+
+#  - http://ftp.byfly.by/pub/apache.org/couchdb/source/1.6.1/apache-couchdb-1.6.1.tar.gz
+
+- name: Add apt key
+  become: true
+  apt_key: keyserver=keyserver.ubuntu.com
+           id=C17EAB57
+           state=present
+
+- name: Add apt repo
+  become: true
+  apt_repository: repo='deb http://ppa.launchpad.net/couchdb/stable/ubuntu trusty main'
+                  state=present

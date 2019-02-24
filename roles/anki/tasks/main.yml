@@ -1,0 +1,26 @@
+- name: Install deps
+  become: true
+  apt: name={{item}}
+       state=present
+  with_items:
+  - mplayer
+
+- name: Install
+  become: true
+  apt: deb=/home/ten0s/refs/py/anki/anki-1.2.11.deb
+       state=present
+
+- name: Hold
+  become: true
+  command: apt-mark hold anki
+  register: anki_hold
+  changed_when: anki_hold.stdout == 'anki set on hold.'
+
+- name: Copy scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - fetch-ipa
+  - fetch-mp3-url

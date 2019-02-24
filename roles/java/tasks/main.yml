@@ -1,0 +1,112 @@
+---
+- name: Create dirs
+  become: true
+  file: path="{{item}}"
+        state=directory
+  with_items:
+  - /home/{{user}}/.java_libs
+  - /usr/java/packages/lib/ext
+
+##
+# Java 8
+# http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
+##
+
+# https://launchpad.net/~webupd8team/+archive/ubuntu/java
+- name: Add Java 8 apt key
+  become: true
+  apt_key: keyserver=keyserver.ubuntu.com
+           id=EEA14886
+           state=present
+
+- name: Add Java 8 apt repo
+  become: true
+  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main'
+                  state=present
+
+- name: Enable automated installation
+  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+- name: Install Java 8
+  become: true
+  apt: name=oracle-java8-installer
+       state=present
+
+- name: Set Java 8 as default
+  become: true
+  apt: name=oracle-java8-set-default
+       state=present
+
+##
+# Java 10,11
+# https://www.linuxuprising.com/2018/04/install-oracle-java-10-in-ubuntu-or.html
+# https://www.linuxuprising.com/2018/10/how-to-install-oracle-java-11-in-ubuntu.html
+# Doesn't work in Ubuntu 14.04 LTS
+##
+
+# https://launchpad.net/~linuxuprising/+archive/ubuntu/java
+#- name: Add Java 10,11 Ubuntu key
+#  become: true
+#  apt_key: keyserver=keyserver.ubuntu.com
+#           id=73C3DB2A
+#           state=present
+#
+#- name: Add Java 10,11 Ubuntu repo
+#  become: true
+#  apt_repository: repo='deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main'
+#                  state=present
+#
+#- name: Enable Java 10 automated installation 1/2
+#  shell: echo oracle-java10-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+#
+#- name: Enable Java 10 automated installation 2/2
+#  shell: echo oracle-java10-installer shared/accepted-oracle-license-v1-1 boolean true | sudo /usr/bin/debconf-set-selections
+#
+#- name: Enable Java 11 automated installation 1/2
+#  shell: echo oracle-java11-installer shared/accepted-oracle-license-v1-2 select true | sudo /usr/bin/debconf-set-selections
+#
+#- name: Enable Java 11 automated installation 2/2
+#  shell: echo oracle-java11-installer shared/accepted-oracle-license-v1-2 boolean true | sudo /usr/bin/debconf-set-selections
+#
+#- name: Install Java 10,11
+#  become: true
+#  apt: name=oracle-{{item}}-installer
+#       state=present
+#  with_items:
+#  - java10
+#  - java11
+#
+#- name: Set Java 10 as default
+#  become: true
+#  apt: name=oracle-java10-set-default
+#       state=present
+
+##
+# https://maven.apache.org/download.cgi
+##
+
+- name: Install Maven 1/4
+  become: true
+  apt: name=maven
+       state=absent
+       purge=true
+
+- name: Install Maven 2/4
+  get_url:
+    url=http://mirror.cogentco.com/pub/apache/maven/maven-3/{{mvn_ver}}/binaries/apache-maven-{{mvn_ver}}-bin.tar.gz
+    dest={{cache_dir}}/apache-maven-{{mvn_ver}}-bin.tar.gz
+
+- name: Install Maven 3/4
+  unarchive:
+    src={{cache_dir}}/apache-maven-{{mvn_ver}}-bin.tar.gz
+    dest=/home/{{user}}/.java_libs/
+
+- name: Install Maven 4/4
+  file: src=/home/{{user}}/.java_libs/apache-maven-{{mvn_ver}}/bin/mvn
+        dest=/home/{{user}}/bin/mvn
+        state=link
+
+##
+# sudo update-alternatives --config java
+# sudo update-alternatives --config javac
+##

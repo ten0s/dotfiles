@@ -1,0 +1,10 @@
+---
+- name: Install
+  become: true
+  apt: name={{item}} state=latest
+  with_items:
+  - libsmlnj-smlnj
+  - mlton-compiler
+  - rlwrap
+  - smlnj
+  - sml-mode

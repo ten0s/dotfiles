@@ -1,0 +1,36 @@
+---
+- name: Download package
+  get_url: url=https://releases.hashicorp.com/vagrant/{{vagrant_ver}}/vagrant_{{vagrant_ver}}_x86_64.deb
+           dest={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
+
+- name: Install
+  become: true
+  apt: deb={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
+       state=present
+
+- name: Register `vagrant plugin list` output
+  shell: vagrant plugin list
+  register: vagrant_plugin_list
+  changed_when: false
+
+- name: Uninstall plugins
+  shell: vagrant plugin uninstall {{item}}
+  with_items: []
+  when: item in vagrant_plugin_list.stdout
+
+- name: Install plugins
+  # https://github.com/mitchellh/vagrant/wiki/Available-Vagrant-Plugins
+  # https://github.com/mitchellh/vagrant-aws
+  shell: vagrant plugin install {{item}}
+  with_items:
+  - vagrant-aws
+  - vagrant-cachier
+  - vagrant-vbguest
+  - vagrant-vbox-snapshot
+  - vagrant-winrm
+  when: item not in vagrant_plugin_list.stdout
+
+- name: Update plugins
+  shell: vagrant plugin update
+  register: vagrant_plugin_update
+  changed_when: "'Updated' in vagrant_plugin_update.stdout"

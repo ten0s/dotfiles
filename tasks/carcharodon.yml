@@ -1,9 +1,0 @@
----
-- name: Copy `carcharodon` specific scripts
-  copy: src=files/scripts/{{item}}
-        dest=/home/{{user}}/bin/{{item}}
-        mode=0755
-        backup=true
-  with_items:
-  - mathematica
-  - wolfram

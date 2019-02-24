@@ -1,0 +1,73 @@
+---
+- name: Add apt key
+  become: true
+  apt_key: keyserver=hkp://p80.pool.sks-keyservers.net:80
+           id=58118E89F3A912897C070ADBF76221572C52609D
+           state=present
+
+- name: Add apt repo
+  become: true
+  apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-trusty main'
+                  state=present
+
+- name: Determine kernel version
+  command: uname -r
+  register: kernel_version
+  changed_when: false
+
+- name: Install deps
+  become: true
+  apt: name={{item}} state=present
+  with_items:
+  - "linux-image-extra-{{kernel_version.stdout}}"
+  - cgroup-lite
+
+- name: Install Docker Engine
+  become: true
+  apt: name=docker-engine
+       state=latest
+
+#
+# Docker Compose
+# https://github.com/docker/compose/releases
+#
+- name: Install Docker Compose
+  become: true
+  get_url: url=https://github.com/docker/compose/releases/download/{{docker_compose_ver}}/docker-compose-Linux-x86_64
+           dest=/usr/local/bin/docker-compose
+           mode=0755
+           force=true
+
+#
+# Docker w/o sudo
+# https://docs.docker.com/engine/installation/ubuntulinux/#create-a-docker-group
+#
+
+- name: Create docker group
+  become: true
+  group: name=docker
+         state=present
+
+- name: Append user to docker group
+  become: true
+  user: name={{user}}
+        groups=docker
+        append=true
+
+- name: Start and enable Docker daemon
+  become: true
+  service: name=docker
+           enabled=true
+           state=started
+
+#
+# Possible fix for:
+# $ sudo docker run hello-world
+# Cannot connect to the Docker daemon. Is 'docker daemon' running on this host?
+#
+# https://docs.docker.com/engine/installation/ubuntulinux/#adjust-memory-and-swap-accounting
+# Added to /etc/default/grub
+# GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
+# sudo update-grub
+# sudo reboot
+#

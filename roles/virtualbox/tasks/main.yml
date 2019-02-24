@@ -1,0 +1,19 @@
+---
+#
+# https://www.virtualbox.org/wiki/Linux_Downloads
+#
+
+- name: Add apt key
+  become: true
+  apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc
+           state=present
+
+- name: Add apt repo
+  become: true
+  apt_repository: repo='deb https://download.virtualbox.org/virtualbox/debian trusty contrib'
+                  state=present
+
+- name: Install
+  become: true
+  apt: name=virtualbox-{{virtualbox_ver}}
+       state=present

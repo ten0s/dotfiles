@@ -6,33 +6,25 @@
   vars:
     user: ten0s
     cache_dir: /var/cache/ansible
-    vagrant_ver: 2.2.3
-    virtualbox_ver: 6.0
-    jq_ver: 1.5
-    skype_ver: 8.18.0.6
-    slack_ver: 3.0.2-amd64
-    mvn_ver: 3.5.4
-    realvnc_viewer_ver: 6.17.1113-Linux-x64
   tasks:
-  - {include: tasks/common.yml     , tags: ["common"]}
-  - {include: tasks/emacs.yml      , tags: ["emacs"]}
-  - {include: tasks/carcharodon.yml, tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
-  - {include: tasks/megalodon.yml  , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}
-  - {include: tasks/orca.yml       , tags: ["orca"]       , when: ansible_hostname == "orca"}
-  - {include: tasks/dev.yml        , tags: ["dev"]}
-  - {include: tasks/java.yml       , tags: ["java"]}
-  - {include: tasks/scala.yml      , tags: ["scala"]}
-  - {include: tasks/erl.yml        , tags: ["erl"]}
-  - {include: tasks/cpp.yml        , tags: ["cpp"]}
-  - {include: tasks/py.yml         , tags: ["py"]}
-  - {include: tasks/js.yml         , tags: ["js"]}
-  - {include: tasks/hs.yml         , tags: ["hs"]}
-  - {include: tasks/racket.yml     , tags: ["racket"]}
-  - {include: tasks/vagrant.yml    , tags: ["vagrant"]}
-  - {include: tasks/virtualbox.yml , tags: ["virtualbox"]}
-  - {include: tasks/docker.yml     , tags: ["docker"]}
-  - {include: tasks/oracle.yml     , tags: ["oracle"]}
-  - {include: tasks/xymon.yml      , tags: ["xymon"]}
-  - {include: tasks/vscode.yml     , tags: ["vscode"]}
-  - {include: tasks/algs4.yml      , tags: ["algs4"]}
+  - {import_role: name=common      , tags: ["common"]}
+  - {import_role: name=emacs       , tags: ["emacs"]}
+  - {import_role: name=carcharodon , tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
+  - {import_role: name=megalodon   , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}
+  - {import_role: name=dev         , tags: ["dev"]}
+  - {import_role: name=java        , tags: ["java"]}
+  - {import_role: name=scala       , tags: ["scala"]}
+  - {import_role: name=erl         , tags: ["erl"]}
+  - {import_role: name=cpp         , tags: ["cpp"]}
+  - {import_role: name=py          , tags: ["py"]}
+  - {import_role: name=js          , tags: ["js"]}
+  - {import_role: name=hs          , tags: ["hs"]}
+  - {import_role: name=racket      , tags: ["racket"]}
+  - {import_role: name=vagrant     , tags: ["vagrant"]}
+  - {import_role: name=virtualbox  , tags: ["virtualbox"]}
+  - {import_role: name=docker      , tags: ["docker"]}
+  - {import_role: name=oracle      , tags: ["oracle"]}
+  - {import_role: name=xymon       , tags: ["xymon"]}
+  - {import_role: name=vscode      , tags: ["vscode"]}
+  - {import_role: name=algs4       , tags: ["algs4"]}
   - {import_role: name=anki2       , tags: ["anki2"]}
