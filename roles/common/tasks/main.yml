@@ -15,6 +15,7 @@
   with_items:
   - {path: "/home/{{user}}/bin", mode: 755}
   - {path: "/home/{{user}}/tmp", mode: 755}
+  - {path: "/home/{{user}}/.config/autostart", mode: 755}
 
 - name: Update apt's cache
   become: true
@@ -72,7 +73,6 @@
   with_items:
   - ansible
   - apache2-utils # ab, rotatelogs
-  - autokey-gtk
   - bmon # bandwidth monitor and rate estimator
   - build-essential
   - curl
@@ -283,20 +283,10 @@
   - tags
   - update-dev-dmus
 
-- name: Ensure user's config autostart exists
-  file: path=/home/{{user}}/.config/autostart
-        state=directory
-
-- name: Copy generic autostart configs
+- name: Copy autostart configs
   copy: src={{item}}
         dest=/home/{{user}}/.config/autostart/{{item}}
         backup=true
   with_items:
-  - autokey.desktop
   - capslock-to-control.desktop
   - my-dropbox.desktop
-
-- name: Pull autokey repo
-  git: repo=git@github.com:ten0s/autokey
-       dest=/home/{{user}}/.config/autokey
-       force=true

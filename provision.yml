@@ -8,6 +8,7 @@
     cache_dir: /var/cache/ansible
   tasks:
   - {import_role: name=common      , tags: ["common"]}
+  - {import_role: name=autokey     , tags: ["autokey"]}
   - {import_role: name=emacs       , tags: ["emacs"]}
   - {import_role: name=carcharodon , tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
   - {import_role: name=megalodon   , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}

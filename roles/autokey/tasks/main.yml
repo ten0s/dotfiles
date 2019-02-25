@@ -1,0 +1,17 @@
+---
+- name: Install
+  become: true
+  apt: name=autokey-gtk
+       state=latest
+
+- name: Copy autostart config
+  copy: src={{item}}
+        dest=/home/{{user}}/.config/autostart/{{item}}
+        backup=true
+  with_items:
+  - autokey.desktop
+
+- name: Pull autokey repo
+  git: repo=git@github.com:ten0s/autokey
+       dest=/home/{{user}}/.config/autokey
+       force=true
