@@ -40,7 +40,9 @@
 - name: Install deps
   become: true
   apt:
-    name: ["dvipng", "texlive-latex-base"]
+    name:
+    - dvipng
+    - texlive-latex-base
     state: present
 
 - name: Install 1/5
