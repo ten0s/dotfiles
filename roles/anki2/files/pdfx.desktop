@@ -4,4 +4,5 @@ Exec=evincex.sh %u
 Icon=evince
 Type=Application
 Terminal=false
+NoDisplay=true
 MimeType=x-scheme-handler/pdfx;

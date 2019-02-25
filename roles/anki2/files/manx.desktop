@@ -1,7 +1,8 @@
 [Desktop Entry]
 Name=Man advanced launcher
 Exec=manx.sh %u
-Icon=man
+Icon=utilities-terminal
 Type=Application
 Terminal=false
+NoDisplay=true
 MimeType=x-scheme-handler/manx;
