@@ -11,6 +11,7 @@
   - {import_role: name=autokey     , tags: ["autokey"]}
   - {import_role: name=chrome      , tags: ["chrome"]}
   - {import_role: name=emacs       , tags: ["emacs"]}
+  - {import_role: name=dropbox     , tags: ["dropbox"]}
   - {import_role: name=skype       , tags: ["skype"]}
   - {import_role: name=slack       , tags: ["slack"]}
   - {import_role: name=carcharodon , tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}

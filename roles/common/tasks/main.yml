@@ -52,6 +52,8 @@
   - mono-runtime
   - tomboy
   - totem
+  - vino     # VNC server
+  - vinagre  # VNC client
   - xtightvncviewer
 
 - name: Install common stuff
@@ -67,8 +69,6 @@
   - dia
   - dia-shapes
   - dos2unix
-  - dropbox
-  - emacs
   - expect
   - expect-dev # autoexpect
   - fping
@@ -170,12 +170,6 @@
            enabled=true
            state=started
 
-- name: Symlink 'refs'
-  file: src=/home/{{user}}/Dropbox/refs
-        dest=/home/{{user}}/refs
-        state=link
-        force=true
-
 - name: Copy global configs
   become: true
   copy: src={{item.name}}
@@ -228,4 +222,3 @@
         backup=true
   with_items:
   - capslock-to-control.desktop
-  - my-dropbox.desktop

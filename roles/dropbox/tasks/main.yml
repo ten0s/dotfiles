@@ -1,0 +1,18 @@
+---
+- name: Install
+  become: true
+  apt: name=dropbox
+       state=latest
+
+- name: Symlink 'refs'
+  file: src=/home/{{user}}/Dropbox/refs
+        dest=/home/{{user}}/refs
+        state=link
+        force=true
+
+- name: Copy autostart config
+  copy: src={{item}}
+        dest=/home/{{user}}/.config/autostart/{{item}}
+        backup=true
+  with_items:
+  - my-dropbox.desktop
