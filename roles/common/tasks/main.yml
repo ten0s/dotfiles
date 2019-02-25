@@ -183,19 +183,15 @@
   with_items:
   - .bashrc.local
 
-- name: Copy generic scripts
+- name: Copy scripts
   copy: src={{item}}
         dest=/home/{{user}}/bin/{{item}}
         mode=0755
         backup=true
   with_items:
   - capslock-to-control.sh
-  - cookie
-  - flip-args
+  - jekyll
   - meld
-  - pxml
-  - rerl
-  - tags
 
 - name: Copy autostart configs
   copy: src={{item}}
