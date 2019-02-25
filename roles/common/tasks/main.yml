@@ -56,17 +56,6 @@
   - totem
   - xtightvncviewer
 
-- name: Add Chrome apt key
-  become: true
-  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
-           state=present
-           validate_certs=true
-
-- name: Add apt repo
-  become: true
-  apt_repository: repo='deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
-                  state=present
-
 - name: Install common stuff
   become: true
   apt: name={{item}} state=latest
@@ -91,7 +80,6 @@
   - giggle
   - gnuplot
   - gnuplot-x11 # conflicts with gnuplot-nox
-  - google-chrome-stable
   - graphviz
   - graphviz-doc
   - gsfonts-x11 # dia recommends
