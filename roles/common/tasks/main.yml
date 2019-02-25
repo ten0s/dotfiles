@@ -139,15 +139,6 @@
            dest=/usr/local/bin/jq
            mode=755
 
-- name: Install Slack 1/2
-  get_url: url=https://downloads.slack-edge.com/linux_releases/slack-desktop-{{slack_ver}}.deb
-           dest={{cache_dir}}/slack-desktop-{{slack_ver}}.deb
-
-- name: Install Slack 2/2
-  become: true
-  apt: deb={{cache_dir}}/slack-desktop-{{slack_ver}}.deb
-       state=present
-
 - name: Install Zoom 1/2
   get_url: url=https://zoom.us/client/latest/zoom_amd64.deb
            dest={{cache_dir}}/zoom_amd64.deb

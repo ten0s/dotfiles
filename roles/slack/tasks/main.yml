@@ -1,0 +1,9 @@
+---
+- name: Download
+  get_url: url=https://downloads.slack-edge.com/linux_releases/slack-desktop-{{slack_ver}}.deb
+           dest={{cache_dir}}/slack-desktop-{{slack_ver}}.deb
+
+- name: Install
+  become: true
+  apt: deb={{cache_dir}}/slack-desktop-{{slack_ver}}.deb
+       state=present
