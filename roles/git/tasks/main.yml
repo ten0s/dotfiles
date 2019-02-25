@@ -22,3 +22,8 @@
         backup=true
   with_items:
   - gtag
+
+- name: Copy bashrc config
+  copy: src=01-bashrc-git
+        dest=/home/{{user}}/.bashrc.d/
+        backup=true
