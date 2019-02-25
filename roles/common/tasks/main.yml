@@ -45,7 +45,6 @@
   with_items:
   - capslock-to-control.sh
   - jekyll
-  - meld
 
 - name: Copy autostart configs
   copy: src={{item}}
@@ -131,7 +130,6 @@
     - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
     - libxml2-utils # provides xmllint
     - mc
-    - meld
     - mercurial
     - moreutils # for errno
     - mpg321 # for mpg123 :)
