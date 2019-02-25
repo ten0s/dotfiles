@@ -48,7 +48,6 @@
   - cowsay
   - fortune
   - gimp
-  - jq
   - mono-runtime
   - tomboy
   - totem
@@ -127,12 +126,6 @@
   - whois
   - wireshark
   - xclip
-
-- name: Install jq
-  become: true
-  get_url: url=https://github.com/stedolan/jq/releases/download/jq-{{jq_ver}}/jq-linux64
-           dest=/usr/local/bin/jq
-           mode=755
 
 - name: Use correct time zone
   become: true

@@ -1,0 +1,13 @@
+---
+- name: Remove repo's version
+  become: true
+  apt:
+    name: jq
+    state: absent
+    purge: true
+
+- name: Download
+  become: true
+  get_url: url=https://github.com/stedolan/jq/releases/download/jq-{{jq_ver}}/jq-linux64
+           dest=/usr/local/bin/jq
+           mode=755

@@ -15,6 +15,7 @@
   - {import_role: name=skype       , tags: ["skype"]}
   - {import_role: name=slack       , tags: ["slack"]}
   - {import_role: name=git         , tags: ["git"]}
+  - {import_role: name=jq          , tags: ["jq"]}
   - {import_role: name=dev         , tags: ["dev"]}
   - {import_role: name=java        , tags: ["java"]}
   - {import_role: name=scala       , tags: ["scala"]}
