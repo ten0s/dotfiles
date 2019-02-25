@@ -1,0 +1,27 @@
+---
+- name: Remove repo's version
+  become: true
+  apt:
+    name:
+    - skype
+    - skype-bin:i386
+    state: absent
+    purge: true
+
+- name: Add apt key
+  become: true
+  apt_key: url=https://repo.skype.com/data/SKYPE-GPG-KEY
+           state=present
+           validate_certs=true
+
+- name: Add apt repo
+  become: true
+  apt_repository:
+    repo: 'deb [arch=amd64] https://repo.skype.com/deb stable main'
+    state: present
+
+- name: Install
+  become: true
+  apt:
+    name: skypeforlinux={{skype_ver}}
+    state: present

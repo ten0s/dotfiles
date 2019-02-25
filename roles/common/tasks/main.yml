@@ -50,8 +50,6 @@
   - gimp
   - jq
   - mono-runtime
-  - skype
-  - skype-bin:i386
   - tomboy
   - totem
   - xtightvncviewer
@@ -140,24 +138,6 @@
   get_url: url=https://github.com/stedolan/jq/releases/download/jq-{{jq_ver}}/jq-linux64
            dest=/usr/local/bin/jq
            mode=755
-
-- name: Install Skype 1/3
-  become: true
-  apt_key: url=https://repo.skype.com/data/SKYPE-GPG-KEY
-           state=present
-           validate_certs=true
-
-- name: Install Skype 2/3
-  become: true
-  apt_repository:
-    repo: 'deb [arch=amd64] https://repo.skype.com/deb stable main'
-    state: present
-
-- name: Install Skype 3/3
-  become: true
-  apt:
-    name: skypeforlinux={{skype_ver}}
-    state: present
 
 - name: Install Slack 1/2
   get_url: url=https://downloads.slack-edge.com/linux_releases/slack-desktop-{{slack_ver}}.deb
