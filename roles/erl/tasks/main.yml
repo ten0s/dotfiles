@@ -7,20 +7,31 @@
   - /home/{{user}}/.erl_libs/ebin
   - /home/{{user}}/.rebar
 
+- name: Copy scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - cookie
+  - rerl
+  - tags
+
 - name: Install deps
   become: true
-  apt: name={{item}} state=latest
-  with_items:
-  - build-essential
-  - default-jdk
-  - fop
-  - libglu1-mesa-dev
-  - libncurses5-dev
-  - libssl-dev
-  - libtk-img-dev
-  - libwxgtk2.8-dev
-  - unixodbc-dev
-  - xsltproc
+  apt:
+    name:
+    - build-essential
+    - default-jdk
+    - fop
+    - libglu1-mesa-dev
+    - libncurses5-dev
+    - libssl-dev
+    - libtk-img-dev
+    - libwxgtk2.8-dev
+    - unixodbc-dev
+    - xsltproc
+    state: latest
 
 - name: Install kerl
   get_url: url=https://raw.githubusercontent.com/kerl/kerl/master/kerl

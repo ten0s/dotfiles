@@ -198,16 +198,11 @@
   with_items:
   - capslock-to-control.sh
   - cookie
-  - dmu_conf_reload
-  - dmu_do
-  - dmu_last_rds
   - flip-args
-  - fmon.sh
   - meld
   - pxml
   - rerl
   - tags
-  - update-dev-dmus
 
 - name: Copy autostart configs
   copy: src={{item}}

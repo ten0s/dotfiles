@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [[ $# -ne 1 ]]; then
-   echo "Usage: $(basename $0) <Dev | QA | PROD2>"
-   exit 1
-fi
-
-env=$1
-dmu_do $env call 'conf_request,retrieve_config,[]'
