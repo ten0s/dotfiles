@@ -17,6 +17,11 @@
   - rerl
   - tags
 
+- name: Copy bashrc config
+  copy: src=10-bashrc-erl
+        dest=/home/{{user}}/.bashrc.d/
+        backup=true
+
 - name: Install deps
   become: true
   apt:

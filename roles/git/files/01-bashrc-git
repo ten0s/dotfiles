@@ -1,0 +1,48 @@
+alias gst="git status"
+alias glg="git log"
+alias gad="git add"
+alias gai="git add --interactive"
+alias gap="git add --patch"
+alias gmv="git mv"
+alias grm="git rm"
+alias gpush="git push"
+alias gpushod="git push origin develop"
+alias gpushom="git push origin master"
+alias gpushoq="git push origin qa"
+alias gdt="git difftool"
+alias gdtc="git difftool --cached"
+alias gdf="git diff"
+alias gdfc="git diff --cached"
+alias gcommit="git commit -m"
+alias gcommita="git commit --amend -m"
+alias gcommite="git commit --allow-empty -m"
+alias gmerge="git merge --no-off"
+alias gbr="git branch"
+alias gco="git checkout"
+alias gpull="git pull"
+alias gpullod="git pull origin develop"
+alias gpullom="git pull origin master"
+alias gpulloq="git pull origin qa"
+alias gcl="git clone"
+alias grem="git remote -v"
+
+function gsshurl() {
+    local OldUrl=`git remote -v | sed -E -n 's/origin\s*(.*) \(push\)/\1/p'`
+    local NewUrl=`echo $OldUrl | sed -E 's#(https|git)://(.*)/(.*)/(.*)#git@\2:\3/\4#'`
+    echo "old url:" $OldUrl
+    echo "new url:" $NewUrl
+    git remote set-url origin $NewUrl
+}
+
+function parse_git_dirty {
+	[[ -n $(git status --porcelain) ]] && echo "*"
+}
+
+function parse_git_branch {
+	if [[ `git branch 2> /dev/null` ]]; then
+		git branch --no-color | sed -e "/^[^*]/d" -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+	fi
+}
+
+#http://techcommons.stanford.edu/topics/git/show-git-branch-bash-prompt
+PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[00m\]$(parse_git_branch)\[\033[01;34m\] \$\[\033[00m\] '

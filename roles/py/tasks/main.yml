@@ -113,11 +113,6 @@
   become: true
   pip: name=http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
 
-# http://docs.aws.amazon.com/cli/latest/userguide/installing.html#install-with-pip
-- name: Install AWSCLI
-  become: true
-  pip: name=awscli state=latest
-
 # Requirement for EC2 modules (see Install AWSCLI)
 - name: Install Boto
   become: true

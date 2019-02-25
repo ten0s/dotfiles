@@ -1,0 +1,11 @@
+---
+# http://docs.aws.amazon.com/cli/latest/userguide/installing.html#install-with-pip
+- name: Install
+  become: true
+  pip: name=awscli
+       state=latest
+
+- name: Copy bashrc config
+  copy: src=01-bashrc-awscli
+        dest=/home/{{user}}/.bashrc.d/
+        backup=true

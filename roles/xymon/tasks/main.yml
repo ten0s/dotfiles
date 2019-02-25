@@ -1,9 +1,8 @@
 ---
-- name: Install Xymon Client
+- name: Install Client
   become: true
-  apt: name={{item}} state=present
-  with_items:
-  - xymon-client
+  apt: name=xymon-client
+       state=present
 
 - name: Copy scripts
   copy: src=files/scripts/{{item}}

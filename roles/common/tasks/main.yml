@@ -13,9 +13,46 @@
         mode={{item.mode}}
         state=directory
   with_items:
+  - {path: "/home/{{user}}/.bashrc.d", mode: 755}
+  - {path: "/home/{{user}}/.config/autostart", mode: 755}
+  - {path: "/home/{{user}}/.local/bin", mode: 755}
   - {path: "/home/{{user}}/bin", mode: 755}
   - {path: "/home/{{user}}/tmp", mode: 755}
-  - {path: "/home/{{user}}/.config/autostart", mode: 755}
+  - {path: "/home/{{user}}/projects", mode: 755}
+  - {path: "/home/{{user}}/projects/tmp", mode: 755}
+
+- name: Copy global configs
+  become: true
+  copy: src={{item.name}}
+        dest={{item.path}}/{{item.name}}
+        backup=true
+  with_items:
+  - {name: locale, path: /etc/default/}
+
+- name: Copy local configs
+  copy: src={{item}}
+        dest=/home/{{user}}/{{item}}
+        backup=true
+  with_items:
+  - .bashrc
+  - .Xmodmap
+
+- name: Copy local scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - capslock-to-control.sh
+  - jekyll
+  - meld
+
+- name: Copy autostart configs
+  copy: src={{item}}
+        dest=/home/{{user}}/.config/autostart/{{item}}
+        backup=true
+  with_items:
+  - capslock-to-control.desktop
 
 - name: Update apt's cache
   become: true
@@ -41,91 +78,94 @@
 
 - name: Remove unneeded stuff
   become: true
-  apt: name={{item}} state=absent purge=true
-  with_items:
-  - aptitude
-  - banshee
-  - cowsay
-  - fortune
-  - gimp
-  - mono-runtime
-  - tomboy
-  - totem
-  - vino     # VNC server
-  - vinagre  # VNC client
-  - xtightvncviewer
+  apt:
+    name:
+    - aptitude
+    - banshee
+    - cowsay
+    - fortune
+    - gimp
+    - mono-runtime
+    - tomboy
+    - totem
+    - vino     # VNC server
+    - vinagre  # VNC client
+    - xtightvncviewer
+    state: absent
+    purge: true
 
 - name: Install common stuff
   become: true
-  apt: name={{item}} state=latest
-  with_items:
-  - ansible
-  - apache2-utils # ab, rotatelogs
-  - bmon # bandwidth monitor and rate estimator
-  - build-essential
-  - curl
-  - ddd # debuggers front-end
-  - dia
-  - dia-shapes
-  - dos2unix
-  - expect
-  - expect-dev # autoexpect
-  - fping
-  - fswebcam
-  - gdb
-  - gnuplot
-  - gnuplot-x11 # conflicts with gnuplot-nox
-  - graphviz
-  - graphviz-doc
-  - gsfonts-x11 # dia recommends
-  - hexdiff
-  - htop
-  - iftop # display bandwidth usage on an interface by host
-  - imagemagick
-  - inotify-tools
-  - kcachegrind
-  - kdelibs-bin      # to fix kde apps crashes
-  - kdelibs5-data    # to fix kde apps crashes
-  - kdelibs5-plugins # to fix kde apps crashes
-  - keepassx
-  - libav-tools # avconv like ffmpeg
-  - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
-  - libxml2-utils # provides xmllint
-  - mc
-  - meld
-  - mercurial
-  - moreutils # for errno
-  - mpg321 # for mpg123 :)
-  - mscgen # http://www.mcternan.me.uk/mscgen/index.html
-  - ngrep # network grep
-  - nmap
-  - nmon
-  - openvpn
-  - pinta # Image editor
-  - pv # monitor the progress of data through a pipe
-  - python-gpgme
-  - pwgen
-  - rdesktop
-  - rlwrap
-  - sip-tester # SIPp
-  - sipsak # SIP Swiss Army Knife
-  - software-properties-common # add-apt-repository
-  - spell
-  - stoken
-  - stress  # see also stress-ng
-  - sysbench
-  - sysstat # iostat
-  - sysv-rc-conf
-  - tree
-  - tzdata # for DMU
-  - uuid
-  - valgrind
-  - vlc
-  - vpnc
-  - wget
-  - whois
-  - wireshark
-  - xclip
+  apt:
+    name:
+    - ansible
+    - apache2-utils # ab, rotatelogs
+    - bmon # bandwidth monitor and rate estimator
+    - build-essential
+    - curl
+    - ddd # debuggers front-end
+    - dia
+    - dia-shapes
+    - dos2unix
+    - expect
+    - expect-dev # autoexpect
+    - fping
+    - fswebcam
+    - gdb
+    - gnuplot
+    - gnuplot-x11 # conflicts with gnuplot-nox
+    - graphviz
+    - graphviz-doc
+    - gsfonts-x11 # dia recommends
+    - hexdiff
+    - htop
+    - iftop # display bandwidth usage on an interface by host
+    - imagemagick
+    - inotify-tools
+    - kcachegrind
+    - kdelibs-bin      # to fix kde apps crashes
+    - kdelibs5-data    # to fix kde apps crashes
+    - kdelibs5-plugins # to fix kde apps crashes
+    - keepassx
+    - libav-tools # avconv like ffmpeg
+    - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
+    - libxml2-utils # provides xmllint
+    - mc
+    - meld
+    - mercurial
+    - moreutils # for errno
+    - mpg321 # for mpg123 :)
+    - mscgen # http://www.mcternan.me.uk/mscgen/index.html
+    - ngrep # network grep
+    - nmap
+    - nmon
+    - openvpn
+    - pinta # Image editor
+    - pv # monitor the progress of data through a pipe
+    - python-gpgme
+    - pwgen
+    - rdesktop
+    - rlwrap
+    - sip-tester # SIPp
+    - sipsak # SIP Swiss Army Knife
+    - software-properties-common # add-apt-repository
+    - spell
+    - stoken
+    - stress  # see also stress-ng
+    - sysbench
+    - sysstat # iostat
+    - sysv-rc-conf
+    - tree
+    - tzdata # for DMU
+    - uuid
+    - valgrind
+    - vlc
+    - vpnc
+    - wget
+    - whois
+    - wireshark
+    - xclip
+    state: latest
 
 - name: Use correct time zone
   become: true
@@ -136,10 +176,11 @@
 
 - name: Install NTP
   become: true
-  apt: name={{item}} state=latest
-  with_items:
-  - ntp
-  - ntpdate
+  apt:
+    name:
+    - ntp
+    - ntpdate
+    state: latest
 
 - name: Start NTP
   become: true
@@ -149,10 +190,11 @@
 
 - name: Install SSH
   become: true
-  apt: name={{item}} state=latest
-  with_items:
-  - openssh-client
-  - openssh-server
+  apt:
+    name:
+    - openssh-client
+    - openssh-server
+    state: latest
 
 - name: Start SSH
   become: true
@@ -160,42 +202,21 @@
            enabled=true
            state=started
 
-- name: Copy global configs
+- name: Update /etc/security/limits.conf file
   become: true
-  copy: src={{item.name}}
-        dest={{item.path}}/{{item.name}}
-        backup=true
-  with_items:
-  - {name: locale, path: /etc/default/}
+  blockinfile:
+    dest: /etc/security/limits.conf
+    backup: yes
+    insertafter: EOF
+    block: |
+      ten0s soft nofile 10000
+      ten0s hard nofile 20000
+    state: present
 
-- name: Copy local configs
-  copy: src={{item}}
-        dest=/home/{{user}}/{{item}}
-        backup=true
-  with_items:
-  - .bashrc
-  - .Xmodmap
-
-- name: Copy host specific configs
-  copy: src={{item}}
-        dest=/home/{{user}}/{{item}}
-        force=false
-  with_items:
-  - .bashrc.local
-
-- name: Copy scripts
-  copy: src={{item}}
-        dest=/home/{{user}}/bin/{{item}}
-        mode=0755
-        backup=true
-  with_items:
-  - capslock-to-control.sh
-  - jekyll
-  - meld
-
-- name: Copy autostart configs
-  copy: src={{item}}
-        dest=/home/{{user}}/.config/autostart/{{item}}
-        backup=true
-  with_items:
-  - capslock-to-control.desktop
+- name: Update /etc/pam.d/su file
+  become: true
+  lineinfile: dest=/etc/pam.d/su
+              regexp="^session    required   pam_limits.so"
+              insertafter='^# session    required   pam_limits.so'
+              line="session    required   pam_limits.so"
+              state=present
