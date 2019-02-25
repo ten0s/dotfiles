@@ -25,7 +25,7 @@ echo "SECTION: $SECTION"
 echo "PATTERN: $PATTERN"
 
 if [[ -n "$PATTERN" ]]; then
-    xfce4-terminal -e "bash -c 'man $SECTION $COMMAND | less --pattern=\"$PATTERN\"'"
+    man $SECTION $COMMAND | less --pattern="$PATTERN"
 else
-    xfce4-terminal -e "bash -c 'man $SECTION $COMMAND'"
+    man $SECTION $COMMAND
 fi

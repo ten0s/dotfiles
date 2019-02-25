@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Man advanced launcher
-Exec=manx.sh %u
+Exec=xfce4-terminal -x manx.sh %u
 Icon=utilities-terminal
 Type=Application
 Terminal=false
