@@ -14,8 +14,7 @@
   - {import_role: name=dropbox     , tags: ["dropbox"]}
   - {import_role: name=skype       , tags: ["skype"]}
   - {import_role: name=slack       , tags: ["slack"]}
-  - {import_role: name=carcharodon , tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
-  - {import_role: name=megalodon   , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}
+  - {import_role: name=git         , tags: ["git"]}
   - {import_role: name=dev         , tags: ["dev"]}
   - {import_role: name=java        , tags: ["java"]}
   - {import_role: name=scala       , tags: ["scala"]}
@@ -33,3 +32,6 @@
   - {import_role: name=vscode      , tags: ["vscode"]}
   - {import_role: name=algs4       , tags: ["algs4"]}
   - {import_role: name=anki2       , tags: ["anki2"]}
+
+  - {import_role: name=carcharodon , tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
+  - {import_role: name=megalodon   , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}

@@ -1,0 +1,24 @@
+---
+- name: Install
+  become: true
+  apt:
+    name:
+    - git
+    - giggle
+    - tig
+    state: latest
+
+- name: Copy configs
+  copy: src={{item}}
+        dest=/home/{{user}}/{{item}}
+        backup=true
+  with_items:
+  - .gitconfig
+
+- name: Copy scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - gtag
