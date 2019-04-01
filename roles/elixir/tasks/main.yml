@@ -8,9 +8,11 @@
   get_url: url=https://raw.githubusercontent.com/taylor/kiex/master/kiex
            dest=/home/{{user}}/bin/
            mode=0755
+  register: kiex
 
 - name: Install kiex 2/2
   command: kiex setup
+  when: kiex is changed
 
 - name: Install versions
   command: kiex install {{item}} creates=/home/{{user}}/.kiex/elixirs/elixir-{{item}}.env
