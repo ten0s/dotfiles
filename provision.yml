@@ -26,6 +26,7 @@
   - {import_role: name=cpp         , tags: ["cpp"]}
   - {import_role: name=docker      , tags: ["docker"]}
   - {import_role: name=dropbox     , tags: ["dropbox"]}
+  - {import_role: name=elixir      , tags: ["elixir"]}
   - {import_role: name=emacs       , tags: ["emacs"]}
   - {import_role: name=erl         , tags: ["erl"]}
   - {import_role: name=exercism    , tags: ["exercism"]}
