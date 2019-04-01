@@ -48,23 +48,23 @@
         dest=/home/{{user}}/.kerlrc
         backup=true
 
-- name: Update erlang versions
+- name: Update versions
   command: kerl update releases
 
-- name: Delete erlang installations
+- name: Delete installations
   become: true
   command: >
     kerl delete installation /opt/{{item}}
     removes=/opt/{{item}}
   with_items: []
 
-- name: Delete erlang builds
+- name: Delete builds
   command: >
     kerl delete build {{item}}
     removes=/home/{{user}}/.kerl/builds/{{item}}
   with_items: []
 
-- name: Build erlang versions
+- name: Build versions
   command: >
     kerl build {{item.release}} {{item.name}}
     creates=/home/{{user}}/.kerl/builds/{{item.name}}
@@ -72,7 +72,7 @@
   - {release: '19.3', name: 'r19.3'}
   - {release: '20.3', name: 'r20.3'}
 
-- name: Install erlang versions
+- name: Install versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
   - 'r19.3'
