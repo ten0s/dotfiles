@@ -1,0 +1,14 @@
+---
+- name: Install CLI 1/3
+  get_url: url=https://github.com/exercism/cli/releases/download/v{{exercism_ver}}/exercism-linux-64bit.tgz
+           dest={{cache_dir}}/exercism-{{exercism_ver}}.tar.gz
+
+- name: Install CLI 2/3
+  unarchive: src={{cache_dir}}/exercism-{{exercism_ver}}.tar.gz
+             dest=/home/{{user}}/bin/
+             creates=/home/{{user}}/bin/exersism
+  register: exercism
+
+- name: Install CLI 3/3
+  debug: msg='Now run exercism configure --token=TOKEN"'
+  when: exercism is changed

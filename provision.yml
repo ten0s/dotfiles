@@ -8,6 +8,7 @@
     cache_dir: /var/cache/ansible
     anki2_ver: 2.1.5-linux-amd64
     docker_compose_ver: 1.15.0
+    exercism_ver: 3.0.11
     jq_ver: 1.5
     mvn_ver: 3.5.4
     skype_ver: 8.18.0.6
@@ -27,6 +28,7 @@
   - {import_role: name=dropbox     , tags: ["dropbox"]}
   - {import_role: name=emacs       , tags: ["emacs"]}
   - {import_role: name=erl         , tags: ["erl"]}
+  - {import_role: name=exercism    , tags: ["exercism"]}
   - {import_role: name=git         , tags: ["git"]}
   - {import_role: name=java        , tags: ["java"]}
   - {import_role: name=jq          , tags: ["jq"]}
