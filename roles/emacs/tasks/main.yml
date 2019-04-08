@@ -7,7 +7,6 @@
 - name: Copy bashrc config
   copy: src=01-bashrc-emacs
         dest=/home/{{user}}/.bashrc.d/
-        backup=true
 
 - name: Pull emacs repo
   git: repo=git@github.com:ten0s/emacs

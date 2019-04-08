@@ -8,4 +8,3 @@
 - name: Copy bashrc config
   copy: src=01-bashrc-awscli
         dest=/home/{{user}}/.bashrc.d/
-        backup=true

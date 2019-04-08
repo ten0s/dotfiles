@@ -12,4 +12,3 @@
 - name: Copy bashrc config
   copy: src=01-bashrc-sml
         dest=/home/{{user}}/.bashrc.d/
-        backup=true

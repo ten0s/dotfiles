@@ -11,9 +11,6 @@ shopt -s histappend
 export HISTCONTROL=erasedups:ignorespace:ignoredups
 export HISTTIMEFORMAT='%F %T '
 
-# edit & reload .bashrc
-alias bashrc="$EDITOR ~/.bashrc && source ~/.bashrc"
-
 alias open=gnome-open
 
 alias sudo="sudo "

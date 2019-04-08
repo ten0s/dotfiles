@@ -2,7 +2,6 @@
 - name: Copy bashrc config
   copy: src=01-bashrc-elixir
         dest=/home/{{user}}/.bashrc.d/
-        backup=true
 
 - name: Install kiex 1/2
   get_url: url=https://raw.githubusercontent.com/taylor/kiex/master/kiex
