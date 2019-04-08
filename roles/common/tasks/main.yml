@@ -62,6 +62,12 @@
   become: true
   apt: name=apt-file state=latest
 
+- name: Ensure apt-file cache dir
+  become: true
+  file: path=/var/cache/apt/apt-file/
+        mode=755
+        state=directory
+
 - name: Register apt-file change time
   # local time (secs since Epoch) minus
   # the folder's last change time (secs since Epoch)
