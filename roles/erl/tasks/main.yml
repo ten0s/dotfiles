@@ -70,12 +70,14 @@
   with_items:
   - {release: '19.3', name: 'r19.3'}
   - {release: '20.3', name: 'r20.3'}
+  - {release: '21.3', name: 'r21.3'}
 
 - name: Install versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
   - 'r19.3'
   - 'r20.3'
+  - 'r21.3'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git

@@ -3,7 +3,7 @@ alias cdv="$_KERL_ACTIVE_DIR/lib/observer-*/priv/bin/cdv"
 ########### SHOULD BE THE LAST SECTION ##############
 
 function activate-erlang() {
-    source /opt/r20.3/activate
+    source /opt/r21.3/activate
 
     # FIX: /opt/REL/bin/start takes precedence over /sbin/start
     export PATH=/sbin:$PATH
