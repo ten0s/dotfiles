@@ -97,7 +97,6 @@
     - vinagre  # VNC client
     - xtightvncviewer
     state: absent
-    purge: true
 
 - name: Install common stuff
   become: true
@@ -132,7 +131,6 @@
     - kdelibs5-data    # to fix kde apps crashes
     - kdelibs5-plugins # to fix kde apps crashes
     - keepassx
-    - libav-tools # avconv like ffmpeg
     - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
     - libxml2-utils # provides xmllint
     - mc
@@ -146,7 +144,6 @@
     - openvpn
     - pinta # Image editor
     - pv # monitor the progress of data through a pipe
-    - python-gpgme
     - pwgen
     - rdesktop
     - rlwrap
@@ -158,7 +155,6 @@
     - stress  # see also stress-ng
     - sysbench
     - sysstat # iostat
-    - sysv-rc-conf
     - tree
     - tzdata # for DMU
     - uuid
