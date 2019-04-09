@@ -32,7 +32,7 @@
     - libncurses5-dev
     - libssl-dev
     - libtk-img-dev
-    - libwxgtk2.8-dev
+    - libwxgtk3.0-dev
     - unixodbc-dev
     - xsltproc
     state: latest
@@ -68,15 +68,11 @@
     kerl build {{item.release}} {{item.name}}
     creates=/home/{{user}}/.kerl/builds/{{item.name}}
   with_items:
-  - {release: '19.3', name: 'r19.3'}
-  - {release: '20.3', name: 'r20.3'}
   - {release: '21.3', name: 'r21.3'}
 
 - name: Install versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
-  - 'r19.3'
-  - 'r20.3'
   - 'r21.3'
 
 - name: Pull user_default
@@ -99,20 +95,71 @@
         dest=/home/{{user}}/.erlang
         backup=true
 
+- name: Pull syntaxerl
+  git: repo=git@github.com:ten0s/syntaxerl.git
+       dest=/home/{{user}}/projects/syntaxerl
+       version=HEAD
+  register: syntaxerl
+
+- name: Build syntaxerl
+  command: make chdir=/home/{{user}}/projects/syntaxerl/
+  when: syntaxerl.changed
+
+- name: Create syntaxerl link
+  file: src=/home/{{user}}/projects/syntaxerl/syntaxerl
+        dest=/home/{{user}}/bin/syntaxerl
+        state=link
+
+#- name: Pull rebar
+#  git: repo=https://github.com/rebar/rebar.git
+#       dest=/home/{{user}}/projects/rebar
+#       version=2.6.1
+#  register: rebar
+
+#- name: Build rebar
+#  command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
+#  when: rebar.changed
+
+#- name: Create rebar link
+#  file: src=/home/{{user}}/projects/rebar/rebar
+#        dest=/home/{{user}}/bin/rebar
+#        state=link
+
+- name: Pull rebar3
+  git: repo=https://github.com/erlang/rebar3.git
+       dest=/home/{{user}}/projects/rebar3
+       force=true
+       version=3.9.1
+  register: rebar3
+
+- name: Build rebar3
+  command: ./bootstrap chdir=/home/{{user}}/projects/rebar3/
+  when: rebar3.changed
+
+- name: Create rebar3 link
+  file: src=/home/{{user}}/projects/rebar3/rebar3
+        dest=/home/{{user}}/bin/rebar3
+        state=link
+
+- name: Copy template.config
+  copy: src=template.config
+        dest=/home/{{user}}/.rebar/template.config
+
 - name: Pull sync
   git: repo=https://github.com/rustyio/sync.git
        dest=/home/{{user}}/.erl_libs/sync
-       version=20846b0
+       version=d7ded2d
   register: sync
 
 - name: Build sync
   command: make chdir=/home/{{user}}/.erl_libs/sync/
   when: sync.changed
 
+# Consider moving to https://github.com/massemanet/redbug
 - name: Pull eper
   git: repo=https://github.com/massemanet/eper.git
        dest=/home/{{user}}/.erl_libs/eper
-       version=0.97.6
+       version=0.99.1
   register: eper
 
 - name: Build eper
@@ -127,11 +174,11 @@
 - name: Pull entop
   git: repo=https://github.com/mazenharake/entop.git
        dest=/home/{{user}}/.erl_libs/entop
-       version=e0dff37
+       version=227098d
   register: entop
 
 - name: Build entop
-  shell: ./rebar get-deps && ./rebar compile chdir=/home/{{user}}/.erl_libs/entop/
+  shell: ./rebar3 compile chdir=/home/{{user}}/.erl_libs/entop/
   when: entop.changed
 
 - name: Create entop link
@@ -158,7 +205,7 @@
   register: eep
 
 - name: Build eep
-  command: rebar compile chdir=/home/{{user}}/.erl_libs/eep/
+  command: rebar3 compile chdir=/home/{{user}}/.erl_libs/eep/
   when: eep.changed
 
 # http://proper.softlab.ntua.gr/User_Guide.html
@@ -195,7 +242,7 @@
 - name: Pull concuerror
   git: repo=https://github.com/parapluu/Concuerror.git
        dest=/home/{{user}}/.erl_libs/concuerror
-       version=cac7c44
+       version=0.20.0
   register: concuerror
 
 - name: Build concuerror
@@ -203,7 +250,7 @@
   when: concuerror.changed
 
 - name: Create concuerror link
-  file: src=/home/{{user}}/.erl_libs/concuerror/concuerror
+  file: src=/home/{{user}}/.erl_libs/concuerror/bin/concuerror
         dest=/home/{{user}}/bin/concuerror
         state=link
 
@@ -222,55 +269,6 @@
 #  unarchive: src=http://www.quviq.com/wp-content/uploads/2015/09/eqcmini-2.01.0.zip
 #             dest=/home/{{user}}/.erl_libs/
 #             remote_src=true
-
-- name: Pull syntaxerl
-  git: repo=git@github.com:ten0s/syntaxerl.git
-       dest=/home/{{user}}/projects/syntaxerl
-       version=HEAD
-  register: syntaxerl
-
-- name: Build syntaxerl
-  command: make chdir=/home/{{user}}/projects/syntaxerl/
-  when: syntaxerl.changed
-
-- name: Create syntaxerl link
-  file: src=/home/{{user}}/projects/syntaxerl/syntaxerl
-        dest=/home/{{user}}/bin/syntaxerl
-        state=link
-
-#- name: Pull rebar
-#  git: repo=https://github.com/rebar/rebar.git
-#       dest=/home/{{user}}/projects/rebar
-#       version=2.6.1
-#  register: rebar
-
-#- name: Build rebar
-#  command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
-#  when: rebar.changed
-
-#- name: Create rebar link
-#  file: src=/home/{{user}}/projects/rebar/rebar
-#        dest=/home/{{user}}/bin/rebar
-#        state=link
-
-- name: Pull rebar3
-  git: repo=https://github.com/erlang/rebar3.git
-       dest=/home/{{user}}/projects/rebar3
-       version=3.4.1
-  register: rebar3
-
-- name: Build rebar3
-  command: ./bootstrap chdir=/home/{{user}}/projects/rebar3/
-  when: rebar3.changed
-
-- name: Create rebar3 link
-  file: src=/home/{{user}}/projects/rebar3/rebar3
-        dest=/home/{{user}}/bin/rebar3
-        state=link
-
-- name: Copy template.config
-  copy: src=template.config
-        dest=/home/{{user}}/.rebar/template.config
 
 #- name: Pull erlang-history
 #  git: repo=https://github.com/ferd/erlang-history.git
