@@ -130,6 +130,7 @@
     - kdelibs-bin      # to fix kde apps crashes
     - kdelibs5-data    # to fix kde apps crashes
     - kdelibs5-plugins # to fix kde apps crashes
+    - libgnome2-bin    # gnome-open
     - keepassx
     - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
     - libxml2-utils # provides xmllint
@@ -138,6 +139,7 @@
     - moreutils # for errno
     - mpg321 # for mpg123 :)
     - mscgen # http://www.mcternan.me.uk/mscgen/index.html
+    - net-tools # ifconfig
     - ngrep # network grep
     - nmap
     - nmon
