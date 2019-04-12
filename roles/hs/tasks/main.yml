@@ -1,11 +1,12 @@
 ---
 - name: Install deps
   become: true
-  apt: name={{item}} state=latest
-  with_items:
-  - build-essential
-  - libffi-dev
-  - libgmp3-dev
+  apt:
+    name:
+    - build-essential
+    - libffi-dev
+    - libgmp3-dev
+    state: latest
 
 # https://docs.haskellstack.org/en/stable/README/
 - name: Install Stack
@@ -17,13 +18,3 @@
 # stack ghci
 - name: Setup GHC
   command: stack setup
-
-# ensure ~/.local/bin: in PATH
-
-# https://github.com/koalaman/shellcheck
-- name: Install ShellCheck
-  command: stack install ShellCheck
-
-# https://github.com/idris-lang/Idris-dev/blob/master/INSTALL.md
-- name: Install Idris
-  command: stack install idris

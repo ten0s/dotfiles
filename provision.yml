@@ -36,6 +36,7 @@
   - {import_role: name=meld        , tags: ["meld"]}
   - {import_role: name=py          , tags: ["py"]}
   - {import_role: name=scala       , tags: ["scala"]}
+  - {import_role: name=shellcheck  , tags: ["shellcheck"]}
   - {import_role: name=skype       , tags: ["skype"]}
   - {import_role: name=vagrant     , tags: ["vagrant"]}
   - {import_role: name=virtualbox  , tags: ["virtualbox"]}
