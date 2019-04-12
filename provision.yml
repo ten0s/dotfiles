@@ -9,7 +9,7 @@
     docker_compose_ver: 1.24.0
     exercism_ver: 3.0.11
     jq_ver: 1.5
-    mvn_ver: 3.5.4
+    mvn_ver: 3.6.0
     skype_ver: 8.34.0.78
     slack_ver: 3.0.2-amd64
     vagrant_ver: 2.2.3
