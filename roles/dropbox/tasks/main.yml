@@ -1,8 +1,15 @@
 ---
-- name: Install
+- name: Install deps
   become: true
-  apt: name=dropbox
-       state=latest
+  apt:
+    name:
+    - python3-gpg
+    state: present
+
+#- name: Install
+#  become: true
+#  apt: name=dropbox
+#       state=latest
 
 - name: Symlink 'refs'
   file: src=/home/{{user}}/Dropbox/refs
