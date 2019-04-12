@@ -7,7 +7,7 @@
     user: d_klionsky
     cache_dir: /var/cache/ansible
     anki2_ver: 2.1.5-linux-amd64
-    docker_compose_ver: 1.15.0
+    docker_compose_ver: 1.24.0
     exercism_ver: 3.0.11
     jq_ver: 1.5
     mvn_ver: 3.5.4
