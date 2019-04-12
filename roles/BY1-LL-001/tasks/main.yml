@@ -1,0 +1,8 @@
+---
+- name: Install deps
+  become: true
+  apt:
+    name:
+    - libmysqlclient-dev
+    - postgresql-client-common
+    state: present
