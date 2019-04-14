@@ -1,0 +1,4 @@
+---
+- name: Copy launcher
+  copy: src=anyconnect.desktop
+        dest=/home/{{user}}/.local/share/applications/anyconnect.desktop

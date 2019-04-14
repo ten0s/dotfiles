@@ -19,6 +19,7 @@
 
   - {import_role: name=algs4       , tags: ["algs4"]}
   - {import_role: name=anki2       , tags: ["anki2"]}
+  - {import_role: name=anyconnect  , tags: ["anyconnect"]}
   - {import_role: name=autokey     , tags: ["autokey"]}
   - {import_role: name=awscli      , tags: ["awscli"]}
   - {import_role: name=chrome      , tags: ["chrome"]}
