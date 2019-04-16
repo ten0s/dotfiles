@@ -36,6 +36,10 @@ alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.
 function b64e() { base64 <<< $1; }
 function b64d() { base64 -d <<< $1; }
 
+if [ -f /etc/bash_completion ]; then
+    source /etc/bash_completion
+fi
+
 for file in $(find ~/.bashrc.d/ -type f | sort); do
     source $file
 done
