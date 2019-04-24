@@ -216,6 +216,16 @@
   command: make chdir=/home/{{user}}/.erl_libs/proper/
   when: proper.changed
 
+- name: Pull edbg
+  git: repo=https://github.com/etnt/edbg
+       dest=/home/{{user}}/.erl_libs/edbg
+       version=25a7078
+  register: edbg
+
+- name: Build edbg
+  command: rebar3 compile chdir=/home/{{user}}/.erl_libs/edbg/
+  when: edbg.changed
+
 # http://parapluu.github.io/nifty/
 #- name: Install nifty deps
 #  become: true
