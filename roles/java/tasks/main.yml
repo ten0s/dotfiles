@@ -27,7 +27,7 @@
 
 - name: Add Java 8 apt repo
   become: true
-  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu cosmic main'
+  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu {{ubuntu_codename}} main'
                   state=present
 
 - name: Enable automated installation

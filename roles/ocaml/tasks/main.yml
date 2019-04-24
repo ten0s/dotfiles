@@ -9,8 +9,8 @@
   apt_repository: repo="{{item}}"
                   state=present
   with_items:
-  - "deb http://ppa.launchpad.net/avsm/ppa/ubuntu trusty main"
-  - "deb-src http://ppa.launchpad.net/avsm/ppa/ubuntu trusty main"
+  - "deb http://ppa.launchpad.net/avsm/ppa/ubuntu {{ubuntu_codename}} main"
+  - "deb-src http://ppa.launchpad.net/avsm/ppa/ubuntu {{ubuntu_codename}} main"
 
 - name: Install deps
   become: true

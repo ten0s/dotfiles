@@ -7,7 +7,7 @@
 
 - name: Add apt repo
   become: true
-  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu cosmic stable'
+  apt_repository: repo='deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ubuntu_codename}} stable'
                   state=present
 
 - name: Install Docker CE

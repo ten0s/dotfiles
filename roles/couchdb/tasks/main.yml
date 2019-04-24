@@ -1,13 +1,9 @@
 ---
-# https://launchpad.net/~couchdb/+archive/ubuntu/stable
-
 - name: Install deps
   apt: name={{item}}
        state=present
   with_items:
   - libmozjs185-dev
-
-#  - http://ftp.byfly.by/pub/apache.org/couchdb/source/1.6.1/apache-couchdb-1.6.1.tar.gz
 
 - name: Add apt key
   become: true
@@ -17,5 +13,5 @@
 
 - name: Add apt repo
   become: true
-  apt_repository: repo='deb http://ppa.launchpad.net/couchdb/stable/ubuntu trusty main'
+  apt_repository: repo='deb https://apache.bintray.com/couchdb-deb bionic main'
                   state=present
