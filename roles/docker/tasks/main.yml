@@ -1,14 +1,4 @@
 ---
-- name: Install deps
-  become: true
-  apt:
-    name:
-    - apt-transport-https
-    - ca-certificates
-    - gnupg-agent
-    - software-properties-common
-    state: present
-
 - name: Add apt key
   become: true
   apt_key: keyserver=https://download.docker.com/linux/ubuntu/gpg

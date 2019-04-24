@@ -104,8 +104,10 @@
     name:
     - ansible
     - apache2-utils # ab, rotatelogs
+    - apt-transport-https
     - bmon # bandwidth monitor and rate estimator
     - build-essential
+    - ca-certificates
     - curl
     - ddd # debuggers front-end
     - dia
@@ -116,6 +118,7 @@
     - fping
     - fswebcam
     - gdb
+    - gnupg-agent
     - gnuplot
     - gnuplot-x11 # conflicts with gnuplot-nox
     - graphviz
