@@ -95,6 +95,7 @@
     - totem
     - vino     # VNC server
     - vinagre  # VNC client
+    - xplayer
     - xtightvncviewer
     state: absent
 
