@@ -13,10 +13,13 @@
   with_items:
   - "deb https://deb.nodesource.com/node_6.x bionic main"
 
-- name: Install
+- name: Install nodejs
   become: true
-  apt: name=nodejs
-       state=latest
+  apt: name=nodejs state=latest
+
+- name: Install npm
+  become: true
+  apt: name=npm state=latest
 
 # sudo npm install --global <PACKAGE>
 - name: Install global packages
