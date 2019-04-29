@@ -26,7 +26,6 @@
        global=true
        state=present
   with_items:
-  - {name: "bower", version: "1.8.2"}
   - {name: "elasticdump", version: "3.0.0"}
   - {name: "jslint", version: "0.12.0"}
   - {name: "yarn", version: "1.5.1"}
