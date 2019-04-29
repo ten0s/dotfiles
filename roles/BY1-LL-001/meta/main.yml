@@ -1,3 +1,5 @@
 ---
 dependencies:
+- role: erl
+- role: js
 - role: postgresql
