@@ -95,7 +95,8 @@
     - totem
     - vino     # VNC server
     - vinagre  # VNC client
-    - xplayer
+    - xplayer  # Mint's port of totem
+    - xreader  # Mint's port of evince
     - xtightvncviewer
     state: absent
 
@@ -112,6 +113,7 @@
     - dia
     - dia-shapes
     - dos2unix
+    - evince
     - expect
     - expect-dev # autoexpect
     - fping
