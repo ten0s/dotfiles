@@ -85,12 +85,19 @@
   become: true
   apt:
     name:
+    - aisleriot
     - aptitude
     - banshee
     - cowsay
     - fortune
     - gimp
+    - gnome-mahjongg
+    - gnome-mines
+    - gnome-sudoku
     - mono-runtime
+    - parole
+    - rhythmbox
+    - sgt-puzzles
     - tomboy
     - totem
     - vino     # VNC server
