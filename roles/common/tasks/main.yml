@@ -158,6 +158,7 @@
     - stress  # see also stress-ng
     - sysbench
     - sysstat # iostat
+    - timeshift
     - tree
     - tzdata # for DMU
     - uuid
