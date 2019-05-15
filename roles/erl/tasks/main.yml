@@ -17,9 +17,9 @@
   - rerl
   - tags
 
-#- name: Copy bashrc config
-#  copy: src=10-bashrc-erl
-#        dest=/home/{{user}}/.bashrc.d/
+- name: Copy bashrc config
+  template: src=10-bashrc-erl.j2
+            dest=/home/{{user}}/.bashrc.d/10-bashrc-erl
 
 - name: Install deps
   become: true
@@ -64,14 +64,18 @@
   with_items: []
 
 - name: Build versions
-  command: >
-    kerl build {{item.release}} {{item.name}}
+  shell: >
+    {{item.env}} kerl build {{item.release}} {{item.name}}
     creates=/home/{{user}}/.kerl/builds/{{item.name}}
-  with_items: []
+  with_items:
+  - {release: '19.3',
+     name: 'r19.3',
+     env: 'KERL_CONFIGURE_OPTIONS="--with-ssl=/usr/local/openssl-1.0.2r"'}
 
 - name: Install versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
-  with_items: []
+  with_items:
+  - 'r19.3'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git
@@ -88,9 +92,9 @@
         dest=/home/{{user}}/.erl_libs/ebin/user_default.beam
         state=link
 
-#- name: Provision .erlang config
-#  copy: src=/home/{{user}}/projects/user_default/dot_erlang
-#        dest=/home/{{user}}/.erlang
+- name: Provision .erlang config
+  template: src=dot_erlang.j2
+            dest=/home/{{user}}/.erlang
 
 #- name: Pull rebar
 #  git: repo=https://github.com/rebar/rebar.git

@@ -1,4 +1,5 @@
-KERL_CONFIGURE_OPTIONS="--with-wx" # "--without-wx --without-javac --without-odbc"
+# Don't use KERL_CONFIGURE_OPTIONS "--with-wx" | "--without-wx --without-javac --without-odbc" here
+# Specify it explicitly in main.yml
 KERL_DEFAULT_INSTALL_DIR=/opt
 KERL_INSTALL_MANPAGES=yes
 KERL_INSTALL_HTMLDOCS=
