@@ -36,6 +36,7 @@
   - {import_role: name=jq          , tags: ["jq"]}
   - {import_role: name=js          , tags: ["js"]}
   - {import_role: name=meld        , tags: ["meld"]}
+  - {import_role: name=openssl     , tags: ["openssl"]}
   - {import_role: name=postgresql  , tags: ["postgresql"]}
   - {import_role: name=py          , tags: ["py"]}
   - {import_role: name=scala       , tags: ["scala"]}
