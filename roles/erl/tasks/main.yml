@@ -71,11 +71,15 @@
   - {release: '19.3',
      name: 'r19.3',
      env: 'KERL_CONFIGURE_OPTIONS="--with-ssl=/usr/local/openssl-1.0.2r"'}
+  - {release: '21.3',
+     name: 'r21.3',
+     env: ''}
 
 - name: Install versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
   - 'r19.3'
+  - 'r21.3'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git
