@@ -42,6 +42,11 @@
            dest=/home/{{user}}/bin/
            mode=0755
 
+- name: Install kerl bash completion
+  become: true
+  get_url: url=https://raw.githubusercontent.com/kerl/kerl/master/bash_completion/kerl
+           dest=/etc/bash_completion.d/
+
 - name: Provision kerl config
   copy: src=.kerlrc
         dest=/home/{{user}}/.kerlrc
