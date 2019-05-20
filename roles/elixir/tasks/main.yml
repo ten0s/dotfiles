@@ -13,7 +13,10 @@
   command: kiex setup
   when: kiex is changed
 
+- name: List know versions
+  command: kiex list known
+
 - name: Install versions
   command: kiex install {{item}} creates=/home/{{user}}/.kiex/elixirs/elixir-{{item}}.env
   with_items:
-  - '1.8.1'
+  - '1.8.2'
