@@ -84,7 +84,7 @@
 
 (require 'flycheck)
 ;;(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'elixir-mode-hook 'flycheck-mode)
+
 (add-hook 'python-mode-hook 'flycheck-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'web-mode-hook 'flycheck-mode)
@@ -185,6 +185,13 @@
 (unless (package-installed-p 'elixir-mode)
   (package-install 'elixir-mode))
 (require 'elixir-mode)
+
+(unless (package-installed-p 'flycheck-mix)
+  (package-install 'flycheck-mix))
+(require 'flycheck-mix)
+(flycheck-mix-setup)
+
+(add-hook 'elixir-mode-hook 'flycheck-mode)
 
 ;;;----------------------------------------
 ;;; flymake
