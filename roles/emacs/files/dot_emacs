@@ -67,6 +67,29 @@
 (setq ido-use-filename-at-point nil)
 
 ;;;----------------------------------------
+;;; package
+;;;----------------------------------------
+
+(require 'package)
+(add-to-list 'package-archives
+             '("MELPA Stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
+;;;----------------------------------------
+;;; flycheck
+;;;----------------------------------------
+
+(unless (package-installed-p 'flycheck)
+  (package-install 'flycheck))
+
+(require 'flycheck)
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'elixir-mode-hook 'flycheck-mode)
+(add-hook 'python-mode-hook 'flycheck-mode)
+(add-hook 'c++-mode-hook 'flycheck-mode)
+(add-hook 'web-mode-hook 'flycheck-mode)
+
+;;;----------------------------------------
 ;;; extra packages path
 ;;;----------------------------------------
 
@@ -159,7 +182,8 @@
 ;;; elixir-mode
 ;;;----------------------------------------
 
-(add-to-list 'load-path "~/emacs/lib/elixir/")
+(unless (package-installed-p 'elixir-mode)
+  (package-install 'elixir-mode))
 (require 'elixir-mode)
 
 ;;;----------------------------------------
@@ -275,7 +299,7 @@ check on newline and when there are no changes)."
   (setq web-mode-engines-alist '(("django" . "\\.html\\'")
                                  ("django" . "\\.gv\\'")))
 )
-(add-hook 'web-mode-hook  'my-web-mode-hook)
+(add-hook 'web-mode-hook 'my-web-mode-hook)
 
 ;;;----------------------------------------
 ;;; cc-mode
