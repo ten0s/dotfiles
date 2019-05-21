@@ -4,15 +4,18 @@
   apt: name=emacs
        state=latest
 
+- name: Create dir
+  file: path=/home/{{user}}/emacs
+        state=directory
+
+- name: Copy libs
+  copy: src=lib
+        dest=/home/{{user}}/emacs
+
+- name: Copy .emacs config
+  copy: src=dot_emacs
+            dest=/home/{{user}}/.emacs
+
 - name: Copy bashrc config
   copy: src=01-bashrc-emacs
         dest=/home/{{user}}/.bashrc.d/
-
-- name: Pull emacs repo
-  git: repo=git@github.com:ten0s/emacs
-       dest=/home/{{user}}/emacs
-
-- name: Create link to .emacs
-  file: src=/home/{{user}}/emacs/emacs
-        dest=/home/{{user}}/.emacs
-        state=link
