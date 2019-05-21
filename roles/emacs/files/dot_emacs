@@ -70,6 +70,9 @@
 ;;; package
 ;;;----------------------------------------
 
+; Emacs: How to Install Packages Using ELPA, MELPA
+; http://ergoemacs.org/emacs/emacs_package_system.html
+
 (require 'package)
 (add-to-list 'package-archives
              '("MELPA Stable" . "https://stable.melpa.org/packages/") t)
