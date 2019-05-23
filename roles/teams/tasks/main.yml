@@ -1,0 +1,6 @@
+---
+- name: Install
+  become: true
+  copy: src=teams.desktop
+        dest=/usr/local/share/applications/teams.desktop
+        backup=true
