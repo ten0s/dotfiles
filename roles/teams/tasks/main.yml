@@ -1,4 +1,13 @@
 ---
+- name: Copy icons
+  become: true
+  copy: src=ms-teams-{{item}}.png
+        dest=/usr/share/icons/hicolor/{{item}}/apps/
+  with_items:
+  - 16x16
+  - 32x32
+  - 96x96
+
 - name: Install
   become: true
   copy: src=teams.desktop
