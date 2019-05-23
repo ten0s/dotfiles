@@ -6,6 +6,7 @@
   with_items:
   - 16x16
   - 32x32
+  - 48x48
   - 96x96
 
 - name: Install

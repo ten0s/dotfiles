@@ -4,7 +4,7 @@ Type=Application
 Name=Microsoft Teams
 GenericName=Microsoft Teams
 Comment=Microsoft Teams
-Icon=/usr/share/icons/hicolor/32x32/apps/ms-teams-32x32.png
+Icon=/usr/share/icons/hicolor/48x48/apps/ms-teams-48x48.png
 Exec=google-chrome --app=https://teams.microsoft.com
 NoDisplay=false
 Categories=Internet;Network
