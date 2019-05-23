@@ -22,7 +22,6 @@
   copy: src={{item.handler}}
         dest=/home/{{user}}/bin/{{item.handler}}
         mode=0755
-        backup=true
   with_items:
   - "{{handlers}}"
 
@@ -64,7 +63,6 @@
   copy: src={{item}}
         dest=/home/{{user}}/bin/{{item}}
         mode=0755
-        backup=true
   with_items:
   - anki-dropbox-sync.sh
 

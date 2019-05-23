@@ -1,5 +1,6 @@
 ---
 dependencies:
 - role: erl
+- role: elixir
 - role: js
 - role: postgresql
