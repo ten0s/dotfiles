@@ -222,8 +222,8 @@
     backup: yes
     insertafter: EOF
     block: |
-      ten0s soft nofile 10000
-      ten0s hard nofile 20000
+      {{user}} soft nofile 10000
+      {{user}} hard nofile 20000
     state: present
 
 - name: Update /etc/pam.d/su file
