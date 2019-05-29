@@ -170,6 +170,7 @@
   when: sync.changed
 
 # Consider moving to https://github.com/massemanet/redbug
+# But the above doesn't have the shell script
 - name: Pull eper
   git: repo=https://github.com/massemanet/eper.git
        dest=/home/{{user}}/.erl_libs/eper
