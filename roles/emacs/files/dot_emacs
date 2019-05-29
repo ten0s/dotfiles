@@ -23,6 +23,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+; follow symbolic link to version-controlled source file
+(setq vc-follow-symlinks t)
+
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-h" 'backward-kill-word)
 
