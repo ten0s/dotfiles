@@ -152,6 +152,7 @@
     - mscgen # http://www.mcternan.me.uk/mscgen/index.html
     - net-tools # ifconfig
     - ngrep # network grep
+    - nload # network monitor
     - nmap
     - nmon
     - openvpn
