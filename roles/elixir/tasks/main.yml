@@ -19,4 +19,4 @@
 - name: Install versions
   command: kiex install {{item}} creates=/home/{{user}}/.kiex/elixirs/elixir-{{item}}.env
   with_items:
-  - '1.8.2'
+  - '1.9.1'
