@@ -1,22 +1,28 @@
 ---
-- name: Copy bashrc config
-  template: src=01-bashrc-elixir.j2
-            dest=/home/{{user}}/.bashrc.d/01-bashrc-elixir
+- name: Install asdf plugin
+  command: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+  register: result
+  failed_when:
+  - result.rc != 0
+  - "'Plugin named elixir already added' not in result.stderr"
 
-- name: Install kiex 1/2
-  get_url: url=https://raw.githubusercontent.com/taylor/kiex/master/kiex
-           dest=/home/{{user}}/bin/
-           mode=0755
-  register: kiex
+- name: Install asdf plugin
+  command: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+  register: result
+  failed_when:
+  - result.rc != 0
+  - "'Plugin named elixir already added' not in result.stderr"
 
-- name: Install kiex 2/2
-  command: kiex setup
-  when: kiex is changed
+- name: Fix in
+  command: sed --in-place 's/make clean test/make compile/' /home/{{user}}/.asdf/plugins/elixir/bin/install
 
-- name: List know versions
-  command: kiex list known
-
-- name: Install versions
-  command: kiex install {{item}} creates=/home/{{user}}/.kiex/elixirs/elixir-{{item}}.env
+- name: Build versions
+  command: asdf install elixir ref:v{{item}} creates=/home/{{user}}/.asdf/installs/elixir/ref-v{{item}}
   with_items:
-  - '1.9.1'
+  - '{{elixir_ver}}'
+
+- name: Fix out
+  command: sed --in-place 's/make compile/make clean test/' /home/{{user}}/.asdf/plugins/elixir/bin/install
+
+- name: Install
+  command: asdf global elixir ref:v{{elixir_ver}}
