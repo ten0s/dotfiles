@@ -53,7 +53,7 @@
         backup=true
 
 - name: Update versions
-  command: kerl update releases
+  shell: KERL_BUILD_BACKEND=git kerl update releases
 
 - name: Delete installations
   become: true
@@ -79,15 +79,20 @@
   - {release: '21.3',
      name: 'r21.3',
      env: ''}
+  - {release: '21.3.8.6',
+     name: 'r21.3.8.6',
+     env: ''}
   - {release: '22.0',
      name: 'r22.0',
      env: ''}
 
 - name: Install versions
-  command: sudo kerl install {{item}} creates=/opt/{{item}}
+  become: true
+  command: kerl install {{item}} creates=/opt/{{item}}
   with_items:
   - 'r19.3'
   - 'r21.3'
+  - 'r21.3.8.6'
   - 'r22.0'
 
 - name: Pull user_default
