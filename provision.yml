@@ -6,6 +6,7 @@
     user: d_klionsky
     cache_dir: /var/cache/ansible
     anki2_ver: 2.1.5-linux-amd64
+    asdf_ver: 0.7.3
     docker_compose_ver: 1.24.0
     elixir_ver: 1.9.1
     erl_ver: 21.3.8.6
@@ -23,6 +24,7 @@
   - {import_role: name=algs4       , tags: ["algs4"]}
   - {import_role: name=anki2       , tags: ["anki2"]}
   - {import_role: name=anyconnect  , tags: ["anyconnect"]}
+  - {import_role: name=asdf        , tags: ["asdf"]}
   - {import_role: name=autokey     , tags: ["autokey"]}
   - {import_role: name=awscli      , tags: ["awscli"]}
   - {import_role: name=chrome      , tags: ["chrome"]}
