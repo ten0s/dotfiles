@@ -85,6 +85,9 @@
   - {release: '22.0',
      name: 'r22.0',
      env: ''}
+  - {release: '22.0.7',
+     name: 'r22.0.7',
+     env: 'KERL_BUILD_BACKEND=git'}
 
 - name: Install versions
   become: true
@@ -94,6 +97,7 @@
   - 'r21.3'
   - 'r21.3.8.6'
   - 'r22.0'
+  - 'r22.0.7'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git
