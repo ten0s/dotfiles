@@ -55,18 +55,33 @@
 - name: Update versions
   shell: KERL_BUILD_BACKEND=git kerl update releases
 
+#- name: Get status
+#  become: true
+#  become_user: '{{user}}'
+#  shell: kerl status
+#  register: status
+
+#- name: Print status
+#  debug:
+#    var: status
+
 - name: Delete installations
   become: true
+  become_user: '{{user}}'
   command: >
-    kerl delete installation /opt/{{item}}
+    kerl delete installation {{item}}
     removes=/opt/{{item}}
-  with_items: []
+  with_items:
+  - 'r21.3'
+  - 'r22.0'
 
 - name: Delete builds
   command: >
     kerl delete build {{item}}
     removes=/home/{{user}}/.kerl/builds/{{item}}
-  with_items: []
+  with_items:
+  - 'r21.3'
+  - 'r22.0'
 
 - name: Build versions
   shell: >
@@ -76,14 +91,8 @@
   - {release: '19.3',
      name: 'r19.3',
      env: 'KERL_CONFIGURE_OPTIONS="--with-ssl=/usr/local/openssl-1.0.2r"'}
-  - {release: '21.3',
-     name: 'r21.3',
-     env: ''}
   - {release: '21.3.8.6',
      name: 'r21.3.8.6',
-     env: ''}
-  - {release: '22.0',
-     name: 'r22.0',
      env: ''}
   - {release: '22.0.7',
      name: 'r22.0.7',
@@ -91,12 +100,11 @@
 
 - name: Install versions
   become: true
+  become_user: '{{user}}'
   command: kerl install {{item}} creates=/opt/{{item}}
   with_items:
   - 'r19.3'
-  - 'r21.3'
   - 'r21.3.8.6'
-  - 'r22.0'
   - 'r22.0.7'
 
 - name: Pull user_default
