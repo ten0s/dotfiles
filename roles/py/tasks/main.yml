@@ -143,7 +143,3 @@
 - name: Install youtube-dl
   become: true
   pip: name=youtube-dl state=latest
-
-- name: Install youtube-mp3
-  become: true
-  pip: name=youtube-mp3 state=latest
