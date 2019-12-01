@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#
+# Kill all docker containers
+#
+
+docker ps --all | tail -n+2 | awk '{print $1}' | xargs -I{} docker kill {}

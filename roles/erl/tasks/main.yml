@@ -18,8 +18,8 @@
   - tags
 
 - name: Copy bashrc config
-  copy: src=10-bashrc-erl
-        dest=/home/{{user}}/.bashrc.d/
+  template: src=10-bashrc-erl.j2
+            dest=/home/{{user}}/.bashrc.d/10-bashrc-erl
 
 - name: Install deps
   become: true
@@ -42,18 +42,34 @@
            dest=/home/{{user}}/bin/
            mode=0755
 
+- name: Install kerl bash completion
+  become: true
+  get_url: url=https://raw.githubusercontent.com/kerl/kerl/master/bash_completion/kerl
+           dest=/etc/bash_completion.d/
+
 - name: Provision kerl config
   copy: src=.kerlrc
         dest=/home/{{user}}/.kerlrc
         backup=true
 
 - name: Update versions
-  command: kerl update releases
+  shell: KERL_BUILD_BACKEND=git kerl update releases
+
+#- name: Get status
+#  become: true
+#  become_user: '{{user}}'
+#  shell: kerl status
+#  register: status
+
+#- name: Print status
+#  debug:
+#    var: status
 
 - name: Delete installations
   become: true
+  become_user: '{{user}}'
   command: >
-    kerl delete installation /opt/{{item}}
+    kerl delete installation {{item}}
     removes=/opt/{{item}}
   with_items: []
 
@@ -64,15 +80,23 @@
   with_items: []
 
 - name: Build versions
-  command: >
-    kerl build {{item.release}} {{item.name}}
+  shell: >
+    {{item.env}} kerl build {{item.release}} {{item.name}}
     creates=/home/{{user}}/.kerl/builds/{{item.name}}
   with_items:
-  - {release: '21.3', name: 'r21.3'}
+  - {release: '19.3',
+     name: 'r19.3',
+     env: ''}
+  - {release: '21.3',
+     name: 'r21.3',
+     env: ''}
 
 - name: Install versions
-  command: sudo kerl install {{item}} creates=/opt/{{item}}
+  become: true
+  become_user: '{{user}}'
+  command: kerl install {{item}} creates=/opt/{{item}}
   with_items:
+  - 'r19.3'
   - 'r21.3'
 
 - name: Pull user_default
@@ -91,24 +115,8 @@
         state=link
 
 - name: Provision .erlang config
-  copy: src=/home/{{user}}/projects/user_default/dot_erlang
-        dest=/home/{{user}}/.erlang
-        backup=true
-
-- name: Pull syntaxerl
-  git: repo=git@github.com:ten0s/syntaxerl.git
-       dest=/home/{{user}}/projects/syntaxerl
-       version=HEAD
-  register: syntaxerl
-
-- name: Build syntaxerl
-  command: make chdir=/home/{{user}}/projects/syntaxerl/
-  when: syntaxerl.changed
-
-- name: Create syntaxerl link
-  file: src=/home/{{user}}/projects/syntaxerl/syntaxerl
-        dest=/home/{{user}}/bin/syntaxerl
-        state=link
+  template: src=dot_erlang.j2
+            dest=/home/{{user}}/.erlang
 
 #- name: Pull rebar
 #  git: repo=https://github.com/rebar/rebar.git
@@ -145,6 +153,21 @@
   copy: src=template.config
         dest=/home/{{user}}/.rebar/template.config
 
+- name: Pull syntaxerl
+  git: repo=git@github.com:ten0s/syntaxerl.git
+       dest=/home/{{user}}/projects/syntaxerl
+       version=HEAD
+  register: syntaxerl
+
+- name: Build syntaxerl
+  command: make chdir=/home/{{user}}/projects/syntaxerl/
+  when: syntaxerl.changed
+
+- name: Create syntaxerl link
+  file: src=/home/{{user}}/projects/syntaxerl/syntaxerl
+        dest=/home/{{user}}/bin/syntaxerl
+        state=link
+
 - name: Pull sync
   git: repo=https://github.com/rustyio/sync.git
        dest=/home/{{user}}/.erl_libs/sync
@@ -156,6 +179,7 @@
   when: sync.changed
 
 # Consider moving to https://github.com/massemanet/redbug
+# But the above doesn't have the shell script
 - name: Pull eper
   git: repo=https://github.com/massemanet/eper.git
        dest=/home/{{user}}/.erl_libs/eper
@@ -186,27 +210,27 @@
         dest=/home/{{user}}/bin/entop
         state=link
 
-- name: Pull erlgrind
-  git: repo=https://github.com/isacssouza/erlgrind.git
-       dest=/home/{{user}}/.erl_libs/erlgrind
-       version=357a47e
-  register: erlgrind
+#- name: Pull erlgrind
+#  git: repo=https://github.com/isacssouza/erlgrind.git
+#       dest=/home/{{user}}/.erl_libs/erlgrind
+#       version=357a47e
+#  register: erlgrind
 
-- name: Create erlgrind link
-  file: src=/home/{{user}}/.erl_libs/erlgrind/src/erlgrind
-        dest=/home/{{user}}/bin/erlgrind
-        state=link
+#- name: Create erlgrind link
+#  file: src=/home/{{user}}/.erl_libs/erlgrind/src/erlgrind
+#        dest=/home/{{user}}/bin/erlgrind
+#        state=link
 
 # Erlang Easy Profiling (eep)
-- name: Pull eep
-  git: repo=https://github.com/virtan/eep
-       dest=/home/{{user}}/.erl_libs/eep
-       version=8f6e5e3
-  register: eep
+#- name: Pull eep
+#  git: repo=https://github.com/virtan/eep
+#       dest=/home/{{user}}/.erl_libs/eep
+#       version=8f6e5e3
+#  register: eep
 
-- name: Build eep
-  command: rebar3 compile chdir=/home/{{user}}/.erl_libs/eep/
-  when: eep.changed
+#- name: Build eep
+#  command: rebar3 compile chdir=/home/{{user}}/.erl_libs/eep/
+#  when: eep.changed
 
 # http://proper.softlab.ntua.gr/User_Guide.html
 - name: Pull proper
@@ -218,6 +242,16 @@
 - name: Build proper
   command: make chdir=/home/{{user}}/.erl_libs/proper/
   when: proper.changed
+
+- name: Pull edbg
+  git: repo=https://github.com/etnt/edbg
+       dest=/home/{{user}}/.erl_libs/edbg
+       version=25a7078
+  register: edbg
+
+- name: Build edbg
+  command: rebar3 compile chdir=/home/{{user}}/.erl_libs/edbg/
+  when: edbg.changed
 
 # http://parapluu.github.io/nifty/
 #- name: Install nifty deps
@@ -239,20 +273,20 @@
 #  when: nifty.changed
 
 # http://concuerror.com
-- name: Pull concuerror
-  git: repo=https://github.com/parapluu/Concuerror.git
-       dest=/home/{{user}}/.erl_libs/concuerror
-       version=0.20.0
-  register: concuerror
+#- name: Pull concuerror
+#  git: repo=https://github.com/parapluu/Concuerror.git
+#       dest=/home/{{user}}/.erl_libs/concuerror
+#       version=0.20.0
+#  register: concuerror
 
-- name: Build concuerror
-  command: make chdir=/home/{{user}}/.erl_libs/concuerror/
-  when: concuerror.changed
+#- name: Build concuerror
+#  command: make chdir=/home/{{user}}/.erl_libs/concuerror/
+#  when: concuerror.changed
 
-- name: Create concuerror link
-  file: src=/home/{{user}}/.erl_libs/concuerror/bin/concuerror
-        dest=/home/{{user}}/bin/concuerror
-        state=link
+#- name: Create concuerror link
+#  file: src=/home/{{user}}/.erl_libs/concuerror/bin/concuerror
+#        dest=/home/{{user}}/bin/concuerror
+#        state=link
 
 #- name: Pull triq
 #  git: repo=https://github.com/triqng/triq.git

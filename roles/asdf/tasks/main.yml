@@ -1,0 +1,9 @@
+---
+- name: Install
+  git: repo=https://github.com/asdf-vm/asdf.git
+       dest=/home/{{user}}/.asdf
+       version=v{{asdf_ver}}
+
+- name: Copy bashrc config
+  copy: src=01-bashrc-asdf
+        dest=/home/{{user}}/.bashrc.d/

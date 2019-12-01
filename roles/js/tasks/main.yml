@@ -11,12 +11,15 @@
   apt_repository: repo="{{item}}"
                   state=present
   with_items:
-  - "deb https://deb.nodesource.com/node_6.x trusty main"
+  - "deb https://deb.nodesource.com/node_6.x {{ubuntu_codename}} main"
 
-- name: Install
+- name: Install nodejs
   become: true
-  apt: name=nodejs
-       state=latest
+  apt: name=nodejs state=latest
+
+- name: Install npm
+  become: true
+  apt: name=npm state=latest
 
 # sudo npm install --global <PACKAGE>
 - name: Install global packages
@@ -26,7 +29,6 @@
        global=true
        state=present
   with_items:
-  - {name: "bower", version: "1.8.2"}
   - {name: "elasticdump", version: "3.0.0"}
   - {name: "jslint", version: "0.12.0"}
   - {name: "yarn", version: "1.5.1"}

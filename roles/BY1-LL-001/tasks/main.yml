@@ -1,0 +1,7 @@
+---
+- name: Install deps
+  become: true
+  apt:
+    name:
+    - libmysqlclient-dev
+    state: present

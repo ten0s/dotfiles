@@ -10,7 +10,7 @@
 
 - name: Add apt repo
   become: true
-  apt_repository: repo='deb https://download.virtualbox.org/virtualbox/debian trusty contrib'
+  apt_repository: repo='deb https://download.virtualbox.org/virtualbox/debian {{ubuntu_codename}} contrib'
                   state=present
 
 - name: Install

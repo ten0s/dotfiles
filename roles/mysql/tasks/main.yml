@@ -1,0 +1,6 @@
+---
+- name: Install deps
+  become: true
+  apt:
+    name:
+    - mysql-client-core-5.7

@@ -9,7 +9,7 @@
 
 - name: Add apt repo
   become: true
-  apt_repository: repo='deb http://ppa.launchpad.net/plt/racket/ubuntu trusty main'
+  apt_repository: repo='deb http://ppa.launchpad.net/plt/racket/ubuntu {{ubuntu_codename}} main'
                   state=present
 
 - name: Install

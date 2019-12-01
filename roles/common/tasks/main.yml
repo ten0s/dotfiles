@@ -85,12 +85,20 @@
   become: true
   apt:
     name:
+    - aisleriot
     - aptitude
     - banshee
     - cowsay
     - fortune
     - gimp
+    - gnome-mahjongg
+    - gnome-mines
+    - gnome-sudoku
     - mono-runtime
+    - parole
+    - rhythmbox
+    - sgt-puzzles
+    - thermald
     - tomboy
     - totem
     - vino     # VNC server
@@ -106,8 +114,10 @@
     name:
     - ansible
     - apache2-utils # ab, rotatelogs
+    - apt-transport-https
     - bmon # bandwidth monitor and rate estimator
     - build-essential
+    - ca-certificates
     - curl
     - ddd # debuggers front-end
     - dia
@@ -119,6 +129,7 @@
     - fping
     - fswebcam
     - gdb
+    - gnupg-agent
     - gnuplot
     - gnuplot-x11 # conflicts with gnuplot-nox
     - graphviz
@@ -127,12 +138,12 @@
     - hexdiff
     - htop
     - iftop # display bandwidth usage on an interface by host
-    - imagemagick
     - inotify-tools
     - kcachegrind
     - kdelibs-bin      # to fix kde apps crashes
     - kdelibs5-data    # to fix kde apps crashes
     - kdelibs5-plugins # to fix kde apps crashes
+    - libgnome2-bin    # gnome-open
     - keepassx
     - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
     - libxml2-utils # provides xmllint
@@ -141,7 +152,9 @@
     - moreutils # for errno
     - mpg321 # for mpg123 :)
     - mscgen # http://www.mcternan.me.uk/mscgen/index.html
+    - net-tools # ifconfig
     - ngrep # network grep
+    - nload # network monitor
     - nmap
     - nmon
     - openvpn
@@ -213,8 +226,8 @@
     backup: yes
     insertafter: EOF
     block: |
-      ten0s soft nofile 10000
-      ten0s hard nofile 20000
+      {{user}} soft nofile 100000
+      {{user}} hard nofile 200000
     state: present
 
 - name: Update /etc/pam.d/su file

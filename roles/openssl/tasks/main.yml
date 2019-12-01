@@ -1,0 +1,10 @@
+---
+
+#
+# https://www.openssl.org/source/
+#
+
+- name: Install
+  shell: curl https://www.openssl.org/source/{{item}}.tar.gz | tar xfz - && cd {{item}} && ./config --prefix=/usr/local/{{item}} -fpic && make && sudo make install && cd .. && rm -rf {{item}} creates=/usr/local/{{item}}
+  with_items:
+  - openssl-1.0.2r

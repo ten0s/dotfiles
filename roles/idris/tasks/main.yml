@@ -1,0 +1,4 @@
+---
+# https://github.com/idris-lang/Idris-dev/blob/master/INSTALL.md
+- name: Install Idris
+  command: stack install idris

@@ -1,25 +1,30 @@
 ---
 - hosts: localhost
-  gather_facts: no
   connection: local
   user: ten0s
   vars:
     user: ten0s
     cache_dir: /var/cache/ansible
     anki2_ver: 2.1.5-linux-amd64
-    docker_compose_ver: 1.15.0
+    asdf_ver: 0.7.3
+    docker_compose_ver: 1.24.0
+    elixir_ver: 1.9.1
+    erl_ver: 19.3
     exercism_ver: 3.0.11
-    jq_ver: 1.5
-    mvn_ver: 3.5.4
-    skype_ver: 8.18.0.6
+    jq_ver: 1.6
+    mvn_ver: 3.6.0
+    skype_ver: 8.54.0.91
     slack_ver: 3.0.2-amd64
     vagrant_ver: 2.2.3
     virtualbox_ver: 6.0
+    ubuntu_codename: bionic # lsb_release -c | cat /etc/os-release | cat /etc/upstream-release/lsb-release
   tasks:
   - {import_role: name=common      , tags: ["common"]}
 
   - {import_role: name=algs4       , tags: ["algs4"]}
   - {import_role: name=anki2       , tags: ["anki2"]}
+  - {import_role: name=anyconnect  , tags: ["anyconnect"]}
+  - {import_role: name=asdf        , tags: ["asdf"]}
   - {import_role: name=autokey     , tags: ["autokey"]}
   - {import_role: name=awscli      , tags: ["awscli"]}
   - {import_role: name=chrome      , tags: ["chrome"]}
@@ -35,10 +40,17 @@
   - {import_role: name=jq          , tags: ["jq"]}
   - {import_role: name=js          , tags: ["js"]}
   - {import_role: name=meld        , tags: ["meld"]}
+  - {import_role: name=mysql       , tags: ["mysql"]}
+  - {import_role: name=openssl     , tags: ["openssl"]}
+  - {import_role: name=postgresql  , tags: ["postgresql"]}
   - {import_role: name=py          , tags: ["py"]}
+  - {import_role: name=scala       , tags: ["scala"]}
+  - {import_role: name=shellcheck  , tags: ["shellcheck"]}
   - {import_role: name=skype       , tags: ["skype"]}
+  - {import_role: name=teams       , tags: ["teams"]}
   - {import_role: name=vagrant     , tags: ["vagrant"]}
   - {import_role: name=virtualbox  , tags: ["virtualbox"]}
 
   - {import_role: name=carcharodon , tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
   - {import_role: name=megalodon   , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}
+  - {import_role: name=BY1-LL-001  , tags: ["BY1-LL-001"] , when: ansible_hostname == "BY1-LL-001"}

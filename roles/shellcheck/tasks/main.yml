@@ -1,0 +1,4 @@
+---
+# https://github.com/koalaman/shellcheck
+- name: Install ShellCheck
+  command: stack install ShellCheck

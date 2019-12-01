@@ -1,3 +1,4 @@
+---
 - name: Copy scripts
   copy: src={{item}}
         dest=/home/{{user}}/bin/{{item}}

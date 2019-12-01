@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Cisco AnyConnect
+GenericName=Cisco AnyConnect
+Icon=/opt/cisco/anyconnect/resources/vpnui128.png
+Exec=/opt/cisco/anyconnect/bin/vpnui
+NoDisplay=false
+Categories=Network;
+StartupNotify=false
+Terminal=false

@@ -1,15 +1,21 @@
 ---
-- name: Create dirs
-  become: true
+- name: Create dirs 1/2
   file: path="{{item}}"
         state=directory
   with_items:
   - /home/{{user}}/.java_libs
+
+- name: Create dirs 2/2
+  become: true
+  file: path="{{item}}"
+        state=directory
+  with_items:
   - /usr/java/packages/lib/ext
 
 ##
 # Java 8
 # http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
+# https://linuxconfig.org/how-to-install-java-on-ubuntu-18-04-bionic-beaver-linux
 ##
 
 # https://launchpad.net/~webupd8team/+archive/ubuntu/java
@@ -21,7 +27,7 @@
 
 - name: Add Java 8 apt repo
   become: true
-  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main'
+  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu {{ubuntu_codename}} main'
                   state=present
 
 - name: Enable automated installation
@@ -53,7 +59,7 @@
 #
 #- name: Add Java 10,11 Ubuntu repo
 #  become: true
-#  apt_repository: repo='deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main'
+#  apt_repository: repo='deb http://ppa.launchpad.net/linuxuprising/java/ubuntu {{ubuntu_codename}} main'
 #                  state=present
 #
 #- name: Enable Java 10 automated installation 1/2
@@ -93,7 +99,7 @@
 
 - name: Install Maven 2/4
   get_url:
-    url=http://mirror.cogentco.com/pub/apache/maven/maven-3/{{mvn_ver}}/binaries/apache-maven-{{mvn_ver}}-bin.tar.gz
+    url=http://ftp.byfly.by/pub/apache.org/maven/maven-3/{{mvn_ver}}/binaries/apache-maven-{{mvn_ver}}-bin.tar.gz
     dest={{cache_dir}}/apache-maven-{{mvn_ver}}-bin.tar.gz
 
 - name: Install Maven 3/4
