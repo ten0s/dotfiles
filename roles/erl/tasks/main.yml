@@ -71,17 +71,13 @@
   command: >
     kerl delete installation {{item}}
     removes=/opt/{{item}}
-  with_items:
-  - 'r21.3'
-  - 'r22.0'
+  with_items: []
 
 - name: Delete builds
   command: >
     kerl delete build {{item}}
     removes=/home/{{user}}/.kerl/builds/{{item}}
-  with_items:
-  - 'r21.3'
-  - 'r22.0'
+  with_items: []
 
 - name: Build versions
   shell: >
@@ -90,13 +86,10 @@
   with_items:
   - {release: '19.3',
      name: 'r19.3',
-     env: 'KERL_CONFIGURE_OPTIONS="--with-ssl=/usr/local/openssl-1.0.2r"'}
-  - {release: '21.3.8.6',
-     name: 'r21.3.8.6',
      env: ''}
-  - {release: '22.0.7',
-     name: 'r22.0.7',
-     env: 'KERL_BUILD_BACKEND=git'}
+  - {release: '21.3',
+     name: 'r21.3',
+     env: ''}
 
 - name: Install versions
   become: true
@@ -104,8 +97,7 @@
   command: kerl install {{item}} creates=/opt/{{item}}
   with_items:
   - 'r19.3'
-  - 'r21.3.8.6'
-  - 'r22.0.7'
+  - 'r21.3'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git

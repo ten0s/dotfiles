@@ -334,7 +334,7 @@ check on newline and when there are no changes)."
    (mscgen . t)
    (plantuml . t)
    (python . t)
-   (shell . t)
+   (sh . t)
 ))
 
 (setq org-startup-with-inline-images t)

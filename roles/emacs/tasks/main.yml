@@ -1,4 +1,8 @@
 ---
+##
+# After clean install run M-x list-packages
+##
+
 - name: Install
   become: true
   apt: name=emacs

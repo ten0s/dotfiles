@@ -59,7 +59,7 @@
 #
 #- name: Add Java 10,11 Ubuntu repo
 #  become: true
-#  apt_repository: repo='deb http://ppa.launchpad.net/linuxuprising/java/ubuntu bionic main'
+#  apt_repository: repo='deb http://ppa.launchpad.net/linuxuprising/java/ubuntu {{ubuntu_codename}} main'
 #                  state=present
 #
 #- name: Enable Java 10 automated installation 1/2
