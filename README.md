@@ -25,7 +25,7 @@ sudo visudo
 ## Bootstrap
 
 <pre>
-sudo apt -y install curl
+sudo apt install -y curl
 curl https://raw.githubusercontent.com/ten0s/dotfiles/master/bootstrap.sh | bash
 </pre>
 

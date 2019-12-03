@@ -17,7 +17,7 @@
         dest=/home/{{user}}/emacs
 
 - name: Copy .emacs config
-  copy: src=dot_emacs
+  template: src=dot_emacs.j2
             dest=/home/{{user}}/.emacs
 
 - name: Copy bashrc config

@@ -1,28 +1,28 @@
 ---
 - name: Install deps
   become: true
-  apt: name={{item}}
-       state=present
-  with_items:
-  - autoconf
-  - autoconf-archive
-  - automake
+  apt:
+    name:
+    - autoconf
+    - autoconf-archive
+    - automake
+    state: present
 
 - name: Install Clang
   become: true
-  apt: name={{item}}
-       state=present
-  with_items:
-  - clang-3.6
-  - llvm
+  apt:
+    name:
+    - clang-{{clang_ver}}
+    - llvm
+    state: present
 
 ## sudo update-alternatives --config c++
 - name: Install Clang as main c++ alternative
   become: true
   command: update-alternatives --install {{item.link}} {{item.name}} {{item.path}} 100
   with_items:
-  - {link: '/usr/bin/cc' , name: 'cc' , path: '/usr/bin/clang-3.6'}
-  - {link: '/usr/bin/c++', name: 'c++', path: '/usr/bin/clang++-3.6'}
+  - {link: '/usr/bin/cc' , name: 'cc' , path: '/usr/bin/clang-{{clang_ver}}'}
+  - {link: '/usr/bin/c++', name: 'c++', path: '/usr/bin/clang++-{{clang_ver}}'}
 
 - name: Install Boost
   become: true

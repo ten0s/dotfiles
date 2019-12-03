@@ -3,7 +3,40 @@
 # https://help.ubuntu.com/community/Oracle%20Instant%20Client
 ##
 
-# Download RPMs from http://www.oracle.com/technetwork/topics/linuxx86-64soft-092277.html
+# Download Instant Client RPMs from
+# https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
+# and SQL Developer RPM from
+# http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index.html
+# to {{cache_dir}}
+
+- name: Check RPMs exists 1/5
+  stat:
+    path: "{{cache_dir}}/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm"
+  register: basic_result
+
+- name: Check RPMs exists 2/5
+  stat:
+    path: "{{cache_dir}}/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm"
+  register: devel_result
+
+- name: Check RPMs exists 3/5
+  stat:
+    path: "{{cache_dir}}/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm"
+  register: sqlplus_result
+
+- name: Check RPMs exists 4/5
+  stat:
+    path: "{{cache_dir}}/sqldeveloper-19.2.1.247.2212.noarch.rpm"
+  register: sqldeveloper_result
+
+- name: Check RPMs exists 5/5
+  assert:
+    that:
+      - basic_result.stat.exists
+      - devel_result.stat.exists
+      - sqlplus_result.stat.exists
+      - sqldeveloper_result.stat.exists
+    fail_msg: "Please download RPMs to {{cache_dir}}"
 
 - name: Install RPM to DEB
   become: true
@@ -12,7 +45,7 @@
 - name: Install Oracle client
   become: true
   command: >
-           alien -c -i /home/{{user}}/refs/db/oracle/{{item.rpm}}
+           alien -c -i {{cache_dir}}/{{item.rpm}}
            creates={{item.creates}}
   with_items:
   - {rpm: oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm,
@@ -31,7 +64,7 @@
 - name: Run ldconfig
   become: true
   command: ldconfig
-  when: oracle_conf | changed
+  when: oracle_conf.changed
 
 - name: Define ORACLE_HOME
   become: true
@@ -56,21 +89,21 @@
   copy: src=login.sql
         dest=/home/{{user}}/login.sql
 
-# http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index.html
-
 - name: Install SQL Developer
   become: true
   command: >
-           alien -c -i /home/{{user}}/refs/db/oracle/sqldeveloper-4.1.3.20.78-1.noarch.rpm
+           alien -c -i {{cache_dir}}/sqldeveloper-19.2.1.247.2212.noarch.rpm
            creates=/opt/sqldeveloper/sqldeveloper.sh
   register: sqldeveloper
 
 - debug: msg='Now run /opt/sqldeveloper/sqldeveloper.sh and enter "/usr/lib/jvm/java-8-oracle"'
-  when: sqldeveloper is changed
+  when: sqldeveloper.changed
 
 - name: Uninstall RPM to DEB
   become: true
-  apt: name={{item}} state=absent purge=true
-  with_items:
-  - alien
-  - rpm
+  apt:
+    name:
+    - alien
+    - rpm
+    state: absent
+    purge: true

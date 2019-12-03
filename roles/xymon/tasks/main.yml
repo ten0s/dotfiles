@@ -5,7 +5,7 @@
        state=present
 
 - name: Copy scripts
-  copy: src=files/scripts/{{item}}
+  copy: src={{item}}
         dest=/home/{{user}}/bin/{{item}}
         mode=0755
         backup=true

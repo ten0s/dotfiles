@@ -1,4 +1,10 @@
 ---
+- name: Create dirs
+  file: path={{item}}
+        state=directory
+  with_items:
+  - /home/{{user}}/Dropbox/refs
+
 - name: Install deps
   become: true
   apt:
@@ -6,10 +12,10 @@
     - python3-gpg
     state: present
 
-#- name: Install
-#  become: true
-#  apt: name=dropbox
-#       state=latest
+- name: Install
+  become: true
+  apt: name=dropbox
+       state=latest
 
 - name: Symlink 'refs'
   file: src=/home/{{user}}/Dropbox/refs
