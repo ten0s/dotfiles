@@ -126,6 +126,7 @@
     - evince
     - expect
     - expect-dev # autoexpect
+    - ffmpeg
     - fping
     - fswebcam
     - gdb
