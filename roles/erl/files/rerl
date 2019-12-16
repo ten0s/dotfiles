@@ -21,13 +21,9 @@ cmd=${2-ping}
 
 host=$(echo $node | awk -F@ '{print $2}')
 case $host in
-10.249.*)
+10.*)
     name="-name adm$$@127.0.0.1"
     cookie=$(ssh $host 'cat ~/.erlang.cookie')
-    ;;
-10.252.*)
-    name="-name adm$$@127.0.0.1"
-    cookie=$(ssh $host 'sudo cat /home/*/.erlang.cookie')
     ;;
 127.0.0.*)
     name="-name adm$$@127.0.0.1"
@@ -36,10 +32,6 @@ case $host in
 $(hostname))
     name="-sname adm$$"
     cookie=$(cat ~/.erlang.cookie)
-    ;;
-devstorm*)
-    name="-sname adm$$"
-    cookie=$(ssh $host 'cat ~/.erlang.cookie')
     ;;
 *)
     echo "Unknown host: $host"
@@ -91,11 +83,8 @@ load)
        module=$(basename ${beam%.*})
        path=$(rpc_call "$node" "$name" "$cookie" "code,which,['$module']")
        case $host in
-       10.249.*)
+       10.*)
            ssh $host "tee $path >/dev/null" <$beam || exit 1
-       ;;
-       10.252.*)
-           ssh $host "sudo tee $path >/dev/null" <$beam || exit 1
        ;;
        127.0.0.1)
            tee $path >/dev/null <$beam
