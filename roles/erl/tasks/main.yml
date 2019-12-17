@@ -110,20 +110,20 @@
   template: src=dot_erlang.j2
             dest=/home/{{user}}/.erlang
 
-#- name: Pull rebar
-#  git: repo=https://github.com/rebar/rebar.git
-#       dest=/home/{{user}}/projects/rebar
-#       version=2.6.1
-#  register: rebar
+- name: Pull rebar
+  git: repo=https://github.com/rebar/rebar.git
+       dest=/home/{{user}}/projects/rebar
+       version=2.6.1
+  register: rebar
 
-#- name: Build rebar
-#  command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
-#  when: rebar.changed
+- name: Build rebar
+  command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
+  when: rebar.changed
 
-#- name: Create rebar link
-#  file: src=/home/{{user}}/projects/rebar/rebar
-#        dest=/home/{{user}}/bin/rebar
-#        state=link
+- name: Create rebar link
+  file: src=/home/{{user}}/projects/rebar/rebar
+        dest=/home/{{user}}/bin/rebar
+        state=link
 
 - name: Pull rebar3
   git: repo=https://github.com/erlang/rebar3.git
