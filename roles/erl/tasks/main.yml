@@ -227,7 +227,7 @@
 
 # http://proper.softlab.ntua.gr/User_Guide.html
 - name: Pull proper
-  git: repo=http://github.com/manopapad/proper.git
+  git: repo=https://github.com/manopapad/proper.git
        dest=/home/{{user}}/.erl_libs/proper
        version=v1.3
   register: proper
@@ -246,7 +246,7 @@
   command: rebar3 compile chdir=/home/{{user}}/.erl_libs/edbg/
   when: edbg.changed
 
-# http://parapluu.github.io/nifty/
+# https://parapluu.github.io/nifty/
 #- name: Install nifty deps
 #  become: true
 #  apt: name={{item}} state=latest
