@@ -40,6 +40,10 @@ if [ -f /etc/bash_completion ]; then
     source /etc/bash_completion
 fi
 
+if [ -f ~/.bashrc.local ]; then
+    source ~/.bashrc.local
+fi
+
 for file in $(find ~/.bashrc.d/ -type f | sort); do
     source $file
 done
