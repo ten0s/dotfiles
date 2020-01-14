@@ -22,6 +22,7 @@
         backup=true
   with_items:
   - gtag
+  - jenkins-build.sh
 
 - name: Copy bashrc config
   copy: src=01-bashrc-git
