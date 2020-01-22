@@ -5,8 +5,11 @@ StdAppPath = fun(App) ->
 end.
 %io:format("~p~n", [StdAppPath("debugger")]).
 
-Paths = filelib:wildcard("/home/{{user}}/.erl_libs/*/_build/*/lib/*/ebin") ++
-        filelib:wildcard("/home/{{user}}/.erl_libs/*/ebin") ++ [
+{ok, [[HOME]]} = init:get_argument(home).
+ERL_LIBS=HOME ++ "/.erl_libs".
+
+Paths = filelib:wildcard(ERL_LIBS ++ "/*/_build/*/lib/*/ebin") ++
+        filelib:wildcard(ERL_LIBS ++ "/*/ebin") ++ [
   StdAppPath("debugger"),
   StdAppPath("observer"),
   StdAppPath("wx")
@@ -25,5 +28,5 @@ lists:foreach(
          end, Beams)
    end, Paths).
 
-true = code:add_pathz("/home/{{user}}/.erl_libs/ebin").
-{module, user_default} = code:load_abs("/home/{{user}}/.erl_libs/ebin/user_default").
+true = code:add_pathz(ERL_LIBS ++ "/ebin").
+{module, user_default} = code:load_abs(ERL_LIBS ++ "/ebin/user_default").
