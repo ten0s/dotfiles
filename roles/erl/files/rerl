@@ -21,7 +21,7 @@ cmd=${2-ping}
 
 host=$(echo $node | awk -F@ '{print $2}')
 case $host in
-10.*)
+10.* | 172.*)
     name="-name adm$$@127.0.0.1"
     cookie=$(ssh $host 'cat ~/.erlang.cookie')
     ;;
@@ -83,15 +83,15 @@ load)
        module=$(basename ${beam%.*})
        path=$(rpc_call "$node" "$name" "$cookie" "code,which,['$module']")
        case $host in
-       10.*)
+       10.* | 172.*)
            ssh $host "tee $path >/dev/null" <$beam || exit 1
-       ;;
+           ;;
        127.0.0.1)
            tee $path >/dev/null <$beam
-       ;;
+           ;;
        $(hostname))
            tee $path >/dev/null <$beam
-       ;;
+           ;;
        esac
        rpc_call "$node" "$name" "$cookie" "c,l,['$module']"
    else
