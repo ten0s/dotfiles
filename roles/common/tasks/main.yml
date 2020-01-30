@@ -27,15 +27,16 @@
         dest={{item.path}}/{{item.name}}
         backup=true
   with_items:
-  - {name: locale, path: /etc/default/}
+  - {name: locale, path: /etc/default}
 
 - name: Copy local configs
-  copy: src={{item}}
-        dest=/home/{{user}}/{{item}}
+  copy: src={{item.name}}
+        dest={{item.path}}/{{item.name}}
         backup=true
   with_items:
-  - .bashrc
-  - .Xmodmap
+  - {name: .bashrc, path: "/home/{{user}}"}
+  - {name: .Xmodmap, path: "/home/{{user}}"}
+  - {name: terminalrc, path: "/home/{{user}}/.config/xfce4/terminal"}
 
 - name: Copy local scripts
   copy: src={{item}}
