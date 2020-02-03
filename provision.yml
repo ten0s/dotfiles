@@ -18,7 +18,7 @@
     slack_ver: 4.1.2-amd64
     vagrant_ver: 2.2.6
     virtualbox_ver: 6.0
-    ubuntu_codename: bionic # lsb_release -c | cat /etc/os-release | cat /etc/upstream-release/lsb-release
+    ubuntu_codename: bionic # lsb_release -c OR cat /etc/os-release OR cat /etc/upstream-release/lsb-release
   tasks:
   - {import_role: name=common      , tags: ["common"]}
 
