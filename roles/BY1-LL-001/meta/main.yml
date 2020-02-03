@@ -1,7 +1,0 @@
----
-dependencies:
-- role: erl
-- role: elixir
-- role: js
-- role: mysql
-- role: postgresql
