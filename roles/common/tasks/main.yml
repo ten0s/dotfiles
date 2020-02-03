@@ -123,6 +123,7 @@
     - ddd # debuggers front-end
     - dia
     - dia-shapes
+    - dnsutils # dig, nslookup
     - dos2unix
     - evince
     - expect
