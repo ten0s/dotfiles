@@ -1,34 +1,43 @@
 ---
 #
-# https://github.com/nodesource/ansible-nodejs-role/issues/33
+# https://nodejs.org/en/about/releases
+# https://github.com/nodesource/distributions
 #
-- name: Add apt key
+- name: Remove Node.js 6.x apt repo
   become: true
-  shell: curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+  apt_repository:
+    repo="deb https://deb.nodesource.com/node_6.x {{ubuntu_codename}} main"
+    state=absent
 
-- name: Add Node.js 6.x apt repo
-  become: true
-  apt_repository: repo="{{item}}"
-                  state=present
-  with_items:
-  - "deb https://deb.nodesource.com/node_6.x {{ubuntu_codename}} main"
+#- name: Remove old Node.js
+#  become: true
+#  apt: name=nodejs
+#       state=absent
 
-- name: Install nodejs
+- name: Add Node.js apt key
   become: true
-  apt: name=nodejs state=latest
+  shell: curl -sL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
-- name: Install npm
+- name: Add Node.js 10.x apt repo
   become: true
-  apt: name=npm state=latest
+  apt_repository:
+    repo="deb https://deb.nodesource.com/node_10.x {{ubuntu_codename}} main"
+    state=present
+
+- name: Install Node.js
+  become: true
+  apt: name=nodejs
+       state=latest
 
 # sudo npm install --global <PACKAGE>
-- name: Install global packages
+- name: Install NPM global packages
   become: true
   npm: name={{item.name}}
        version={{item.version}}
        global=true
        state=present
   with_items:
-  - {name: "elasticdump", version: "3.0.0"}
-  - {name: "jslint", version: "0.12.0"}
-  - {name: "yarn", version: "1.5.1"}
+  - {name: "commander", version: "4.1.1"}
+  - {name: "jslint", version: "0.12.1"}
+  - {name: "qunit", version: "2.9.3"}
+  - {name: "yarn", version: "1.22.0"}
