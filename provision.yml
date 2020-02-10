@@ -16,7 +16,7 @@
     mvn_ver: 3.6.0
     skype_ver: 8.54.0.91
     slack_ver: 4.1.2-amd64
-    vagrant_ver: 2.2.6
+    vagrant_ver: 2.2.7
     virtualbox_ver: 6.0
     ubuntu_codename: bionic # lsb_release -c OR cat /etc/os-release OR cat /etc/upstream-release/lsb-release
   tasks:
