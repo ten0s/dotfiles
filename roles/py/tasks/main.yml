@@ -1,9 +1,4 @@
 ---
-
-#
-# TODO: freeze deps and use requirements.txt
-#
-
 - name: Install deps
   become: true
   apt:
@@ -16,7 +11,6 @@
     - python3-dev
     - python3-pip
     - python3-venv
- #  - python-setuptools
     state: present
 
 - name: Upgrade pip
@@ -24,18 +18,6 @@
   pip: name=pip state=latest
   register: pip_upgrade
   changed_when: "'Successfully installed' in pip_upgrade.stdout"
-
-# 1. To fix [Errno 1] _ssl.c:510: error:14077410:SSL routines:SSL23_GET_SERVER_HELLO:sslv3 alert handshake failure for Python 2.7.6
-# 2. https://urllib3.readthedocs.io/en/latest/user-guide.html#ssl-py2
-# 3. sudo pip install --ignore-installed -U urllib3 urllib3[secure]
-#- name: Install security updates
-#  become: true
-#  pip: name={{item}} state=latest
-#  with_items:
-#  - urllib3[secure]
-#  - pyopenssl
-#  - pyasn1
-#  - ndg-httpsclient
 
 - name: Install virtualenv
   become: true
@@ -45,105 +27,6 @@
   become: true
   pip: name=ansible-lint
 
-# To workaround
-# Tornado requires an up-to-date SSL module. This means Python 2.7.9+ or 3.4+
-#- name: Install Tornado for Jupyter
-#  become: true
-#  pip: name=tornado version=4.5.3
-
-#  fonts-font-awesome fonts-mathjax ipython-notebook-common libjs-highlight
-#  libjs-jquery-ui libjs-marked libjs-mathjax python-simplegeneric python-zmq
-#- name: Install Jupyter
-#  become: true
-#  pip: name=jupyter
-
-# https://github.com/takluyver/bash_kernel
-# sudo pip install -U bash_kernel --ignore-installed
-#- name: Install IBash kernel 1/2
-#  become: true
-#  pip: name=bash_kernel
-
-#- name: Install IBash kernel 2/2
-#  become: true
-#  command: python -m bash_kernel.install
-
-# http://graphviz.readthedocs.io/en/latest/manual.html
-#- name: Install Graphviz
-#  become: true
-#  pip: name=graphviz
-
-#- name: Install gvmagic 1/2
-#  git: repo=https://github.com/cjdrake/ipython-magic.git
-#       dest=/home/{{user}}/projects/ipython-gvmagic
-#       version=HEAD
-
-#- name: Install gvmagic 2/2
-#  become: true
-#  command: python setup.py install chdir=/home/{{user}}/projects/ipython-gvmagic
-
-#- name: Install SciPy stack
-#  # http://www.scipy.org/install.html
-#  become: true
-#  apt: name={{item}} state=present
-#  with_items:
-#  - python-numpy
-#  - python-scipy
-#  - python-pandas
-#  - python-sympy
-#  - python-nose
-#  - python-matplotlib
-#  - python-networkx
-#  - python-tk
-
-## sudo pip install -U sympy --ignore-installed
-#- name: Upgrade SymPy
-#  become: true
-#  pip: name=sympy state=latest
-
-#- name: Install iPyWidgets
-#  become: true
-#  pip: name=ipywidgets state=present
-
-#- name: Enable iPyWidgets
-#  become: true
-#  command: jupyter nbextension enable --py --sys-prefix widgetsnbextension
-
-#- name: Install bumpversion
-#  become: true
-#  pip: name=bumpversion
-
-# sudo pip install -U pywinrm --ignore-installed
-#- name: Install pywinrm
-#  become: true
-#  pip: name=http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
-
-# Requirement for EC2 modules (see Install AWSCLI)
-#- name: Install Boto
-#  become: true
-#  pip: name=boto state=latest
-
-#- name: Install Boto3
-#  become: true
-#  pip: name=boto3 state=latest
-
-#- name: Install Hypothesis
-#  become: true
-#  pip: name=hypothesis state=latest
-
-#- name: Install PyTest
-#  become: true
-#  pip: name=pytest state=latest
-
-#- name: Install json2yaml
-#  become: true
-#  pip: name=json2yaml
-
-# jq wrapper for YAML/XML
-# sudo pip install -U pyyaml --ignore-installed
-#- name: Install yq
-#  become: true
-#  pip: name=yq
-
-#- name: Install youtube-dl
-#  become: true
-#  pip: name=youtube-dl state=latest
+- name: Install Boto3
+  become: true
+  pip: name=boto3 state=latest
