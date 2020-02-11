@@ -1,0 +1,30 @@
+---
+- name: Pull
+  git: repo=git@github.com:ten0s/mfakeys.git
+       dest=/home/{{user}}/projects/mfakeys
+       version=HEAD
+  register: mfakeys
+
+- name: Build
+  command: make chdir=/home/{{user}}/projects/mfakeys/
+  when: mfakeys.changed
+
+- name: Create link
+  file:
+    src: /home/{{user}}/projects/mfakeys/dist/mfakeys
+    dest: /home/{{user}}/bin/mfakeys
+    state: link
+
+- name: Stat config file
+  stat:
+    path: /home/{{user}}/.mfakeysrc
+  register: config
+
+- name: Copy config template
+  copy:
+    src: dot_mfakeysrc
+    dest: /home/{{user}}/.mfakeysrc
+  when: not config.stat.exists
+
+- debug: msg="Configure /home/{{user}}/.mfakeysrc"
+  when: not config.stat.exists
