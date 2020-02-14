@@ -5,7 +5,7 @@
 
 # usage:
 # $ jekyll --help
-# $ jekyll new <name>
+# $ jekyll new --force <PATH>
 # $ jekyll build
 # $ jekyll serve
 
