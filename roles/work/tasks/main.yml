@@ -6,3 +6,4 @@
         backup=true
   with_items:
   - jenkins-build.sh
+  - terminate-ec2.sh
