@@ -15,18 +15,24 @@
 
 - name: Upgrade pip
   become: true
-  pip: name=pip state=latest
-  register: pip_upgrade
-  changed_when: "'Successfully installed' in pip_upgrade.stdout"
+  pip:
+    name: pip
+    state: latest
 
 - name: Install virtualenv
-  become: true
-  pip: name=virtualenv
+  pip:
+    name: virtualenv
+    extra_args: --user
+    state: latest
 
 - name: Install ansible-lint
-  become: true
-  pip: name=ansible-lint
+  pip:
+    name: ansible-lint
+    extra_args: --user
+    state: latest
 
 - name: Install Boto3
-  become: true
-  pip: name=boto3 state=latest
+  pip:
+    name: boto3
+    extra_args: --user
+    state: latest
