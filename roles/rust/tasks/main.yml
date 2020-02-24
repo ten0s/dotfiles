@@ -1,0 +1,11 @@
+---
+- name: Copy bashrc config
+  copy: src=01-bashrc-rust
+        dest=/home/{{user}}/.bashrc.d/
+
+# https://www.rust-lang.org/tools/install
+- name: Install Rustup
+  shell: curl -sSf https://sh.rustup.rs | sh -s -- -q -y --no-modify-path creates=/home/{{user}}/.cargo/bin/rustup
+
+- name: Update Rustup
+  shell: rustup update

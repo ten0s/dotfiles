@@ -210,6 +210,18 @@
 (add-hook 'elixir-mode-hook 'flycheck-mode)
 
 ;;;----------------------------------------
+;;; rust-mode
+;;;----------------------------------------
+
+(unless (package-installed-p 'rust-mode)
+  (package-install 'rust-mode))
+
+(require 'rust-mode)
+(add-hook 'rust-mode-hook
+          (lambda () (setq indent-tabs-mode nil)))
+(setq rust-format-on-save t)
+
+;;;----------------------------------------
 ;;; flymake
 ;;;----------------------------------------
 
