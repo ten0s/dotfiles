@@ -7,5 +7,12 @@
 - name: Install Rustup
   shell: curl -sSf https://sh.rustup.rs | sh -s -- -q -y --no-modify-path creates=/home/{{user}}/.cargo/bin/rustup
 
+# https://hoverbear.org/blog/setting-up-a-rust-devenv/
+- name: Install components
+  shell: rustup component add {{item}}
+  with_items:
+  - rust-src
+  - rust-docs
+
 - name: Update Rustup
   shell: rustup update
