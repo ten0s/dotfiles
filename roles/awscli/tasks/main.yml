@@ -20,5 +20,10 @@
     path: "/home/{{user}}/tmp/aws"
     state: absent
 
+- name: Copy bashrc config
+  copy:
+    src: 01-bashrc-awscli
+    dest: "/home/{{user}}/.bashrc.d/"
+
 - name: Configure SSO
-  command: gnome-open https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html
+  debug: msg='https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html'
