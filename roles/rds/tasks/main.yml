@@ -1,0 +1,19 @@
+---
+- name: Pull
+  git: repo=git@github.com:coretech/hermes-rds.git
+       dest=/home/{{user}}/projects/rds
+       version=HEAD
+
+- name: Build
+  command: make install chdir=/home/{{user}}/projects/rds/
+
+- name: Create link
+  file:
+    src: /home/{{user}}/projects/rds/install/rds
+    dest: /home/{{user}}/bin/rds
+    state: link
+
+- name: Copy config
+  copy:
+    src: dot_rdsrc
+    dest: /home/{{user}}/.rdsrc

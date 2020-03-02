@@ -48,6 +48,7 @@
   - {import_role: name=oracle      , tags: ["oracle"]}
   - {import_role: name=postgresql  , tags: ["postgresql"]}
   - {import_role: name=py          , tags: ["py"]}
+  - {import_role: name=rds         , tags: ["rds"]}
   - {import_role: name=rust        , tags: ["rust"]}
   - {import_role: name=scala       , tags: ["scala"]}
   - {import_role: name=shellcheck  , tags: ["shellcheck"]}
