@@ -16,4 +16,4 @@
 - name: Install
   become: true
   apt: name=virtualbox-{{virtualbox_ver}}
-       state=present
+       state=latest

@@ -3,4 +3,5 @@
   become: true
   apt:
     name:
-    - mysql-client-core-5.7
+    - mysql-common
+    - mysql-client-core
