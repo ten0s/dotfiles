@@ -12,7 +12,7 @@
     docker_compose_ver: 1.25.3 # https://github.com/docker/compose/releases
     elixir_ver: 1.9.1
     erl_ver: 19.3
-    exercism_ver: 3.0.11
+    exercism_ver: 3.0.13
     jq_ver: 1.6
     mvn_ver: 3.6.0
     skype_ver: 8.57.0.116
