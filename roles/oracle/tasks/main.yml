@@ -1,4 +1,11 @@
 ---
+- name: Install deps
+  become: true
+  apt:
+    name:
+    - libaio1
+    state: latest
+
 ##
 # https://help.ubuntu.com/community/Oracle%20Instant%20Client
 ##
