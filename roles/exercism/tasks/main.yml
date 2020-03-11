@@ -10,5 +10,5 @@
   register: exercism
 
 - name: Install CLI 3/3
-  debug: msg='Now run: $ exercism configure --token=TOKEN"'
+  debug: msg='$ exercism configure --token=TOKEN"'
   when: exercism is changed
