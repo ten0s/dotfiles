@@ -171,6 +171,21 @@
   command: make chdir=/home/{{user}}/.erl_libs/sync/
   when: sync.changed
 
+- name: Pull elvis
+  git: repo=https://github.com/inaka/elvis
+       dest=/home/{{user}}/projects/elvis
+       version=0.4.2
+  register: elvis
+
+- name: Build elvis
+  command: rebar3 escriptize chdir=/home/{{user}}/projects/elvis/
+  when: elvis.changed
+
+- name: Create elvis link
+  file: src=/home/{{user}}/projects/elvis/_build/default/bin/elvis
+        dest=/home/{{user}}/bin/elvis
+        state=link
+
 # Consider moving to https://github.com/massemanet/redbug
 # But the above doesn't have the shell script
 - name: Pull eper
