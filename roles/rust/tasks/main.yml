@@ -19,5 +19,15 @@
   - rust-src
   - rust-docs
 
+- name: Install Rustup stuff
+  shell: rustup install {{item}}
+  with_items:
+  - nightly
+
 - name: Update Rustup
   shell: rustup update
+
+- name: Install Cargo stuff
+  shell: cargo install {{item}}
+  with_items:
+  - cargo-expand # https://github.com/dtolnay/cargo-expand
