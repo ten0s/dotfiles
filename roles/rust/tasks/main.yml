@@ -3,6 +3,11 @@
   copy: src=01-bashrc-rust
         dest=/home/{{user}}/.bashrc.d/
 
+# https://doc.rust-lang.org/cargo/reference/config.html
+- name: Copy cargo config
+  copy: src=config
+        dest=/home/{{user}}/.cargo/
+
 # https://www.rust-lang.org/tools/install
 - name: Install Rustup
   shell: curl -sSf https://sh.rustup.rs | sh -s -- -q -y --no-modify-path creates=/home/{{user}}/.cargo/bin/rustup
