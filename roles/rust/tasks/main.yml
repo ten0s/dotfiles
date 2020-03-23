@@ -17,7 +17,9 @@
   shell: rustup component add {{item}}
   with_items:
   - clippy
+  - rls # Rust Language Server https://github.com/rust-lang/rls
   - rustfmt
+  - rust-analysis
   - rust-docs
   - rust-src
 
@@ -32,4 +34,4 @@
 - name: Install Cargo stuff
   shell: cargo install {{item}}
   with_items:
-  - cargo-expand # https://github.com/dtolnay/cargo-expand
+  - cargo-expand # Macro expander https://github.com/dtolnay/cargo-expand
