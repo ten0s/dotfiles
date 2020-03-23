@@ -16,8 +16,10 @@
 - name: Install components
   shell: rustup component add {{item}}
   with_items:
-  - rust-src
+  - clippy
+  - rustfmt
   - rust-docs
+  - rust-src
 
 - name: Install Rustup stuff
   shell: rustup install {{item}}
