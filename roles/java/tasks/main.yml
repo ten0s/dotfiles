@@ -13,37 +13,6 @@
   - /usr/java/packages/lib/ext
 
 ##
-# Java 8
-# http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
-# https://linuxconfig.org/how-to-install-java-on-ubuntu-18-04-bionic-beaver-linux
-##
-
-# https://launchpad.net/~webupd8team/+archive/ubuntu/java
-- name: Add Java 8 apt key
-  become: true
-  apt_key: keyserver=keyserver.ubuntu.com
-           id=EEA14886
-           state=present
-
-- name: Add Java 8 apt repo
-  become: true
-  apt_repository: repo='deb http://ppa.launchpad.net/webupd8team/java/ubuntu {{ubuntu_codename}} main'
-                  state=present
-
-- name: Enable automated installation
-  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-
-- name: Install Java 8
-  become: true
-  apt: name=oracle-java8-installer
-       state=present
-
-- name: Set Java 8 as default
-  become: true
-  apt: name=oracle-java8-set-default
-       state=present
-
-##
 # Java 10,11
 # https://www.linuxuprising.com/2018/04/install-oracle-java-10-in-ubuntu-or.html
 # https://www.linuxuprising.com/2018/10/how-to-install-oracle-java-11-in-ubuntu.html
