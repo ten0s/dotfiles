@@ -7,11 +7,7 @@
     - libxml2-dev
     - libxslt-dev
     - python-dev
-    - python-pip
-    - python3-dev
-    - python3-pip
-    - python3-venv
-    state: present
+    state: latest
 
 - name: Upgrade pip
   become: true
@@ -28,11 +24,5 @@
 - name: Install ansible-lint
   pip:
     name: ansible-lint
-    extra_args: --user
-    state: latest
-
-- name: Install Boto3
-  pip:
-    name: boto3
     extra_args: --user
     state: latest
