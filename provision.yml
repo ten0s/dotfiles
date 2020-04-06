@@ -14,7 +14,7 @@
     erl_ver: 19.3
     exercism_ver: 3.0.13
     jq_ver: 1.6
-    mvn_ver: 3.6.0
+    mvn_ver: 3.6.3
     skype_ver: 8.57.0.116
     slack_ver: 4.3.2-amd64
     vagrant_ver: 2.2.7
