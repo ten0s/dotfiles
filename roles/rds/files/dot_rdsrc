@@ -1,2 +1,3 @@
 {cookie, "~/bin/cookie"}.
 {diff, "~/bin/meld"}.
+{ftime, "%Y-%m-%d %H:%M:%S"}.
