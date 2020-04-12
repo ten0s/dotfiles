@@ -1,0 +1,9 @@
+---
+- name: Download
+  get_url: url=https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+           dest={{cache_dir}}/teamviewer_amd64.deb
+
+- name: Install
+  become: true
+  apt: deb={{cache_dir}}/teamviewer_amd64.deb
+       state=present

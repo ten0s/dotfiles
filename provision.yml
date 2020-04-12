@@ -56,6 +56,7 @@
   - {import_role: name=skype       , tags: ["skype"]}
   - {import_role: name=slack       , tags: ["slack"]}
   - {import_role: name=teams       , tags: ["teams"]}
+  - {import_role: name=teamviewer  , tags: ["teamviewer"]}
   - {import_role: name=vagrant     , tags: ["vagrant"]}
   - {import_role: name=virtualbox  , tags: ["virtualbox"]}
   - {import_role: name=work        , tags: ["work"]}
