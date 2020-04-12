@@ -1,9 +1,11 @@
 ---
+# Real download link
+# curl -I https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 - name: Download
-  get_url: url=https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-           dest={{cache_dir}}/teamviewer_amd64.deb
+  get_url: url=https://dl.teamviewer.com/download/linux/version_15x/teamviewer_{{teamviewer_ver}}_amd64.deb
+           dest={{cache_dir}}/teamviewer_{{teamviewer_ver}}_amd64.deb
 
 - name: Install
   become: true
-  apt: deb={{cache_dir}}/teamviewer_amd64.deb
+  apt: deb={{cache_dir}}/teamviewer_{{teamviewer_ver}}_amd64.deb
        state=present

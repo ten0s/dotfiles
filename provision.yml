@@ -17,6 +17,7 @@
     mvn_ver: 3.6.3
     skype_ver: 8.58.0.93
     slack_ver: 4.4.0-amd64
+    teamviewer_ver: 15.4.4445
     vagrant_ver: 2.2.7
     virtualbox_ver: 6.0
     ubuntu_codename: bionic # lsb_release -c OR cat /etc/os-release OR cat /etc/upstream-release/lsb-release
