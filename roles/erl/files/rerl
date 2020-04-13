@@ -81,7 +81,16 @@ load)
    if [[ $3 ]]; then
        beam=${3}
        module=$(basename ${beam%.*})
-       path=$(rpc_call "$node" "$name" "$cookie" "code,which,['$module']")
+       eval="
+case code:which('$module') of
+non_existing ->
+    {ok, CWD} = file:get_cwd(),
+    lists:flatten([CWD, $/, atom_to_list('$module'), atom_to_list('.beam')]);
+Path ->
+    Path
+end.
+"
+       path=$(eval_call "$node" "$name" "$cookie" "$eval")
        case $host in
        10.* | 172.*)
            ssh $host "tee $path >/dev/null" <$beam || exit 1
