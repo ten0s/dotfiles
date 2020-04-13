@@ -43,7 +43,8 @@ function rpc_call() {
     local name=$2
     local cookie=$3
     local mfa=$4
-    erl $name -hidden -noshell -setcookie $cookie -eval "io:format(\"~p~n\", [rpc:call('$node', $mfa)]), init:stop()."
+    local eval="io:format(\"~p~n\", [rpc:call('$node', $mfa)]), init:stop()."
+    erl $name -hidden -noshell -setcookie $cookie -eval "$eval"
 }
 
 function eval_call() {
@@ -51,7 +52,14 @@ function eval_call() {
     local name=$2
     local cookie=$3
     local expr=$4
-    erl $name -hidden -noshell -setcookie $cookie -eval "{ok, Ts, _} = erl_scan:string(\"$expr\"), {ok, Fs} = erl_parse:parse_exprs(Ts), {value, V, _} = rpc:call('$node', erl_eval, exprs, [Fs, []]), io:format(\"~p~n\", [V]), init:stop()."
+    local eval="
+{ok, Ts, _} = erl_scan:string(\"$expr\"),
+{ok, Fs} = erl_parse:parse_exprs(Ts),
+{value, V, _} = rpc:call('$node', erl_eval, exprs, [Fs, []]),
+io:format(\"~p~n\", [V]),
+init:stop().
+"
+    erl $name -hidden -noshell -setcookie $cookie -eval "$eval"
 }
 
 case $cmd in
@@ -113,8 +121,34 @@ redbug)
    redbug -setcookie $cookie $name $node $3 $4 $5 $6
    ;;
 observer)
-   erl $name -noshell -setcookie $cookie -eval "pong = net_adm:ping('$node'), observer:start(), {ok, Ns} = net_adm:names(), Id = (catch lists:foldl(fun ('$node', Idx) -> throw(Idx); (_, Idx) -> 1 + Idx end, 1001, lists:usort([list_to_atom(N) || {N, _} <- Ns] ++ nodes()))), observer ! {wx,Id,ign,ing,{wxCommand,command_menu_selected,ign,ign,ign}}, Wait = fun W() -> case whereis(observer) of Pid when is_pid(Pid) -> timer:sleep(500), W(); _ -> stop end end, Wait(), init:stop()."
-    ;;
+   eval="
+pong = net_adm:ping('$node'),
+observer:start(),
+{ok, Names} = net_adm:names(),
+EpmdNames = [list_to_atom(Name) || {Name, _Port} <- Names],
+KnownNodes = nodes(),
+Nodes = lists:usort(EpmdNames ++ KnownNodes),
+Id = (catch lists:foldl(fun
+    ('$node', Idx) ->
+        throw(Idx);
+    (_, Idx) ->
+        1 + Idx
+end, 1001, Nodes)),
+observer ! {wx, Id, ign, ing, {wxCommand, command_menu_selected, ign, ign, ign}},
+Wait = fun W() ->
+    case whereis(observer) of
+    Pid when is_pid(Pid) ->
+        timer:sleep(100),
+        W();
+   _ ->
+       stop
+   end
+end,
+Wait(),
+init:stop().
+"
+   erl $name -noshell -setcookie $cookie -eval "$eval"
+   ;;
 *)
     echo "Unknown command: $cmd"
     exit 1
