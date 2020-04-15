@@ -17,6 +17,9 @@
 [mergetool]
     prompt = false
 
+# List available diff tools:
+# $ git difftool --tool-help
+# Run particular diff tool:
 # $ git difftool --tool unzip-l
 [difftool "unzip-l"]
    cmd = t1=`mktemp` && `unzip -l $LOCAL >$t1` && t2=`mktemp` && `unzip -l $REMOTE >$t2` && meld $t1 $t2
