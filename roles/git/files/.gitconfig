@@ -1,21 +1,44 @@
 [user]
     name = Dmitry Klionsky
     email = dm.klionsky@gmail.com
+
 [core]
     editor = emacs
+
 [diff]
     tool = meld
+
 [merge]
     tool = meld
+
 [difftool]
     prompt = false
+
 [mergetool]
     prompt = false
+
+# $ git difftool --tool unzip-l
+[difftool "unzip-l"]
+   cmd = t1=`mktemp` && `unzip -l $LOCAL >$t1` && t2=`mktemp` && `unzip -l $REMOTE >$t2` && meld $t1 $t2
+
+[difftool "unzip-v"]
+   cmd = t1=`mktemp` && `unzip -v $LOCAL >$t1` && t2=`mktemp` && `unzip -v $REMOTE >$t2` && meld $t1 $t2
+
+[difftool "unzip-c"]
+   cmd = t1=`mktemp` && `unzip -c $LOCAL >$t1` && t2=`mktemp` && `unzip -c $REMOTE >$t2` && meld $t1 $t2
+
+[difftool "unzip-cp"]
+   cmd = t1=`mktemp` && `unzip -cp $LOCAL >$t1` && t2=`mktemp` && `unzip -cp $REMOTE >$t2` && meld $t1 $t2
+
+[difftool "xxd"]
+   cmd = t1=`mktemp` && `xxd $LOCAL >$t1` && t2=`mktemp` && `xxd $REMOTE >$t2` && meld $t1 $t2
+
 [color]
     status = auto
     branch = auto
     diff = auto
     interactive = auto
     ui = true
+
 [url "https://"]
     insteadOf = git://
