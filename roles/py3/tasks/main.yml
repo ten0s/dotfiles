@@ -17,9 +17,33 @@
     state: latest
     executable: pip3
 
+- name: Copy scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/.local/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - run-py3-script.sh
+
 - name: Install youtube-dl
   pip:
     name: youtube-dl
     extra_args: --user
     state: latest
     executable: pip3
+
+- name: Install pdf2txt 1/2
+  pip:
+    name: pdfminer.six
+    extra_args: --user
+    state: latest
+    executable: pip3
+
+- name: Simlink pdf2txt 2/2
+  file:
+    src: /home/{{user}}/.local/bin/run-py3-script.sh
+    dest: /home/{{user}}/.local/bin/{{item}}
+    state: link
+  with_items:
+  - pdf2txt
+  - dumppdf
