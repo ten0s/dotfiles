@@ -9,6 +9,7 @@ alias grem="git remote -v"
 alias gpushod="git push origin develop"
 alias gpushom="git push origin master"
 alias gpushoq="git push origin qa"
+alias gpushot="git push origin test"
 alias gdt="git difftool"
 alias gdtc="git difftool --cached"
 alias gdf="git diff"
@@ -18,6 +19,7 @@ alias gcommita="git commit --amend -m"
 alias gpullod="git pull origin develop"
 alias gpullom="git pull origin master"
 alias gpulloq="git pull origin qa"
+alias gpullot="git pull origin test"
 
 function gsshurl() {
     local OldUrl=`git remote -v | sed -E -n 's/origin\s*(.*) \(push\)/\1/p'`
