@@ -20,21 +20,18 @@
 # List available diff tools:
 # $ git difftool --tool-help
 # Run particular diff tool:
-# $ git difftool --tool unzip-l
-[difftool "unzip-l"]
-   cmd = t1=`mktemp` && `unzip -l $LOCAL >$t1` && t2=`mktemp` && `unzip -l $REMOTE >$t2` && meld $t1 $t2
-
+# $ git difftool --tool unzip-v
 [difftool "unzip-v"]
-   cmd = t1=`mktemp` && `unzip -v $LOCAL >$t1` && t2=`mktemp` && `unzip -v $REMOTE >$t2` && meld $t1 $t2
+   cmd = t1=`mktemp` && `unzip -v $LOCAL >$t1` && t2=`mktemp` && `unzip -v $REMOTE >$t2` && meld $t1 $t2 && rm -f $t1 $t2
 
 [difftool "unzip-c"]
-   cmd = t1=`mktemp` && `unzip -c $LOCAL >$t1` && t2=`mktemp` && `unzip -c $REMOTE >$t2` && meld $t1 $t2
+   cmd = t1=`mktemp` && `unzip -c $LOCAL >$t1` && t2=`mktemp` && `unzip -c $REMOTE >$t2` && meld $t1 $t2 && rm -f $t1 $t2
 
 [difftool "unzip-p"]
-   cmd = t1=`mktemp` && `unzip -p $LOCAL >$t1` && t2=`mktemp` && `unzip -p $REMOTE >$t2` && meld $t1 $t2
+   cmd = t1=`mktemp` && `unzip -p $LOCAL >$t1` && t2=`mktemp` && `unzip -p $REMOTE >$t2` && meld $t1 $t2 && rm -f $t1 $t2
 
 [difftool "xxd"]
-   cmd = t1=`mktemp` && `xxd $LOCAL >$t1` && t2=`mktemp` && `xxd $REMOTE >$t2` && meld $t1 $t2
+   cmd = t1=`mktemp` && `xxd $LOCAL >$t1` && t2=`mktemp` && `xxd $REMOTE >$t2` && meld $t1 $t2 && rm -f $t1 $t2
 
 [color]
     status = auto
