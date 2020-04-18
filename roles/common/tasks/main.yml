@@ -161,6 +161,7 @@
     - nmap
     - nmon
     - openvpn
+    - pandoc # docx, pdf, markdown, etc converter
     - pinta # Image editor
     - pv # monitor the progress of data through a pipe
     - pwgen
