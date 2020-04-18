@@ -30,8 +30,8 @@
 [difftool "unzip-c"]
    cmd = t1=`mktemp` && `unzip -c $LOCAL >$t1` && t2=`mktemp` && `unzip -c $REMOTE >$t2` && meld $t1 $t2
 
-[difftool "unzip-cp"]
-   cmd = t1=`mktemp` && `unzip -cp $LOCAL >$t1` && t2=`mktemp` && `unzip -cp $REMOTE >$t2` && meld $t1 $t2
+[difftool "unzip-p"]
+   cmd = t1=`mktemp` && `unzip -p $LOCAL >$t1` && t2=`mktemp` && `unzip -p $REMOTE >$t2` && meld $t1 $t2
 
 [difftool "xxd"]
    cmd = t1=`mktemp` && `xxd $LOCAL >$t1` && t2=`mktemp` && `xxd $REMOTE >$t2` && meld $t1 $t2
