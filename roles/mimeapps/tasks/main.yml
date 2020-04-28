@@ -1,0 +1,42 @@
+---
+- set_fact:
+    handlers:
+    - {scheme: djvux, desktop: djvux.desktop, handler: evincex.sh}
+    - {scheme: manx , desktop: manx.desktop , handler: manx.sh}
+    - {scheme: pdfx , desktop: pdfx.desktop , handler: evincex.sh}
+
+- name: Stat mimeapps.list
+  stat:
+    path: /home/{{user}}/.local/share/applications/mimeapps.list
+  register: config
+
+- name: Copy mimeapps.list
+  copy:
+    src: mimeapps.list
+    dest: /home/{{user}}/.local/share/applications/
+  when: not config.stat.exists
+
+- name: Copy handlers
+  copy: src={{item.handler}}
+        dest=/home/{{user}}/bin/{{item.handler}}
+        mode=0755
+  with_items:
+  - "{{handlers}}"
+
+- name: Copy desktops
+  copy: src={{item.desktop}}
+        dest=/home/{{user}}/.local/share/applications/{{item.desktop}}
+        backup=true
+  with_items:
+  - "{{handlers}}"
+
+- name: Add schemes
+  lineinfile:
+    path: /home/{{user}}/.local/share/applications/mimeapps.list
+    backup: true
+    regexp: "x-scheme-handler/{{item.scheme}}={{item.desktop}}"
+    insertafter: "^[Added Associations]"
+    line: "x-scheme-handler/{{item.scheme}}={{item.desktop}};"
+    state: present
+  with_items:
+  - "{{handlers}}"
