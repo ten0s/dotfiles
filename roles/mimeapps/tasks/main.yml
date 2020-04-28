@@ -5,17 +5,6 @@
     - {scheme: manx , desktop: manx.desktop , handler: manx.sh}
     - {scheme: pdfx , desktop: pdfx.desktop , handler: evincex.sh}
 
-- name: Stat mimeapps.list
-  stat:
-    path: /home/{{user}}/.local/share/applications/mimeapps.list
-  register: config
-
-- name: Copy mimeapps.list
-  copy:
-    src: mimeapps.list
-    dest: /home/{{user}}/.local/share/applications/
-  when: not config.stat.exists
-
 - name: Copy handlers
   copy: src={{item.handler}}
         dest=/home/{{user}}/bin/{{item.handler}}
@@ -30,9 +19,20 @@
   with_items:
   - "{{handlers}}"
 
+- name: Stat mimeapps.list
+  stat:
+    path: /home/{{user}}/.config/mimeapps.list
+  register: config
+
+- name: Create mimeapps.list
+  copy:
+    src: mimeapps.list
+    dest: /home/{{user}}/.config/
+  when: not config.stat.exists
+
 - name: Add schemes
   lineinfile:
-    path: /home/{{user}}/.local/share/applications/mimeapps.list
+    path: /home/{{user}}/.config/mimeapps.list
     backup: true
     regexp: "x-scheme-handler/{{item.scheme}}={{item.desktop}}"
     insertafter: "^[Added Associations]"
