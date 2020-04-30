@@ -36,9 +36,8 @@
   - anki-dropbox-sync.sh
 
 - name: Install 5/5
-  become: true
   copy: src={{item}}
-        dest=/usr/local/share/applications/{{item}}
+        dest=/home/{{user}}/.local/share/applications/{{item}}
         backup=true
   with_items:
   - anki.desktop
