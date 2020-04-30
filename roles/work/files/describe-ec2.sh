@@ -10,5 +10,5 @@ JSON=$(ssh $IP 'curl -s http://169.254.169.254/latest/dynamic/instance-identity/
 InstanceId=$(echo ${JSON} | jq -r .instanceId)
 Region=$(echo ${JSON} | jq -r .region)
 
-echo "Terminating ${IP} (${InstanceId} in ${Region})"
-aws ec2 terminate-instances --instance-ids ${InstanceId} --region ${Region}
+echo "Describing ${IP} (${InstanceId} in ${Region})"
+aws ec2 describe-instances --instance-ids ${InstanceId} --region ${Region}
