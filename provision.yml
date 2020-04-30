@@ -18,6 +18,7 @@
     skype_ver: 8.58.0.93
     slack_ver: 4.4.0-amd64
     teamviewer_ver: 15.4.4445
+    telegram_ver: 2.1.0
     vagrant_ver: 2.2.7
     virtualbox_ver: 6.0
     ubuntu_codename: bionic # lsb_release -c OR cat /etc/os-release OR cat /etc/upstream-release/lsb-release
@@ -59,6 +60,7 @@
   - {import_role: name=slack       , tags: ["slack"]}
   - {import_role: name=teams       , tags: ["teams"]}
   - {import_role: name=teamviewer  , tags: ["teamviewer"]}
+  - {import_role: name=telegram    , tags: ["telegram"]}
   - {import_role: name=vagrant     , tags: ["vagrant"]}
   - {import_role: name=virtualbox  , tags: ["virtualbox"]}
   - {import_role: name=work        , tags: ["work"]}
