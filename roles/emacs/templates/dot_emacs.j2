@@ -14,7 +14,11 @@
 (setq show-trailing-whitespace t)
 (show-paren-mode t)
 ;(setq show-paren-style 'expression)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+; don't delete trailing whitespaces
+; https://stackoverflow.com/questions/50258565/git-editing-hunks-fails-when-file-has-other-hunks
+;(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (setq ediff-split-window-function 'split-window-horizontally)
 (delete-selection-mode 1) ; neg - disable | pos - enable
 (setq make-backup-files nil)
