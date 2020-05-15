@@ -3,6 +3,7 @@
     handlers:
     - {scheme: djvux, desktop: djvux.desktop, handler: evincex.sh}
     - {scheme: manx , desktop: manx.desktop , handler: manx.sh}
+    - {scheme: openx, desktop: openx.desktop, handler: openx.sh}
     - {scheme: pdfx , desktop: pdfx.desktop , handler: evincex.sh}
 
 - name: Copy handlers

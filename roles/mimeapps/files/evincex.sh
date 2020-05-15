@@ -18,4 +18,4 @@ echo "URI : $URI"
 echo "FILE: $FILE"
 echo "PAGE: $PAGE"
 
-evince "$(bash -c "ls $FILE")" --page-label="$PAGE"
+evince "$(bash -c "echo $FILE")" --page-label="$PAGE"
