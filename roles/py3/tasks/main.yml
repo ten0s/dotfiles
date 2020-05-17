@@ -17,6 +17,13 @@
     state: latest
     executable: pip3
 
+- name: Install setuptools
+  pip:
+    name: setuptools
+    extra_args: --user
+    state: latest
+    executable: pip3
+
 - name: Copy scripts
   copy: src={{item}}
         dest=/home/{{user}}/.local/bin/{{item}}
@@ -28,6 +35,13 @@
 - name: Install youtube-dl
   pip:
     name: youtube-dl
+    extra_args: --user
+    state: latest
+    executable: pip3
+
+- name: Install GPlayCli
+  pip:
+    name: gplaycli
     extra_args: --user
     state: latest
     executable: pip3
