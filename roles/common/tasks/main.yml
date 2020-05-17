@@ -135,6 +135,7 @@
     - gnupg-agent
     - gnuplot
     - gnuplot-x11 # conflicts with gnuplot-nox
+    - gparted
     - graphviz
     - graphviz-doc
     - gsfonts-x11 # dia recommends
@@ -175,6 +176,7 @@
     - stress  # see also stress-ng
     - sysbench
     - sysstat # iostat
+    - testdisk # deleted file recovery (photorec)
     - timeshift
     - tree
     - tzdata # for DMU
