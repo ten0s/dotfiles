@@ -25,7 +25,7 @@ echo "SECTION: $SECTION"
 echo "PATTERN: $PATTERN"
 
 if [[ -n "$PATTERN" ]]; then
-    man $SECTION $COMMAND | less --pattern="$PATTERN"
+    man $SECTION $COMMAND | less --pattern "$PATTERN"
 else
     man $SECTION $COMMAND
 fi
