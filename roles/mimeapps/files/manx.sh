@@ -8,9 +8,9 @@ if [[ $# -ne 1 ]]; then
     echo "Usage: $(basename $0) <manx:COMMAND[(SECTION)][::PATTERN]>"
     echo "Examples:"
     echo "  $(basename $0) manx:grep"
-    echo "  $(basename $0) 'manx:grep(1)'"
+    echo "  $(basename $0) manx:grep(1)"
     echo "  $(basename $0) manx:grep::REGULAR+EXPRESSIONS"
-    echo "  $(basename $0) 'manx:grep(1)::REGULAR+EXPRESSIONS'"
+    echo "  $(basename $0) manx:grep(1)::REGULAR+EXPRESSIONS"
     exit 1
 fi
 
