@@ -120,6 +120,7 @@
     - build-essential
     - ca-certificates
     - curl
+    - dante-client # socksify
     - ddd # debuggers front-end
     - dia
     - dia-shapes
