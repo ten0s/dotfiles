@@ -1,11 +1,7 @@
-- name: Add apt repo
-  become: true
-  apt_repository: repo='ppa:ubuntu-wine/ppa'
-                  state=present
-
+---
 - name: Install
   become: true
-  apt: name=wine1.7
+  apt: name=winehq-stable
        state=present
   register: wine
 
