@@ -15,9 +15,9 @@
     exercism_ver: 3.0.13
     jq_ver: 1.6
     mvn_ver: 3.6.3
-    skype_ver: 8.59.0.77
-    slack_ver: 4.4.0-amd64
-    teamviewer_ver: 15.5.3
+    skype_ver: 8.60.0.76
+    slack_ver: 4.4.3-amd64
+    teamviewer_ver: 15.6.7
     telegram_ver: 2.1.0
     vagrant_ver: 2.2.7
     virtualbox_ver: 6.0
