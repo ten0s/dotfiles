@@ -28,15 +28,15 @@
   become: true
   apt: name=nodejs state=latest
 
-# sudo npm install --global <PACKAGE>
+# sudo npm install --global <PACKAGE>@<VERSION>
 - name: Install NPM global packages
   become: true
   npm: name={{item.name}}
        version={{item.version}}
        global=true
-       state=present
+       state=latest
   with_items:
-  - {name: "commander", version: "4.1.1"}
-  - {name: "jslint",    version: "0.12.1"}
-  - {name: "qunit",     version: "2.9.3"}
-  - {name: "yarn",      version: "1.22.0"}
+  - {name: "eslint", version: "7.2.0"}
+  - {name: "jslint", version: "0.12.1"}
+  - {name: "qunit",  version: "2.10.0"}
+  - {name: "yarn",   version: "1.22.4"}
