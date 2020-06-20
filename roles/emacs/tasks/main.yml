@@ -1,11 +1,35 @@
 ---
+# https://launchpad.net/~kelleyk/+archive/ubuntu/emacs
+
 ##
 # After clean install run M-x list-packages
 ##
 
+- name: Remove repo's version
+  become: true
+  apt:
+    name:
+    - emacs
+    - emacs25
+    - emacs25-bin-common
+    - emacs25-common
+    state: absent
+    purge: true
+
+- name: Add apt key
+  become: true
+  apt_key: keyserver=keyserver.ubuntu.com
+           id=873503A090750CDAEB0754D93FF0E01EEAAFC9CD
+           state=present
+
+- name: Add apt repo
+  become: true
+  apt_repository: repo='deb http://ppa.launchpad.net/kelleyk/emacs/ubuntu {{ubuntu_codename}} main'
+                  state=present
+
 - name: Install
   become: true
-  apt: name=emacs
+  apt: name=emacs26
        state=latest
 
 - name: Create dir

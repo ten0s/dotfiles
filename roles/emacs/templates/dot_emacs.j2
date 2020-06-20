@@ -233,18 +233,8 @@
 (require 'flymake-cursor) ; http://www.emacswiki.org/emacs/FlymakeCursor
 (setq flymake-log-level 3)
 
-; see /usr/local/lib/erlang/lib/tools-<Ver>/emacs/erlang-flymake.erl
-(defun flymake-only-on-save ()
-  "Trigger flymake only when the buffer is saved (disables syntax
-check on newline and when there are no changes)."
-  (interactive)
-  ;; There doesn't seem to be a way of disabling this; set to the
-  ;; largest int available as a workaround (most-positive-fixnum
-  ;; equates to 8.5 years on my machine, so it ought to be enough ;-) )
-  (setq flymake-no-changes-timeout most-positive-fixnum)
-  (setq flymake-start-syntax-check-on-newline nil))
-
-(flymake-only-on-save)
+; Trigger flymake only when the buffer is saved
+(setq flymake-no-changes-timeout nil)
 
 ;;;----------------------------------------
 ;;; flymake syntaxerl
@@ -371,7 +361,7 @@ check on newline and when there are no changes)."
    (mscgen . t)
    (plantuml . t)
    (python . t)
-   (sh . t)
+   (shell . t)
 ))
 
 (setq org-startup-with-inline-images t)
