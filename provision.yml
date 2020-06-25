@@ -66,6 +66,7 @@
   - {import_role: name=work        , tags: ["work"]}
   - {import_role: name=vscode      , tags: ["vscode"]}
   - {import_role: name=xymon       , tags: ["xymon"]}
+  - {import_role: name=zoom        , tags: ["zoom"]}
 
   - {import_role: name=carcharodon , tags: ["carcharodon"], when: ansible_hostname == "carcharodon"}
   - {import_role: name=megalodon   , tags: ["megalodon"]  , when: ansible_hostname == "megalodon"}
