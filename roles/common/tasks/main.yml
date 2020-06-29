@@ -218,6 +218,7 @@
     name:
     - openssh-client
     - openssh-server
+    - sshfs
     state: latest
 
 - name: Start SSH
