@@ -6,7 +6,7 @@ if [[ $# -ne 1 ]]; then
 fi
 
 URI="$1"
-FILE=$(echo $URI | sed -rn 's;(openx)://(.*);\2;p')
+FILE=$(echo $URI | sed -rn 's;openx://(.*);\1;p')
 
 echo "URI : $URI"
 echo "FILE: $FILE"

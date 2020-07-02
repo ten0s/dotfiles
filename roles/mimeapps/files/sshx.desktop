@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Secure shell launcher
+Exec=xfce4-terminal -x sshx.sh %u
+Icon=utilities-terminal
+Type=Application
+Terminal=false
+NoDisplay=true
+MimeType=x-scheme-handler/ssh;
