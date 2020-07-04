@@ -8,3 +8,4 @@
   - jenkins-build.sh
   - describe-ec2.sh
   - terminate-ec2.sh
+  - to-table.sh
