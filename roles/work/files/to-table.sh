@@ -2,7 +2,7 @@
 
 if [[ $# -lt 1 ]]; then
     echo "Usage: $(basename $0) ROWSxCOLS [FILE ...]"
-    echo "Transform incorrectly copied table from books"
+    echo "Transform incorrectly copied table from book"
     echo "Example:"
     echo "$ echo -e '11\n12\n13\n21\n22\n23' | to-table.sh 2x3"
     echo "11  13  22"
@@ -13,7 +13,7 @@ fi
 size=$1
 shift
 awk -f <(sed -rne '/^#BEGIN_AWK/,/^#END_AWK/p' $0) \
-    -v size=$size -v OFS=':' "$@" | column -s ':' -t
+    -v size=$size -v OFS='\t' "$@"
 exit $PIPESTATUS
 
 #BEGIN_AWK
