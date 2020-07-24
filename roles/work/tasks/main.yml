@@ -5,7 +5,8 @@
         mode=0755
         backup=true
   with_items:
-  - jenkins-build.sh
   - describe-ec2.sh
+  - jenkins-build.sh
+  - open-aws-accounts.sh
   - terminate-ec2.sh
   - to-table.sh
