@@ -8,6 +8,7 @@
     cache_dir: /var/cache/ansible
     clang_ver: 6.0
     anki2_ver: 2.1.22-linux-amd64
+    antlr_ver: 4.8
     asdf_ver: 0.7.3
     docker_compose_ver: 1.25.3 # https://github.com/docker/compose/releases
     elixir_ver: 1.9.1
@@ -27,6 +28,7 @@
 
   - {import_role: name=algs4       , tags: ["algs4"]}
   - {import_role: name=anki2       , tags: ["anki2"]}
+  - {import_role: name=antlr       , tags: ["antlr"]}
   - {import_role: name=anyconnect  , tags: ["anyconnect"]}
   - {import_role: name=asdf        , tags: ["asdf"]}
   - {import_role: name=autokey     , tags: ["autokey"]}

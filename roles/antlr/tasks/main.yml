@@ -1,0 +1,11 @@
+---
+
+- name: Download Antlr
+  become: true
+  get_url:
+    url=https://www.antlr.org/download/antlr-{{antlr_ver}}-complete.jar
+    dest=/home/{{user}}/.java_libs/antlr-{{antlr_ver}}-complete.jar
+
+- name: Copy bashrc config
+  template: src=01-bashrc-antlr.j2
+            dest=/home/{{user}}/.bashrc.d/01-bashrc-antlr
