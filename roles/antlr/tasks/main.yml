@@ -9,3 +9,13 @@
 - name: Copy bashrc config
   template: src=01-bashrc-antlr.j2
             dest=/home/{{user}}/.bashrc.d/01-bashrc-antlr
+
+- name: Copy antlr4
+  template: src=antlr4.j2
+            dest=/home/{{user}}/bin/antlr4
+            mode=755
+
+- name: Copy grun
+  template: src=grun.j2
+            dest=/home/{{user}}/bin/grun
+            mode=755
