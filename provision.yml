@@ -54,6 +54,7 @@
   - {import_role: name=postgresql  , tags: ["postgresql"]}
   - {import_role: name=py          , tags: ["py"]}
   - {import_role: name=py3         , tags: ["py3"]}
+  - {import_role: name=racket      , tags: ["racket"]}
   - {import_role: name=rds         , tags: ["rds"]}
   - {import_role: name=rust        , tags: ["rust"]}
   - {import_role: name=scala       , tags: ["scala"]}

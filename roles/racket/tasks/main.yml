@@ -14,8 +14,8 @@
 
 - name: Install
   become: true
-  apt: name={{item}}
-       state=present
-  with_items:
-  - racket
-  - racket-doc
+  apt:
+    name:
+    - racket
+    - racket-doc
+    state: present
