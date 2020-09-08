@@ -179,7 +179,7 @@
 - name: Pull elvis
   git: repo=https://github.com/inaka/elvis
        dest=/home/{{user}}/projects/elvis
-       version=0.4.2
+       version=0.5.0
   register: elvis
 
 - name: Build elvis
