@@ -17,7 +17,7 @@
     jq_ver: 1.6
     mvn_ver: 3.6.3
     skype_ver: 8.64.0.81
-    slack_ver: 4.8.0-amd64
+    slack_ver: 4.9.1-amd64
     teamviewer_ver: 15.9.5
     telegram_ver: 2.1.0
     vagrant_ver: 2.2.7
