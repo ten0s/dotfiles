@@ -3,9 +3,6 @@
 # https://nodejs.org/en/about/releases
 # https://github.com/nodesource/distributions
 #
-- name: Add Node.js apt key
-  become: true
-  shell: curl -sL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 
 - name: Remove old Node.js
   become: true
@@ -17,18 +14,42 @@
   with_items:
   - "deb https://deb.nodesource.com/node_6.x {{ubuntu_codename}} main"
   - "deb https://deb.nodesource.com/node_8.x {{ubuntu_codename}} main"
+  - "deb https://deb.nodesource.com/node_10.x {{ubuntu_codename}} main"
 
-- name: Add new Node.js repo
-  become: true
-  apt_repository:
-    repo="deb https://deb.nodesource.com/node_10.x {{ubuntu_codename}} main"
-    state=present
+#
+# https://github.com/nvm-sh/nvm
+#
+
+- name: Install NVM
+  shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+  args:
+    creates: "/home/{{user}}/.nvm/nvm.sh"
+
+- name: Copy bashrc config
+  copy: src=01-bashrc-nvm
+        dest=/home/{{user}}/.bashrc.d/10-bashrc-nvm
+
+#
+# $ nvm ls-remote --lts
+# $ nvm ls
+#
 
 - name: Install Node.js
-  become: true
-  apt: name=nodejs state=latest
+  shell: |
+    source /home/{{user}}/.bashrc
+    nvm install {{item}}
+  args:
+    creates: "/home/{{user}}/.nvm/versions/node/{{item}}/bin"
+    executable: /bin/bash
+  with_items:
+  - v10.22.1
+  - v12.19.0
 
+#
 # sudo npm install --global <PACKAGE>@<VERSION>
+#
+
 - name: Install NPM global packages
   become: true
   npm: name={{item.name}}
