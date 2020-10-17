@@ -10,8 +10,8 @@
   apt: deb={{cache_dir}}/teamviewer_{{teamviewer_ver}}_amd64.deb
        state=present
 
-- name: Disable
+- name: Enable
   become: true
   service: name=teamviewerd
-           enabled=false
-           state=stopped
+           enabled=true
+           state=started
