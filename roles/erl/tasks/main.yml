@@ -15,6 +15,7 @@
   with_items:
   - cookie
   - decompile_beam.es
+  - observer
   - remsh
   - rerl
   - tags
