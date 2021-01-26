@@ -17,6 +17,13 @@
     state: latest
     executable: pip3
 
+- name: Install virtualenv
+  pip:
+    name: virtualenv
+    extra_args: --user
+    state: latest
+    executable: pip3
+
 - name: Install setuptools
   pip:
     name: setuptools
