@@ -13,10 +13,7 @@
         mode=0755
         backup=true
   with_items:
-  - cookie
   - decompile_beam.es
-  - observer
-  - remsh
   - tags
 
 - name: Copy bashrc config
@@ -38,11 +35,6 @@
     - unixodbc-dev
     - xsltproc
     state: latest
-
-- name: Install rerl
-  get_url: url=https://raw.githubusercontent.com/ten0s/rerl/master/rerl
-           dest=/home/{{user}}/bin/
-           mode=0755
 
 - name: Install kerl
   get_url: url=https://raw.githubusercontent.com/kerl/kerl/master/kerl

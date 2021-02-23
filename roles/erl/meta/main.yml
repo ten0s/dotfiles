@@ -2,3 +2,4 @@
 dependencies:
 - role: git
 - role: openssl
+- role: rerl

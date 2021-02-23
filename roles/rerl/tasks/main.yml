@@ -1,0 +1,22 @@
+---
+- name: Pull rerl
+  git: repo=git@github.com:ten0s/rerl.git
+       dest=/home/{{user}}/projects/rerl
+       version=HEAD
+  register: rerl
+
+- name: Create rerl link
+  file: src=/home/{{user}}/projects/rerl/rerl
+        dest=/home/{{user}}/bin/rerl
+        mode=0755
+        state=link
+
+- name: Copy scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - cookie
+  - observer
+  - remsh
