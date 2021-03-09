@@ -1,0 +1,20 @@
+---
+
+#
+# https://www.openscad.org/downloads.html
+#
+
+- name: Add apt key
+  become: true
+  apt_key: url=https://files.openscad.org/OBS-Repository-Key.pub
+           state=present
+
+- name: Add apt repo
+  become: true
+  apt_repository: repo='deb https://download.opensuse.org/repositories/home:/t-paul/xUbuntu_18.04/ ./'
+                  state=present
+
+- name: Install
+  become: true
+  apt: name=openscad-nightly
+       state=latest
