@@ -1,30 +1,13 @@
 ---
 #
-# https://nodejs.org/en/about/releases
-# https://github.com/nodesource/distributions
-#
-
-- name: Remove old Node.js
-  become: true
-  apt: name=nodejs state=absent
-
-- name: Remove old Node.js repos
-  become: true
-  apt_repository: repo={{item}} state=absent
-  with_items:
-  - "deb https://deb.nodesource.com/node_6.x {{ubuntu_codename}} main"
-  - "deb https://deb.nodesource.com/node_8.x {{ubuntu_codename}} main"
-  - "deb https://deb.nodesource.com/node_10.x {{ubuntu_codename}} main"
-
-#
 # https://github.com/nvm-sh/nvm
+# https://github.com/nvm-sh/nvm#git-install
 #
 
-- name: Install NVM
-  shell: >
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
-  args:
-    creates: "/home/{{user}}/.nvm/nvm.sh"
+- name: Pull NVM
+  git: repo=https://github.com/nvm-sh/nvm.git
+       dest=/home/{{user}}/.nvm
+       version=v0.38.0
 
 - name: Copy bashrc config
   copy: src=01-bashrc-nvm
@@ -33,14 +16,33 @@
 #
 # $ nvm ls-remote --lts
 # $ nvm ls
+# $ nvm alias default VERSION
+# $ nvm use VERSION
 #
 
-- name: Install Node.js
+- name: Install new Node.js
   shell: |
     source /home/{{user}}/.bashrc
     nvm install {{item}}
   args:
     creates: "/home/{{user}}/.nvm/versions/node/{{item}}/bin"
+    executable: /bin/bash
+  with_items:
+  - v10.24.0
+  - v12.22.0
+
+- name: Set default Node.js
+  shell: |
+    source /home/{{user}}/.bashrc
+    nvm alias default v12.22.0
+  args:
+    executable: /bin/bash
+
+- name: Uninstall old Node.js
+  shell: |
+    source /home/{{user}}/.bashrc
+    nvm uninstall {{item}}
+  args:
     executable: /bin/bash
   with_items:
   - v10.22.1
