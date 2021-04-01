@@ -34,7 +34,7 @@
 - name: Set default Node.js
   shell: |
     source /home/{{user}}/.bashrc
-    nvm alias default v12.22.0
+    nvm alias default {{nodejs_ver}}
   args:
     executable: /bin/bash
 
@@ -54,10 +54,12 @@
 
 - name: Install NPM global packages
   become: true
-  npm: name={{item.name}}
-       version={{item.version}}
-       global=true
-       state=latest
+  npm:
+    name: "{{item.name}}"
+    version: "{{item.version}}"
+    global: true
+    state: latest
+    executable: "/home/{{user}}/.nvm/versions/node/{{nodejs_ver}}/bin/npm"
   with_items:
   - {name: "jslint", version: "0.12.1"}
   - {name: "yarn",   version: "1.22.4"}
