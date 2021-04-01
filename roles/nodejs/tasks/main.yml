@@ -62,4 +62,4 @@
     executable: "/home/{{user}}/.nvm/versions/node/{{nodejs_ver}}/bin/npm"
   with_items:
   - {name: "jslint", version: "0.12.1"}
-  - {name: "yarn",   version: "1.22.4"}
+  - {name: "yarn",   version: "1.22.10"}
