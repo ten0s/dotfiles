@@ -154,6 +154,7 @@
     - libxml2-utils # provides xmllint
     - mc
     - mercurial
+    - minicom
     - moreutils # for errno
     - mpg321 # for mpg123 :)
     - mscgen # http://www.mcternan.me.uk/mscgen/index.html
@@ -164,6 +165,7 @@
     - nmon
     - openvpn
     - pandoc # docx, pdf, markdown, etc converter
+    - picocom # like minicom
     - pinta # Image editor
     - pv # monitor the progress of data through a pipe
     - pwgen
