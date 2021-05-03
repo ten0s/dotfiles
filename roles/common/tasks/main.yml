@@ -120,6 +120,7 @@
     - build-essential
     - ca-certificates
     - curl
+    - cutecom # GUI mini,pico com
     - dante-client # socksify
     - ddd # debuggers front-end
     - dia
