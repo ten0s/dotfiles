@@ -14,7 +14,7 @@
         backup=true
   with_items:
   - decompile_beam.es
-  - print_etf.es
+  - etf.es
   - tags
 
 - name: Copy bashrc config
