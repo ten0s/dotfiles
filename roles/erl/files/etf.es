@@ -16,6 +16,8 @@ main([]) ->
     case file:read(standard_io, 10000000) of
     {ok, Data} ->
         io:format("~p~n", [binary_to_term(iolist_to_binary(Data))]);
+    eof ->
+        ok;
     {error, _} = Error ->
         io:format(standard_error, "Error: ~p~n", [Error]),
         halt(1)
