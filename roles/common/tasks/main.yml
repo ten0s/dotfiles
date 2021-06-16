@@ -116,6 +116,7 @@
     - ansible
     - apache2-utils # ab, rotatelogs
     - apt-transport-https
+    - bless # hex editor
     - bmon # bandwidth monitor and rate estimator
     - build-essential
     - ca-certificates
@@ -191,6 +192,7 @@
     - wget
     - whois
     - wireshark
+    - wxhexeditor # hex editor
     - xclip
     state: latest
 
