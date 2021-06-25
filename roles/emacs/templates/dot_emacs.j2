@@ -24,7 +24,7 @@
 (setq make-backup-files nil)
 ; enable inter-program clipboard
 (setq x-select-enable-clipboard t)
-; set tab to be the tab
+; set tab to be the spaces
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
@@ -224,6 +224,31 @@
 (add-hook 'rust-mode-hook
           (lambda () (setq indent-tabs-mode nil)))
 (setq rust-format-on-save t)
+
+;;;----------------------------------------
+;;; asm-mode
+;;;----------------------------------------
+
+(unless (package-installed-p 'asm-mode)
+  (package-install 'asm-mode))
+
+(require 'asm-mode)
+(add-hook 'asm-mode-hook
+          (lambda ()
+            (setq tab-width 4)
+            (setq tab-stop-list
+                  '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
+            (setq indent-tabs-mode nil)
+            (setq indent-line-function 'insert-tab)
+
+            ;; disable confusiong colon behavior)
+            (advice-add #'asm-colon :override #'self-insert-command)
+            ;; disable confusing semicolon behavior
+            (advice-add #'asm-comment :override #'self-insert-command)
+            ;; don't insert tab on insert line above
+            (local-set-key "\C-o" 'split-line)
+            )
+          )
 
 ;;;----------------------------------------
 ;;; flymake
