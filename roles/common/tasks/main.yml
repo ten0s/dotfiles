@@ -116,6 +116,7 @@
     - ansible
     - apache2-utils # ab, rotatelogs
     - apt-transport-https
+    - ascii
     - bless # hex editor
     - bmon # bandwidth monitor and rate estimator
     - build-essential
