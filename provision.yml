@@ -10,20 +10,20 @@
     anki2_ver: 2.1.22-linux-amd64
     antlr_ver: 4.8
     asdf_ver: 0.7.3
-    docker_compose_ver: 1.25.3 # https://github.com/docker/compose/releases
+    docker_compose_ver: 1.29.2 # https://github.com/docker/compose/releases
     elixir_ver: 1.9.1
     erl_ver: 21.3.8.17
     exercism_ver: 3.0.13
     jq_ver: 1.6
     mvn_ver: 3.6.3
-    nodejs_ver: v12.22.0
-    skype_ver: 8.64.0.81
+    nodejs_ver: v12.22.7
+    #skype_ver: 8.79.0.92
     slack_ver: 4.9.1-amd64
-    teamviewer_ver: 15.9.5
+    teamviewer_ver: 15.24.5
     telegram_ver: 2.1.0
     vagrant_ver: 2.2.7
     virtualbox_ver: 6.0
-    ubuntu_codename: bionic # lsb_release -c OR cat /etc/os-release OR cat /etc/upstream-release/lsb-release
+    ubuntu_codename: focal # cat /etc/os-release
   tasks:
   - {import_role: name=common      , tags: ["common"]}
 

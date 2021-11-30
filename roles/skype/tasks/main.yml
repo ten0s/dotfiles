@@ -23,5 +23,5 @@
 - name: Install
   become: true
   apt:
-    name: skypeforlinux={{skype_ver}}
+    name: skypeforlinux
     state: present
