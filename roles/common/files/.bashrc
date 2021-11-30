@@ -11,7 +11,7 @@ shopt -s histappend
 export HISTCONTROL=erasedups:ignorespace:ignoredups
 export HISTTIMEFORMAT='%F %T '
 
-alias open=gnome-open
+alias open=exo-open
 
 alias sudo="sudo "
 alias ls="ls --color=auto -v"
