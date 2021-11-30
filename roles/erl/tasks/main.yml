@@ -32,7 +32,7 @@
     - libncurses5-dev
     - libssl-dev
     - libtk-img-dev
-    - libwxgtk3.0-dev
+    - libwxgtk3.0-gtk3-dev
     - unixodbc-dev
     - xsltproc
     state: latest
