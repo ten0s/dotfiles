@@ -1,0 +1,10 @@
+---
+- name: No 'nosnap.pref'
+  become: true
+  file: path=/etc/apt/preferences.d/nosnap.pref
+        state=absent
+
+- name: Install
+  become: true
+  apt: name=snapd
+       state=latest

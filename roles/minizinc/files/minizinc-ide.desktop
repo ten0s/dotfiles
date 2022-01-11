@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=MiniZinc IDE
+Exec=minizinc.ide %F
+Icon=/snap/minizinc/current/meta/gui/icon.png
+Terminal=false
+Categories=Science;Development;Education;

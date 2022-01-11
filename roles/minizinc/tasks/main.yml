@@ -1,0 +1,12 @@
+---
+- name: Install 1/2
+  become: true
+  snap:
+    name: minizinc
+    classic: true
+
+- name: Install 2/2
+  copy: src={{item}}
+        dest=/home/{{user}}/.local/share/applications/{{item}}
+  with_items:
+  - minizinc-ide.desktop
