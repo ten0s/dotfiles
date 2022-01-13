@@ -1,8 +1,11 @@
 ---
 - name: Install
   become: true
-  apt: name=winehq-stable
-       state=present
+  apt:
+    name:
+    - mingw-w64
+    - winehq-stable
+    state: latest
   register: wine
 
 - debug: msg='Now run Wine -> Configure Wine and install everything it will ask'
