@@ -4,6 +4,7 @@
   apt:
     name:
     - mingw-w64
+    - mingw-w64-tools
     - winehq-stable
     state: latest
   register: wine
