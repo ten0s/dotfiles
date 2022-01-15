@@ -29,6 +29,7 @@ alias mv="mv -i"
 alias rm="rm -i"
 alias bc="bc -l -q"
 alias uuid="uuid -v4"
+alias cdtemp="cd `mktemp -d`"
 
 alias perror='python -c "import os, sys; print os.strerror(int(sys.argv[1]))"'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
