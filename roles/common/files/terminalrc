@@ -31,3 +31,6 @@ MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 ScrollingUnlimited=TRUE
 ShortcutsNoMenukey=TRUE
+MiscSearchDialogOpacity=100
+MiscShowUnsafePasteDialog=TRUE
+TitleMode=TERMINAL_TITLE_HIDE
