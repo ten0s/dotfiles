@@ -9,9 +9,9 @@
     clang_ver: 6.0
     anki2_ver: 2.1.22-linux-amd64
     antlr_ver: 4.8
-    asdf_ver: 0.7.3
+    asdf_ver: 0.9.0
     docker_compose_ver: 1.29.2 # https://github.com/docker/compose/releases
-    elixir_ver: 1.9.1
+    elixir_ver: 1.11.4
     erl_ver: 21.3.8.17
     exercism_ver: 3.0.13
     jq_ver: 1.6

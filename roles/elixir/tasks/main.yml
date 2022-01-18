@@ -6,13 +6,6 @@
   - result.rc != 0
   - "'Plugin named elixir already added' not in result.stderr"
 
-- name: Install asdf plugin
-  command: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
-  register: result
-  failed_when:
-  - result.rc != 0
-  - "'Plugin named elixir already added' not in result.stderr"
-
 - name: Fix in
   command: sed --in-place 's/make clean test/make compile/' /home/{{user}}/.asdf/plugins/elixir/bin/install
 
