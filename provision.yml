@@ -16,7 +16,7 @@
     exercism_ver: 3.0.13
     jq_ver: 1.6
     mvn_ver: 3.6.3
-    nodejs_ver: v12.22.7
+    nodejs_ver: v12.22.9
     #skype_ver: 8.79.0.92
     slack_ver: 4.9.1-amd64
     teamviewer_ver: 15.24.5

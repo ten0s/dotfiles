@@ -28,7 +28,9 @@
     creates: "/home/{{user}}/.nvm/versions/node/{{item}}/bin"
     executable: /bin/bash
   with_items:
-  - v12.22.7
+  - v12.22.9
+  - v14.18.3
+  - v16.13.2
 
 - name: Set default Node.js
   shell: |
@@ -48,6 +50,7 @@
   - v10.24.0
   - v12.19.0
   - v12.22.0
+  - v12.22.7
 
 #
 # sudo npm install --global <PACKAGE>@<VERSION>
