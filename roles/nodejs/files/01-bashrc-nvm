@@ -1,6 +1,16 @@
+#
+# https://github.com/nvm-sh/nvm#git-install
+#
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#
+# Something like
+# https://github.com/nvm-sh/nvm#deeper-shell-integration
+# I don't know where I took the below
+#
 
 nvm-find-up() {
     path=$(pwd)
