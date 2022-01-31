@@ -19,7 +19,7 @@ if [[ ! -f Jenkinsfile ]]; then
     exit 1
 fi
 
-REPO=$(git remote get-url origin | sed -E 's#(.*):(.*)/(.*)(\.git)+#\3#')
+REPO=$(git remote get-url origin | sed -E -e 's#\.git$##' -e 's#(.*):(.*)/(.*)#\3#')
 BRANCH=$(git branch --no-color | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
 if [[ ${DEBUG} -ge 1 ]]; then
     echo "REPO   : ${REPO}"
