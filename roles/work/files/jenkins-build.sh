@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# The below vars MUST be set
+# The below vars MUST be set in ~/.bashrc.local
 # JENKINS_URL
 # JENKINS_FOLDER
 # JENKINS_USERNAME
