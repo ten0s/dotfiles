@@ -1,0 +1,20 @@
+---
+- name: Set vars
+  set_fact:
+    rclone_ver: 1.57.0
+
+#- name: Remove repo's version
+#  become: true
+#  apt:
+#    name: rclone
+#    state: absent
+
+- name: Download
+  become: true
+  get_url: url=https://downloads.rclone.org/v{{rclone_ver}}/rclone-v{{rclone_ver}}-linux-amd64.deb
+           dest={{cache_dir}}/rclone-v{{rclone_ver}}-linux-amd64.deb
+
+- name: Install
+  become: true
+  apt: deb={{cache_dir}}/rclone-v{{rclone_ver}}-linux-amd64.deb
+       state=present

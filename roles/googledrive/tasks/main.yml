@@ -1,0 +1,28 @@
+---
+#
+# https://mattgosden.medium.com/how-to-setup-google-drive-on-ubuntu-linux-4248e60b32ee
+#
+
+- name: Create dirs
+  file: path={{item}}
+        state=directory
+  with_items:
+  - /home/{{user}}/GoogleDrive
+
+- name: Copy autostart config
+  template:
+    src={{item}}.j2
+    dest=/home/{{user}}/.config/autostart/{{item}}
+    backup=true
+  with_items:
+  - googledrive-start.desktop
+
+- name: Copy menu config
+  template:
+    src={{item}}.j2
+    dest=/home/{{user}}/.local/share/applications/{{item}}
+  with_items:
+  - googledrive-start.desktop
+  - googledrive-stop.desktop
+
+- debug: msg='Now run "$ rclone config" with gdrive name'

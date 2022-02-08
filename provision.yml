@@ -43,6 +43,7 @@
   - {import_role: name=erl         , tags: ["erl"]}
   - {import_role: name=exercism    , tags: ["exercism"]}
   - {import_role: name=git         , tags: ["git"]}
+  - {import_role: name=googledrive , tags: ["googledrive"]}
   - {import_role: name=java        , tags: ["java"]}
   - {import_role: name=jq          , tags: ["jq"]}
   - {import_role: name=meld        , tags: ["meld"]}
@@ -57,6 +58,7 @@
   - {import_role: name=postgresql  , tags: ["postgresql"]}
   - {import_role: name=py3         , tags: ["py3"]}
   - {import_role: name=racket      , tags: ["racket"]}
+  - {import_role: name=rclone      , tags: ["rclone"]}
   - {import_role: name=rds         , tags: ["rds"]}
   - {import_role: name=rerl        , tags: ["rerl"]}
   - {import_role: name=rust        , tags: ["rust"]}
