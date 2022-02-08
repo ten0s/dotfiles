@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    mvn_ver: 3.6.3
+
 - name: Create dirs 1/2
   file: path="{{item}}"
         state=directory

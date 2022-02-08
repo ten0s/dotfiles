@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    teamviewer_ver: 15.24.5
+
 # Real download link
 # curl -I https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 - name: Download

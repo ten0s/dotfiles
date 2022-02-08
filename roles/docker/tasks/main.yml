@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    docker_compose_ver: 1.29.2 # https://github.com/docker/compose/releases
+
 - name: Add apt key
   become: true
   apt_key: keyserver=https://download.docker.com/linux/ubuntu/gpg

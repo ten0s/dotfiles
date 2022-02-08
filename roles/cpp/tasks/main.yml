@@ -12,7 +12,7 @@
   become: true
   apt:
     name:
-    - clang-{{clang_ver}}
+    - clang-6.0
     - llvm
     state: present
 

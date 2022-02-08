@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    jq_ver: 1.6
+
 - name: Remove repo's version
   become: true
   apt:

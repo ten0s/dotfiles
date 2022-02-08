@@ -1,4 +1,7 @@
 ---
+- name: Set vars
+  set_fact:
+    antlr_ver: 4.8
 
 - name: Download Antlr
   become: true

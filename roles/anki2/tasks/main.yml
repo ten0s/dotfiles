@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    anki2_ver: 2.1.22-linux-amd64
+
 - name: Symlink $HOME/anki2
   file: src=/home/{{user}}/Dropbox/refs/anki2
         dest=/home/{{user}}/anki2

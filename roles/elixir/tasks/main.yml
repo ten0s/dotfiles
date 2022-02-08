@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    elixir_ver: 1.11.4
+
 - name: Install asdf plugin
   command: asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
   register: result

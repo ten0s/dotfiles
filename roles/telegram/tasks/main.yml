@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    telegram_ver: 3.2.4
+
 - name: Download
   get_url: url=https://updates.tdesktop.com/tlinux/tsetup.{{telegram_ver}}.tar.xz
            dest={{cache_dir}}/tsetup.{{telegram_ver}}.tar.xz

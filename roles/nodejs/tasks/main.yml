@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    nodejs_ver: v12.22.9
+
 #
 # https://github.com/nvm-sh/nvm
 # https://github.com/nvm-sh/nvm#git-install
