@@ -47,6 +47,13 @@
     state: latest
     executable: pip3
 
+- name: Install streamlink
+  pip:
+    name: streamlink
+    extra_args: --user
+    state: latest
+    executable: pip3
+
 # GPlayCli is a command line tool to search, install,
 # update Android applications from the Google Play Store.
 - name: Install GPlayCli
