@@ -47,6 +47,7 @@
     state: latest
     executable: pip3
 
+# https://streamlink.github.io/index.html
 - name: Install streamlink
   pip:
     name: streamlink
