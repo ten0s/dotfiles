@@ -28,9 +28,11 @@ if [[ ${DEBUG} -ge 1 ]]; then
     echo "JOB URL: ${JOB_URL}"
 fi
 
+BUILD_URL=$(curl --silent ${JOB_URL}/api/json | jq -r "(.url) + (.nextBuildNumber|tostring) + \"/\"")
 COMMAND="curl --silent --include -XPOST --user ${JENKINS_USERNAME?}:${JENKINS_API_TOKEN?} ${JOB_URL}/build"
 if [[ ${DEBUG} -ge 1 ]]; then
-    echo "COMMAND: ${COMMAND}"
+    echo "BUILD_URL: ${BUILD_URL}"
+    echo "COMMAND  : ${COMMAND}"
 fi
 
 OUTPUT=$(${COMMAND})
@@ -40,7 +42,7 @@ fi
 
 if [[ $(echo ${OUTPUT} | grep -i "201 Created") ]]; then
     echo "Job scheduled"
-    curl --silent ${JOB_URL}/api/json | jq -r .lastBuild.url
+    echo ${BUILD_URL}
 else
     echo "Job scheduling error"
     echo ${OUTPUT}
