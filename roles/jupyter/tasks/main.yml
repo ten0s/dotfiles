@@ -1,0 +1,23 @@
+---
+#
+# https://jupyter.org/install
+#
+- name: Install Jupyter Lab
+  pip:
+    name: jupyterlab
+    extra_args: --user
+    state: latest
+    executable: pip3
+
+#
+# https://pypi.org/project/bash_kernel/
+#
+- name: Install Bash Kernel 1/2
+  pip:
+    name: bash_kernel
+    extra_args: --user
+    state: latest
+    executable: pip3
+
+- name: Install Bash Kernel 2/2
+  shell: python3 -m bash_kernel.install
