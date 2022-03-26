@@ -15,8 +15,8 @@ if [[ $# -ne 1 ]]; then
 fi
 
 URI="$1"
-COMMAND=$(echo $URI | sed -rn 's;manx:([[:alpha:]_]+)(\([[:digit:]]+\))?(::.*)?;\1;p')
-SECTION=$(echo $URI | sed -rn 's;manx:[[:alpha:]_]+\(([[:digit:]]{1})\).*;\1;p')
+COMMAND=$(echo $URI | sed -rn 's;manx:([[:alpha:]_-]+)(\([[:digit:]]+\))?(::.*)?;\1;p')
+SECTION=$(echo $URI | sed -rn 's;manx:[[:alpha:]_-]+\(([[:digit:]]{1})\).*;\1;p')
 PATTERN=$(echo $URI | sed -rn 's;manx:.*::(.*);\1;p' | sed -r 's;(\+|%20); ;g')
 
 echo "URI    : $URI"
