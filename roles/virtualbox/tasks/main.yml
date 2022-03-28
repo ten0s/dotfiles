@@ -5,7 +5,7 @@
 
 - name: Set vars
   set_fact:
-    virtualbox_ver: 6.0
+    virtualbox_ver: 6.1
 
 - name: Add apt key
   become: true
