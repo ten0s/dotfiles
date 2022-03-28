@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    vagrant_ver: 2.2.7
+    vagrant_ver: 2.2.19
 
 - name: Download package
   get_url: url=https://releases.hashicorp.com/vagrant/{{vagrant_ver}}/vagrant_{{vagrant_ver}}_x86_64.deb
@@ -12,6 +12,8 @@
   apt: deb={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
        state=present
 
+# If this fails, run manually 'vagrant plugin list' to see errors
+# Last time: running 'vagrant plugin update' fixed the issue
 - name: Register `vagrant plugin list` output
   shell: vagrant plugin list
   register: vagrant_plugin_list
