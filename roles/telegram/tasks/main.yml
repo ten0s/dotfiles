@@ -1,7 +1,8 @@
 ---
 - name: Set vars
   set_fact:
-    telegram_ver: 3.2.4
+    # $ curl -is https://telegram.org/dl/desktop/linux | grep location
+    telegram_ver: 3.6.1
 
 - name: Download
   get_url: url=https://updates.tdesktop.com/tlinux/tsetup.{{telegram_ver}}.tar.xz
