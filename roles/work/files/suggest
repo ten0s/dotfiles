@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+#
+# Suggest words matching regex pattern
+# Complement of 'spell'
+#
+
+rlwrap -S '> ' bash -c '
+while true; do
+    read pattern
+    [[ -z "${pattern}" ]] && break
+    grep ${pattern} /usr/share/dict/words
+done
+'
