@@ -6,9 +6,7 @@
 #
 
 rlwrap -S '> ' bash -c '
-while true; do
-    read pattern
-    [[ -z "${pattern}" ]] && break
+while read pattern; do
     grep ${pattern} /usr/share/dict/words
 done
 '
