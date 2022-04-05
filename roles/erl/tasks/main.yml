@@ -82,9 +82,6 @@
     {{item.env}} kerl build {{item.release}} {{item.name}}
     creates=/home/{{user}}/.kerl/builds/{{item.name}}
   with_items:
-  - {release: '19.3',
-     name: 'r19.3',
-     env: 'KERL_CONFIGURE_OPTIONS="--with-ssl=/usr/local/openssl-1.0.2r"'}
   - {release: '21.3.8.17',
      name: 'r21.3.8.17',
      env: 'KERL_BUILD_BACKEND=git'}
@@ -92,7 +89,6 @@
 - name: Install versions
   command: sudo kerl install {{item}} creates=/opt/{{item}}
   with_items:
-  - 'r19.3'
   - 'r21.3.8.17'
 
 - name: Pull user_default
@@ -113,21 +109,6 @@
 - name: Provision .erlang config
   template: src=dot_erlang.j2
             dest=/home/{{user}}/.erlang
-
-- name: Pull rebar
-  git: repo=https://github.com/rebar/rebar.git
-       dest=/home/{{user}}/projects/rebar
-       version=2.6.1
-  register: rebar
-
-- name: Build rebar
-  command: ./bootstrap chdir=/home/{{user}}/projects/rebar/
-  when: rebar.changed
-
-- name: Create rebar link
-  file: src=/home/{{user}}/projects/rebar/rebar
-        dest=/home/{{user}}/bin/rebar
-        state=link
 
 - name: Pull rebar3
   git: repo=https://github.com/erlang/rebar3.git
