@@ -217,13 +217,13 @@
 ;;; rust-mode
 ;;;----------------------------------------
 
-(unless (package-installed-p 'rust-mode)
-  (package-install 'rust-mode))
+;(unless (package-installed-p 'rust-mode)
+;  (package-install 'rust-mode))
 
-(require 'rust-mode)
-(add-hook 'rust-mode-hook
-          (lambda () (setq indent-tabs-mode nil)))
-(setq rust-format-on-save t)
+;(require 'rust-mode)
+;(add-hook 'rust-mode-hook
+;          (lambda () (setq indent-tabs-mode nil)))
+;(setq rust-format-on-save t)
 
 ;;;----------------------------------------
 ;;; asm-mode
@@ -316,17 +316,19 @@
 ;;; flymake-eslint
 ;;;----------------------------------------
 
-(unless (package-installed-p 'flymake-eslint)
-  (package-install 'flymake-eslint))
+; Requires Emacs 26
 
-(require 'flymake-eslint)
-(add-hook 'js-mode-hook
-  '(lambda ()
-     (local-set-key "\C-cd" 'flymake-display-err-menu-for-current-line)
-     (local-set-key "\C-cn" 'flymake-goto-next-error)
-     (local-set-key "\C-cp" 'flymake-goto-prev-error)
-     (flymake-eslint-enable)
-))
+;(unless (package-installed-p 'flymake-eslint)
+;  (package-install 'flymake-eslint))
+
+;(require 'flymake-eslint)
+;(add-hook 'js-mode-hook
+;  '(lambda ()
+;     (local-set-key "\C-cd" 'flymake-display-err-menu-for-current-line)
+;     (local-set-key "\C-cn" 'flymake-goto-next-error)
+;     (local-set-key "\C-cp" 'flymake-goto-prev-error)
+;     (flymake-eslint-enable)
+;))
 
 ;;;----------------------------------------
 ;;; flymake shellcheck
@@ -401,7 +403,7 @@
    (mscgen . t)
    (plantuml . t)
    (python . t)
-   (shell . t)
+   (sh . t) ; (shell . t)
 ))
 
 (setq org-startup-with-inline-images t)
