@@ -302,15 +302,30 @@
 ;;; flymake-jslint
 ;;;----------------------------------------
 
-(require 'flymake-jslint)
-(setq flymake-jslint-args ())
+;(require 'flymake-jslint)
+;(setq flymake-jslint-args ())
+;(add-hook 'js-mode-hook
+;  '(lambda ()
+;     (local-set-key "\C-cd" 'flymake-display-err-menu-for-current-line)
+;     (local-set-key "\C-cn" 'flymake-goto-next-error)
+;     (local-set-key "\C-cp" 'flymake-goto-prev-error)
+;     (flymake-jslint-load)
+;))
+
+;;;----------------------------------------
+;;; flymake-eslint
+;;;----------------------------------------
+
+(unless (package-installed-p 'flymake-eslint)
+  (package-install 'flymake-eslint))
+
+(require 'flymake-eslint)
 (add-hook 'js-mode-hook
   '(lambda ()
      (local-set-key "\C-cd" 'flymake-display-err-menu-for-current-line)
      (local-set-key "\C-cn" 'flymake-goto-next-error)
      (local-set-key "\C-cp" 'flymake-goto-prev-error)
-
-     (flymake-jslint-load)
+     (flymake-eslint-enable)
 ))
 
 ;;;----------------------------------------
