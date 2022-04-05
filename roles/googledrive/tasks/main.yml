@@ -25,4 +25,4 @@
   - googledrive-start.desktop
   - googledrive-stop.desktop
 
-- debug: msg='Now run "$ rclone config" with gdrive name'
+- debug: msg='Now run "$ rclone config", edit "gdrive" and apply all defaults'
