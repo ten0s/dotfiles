@@ -7,7 +7,7 @@
     user: ten0s
     cache_dir: /var/cache/ansible
     erl_ver: 21.3.8.17
-    ubuntu_codename: bionic # cat /etc/os-release
+    ubuntu_codename: focal # cat /etc/os-release
   tasks:
   - {import_role: name=common      , tags: ["common"]}
 
