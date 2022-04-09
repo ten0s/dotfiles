@@ -1,13 +1,13 @@
 ## Generate a new ssh key and add it to github.com
 
 <pre>
-ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+$ ssh-keygen -t rsa -b 4096 -N "" -f ~/.ssh/id_rsa
 </pre>
 
 ## Adjust /etc/sudoers
 
 <pre>
-sudo visudo
+$ sudo visudo
 </pre>
 
 - Disable secure_path
@@ -25,20 +25,20 @@ sudo visudo
 ## Bootstrap
 
 <pre>
-sudo apt install -y curl
-curl https://raw.githubusercontent.com/ten0s/dotfiles/master/bootstrap.sh | bash
+$ sudo apt install -y curl
+$ curl https://raw.githubusercontent.com/ten0s/dotfiles/master/bootstrap.sh | bash
 </pre>
 
 ## Clone dotfiles
 
 <pre>
-cd ~
-git clone git@github.com:ten0s/dotfiles.git
+$ cd ~
+$ git clone git@github.com:ten0s/dotfiles.git
 </pre>
 
 ## Provision
 
 <pre>
-cd ~/dotfiles
-./provision.sh [common[,...]]
+$ cd ~/dotfiles
+$ ./provision.sh [common[,...]]
 </pre>
