@@ -55,6 +55,10 @@
 - name: Update versions
   shell: KERL_BUILD_BACKEND=git kerl update releases
 
+- name: Create kerl installation dir
+  file: path=/home/{{user}}/.kerl/installations
+        state=directory
+
 #- name: Get status
 #  become: true
 #  become_user: '{{user}}'
@@ -68,7 +72,7 @@
 - name: Delete installations
   command: >
     kerl delete installation {{item}}
-    removes=/home/{{user}}/erlang/{{item}}
+    removes=/home/{{user}}/.kerl/installations/{{item}}
   with_items: []
 
 - name: Delete builds
@@ -85,7 +89,9 @@
   - {release: '21.3.8.17', env: 'KERL_BUILD_BACKEND=git'}
 
 - name: Install versions
-  command: kerl install {{item}} /home/{{user}}/erlang/{{item}} creates=/home/{{user}}/erlang/{{item}}
+  command: >
+    kerl install {{item}} /home/{{user}}/.kerl/installations/{{item}}
+    creates=/home/{{user}}/.kerl/installations/{{item}}
   with_items:
   - '21.3.8.17'
 
@@ -156,6 +162,7 @@
 - name: Pull elvis
   git: repo=https://github.com/inaka/elvis
        dest=/home/{{user}}/projects/elvis
+       force=true
        version=1.0.1
   register: elvis
 

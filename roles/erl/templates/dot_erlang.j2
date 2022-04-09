@@ -1,13 +1,13 @@
+{ok, [[HOME]]} = init:get_argument(home).
+
 StdAppPath = fun(App) ->
-  ErlLib = "~/erlang/{{erl_ver}}/lib/",
+  ErlLib = HOME ++ "/.kerl/installations/{{erl_ver}}/lib/",
   [Path | _] = filelib:wildcard([ErlLib, App, "-*/ebin"]),
   Path
 end.
 %io:format("~p~n", [StdAppPath("debugger")]).
 
-{ok, [[HOME]]} = init:get_argument(home).
-ERL_LIBS=HOME ++ "/.erl_libs".
-
+ERL_LIBS = HOME ++ "/.erl_libs".
 Paths = filelib:wildcard(ERL_LIBS ++ "/*/_build/*/lib/*/ebin") ++
         filelib:wildcard(ERL_LIBS ++ "/*/ebin") ++ [
   StdAppPath("debugger"),

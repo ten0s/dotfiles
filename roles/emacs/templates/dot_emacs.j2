@@ -81,6 +81,8 @@
 ; Emacs: How to Install Packages Using ELPA, MELPA
 ; http://ergoemacs.org/emacs/emacs_package_system.html
 
+; Update index: M-x package-refresh-contents
+
 (require 'package)
 (add-to-list 'package-archives
              '("MELPA Stable" . "https://stable.melpa.org/packages/") t)
@@ -145,7 +147,7 @@
 ;;; erlang-mode
 ;;;----------------------------------------
 
-(setq erlang-root-dir "/opt/r{{erl_ver}}")
+(setq erlang-root-dir "~/.kerl/installations/{{erl_ver}}")
 (setq load-path (cons (car (file-expand-wildcards (concat erlang-root-dir "/lib/tools-*/emacs"))) load-path))
 (setq erlang-electric-commands nil)
 (require 'erlang-start)
@@ -206,10 +208,10 @@
   (package-install 'elixir-mode))
 (require 'elixir-mode)
 
-(unless (package-installed-p 'flycheck-mix)
-  (package-install 'flycheck-mix))
-(require 'flycheck-mix)
-(flycheck-mix-setup)
+;(unless (package-installed-p 'flycheck-mix)
+;  (package-install 'flycheck-mix))
+;(require 'flycheck-mix)
+;(flycheck-mix-setup)
 
 (add-hook 'elixir-mode-hook 'flycheck-mode)
 
@@ -403,7 +405,7 @@
    (mscgen . t)
    (plantuml . t)
    (python . t)
-   (sh . t) ; (shell . t)
+   (shell . t)
 ))
 
 (setq org-startup-with-inline-images t)
