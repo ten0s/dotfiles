@@ -90,6 +90,7 @@
     - aisleriot
     - aptitude
     - banshee
+    - celluloid # Video Player
     - cowsay
     - fortune
     - gimp
