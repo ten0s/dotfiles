@@ -1,6 +1,6 @@
-source /opt/r{{erl_ver}}/activate
+source ~/erlang/{{erl_ver}}/activate
 
-# FIX: /opt/r{{erl_ver}}/bin/start takes precedence over /sbin/start
+# FIX: ~/erlang/{{erl_ver}}/bin/start takes precedence over /sbin/start
 export PATH=/sbin:$PATH
 export ERL_AFLAGS="-kernel shell_history enabled"
 

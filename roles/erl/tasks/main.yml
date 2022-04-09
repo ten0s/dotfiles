@@ -67,8 +67,8 @@
 
 - name: Delete installations
   command: >
-    sudo kerl delete installation {{item}}
-    removes=/opt/{{item}}
+    kerl delete installation {{item}}
+    removes=/home/{{user}}/erlang/{{item}}
   with_items: []
 
 - name: Delete builds
@@ -79,17 +79,15 @@
 
 - name: Build versions
   shell: >
-    {{item.env}} kerl build {{item.release}} {{item.name}}
-    creates=/home/{{user}}/.kerl/builds/{{item.name}}
+    {{item.env}} kerl build {{item.release}} {{item.release}}
+    creates=/home/{{user}}/.kerl/builds/{{item.release}}
   with_items:
-  - {release: '21.3.8.17',
-     name: 'r21.3.8.17',
-     env: 'KERL_BUILD_BACKEND=git'}
+  - {release: '21.3.8.17', env: 'KERL_BUILD_BACKEND=git'}
 
 - name: Install versions
-  command: sudo kerl install {{item}} creates=/opt/{{item}}
+  command: kerl install {{item}} /home/{{user}}/erlang/{{item}} creates=/home/{{user}}/erlang/{{item}}
   with_items:
-  - 'r21.3.8.17'
+  - '21.3.8.17'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git
