@@ -122,6 +122,7 @@
     - bmon # bandwidth monitor and rate estimator
     - build-essential
     - ca-certificates
+    - cheese # Camera App, see also fswebcam
     - curl
     - cutecom # GUI mini,pico com
     - dante-client # socksify
@@ -135,7 +136,7 @@
     - expect-dev # autoexpect
     - ffmpeg
     - fping
-    - fswebcam
+    - fswebcam # Camera App, see also cheese
     - gdb
     - gnupg-agent
     - gnuplot

@@ -18,6 +18,7 @@
   become: true
   apt_repository:
     repo: 'deb [arch=amd64] https://repo.skype.com/deb stable main'
+    filename: 'skype-stable.list'
     state: present
 
 - name: Install
