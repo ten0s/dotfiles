@@ -1,0 +1,21 @@
+---
+# https://www.swi-prolog.org/build/PPA.html
+# https://launchpad.net/~swi-prolog/+archive/ubuntu/stable
+
+- name: Add apt key
+  become: true
+  apt_key: keyserver=keyserver.ubuntu.com
+           id=73E75048FF27533C0D8DC521EF8406856DBFCA18
+           state=present
+
+- name: Add apt repo
+  become: true
+  apt_repository: repo='deb https://ppa.launchpadcontent.net/swi-prolog/stable/ubuntu {{ubuntu_codename}} main'
+                  state=present
+
+- name: Install
+  become: true
+  apt:
+    name:
+    - swi-prolog
+    state: present

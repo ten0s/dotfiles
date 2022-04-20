@@ -41,6 +41,7 @@
   - {import_role: name=openssl     , tags: ["openssl"]}
   - {import_role: name=oracle      , tags: ["oracle"]}
   - {import_role: name=postgresql  , tags: ["postgresql"]}
+  - {import_role: name=prolog      , tags: ["prolog"]}
   - {import_role: name=py3         , tags: ["py3"]}
   - {import_role: name=racket      , tags: ["racket"]}
   - {import_role: name=rclone      , tags: ["rclone"]}
