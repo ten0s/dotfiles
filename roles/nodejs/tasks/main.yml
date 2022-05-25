@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    nodejs_ver: v14.19.3
+    nodejs_ver: v16.15.0
 
 #
 # https://github.com/nvm-sh/nvm
@@ -11,7 +11,7 @@
 - name: Pull NVM
   git: repo=https://github.com/nvm-sh/nvm.git
        dest=/home/{{user}}/.nvm
-       version=v0.38.0
+       version=v0.39.1
 
 - name: Copy bashrc config
   copy: src=01-bashrc-nvm
@@ -32,7 +32,6 @@
     creates: "/home/{{user}}/.nvm/versions/node/{{item}}/bin"
     executable: /bin/bash
   with_items:
-  - v12.22.12
   - v14.19.3
   - v16.15.0
 
@@ -50,17 +49,22 @@
   args:
     executable: /bin/bash
   with_items:
-  - v12.22.7
-  - v12.22.9
   - v14.18.3
   - v16.13.2
 
+- name: Update NPM package
+  npm:
+    name: "npm"
+    global: true
+    state: latest
+    executable: "/home/{{user}}/.nvm/versions/node/{{nodejs_ver}}/bin/npm"
+
 #
 # sudo npm install --global <PACKAGE>@<VERSION>
+# sudo is not needed under NVM
 #
 
 - name: Install NPM global packages
-  become: true
   npm:
     name: "{{item.name}}"
     version: "{{item.version}}"
@@ -68,4 +72,4 @@
     state: latest
     executable: "/home/{{user}}/.nvm/versions/node/{{nodejs_ver}}/bin/npm"
   with_items:
-  - {name: "yarn",   version: "1.22.10"}
+  - {name: "yarn", version: "1.22.10"}
