@@ -1,13 +1,37 @@
 ---
-- name: Install
+#
+# https://wiki.winehq.org/Ubuntu
+#
+
+- name: Add apt key
+  become: true
+  apt_key:
+    url: https://dl.winehq.org/wine-builds/winehq.key
+    state: present
+    validate_certs: true
+
+- name: Add apt repo
+  become: true
+  apt_repository:
+    repo: 'deb http://dl.winehq.org/wine-builds/ubuntu/ {{ubuntu_codename}} main'
+    state: present
+
+- name: Install utils
   become: true
   apt:
     name:
     - mingw-w64
     - mingw-w64-tools
+    state: latest
+
+- name: Install
+  become: true
+  apt:
+    name:
     - winehq-stable
+    install_recommends: true
     state: latest
   register: wine
 
-- debug: msg='Now run Wine -> Configure Wine and install everything it will ask'
+- debug: msg='Now run Wine -> Configure Wine (winecfg) and install everything it will ask'
   when: wine is changed
