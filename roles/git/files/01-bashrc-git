@@ -6,21 +6,19 @@ alias gap="rlwrap git add --patch"
 alias gmv="git mv"
 alias grm="git rm"
 alias grem="git remote -v"
-alias gpushod="git push origin develop"
-alias gpushom="git push origin master"
-alias gpushoq="git push origin qa"
-alias gpushot="git push origin test"
-alias gpushtoall="git remote | xargs -L1 git push"
 alias gdt="git difftool"
 alias gdtc="git difftool --cached"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias gcommit="git commit -m"
 alias gcommita="git commit --amend -m"
-alias gpullod="git pull origin develop"
+
+alias gpushom="git push origin master"
 alias gpullom="git pull origin master"
-alias gpulloq="git pull origin qa"
-alias gpullot="git pull origin test"
+
+alias gpush="git push origin $(git branch --show-current)"
+alias gpull="git pull origin $(git branch --show-current)"
+alias gpushtoall="git remote | xargs -I{} -L1 git push {} $(git branch --show-current)"
 
 function gsshurl() {
     local OldUrl=`git remote -v | sed -E -n 's/origin\s*(.*) \(push\)/\1/p'`
