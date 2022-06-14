@@ -1,24 +1,24 @@
-alias gst="git status"
-alias glg="git log"
-alias gad="git add"
-alias gai="git add --interactive"
-alias gap="rlwrap git add --patch"
-alias gmv="git mv"
-alias grm="git rm"
-alias grem="git remote -v"
-alias gdt="git difftool"
-alias gdtc="git difftool --cached"
-alias gd="git diff"
-alias gdc="git diff --cached"
-alias gcommit="git commit -m"
-alias gcommita="git commit --amend -m"
+alias gst='git status'
+alias glg='git log'
+alias gad='git add'
+alias gai='git add --interactive'
+alias gap='rlwrap git add --patch'
+alias gmv='git mv'
+alias grm='git rm'
+alias grem='git remote -v'
+alias gdt='git difftool'
+alias gdtc='git difftool --cached'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gcommit='git commit -m'
+alias gcommita='git commit --amend -m'
 
-alias gpushom="git push origin master"
-alias gpullom="git pull origin master"
+alias gpushom='git push origin master'
+alias gpullom='git pull origin master'
 
-alias gpush="git push origin $(git branch --show-current 2>/dev/null)"
-alias gpull="git pull origin $(git branch --show-current 2>/dev/null)"
-alias gpushtoall="git remote | xargs -I{} git push {} $(git branch --show-current 2>/dev/null)"
+alias gpush='git push origin $(git branch --show-current 2>/dev/null)'
+alias gpull='git pull origin $(git branch --show-current 2>/dev/null)'
+alias gpushtoall='git remote | xargs -I{} git push {} $(git branch --show-current 2>/dev/null)'
 
 function gsshurl() {
     local OldUrl=`git remote -v | sed -E -n 's/origin\s*(.*) \(push\)/\1/p'`
