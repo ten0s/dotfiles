@@ -18,7 +18,7 @@ alias gpullom="git pull origin master"
 
 alias gpush="git push origin $(git branch --show-current)"
 alias gpull="git pull origin $(git branch --show-current)"
-alias gpushtoall="git remote | xargs -I{} -L1 git push {} $(git branch --show-current)"
+alias gpushtoall="git remote | xargs -I{} git push {} $(git branch --show-current)"
 
 function gsshurl() {
     local OldUrl=`git remote -v | sed -E -n 's/origin\s*(.*) \(push\)/\1/p'`
