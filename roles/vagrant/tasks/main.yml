@@ -33,7 +33,6 @@
   - vagrant-cachier
   - vagrant-vbguest
   - vagrant-vbox-snapshot
-  - vagrant-winrm
   when: item not in vagrant_plugin_list.stdout
 
 - name: Update plugins
