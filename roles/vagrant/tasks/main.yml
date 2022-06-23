@@ -32,7 +32,6 @@
   - vagrant-aws
   - vagrant-cachier
   - vagrant-vbguest
-  - vagrant-vbox-snapshot
   when: item not in vagrant_plugin_list.stdout
 
 - name: Update plugins
