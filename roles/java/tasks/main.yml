@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    mvn_ver: 3.6.3
+    mvn_ver: 3.8.6
 
 - name: Create dirs 1/2
   file: path="{{item}}"
@@ -72,7 +72,7 @@
 
 - name: Install Maven 2/4
   get_url:
-    url=http://ftp.byfly.by/pub/apache.org/maven/maven-3/{{mvn_ver}}/binaries/apache-maven-{{mvn_ver}}-bin.tar.gz
+    url=https://dlcdn.apache.org/maven/maven-3/{{mvn_ver}}/binaries/apache-maven-{{mvn_ver}}-bin.tar.gz
     dest={{cache_dir}}/apache-maven-{{mvn_ver}}-bin.tar.gz
 
 - name: Install Maven 3/4
