@@ -92,13 +92,14 @@
     - banshee
     - celluloid # Video Player
     - cowsay
+    - drawing
     - fortune
-    - gimp
     - gnome-mahjongg
     - gnome-mines
     - gnome-sudoku
     - mono-runtime
     - parole
+    - pix
     - rhythmbox
     - sgt-puzzles
     - thermald
@@ -139,6 +140,7 @@
     - fping
     - fswebcam # Camera App, see also cheese
     - gdb
+    - gimp
     - gnupg-agent
     - gnuplot
     - gnuplot-x11 # conflicts with gnuplot-nox
