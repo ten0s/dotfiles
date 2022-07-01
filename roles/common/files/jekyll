@@ -17,5 +17,5 @@ if [[ `echo $@ | grep serve` ]]; then
     opts[k++]=--publish=4000:4000
 fi
 
-export JEKYLL_VERSION=3.8.5
+export JEKYLL_VERSION=3.9.2
 docker run ${opts[@]} jekyll/jekyll:$JEKYLL_VERSION jekyll "$@"
