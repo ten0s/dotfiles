@@ -47,6 +47,7 @@
   with_items:
   - capslock-to-control.sh
   - jekyll
+  - suggest
 
 - name: Copy autostart configs
   copy: src={{item}}

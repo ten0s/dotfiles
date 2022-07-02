@@ -12,6 +12,5 @@
   - prod-read-only-aws-key.sh
   - sandbox-aws-key.sh
   - sandbox-login.sh
-  - suggest
   - terminate-ec2.sh
   - to-table.sh
