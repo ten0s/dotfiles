@@ -1,1 +1,4 @@
-set auto-load safe-path /
+# Allows to auto-load .gdbinit files
+# located in any dir inside HOME
+# https://sourceware.org/gdb/onlinedocs/gdb/Auto_002dloading-safe-path.html
+set auto-load safe-path ~/
