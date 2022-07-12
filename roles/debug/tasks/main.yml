@@ -5,6 +5,8 @@
     name:
     - ddd # debuggers front-end
     - gdb
+    - ltrace
+    - strace
     - valgrind
     state: latest
 
