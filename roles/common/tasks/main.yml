@@ -175,7 +175,7 @@
     - pinta # Image editor
     - pv # monitor the progress of data through a pipe
     - pwgen
-    - rdesktop
+    - rdesktop # see also RDP server https://github.com/neutrinolabs/xrdp
     - rlwrap
     - sip-tester # SIPp
     - sipsak # SIP Swiss Army Knife
