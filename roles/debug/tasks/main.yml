@@ -7,3 +7,13 @@
     - gdb
     - valgrind
     state: latest
+
+- name: Copy bashrc config
+  copy: src=01-bashrc-gdb
+        dest=/home/{{user}}/.bashrc.d/
+        backup=true
+
+- name: Copy .gdbinit config
+  copy: src=dot_gdbinit
+        dest=/home/{{user}}/.gdbinit
+        backup=true

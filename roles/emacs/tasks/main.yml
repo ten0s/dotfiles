@@ -19,7 +19,9 @@
 - name: Copy .emacs config
   template: src=dot_emacs.j2
             dest=/home/{{user}}/.emacs
+            backup=true
 
 - name: Copy bashrc config
   copy: src=01-bashrc-emacs
         dest=/home/{{user}}/.bashrc.d/
+        backup=true
