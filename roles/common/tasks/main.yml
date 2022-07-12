@@ -100,6 +100,7 @@
     - gnome-sudoku
     - mono-runtime
     - parole
+    - pinta # Image editor
     - pix
     - rhythmbox
     - sgt-puzzles
@@ -172,7 +173,6 @@
     - openvpn
     - pandoc # docx, pdf, markdown, etc converter
     - picocom # like minicom
-    - pinta # Image editor
     - pv # monitor the progress of data through a pipe
     - pwgen
     - rdesktop # see also RDP server https://github.com/neutrinolabs/xrdp
