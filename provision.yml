@@ -20,6 +20,7 @@
   - {import_role: name=awscli2     , tags: ["awscli2"]}
   - {import_role: name=chrome      , tags: ["chrome"]}
   - {import_role: name=cpp         , tags: ["cpp"]}
+  - {import_role: name=debug       , tags: ["debug"]}
   - {import_role: name=docker      , tags: ["docker"]}
   - {import_role: name=dropbox     , tags: ["dropbox"]}
   - {import_role: name=elixir      , tags: ["elixir"]}

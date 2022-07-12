@@ -131,7 +131,6 @@
     - curl
     - cutecom # GUI mini,pico com
     - dante-client # socksify
-    - ddd # debuggers front-end
     - dia
     - dia-shapes
     - dnsutils # dig, nslookup
@@ -142,7 +141,6 @@
     - ffmpeg
     - fping
     - fswebcam # Camera App, see also cheese
-    - gdb
     - gimp
     - gnupg-agent
     - gnuplot
@@ -190,7 +188,6 @@
     - tree
     - tzdata # for DMU
     - uuid
-    - valgrind
     - vlc
     - vpnc
     - wget

@@ -1,0 +1,9 @@
+---
+- name: Install
+  become: true
+  apt:
+    name:
+    - ddd # debuggers front-end
+    - gdb
+    - valgrind
+    state: latest
