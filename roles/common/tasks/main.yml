@@ -142,6 +142,7 @@
     - fping
     - fswebcam # Camera App, see also cheese
     - gimp
+    - gimp-help-en
     - gnupg-agent
     - gnuplot
     - gnuplot-x11 # conflicts with gnuplot-nox
