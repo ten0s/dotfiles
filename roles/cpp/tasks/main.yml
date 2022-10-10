@@ -3,6 +3,7 @@
   set_fact:
     clang_ver: 10
     gcc_ver: 9
+    cpp_ver: c++17
 
 - name: Install deps
   become: true
@@ -35,6 +36,10 @@
   with_items:
   - {link: '/usr/bin/cc' , name: 'cc' , path: '/usr/bin/clang-{{clang_ver}}'}
   - {link: '/usr/bin/c++', name: 'c++', path: '/usr/bin/clang++-{{clang_ver}}'}
+
+- name: Copy bashrc config
+  template: src=10-bashrc-cpp.j2
+            dest=/home/{{user}}/.bashrc.d/10-bashrc-cpp
 
 - name: Install Boost
   become: true
