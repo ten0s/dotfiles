@@ -3,7 +3,6 @@
   set_fact:
     clang_ver: 10
     gcc_ver: 9
-    cpp_ver: c++17
 
 - name: Install deps
   become: true
