@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Devhelp advanced launcher
+Exec=devhelpx.sh %u
+Icon=devhelp
+Type=Application
+Terminal=false
+NoDisplay=true
+MimeType=x-scheme-handler/devhelpx;

@@ -1,12 +1,13 @@
 ---
 - set_fact:
     handlers:
-    - {scheme: djvux, desktop: djvux.desktop , handler: evincex.sh}
-    - {scheme: manx , desktop: manx.desktop  , handler: manx.sh}
-    - {scheme: openx, desktop: openx.desktop , handler: openx.sh}
-    - {scheme: pdfx , desktop: pdfx.desktop  , handler: evincex.sh}
-    - {scheme: remsh, desktop: remshx.desktop, handler: remshx.sh}
-    - {scheme: ssh  , desktop: sshx.desktop  , handler: sshx.sh}
+    - {scheme: devhelpx, desktop: devhelpx.desktop, handler: devhelpx.sh}
+    - {scheme: djvux   , desktop: djvux.desktop   , handler: evincex.sh}
+    - {scheme: manx    , desktop: manx.desktop    , handler: manx.sh}
+    - {scheme: openx   , desktop: openx.desktop   , handler: openx.sh}
+    - {scheme: pdfx    , desktop: pdfx.desktop    , handler: evincex.sh}
+    - {scheme: remsh   , desktop: remshx.desktop  , handler: remshx.sh}
+    - {scheme: ssh     , desktop: sshx.desktop    , handler: sshx.sh}
 
 - name: Copy handlers
   copy: src={{item.handler}}
