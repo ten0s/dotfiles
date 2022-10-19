@@ -11,7 +11,8 @@
     - autoconf
     - autoconf-archive
     - automake
-    state: present
+    - cmake
+    state: latest
 
 - name: Install Clang
   become: true
@@ -19,14 +20,14 @@
     name:
     - clang-{{clang_ver}}
     - llvm
-    state: present
+    state: latest
 
 - name: Install Gcc
   become: true
   apt:
     name:
     - gcc-{{gcc_ver}}
-    state: present
+    state: latest
 
 # $ sudo update-alternatives --config c++
 - name: Install Clang as main c++ alternative
@@ -60,4 +61,4 @@
 - name: Install C and C++ standard library reference for Devhelp
   become: true
   apt: name=cppreference-doc-en-html
-       state=present
+       state=latest
