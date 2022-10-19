@@ -46,6 +46,8 @@
        state=latest
 
 # https://github.com/google/googletest/tree/main/googletest
+# https://developer.ibm.com/articles/au-googletestingframework/
+# $ pkg-config --cflags --libs gtest
 - name: Install Google Test
   become: true
   apt:
