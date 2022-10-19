@@ -28,7 +28,7 @@
     - gcc-{{gcc_ver}}
     state: present
 
-## sudo update-alternatives --config c++
+# $ sudo update-alternatives --config c++
 - name: Install Clang as main c++ alternative
   become: true
   command: update-alternatives --install {{item.link}} {{item.name}} {{item.path}} 100
@@ -43,15 +43,18 @@
 - name: Install Boost
   become: true
   apt: name=libboost-all-dev
-       state=present
+       state=latest
 
-#- name: Download Boost
-#  get_url: url=http://sourceforge.net/projects/boost/files/boost/1.41.0/boost_1_41_0.tar.gz
-#           dest=/tmp/boost_1_41_0.tar.gz
+# https://github.com/google/googletest/tree/main/googletest
+- name: Install Google Test
+  become: true
+  apt:
+    name:
+    - googletest
+    - libgtest-dev
+    state: latest
 
-#
 # https://en.cppreference.com/w/Cppreference:Archives
-#
 - name: Install C and C++ standard library reference for Devhelp
   become: true
   apt: name=cppreference-doc-en-html
