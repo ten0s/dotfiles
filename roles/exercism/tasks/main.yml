@@ -1,10 +1,10 @@
 ---
 - name: Set vars
   set_fact:
-    exercism_ver: 3.0.13
+    exercism_ver: 3.1.0
 
 - name: Install CLI 1/3
-  get_url: url=https://github.com/exercism/cli/releases/download/v{{exercism_ver}}/exercism-linux-64bit.tgz
+  get_url: url=https://github.com/exercism/cli/releases/download/v{{exercism_ver}}/exercism-{{exercism_ver}}-linux-x86_64.tar.gz
            dest={{cache_dir}}/exercism-{{exercism_ver}}.tar.gz
 
 - name: Install CLI 2/3
@@ -14,5 +14,5 @@
   register: exercism
 
 - name: Install CLI 3/3
-  debug: msg='$ exercism configure --token=TOKEN"'
+  debug: msg='$ exercism configure --token=TOKEN'
   when: exercism is changed
