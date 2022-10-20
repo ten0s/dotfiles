@@ -21,3 +21,12 @@
 
 - name: Install Bash Kernel 2/2
   shell: python3 -m bash_kernel.install
+
+#
+# https://github.com/root-project/cling
+# wiki: Jupyter Install C++ Cling Kernel
+#
+
+- name: Copy bashrc config
+  copy: src=10-bashrc-jupyter
+        dest=/home/{{user}}/.bashrc.d/

@@ -1,0 +1,1 @@
+export PATH=/home/ten0s/projects/cling/cling-build/builddir/bin:$PATH
