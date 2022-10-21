@@ -24,7 +24,11 @@
 
 #
 # https://github.com/root-project/cling
-# wiki: Jupyter Install C++ Cling Kernel
+# Jupyter Install C++ Cling Kernel
+# check out:
+# https://xeus-cling.readthedocs.io/en/latest/index.html
+# https://github.com/jupyter-xeus/xeus-cling
+# https://blog.jupyter.org/xeus-is-now-a-jupyter-subproject-c4ec5a1bf30b
 #
 
 - name: Copy bashrc config
