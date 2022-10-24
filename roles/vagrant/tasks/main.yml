@@ -1,10 +1,14 @@
 ---
 - name: Set vars
   set_fact:
-    vagrant_ver: 2.2.19
+    # See 'Curl Set Proxy'
+    # $ https_proxy=170.39.193.236:3128 curl -s https://releases.hashicorp.com/vagrant/ | elinks -dump
+    # $ https_proxy=170.39.193.236:3128 ./provision.sh vagrant
+    vagrant_ver: 2.3.2
+    vagrant_deb_ver: 2.3.2-1
 
 - name: Download package
-  get_url: url=https://releases.hashicorp.com/vagrant/{{vagrant_ver}}/vagrant_{{vagrant_ver}}_x86_64.deb
+  get_url: url=https://releases.hashicorp.com/vagrant/{{vagrant_ver}}/vagrant_{{vagrant_deb_ver}}_amd64.deb
            dest={{cache_dir}}/vagrant-{{vagrant_ver}}.deb
 
 - name: Install

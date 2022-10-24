@@ -135,6 +135,7 @@
     - dia-shapes
     - dnsutils # dig, nslookup
     - dos2unix
+    - elinks   # ELinks is a text mode WWW browser
     - evince
     - expect
     - expect-dev # autoexpect
