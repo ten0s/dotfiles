@@ -8,7 +8,7 @@
     cache_dir: /var/cache/ansible
     erl_ver: 21.3.8.17
     cpp_std: c++17
-    ubuntu_codename: focal # cat /etc/os-release
+    ubuntu_codename: jammy # cat /etc/os-release
   tasks:
   - {import_role: name=common      , tags: ["common"]}
 

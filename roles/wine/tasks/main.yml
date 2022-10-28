@@ -13,7 +13,7 @@
 - name: Add apt repo
   become: true
   apt_repository:
-    repo: 'deb http://dl.winehq.org/wine-builds/ubuntu/ {{ubuntu_codename}} main'
+    repo: 'deb https://dl.winehq.org/wine-builds/ubuntu/ {{ubuntu_codename}} main'
     state: present
 
 - name: Install utils
@@ -28,7 +28,9 @@
   become: true
   apt:
     name:
-    - winehq-stable
+    # See https://wiki.winehq.org/Ubuntu for 'Ubuntu 22.04 and Wine stable'
+    # See https://forum.winehq.org/viewtopic.php?t=36232 for 'Wine is too slow'
+    - winehq-devel # stable
     install_recommends: true
     state: latest
   register: wine
