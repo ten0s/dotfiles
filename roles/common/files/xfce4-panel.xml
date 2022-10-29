@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-panel" version="1.0">
+  <property name="configver" type="empty"/>
+  <property name="panels" type="array">
+    <value type="int" value="1"/>
+    <value type="int" value="2"/>
+    <property name="panel-1" type="empty">
+      <property name="position" type="empty"/>
+      <property name="length" type="empty"/>
+      <property name="position-locked" type="empty"/>
+      <property name="size" type="empty"/>
+      <property name="background-style" type="empty"/>
+      <property name="background-alpha" type="empty"/>
+      <property name="enter-opacity" type="empty"/>
+      <property name="leave-opacity" type="empty"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="6"/>
+        <value type="int" value="7"/>
+        <value type="int" value="30"/>
+      </property>
+      <property name="output-name" type="string" value="Primary"/>
+    </property>
+    <property name="panel-2" type="empty">
+      <property name="position" type="string" value="p=6;x=2656;y=28"/>
+      <property name="size" type="uint" value="32"/>
+      <property name="output-name" type="string" value="Primary"/>
+      <property name="position-locked" type="bool" value="true"/>
+      <property name="length-adjust" type="bool" value="true"/>
+      <property name="mode" type="uint" value="0"/>
+      <property name="plugin-ids" type="array">
+        <value type="int" value="14"/>
+        <value type="int" value="18"/>
+        <value type="int" value="15"/>
+        <value type="int" value="1"/>
+        <value type="int" value="23"/>
+        <value type="int" value="2"/>
+        <value type="int" value="22"/>
+        <value type="int" value="25"/>
+        <value type="int" value="27"/>
+        <value type="int" value="16"/>
+      </property>
+      <property name="icon-size" type="uint" value="0"/>
+      <property name="disable-struts" type="bool" value="false"/>
+      <property name="length" type="uint" value="100"/>
+    </property>
+    <property name="dark-mode" type="bool" value="false"/>
+  </property>
+  <property name="plugins" type="empty">
+    <property name="plugin-1" type="string" value="clock">
+      <property name="mode" type="uint" value="2"/>
+      <property name="tooltip-format" type="string" value=""/>
+      <property name="digital-format" type="string" value="%F %T"/>
+    </property>
+    <property name="plugin-2" type="string" value="weather">
+      <property name="location" type="empty">
+        <property name="name" type="string" value="Minsk, Belarus"/>
+        <property name="latitude" type="string" value="53.900700"/>
+        <property name="longitude" type="string" value="27.570900"/>
+      </property>
+      <property name="msl" type="int" value="201"/>
+      <property name="timezone" type="string" value="Europe/Minsk"/>
+      <property name="offset" type="string" value="+03:00"/>
+      <property name="cache-max-age" type="int" value="172800"/>
+      <property name="power-saving" type="bool" value="true"/>
+      <property name="units" type="empty">
+        <property name="temperature" type="int" value="0"/>
+        <property name="pressure" type="int" value="3"/>
+        <property name="windspeed" type="int" value="2"/>
+        <property name="precipitation" type="int" value="0"/>
+        <property name="altitude" type="int" value="0"/>
+        <property name="apparent-temperature" type="int" value="0"/>
+      </property>
+      <property name="round" type="bool" value="true"/>
+      <property name="single-row" type="bool" value="true"/>
+      <property name="tooltip-style" type="int" value="1"/>
+      <property name="forecast" type="empty">
+        <property name="layout" type="int" value="1"/>
+        <property name="days" type="int" value="5"/>
+      </property>
+      <property name="theme-dir" type="string" value="/usr/share/xfce4/weather/icons/liquid"/>
+      <property name="scrollbox" type="empty">
+        <property name="show" type="bool" value="true"/>
+        <property name="animate" type="bool" value="true"/>
+        <property name="lines" type="int" value="1"/>
+        <property name="color" type="string" value="rgba(0,0,0,0)"/>
+        <property name="use-color" type="bool" value="false"/>
+      </property>
+    </property>
+    <property name="plugin-3" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-4" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-5" type="empty">
+      <property name="items" type="empty"/>
+    </property>
+    <property name="plugin-6" type="empty">
+      <property name="show-handle" type="empty"/>
+      <property name="middle-click" type="empty"/>
+    </property>
+    <property name="plugin-7" type="empty">
+      <property name="expand" type="empty"/>
+      <property name="style" type="empty"/>
+    </property>
+    <property name="plugin-8" type="empty">
+      <property name="names-visible" type="empty"/>
+      <property name="show-frame" type="empty"/>
+    </property>
+    <property name="plugin-9" type="empty"/>
+    <property name="plugin-10" type="empty"/>
+    <property name="plugin-11" type="empty"/>
+    <property name="plugin-12" type="empty">
+      <property name="enable-keyboard-shortcuts" type="empty"/>
+      <property name="enable-mpris" type="empty"/>
+      <property name="mixer-command" type="empty"/>
+      <property name="show-notifications" type="empty"/>
+    </property>
+    <property name="plugin-13" type="empty">
+      <property name="digital-format" type="empty"/>
+    </property>
+    <property name="plugin-14" type="string" value="applicationsmenu"/>
+    <property name="plugin-15" type="string" value="separator">
+      <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-16" type="string" value="actions">
+      <property name="items" type="array">
+        <value type="string" value="+lock-screen"/>
+        <value type="string" value="-switch-user"/>
+        <value type="string" value="+separator"/>
+        <value type="string" value="-suspend"/>
+        <value type="string" value="-hibernate"/>
+        <value type="string" value="-hybrid-sleep"/>
+        <value type="string" value="-separator"/>
+        <value type="string" value="+restart"/>
+        <value type="string" value="+shutdown"/>
+        <value type="string" value="+separator"/>
+        <value type="string" value="+logout"/>
+        <value type="string" value="-logout-dialog"/>
+      </property>
+      <property name="appearance" type="uint" value="1"/>
+      <property name="button-title" type="uint" value="0"/>
+    </property>
+    <property name="plugin-17" type="string" value="datetime"/>
+    <property name="plugin-18" type="string" value="directorymenu">
+      <property name="base-directory" type="string" value="/home/ten0s"/>
+    </property>
+    <property name="plugin-20" type="string" value="weather">
+      <property name="location" type="empty">
+        <property name="name" type="string" value="Minsk, Belarus"/>
+        <property name="latitude" type="string" value="53.900700"/>
+        <property name="longitude" type="string" value="27.570900"/>
+      </property>
+      <property name="msl" type="int" value="201"/>
+      <property name="timezone" type="string" value="Europe/Minsk"/>
+      <property name="offset" type="string" value="+03:00"/>
+      <property name="cache-max-age" type="int" value="172800"/>
+      <property name="power-saving" type="bool" value="true"/>
+      <property name="units" type="empty">
+        <property name="temperature" type="int" value="0"/>
+        <property name="pressure" type="int" value="3"/>
+        <property name="windspeed" type="int" value="2"/>
+        <property name="precipitation" type="int" value="0"/>
+        <property name="altitude" type="int" value="0"/>
+        <property name="apparent-temperature" type="int" value="0"/>
+      </property>
+      <property name="round" type="bool" value="true"/>
+      <property name="single-row" type="bool" value="true"/>
+      <property name="tooltip-style" type="int" value="1"/>
+      <property name="forecast" type="empty">
+        <property name="layout" type="int" value="1"/>
+        <property name="days" type="int" value="5"/>
+      </property>
+      <property name="theme-dir" type="string" value="/usr/share/xfce4/weather/icons/liquid"/>
+      <property name="scrollbox" type="empty">
+        <property name="show" type="bool" value="true"/>
+        <property name="animate" type="bool" value="true"/>
+        <property name="lines" type="int" value="1"/>
+        <property name="color" type="string" value="rgba(0,0,0,0)"/>
+        <property name="use-color" type="bool" value="false"/>
+        <property name="font" type="string" value="Sans 12"/>
+      </property>
+      <property name="labels" type="empty">
+        <property name="label0" type="int" value="3"/>
+      </property>
+    </property>
+    <property name="plugin-22" type="string" value="separator">
+      <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-23" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-25" type="string" value="systray">
+      <property name="known-items" type="array">
+        <value type="string" value="dropbox-client-2156"/>
+        <value type="string" value="dropbox-client-1955"/>
+        <value type="string" value="dropbox-client-2202"/>
+        <value type="string" value="dropbox-client-5251"/>
+        <value type="string" value="dropbox-client-2203"/>
+        <value type="string" value="dropbox-client-5398"/>
+        <value type="string" value="blueman"/>
+        <value type="string" value="dropbox-client-2119"/>
+        <value type="string" value="dropbox-client-2093"/>
+        <value type="string" value="dropbox-client-3076"/>
+        <value type="string" value="dropbox-client-1969"/>
+        <value type="string" value="dropbox-client-1950"/>
+        <value type="string" value="dropbox-client-1971"/>
+        <value type="string" value="dropbox-client-1981"/>
+        <value type="string" value="dropbox-client-2056"/>
+        <value type="string" value="dropbox-client-1923"/>
+        <value type="string" value="dropbox-client-7188"/>
+        <value type="string" value="dropbox-client-3120"/>
+        <value type="string" value="dropbox-client-2322"/>
+        <value type="string" value="dropbox-client-1921"/>
+        <value type="string" value="dropbox-client-1902"/>
+        <value type="string" value="dropbox-client-1879"/>
+        <value type="string" value="dropbox-client-2014"/>
+        <value type="string" value="dropbox-client-13505"/>
+        <value type="string" value="dropbox-client-1677"/>
+        <value type="string" value="dropbox-client-1976"/>
+        <value type="string" value="dropbox-client-1727"/>
+        <value type="string" value="dropbox-client-2385"/>
+        <value type="string" value="dropbox-client-2647"/>
+        <value type="string" value="dropbox-client-2588"/>
+        <value type="string" value="dropbox-client-1933"/>
+        <value type="string" value="dropbox-client-1892"/>
+        <value type="string" value="dropbox-client-2328"/>
+        <value type="string" value="dropbox-client-3129"/>
+        <value type="string" value="dropbox-client-1906"/>
+        <value type="string" value="dropbox-client-2351"/>
+        <value type="string" value="TeamViewer"/>
+        <value type="string" value="dropbox-client-2005"/>
+        <value type="string" value="dropbox-client-1993"/>
+        <value type="string" value="dropbox-client-2539"/>
+        <value type="string" value="dropbox-client-1974"/>
+        <value type="string" value="dropbox-client-1961"/>
+        <value type="string" value="dropbox-client-1876"/>
+        <value type="string" value="dropbox-client-2248"/>
+        <value type="string" value="dropbox-client-1985"/>
+        <value type="string" value="dropbox-client-1868"/>
+        <value type="string" value="dropbox-client-7131"/>
+        <value type="string" value="dropbox-client-2908"/>
+        <value type="string" value="dropbox-client-1918"/>
+        <value type="string" value="dropbox-client-2272"/>
+        <value type="string" value="dropbox-client-1991"/>
+        <value type="string" value="dropbox-client-7090"/>
+        <value type="string" value="dropbox-client-2553"/>
+        <value type="string" value="dropbox-client-1944"/>
+        <value type="string" value="dropbox-client-1627"/>
+        <value type="string" value="dropbox-client-1657"/>
+        <value type="string" value="dropbox-client-6703"/>
+        <value type="string" value="dropbox-client-1913"/>
+        <value type="string" value="dropbox-client-1888"/>
+        <value type="string" value="dropbox-client-2009"/>
+        <value type="string" value="dropbox-client-1815"/>
+        <value type="string" value="dropbox-client-7322"/>
+        <value type="string" value="dropbox-client-2376"/>
+        <value type="string" value="dropbox-client-2104"/>
+        <value type="string" value="dropbox-client-1594"/>
+        <value type="string" value="vlc"/>
+        <value type="string" value="dropbox-client-1951"/>
+        <value type="string" value="Skype1"/>
+        <value type="string" value="dropbox-client-2680"/>
+        <value type="string" value="TelegramDesktop"/>
+        <value type="string" value="AutoKey"/>
+      </property>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="system-config-printer"/>
+        <value type="string" value="networkmanager applet"/>
+        <value type="string" value="thunar"/>
+        <value type="string" value="dropbox"/>
+      </property>
+    </property>
+    <property name="plugin-26" type="string" value="notification-plugin"/>
+    <property name="plugin-27" type="string" value="xapp-status-plugin"/>
+    <property name="plugin-28" type="string" value="power-manager-plugin"/>
+    <property name="plugin-29" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="mpris-players" type="string" value="chromium.instance10951;chromium.instance147225;chromium.instance149259;chromium.instance17194;chromium.instance2355;chromium.instance2464;chromium.instance2478;chromium.instance2494;chromium.instance2521;chromium.instance2570;chromium.instance2578;chromium.instance2590;chromium.instance2618;chromium.instance2635;chromium.instance2866;chromium.instance2873;chromium.instance3059;chromium.instance3896;chromium.instance4072;chromium.instance4244;chromium.instance4835;chromium.instance59634;chromium.instance6497;chromium.instance66804;chromium.instance7053;chromium.instance7786;chromium.instance8166;chromium.instance8488;chromium.instance93813;io.github.celluloid_player.Celluloid.instance-1;vlc"/>
+    </property>
+    <property name="plugin-30" type="string" value="pager"/>
+  </property>
+</channel>

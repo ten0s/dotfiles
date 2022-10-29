@@ -38,6 +38,7 @@
   - {name: .Xmodmap, path: "/home/{{user}}"}
   - {name: terminalrc, path: "/home/{{user}}/.config/xfce4/terminal"}
   - {name: xfce4-keyboard-shortcuts.xml, path: "/home/{{user}}/.config/xfce4/xfconf/xfce-perchannel-xml"}
+  - {name: xfce4-panel.xml, path: "/home/{{user}}/.config/xfce4/xfconf/xfce-perchannel-xml"}
 
 - name: Copy local scripts
   copy: src={{item}}
@@ -197,6 +198,7 @@
     - wireshark
     - wxhexeditor # hex editor
     - xclip
+    - xfce4-weather-plugin # see also xfce4-panel.xml
     state: latest
 
 - name: Use correct time zone
