@@ -187,6 +187,7 @@
     - sysbench
     - sysstat # iostat
     - testdisk # deleted file recovery (photorec)
+    - thunar # xfce4 file manager
     - timeshift
     - tree
     - tzdata # for DMU
@@ -198,6 +199,7 @@
     - wireshark
     - wxhexeditor # hex editor
     - xclip
+    - xfce4-panel          # see also xfce4-panel.xml
     - xfce4-weather-plugin # see also xfce4-panel.xml
     state: latest
 
