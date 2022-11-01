@@ -112,6 +112,7 @@
     - vinagre  # VNC client
     - xplayer  # Mint's port of totem
     - xreader  # Mint's port of evince
+    - xterm
     - xtightvncviewer
     state: absent
 
