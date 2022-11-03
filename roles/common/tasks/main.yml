@@ -34,11 +34,11 @@
         dest={{item.path}}/{{item.name}}
         backup=true
   with_items:
-  - {name: .bashrc, path: "/home/{{user}}"}
-  - {name: .Xmodmap, path: "/home/{{user}}"}
-  - {name: terminalrc, path: "/home/{{user}}/.config/xfce4/terminal"}
+  - {name: .bashrc,                      path: "/home/{{user}}"}
+  - {name: .Xmodmap,                     path: "/home/{{user}}"}
+  - {name: terminalrc,                   path: "/home/{{user}}/.config/xfce4/terminal"}
   - {name: xfce4-keyboard-shortcuts.xml, path: "/home/{{user}}/.config/xfce4/xfconf/xfce-perchannel-xml"}
-  - {name: xfce4-panel.xml, path: "/home/{{user}}/.config/xfce4/xfconf/xfce-perchannel-xml"}
+  - {name: xfce4-panel.xml,              path: "/home/{{user}}/.config/xfce4/xfconf/xfce-perchannel-xml"}
 
 - name: Copy local scripts
   copy: src={{item}}
@@ -200,8 +200,9 @@
     - wireshark
     - wxhexeditor # hex editor
     - xclip
-    - xfce4-panel          # see also xfce4-panel.xml
-    - xfce4-weather-plugin # see also xfce4-panel.xml
+    - xfce4-panel             # see also xfce4-panel.xml
+    - xfce4-pulseaudio-plugin
+    - xfce4-weather-plugin    # see also xfce4-panel.xml
     state: latest
 
 - name: Use correct time zone
