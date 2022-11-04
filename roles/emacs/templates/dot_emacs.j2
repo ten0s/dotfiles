@@ -112,12 +112,12 @@
 (add-hook 'web-mode-hook 'flycheck-mode)
 
 (add-hook 'c++-mode-hook
-          (lambda ()
-            (progn
-              ; https://www.flycheck.org/en/latest/languages.html#c-c
-              (setq flycheck-cppcheck-standards '("{{cpp_std}}"))
-              (setq flycheck-clang-language-standard "{{cpp_std}}")
-              (setq flycheck-gcc-language-standard "{{cpp_std}}"))))
+  (lambda ()
+    ; https://www.flycheck.org/en/latest/languages.html#c-c
+    (setq flycheck-cppcheck-standards '("{{cpp_std}}"))
+    (setq flycheck-clang-language-standard "{{cpp_std}}")
+    (setq flycheck-gcc-language-standard "{{cpp_std}}")
+))
 (add-hook 'c++-mode-hook 'flycheck-mode)
 
 ;;;----------------------------------------
