@@ -29,6 +29,13 @@
     - gcc-{{gcc_ver}}
     state: latest
 
+- name: Install Cppcheck
+  become: true
+  apt:
+    name:
+    - cppcheck
+    state: latest
+
 # $ sudo update-alternatives --config c++
 #- name: Install Clang as main c++ alternative
 #  become: true

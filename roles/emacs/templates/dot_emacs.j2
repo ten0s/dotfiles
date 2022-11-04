@@ -117,6 +117,10 @@
     (setq flycheck-cppcheck-standards '("{{cpp_std}}"))
     (setq flycheck-clang-language-standard "{{cpp_std}}")
     (setq flycheck-gcc-language-standard "{{cpp_std}}")
+    ; Shortcuts for C-c !{d,n,p}
+    (local-set-key "\C-cd" 'flycheck-explain-error-at-point)
+    (local-set-key "\C-cn" 'flycheck-next-error)
+    (local-set-key "\C-cp" 'flycheck-previous-error)
 ))
 (add-hook 'c++-mode-hook 'flycheck-mode)
 
