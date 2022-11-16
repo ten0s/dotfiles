@@ -82,7 +82,8 @@
 ; Emacs: How to Install Packages Using ELPA, MELPA
 ; http://ergoemacs.org/emacs/emacs_package_system.html
 
-; Update index: M-x package-refresh-contents
+; Update index : M-x package-refresh-contents
+; List packages: M-x list-packages
 
 (require 'package)
 (add-to-list 'package-archives
@@ -408,6 +409,13 @@
 ;;;----------------------------------------
 ;;; org mode
 ;;;----------------------------------------
+
+; C-c C-, - `org-insert-structure-template'
+; Enable <s TAB back
+(require 'org-tempo)
+
+; Make `results' lower-case like `org-structure-template-alist'
+(setq org-babel-results-keyword "results")
 
 ; Info:
 ; https://orgmode.org/worg/org-contrib/babel/languages/index.html
