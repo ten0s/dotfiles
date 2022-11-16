@@ -454,7 +454,7 @@
 
 ; (setq org-confirm-babel-evaluate nil)
 (defun my-org-confirm-babel-evaluate (lang body)
-  (not (member lang '("ditaa" "dot" "mscgen" "plantuml")))) ; don't ask for...
+  (not (member lang '("ditaa" "dot" "emacs-lisp" "mscgen" "plantuml")))) ; don't ask for...
 (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
 (setq org-ditaa-jar-path    (expand-file-name "~/emacs/lib/java/ditaa-0.11.0-standalone.jar"))
