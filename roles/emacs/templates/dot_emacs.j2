@@ -32,6 +32,9 @@
 ; follow symbolic link to version-controlled source file
 (setq vc-follow-symlinks t)
 
+(global-set-key [?\M-p] 'beginning-of-buffer)    ; M-<
+(global-set-key [?\M-n] 'end-of-buffer)          ; M->
+
 (global-set-key "\C-h" 'delete-backward-char)
 (global-set-key "\M-h" 'backward-kill-word)
 
@@ -46,6 +49,62 @@
 
 ; check out 'bury-buffer
 (global-set-key (kbd "<C-tab>") 'other-window)
+
+;;;----------------------------------------
+;;; Mimic shortcuts for Russian layout
+;;; Use vector for non-ASCII characters
+;;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-Rebinding.html
+;;; Yes, I know about `M-x set-input-method'
+;;;----------------------------------------
+
+(global-set-key [?\C-ф] 'move-beginning-of-line) ; C-a
+(global-set-key [?\C-у] 'move-end-of-line)       ; C-e
+(global-set-key [?\C-з] 'previous-line)          ; C-p
+(global-set-key [?\C-т] 'next-line)              ; C-n
+(global-set-key [?\M-з] 'beginning-of-buffer)    ; M-< | M-p
+(global-set-key [?\M-т] 'end-of-buffer)          ; M-> | M-n
+(global-set-key [?\C-д] 'recenter-top-bottom)    ; C-l
+
+(global-set-key [?\C-а] 'forward-char)           ; C-f
+(global-set-key [?\C-и] 'backward-char)          ; C-b
+(global-set-key [?\M-а] 'forward-word)           ; M-f
+(global-set-key [?\M-и] 'backward-word)          ; M-b
+
+(global-set-key [?\C-щ] 'open-line)              ; C-o
+(global-set-key [?\C-п] 'keyboard-quit)          ; C-g
+
+(global-set-key [?\C-в] 'delete-char)            ; C-d
+(global-set-key [?\M-в] 'kill-word)              ; M-d
+(global-set-key [?\C-л] 'kill-line)              ; C-k
+(global-set-key [?\M-л] 'kill-sentence)          ; M-k
+(global-set-key [?\C-р] 'delete-backward-char)   ; <backspace> | C-h
+(global-set-key [?\M-р] 'backward-kill-word)     ; M-h
+
+(global-set-key [?\C-н] 'yank)                   ; C-y
+(global-set-key [?\M-н] 'yank-pop)               ; M-y
+(global-set-key [?\C-ц] 'kill-region)            ; C-w
+(global-set-key [?\M-ц] 'kill-ring-save)         ; M-y
+
+(global-set-key [?\M-г] 'upcase-word)            ; M-u
+(global-set-key [?\M-д] 'downcase-word)          ; M-l
+
+; Mimic C-x
+(define-prefix-command 'ctl-x-ru-map)
+(global-set-key [?\C-ч] 'ctl-x-ru-map)                 ; C-x
+
+(define-key 'ctl-x-ru-map [?щ] 'other-window)          ; C-x o
+(define-key 'ctl-x-ru-map [?0] 'delete-window)         ; C-x 0
+(define-key 'ctl-x-ru-map [?2] 'split-window-below)    ; C-x 2
+(define-key 'ctl-x-ru-map [?3] 'split-window-right)    ; C-x 3
+
+(define-key 'ctl-x-ru-map [?\C-а] 'ido-find-file)      ; C-x C-f
+(define-key 'ctl-x-ru-map [?\C-ы] 'save-buffer)        ; C-x C-s
+(define-key 'ctl-x-ru-map [?\C-с] 'ask-before-closing) ; C-x C-c
+
+;;;
+;;;
+;;;
+
 
 (setq compile-command "make")
 
@@ -489,6 +548,7 @@
   (interactive "p")
   (kill-line 0))
 
+; Conflicts with C-u 'universal-argument
 ;(global-set-key "\C-u" 'backward-kill-line)
 
 ;;;----------------------------------------
