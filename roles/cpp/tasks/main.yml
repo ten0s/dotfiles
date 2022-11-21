@@ -29,8 +29,6 @@
     - gcc-{{gcc_ver}}
     state: latest
 
-
-
 - name: Install static checkers
   become: true
   apt:
