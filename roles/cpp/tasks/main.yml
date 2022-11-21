@@ -29,11 +29,14 @@
     - gcc-{{gcc_ver}}
     state: latest
 
-- name: Install Cppcheck
+
+
+- name: Install static checkers
   become: true
   apt:
     name:
-    - cppcheck
+    - cppcheck # Tool for static C/C++ code analysis
+    - splint   # A tool for statically checking C programs
     state: latest
 
 # $ sudo update-alternatives --config c++
