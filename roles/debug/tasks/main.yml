@@ -6,6 +6,7 @@
     - ddd # debuggers front-end
     - gdb
     - ltrace
+    - latrace
     - strace # https://strace.io/
     - valgrind
     state: latest
