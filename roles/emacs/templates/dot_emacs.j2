@@ -64,11 +64,16 @@
 (global-set-key [?\M-з] 'beginning-of-buffer)    ; M-< | M-p
 (global-set-key [?\M-т] 'end-of-buffer)          ; M-> | M-n
 (global-set-key [?\C-д] 'recenter-top-bottom)    ; C-l
+(global-set-key [?\C-м] 'scroll-up-command)      ; C-v
+(global-set-key [?\M-м] 'scroll-down-command)    ; M-v
 
 (global-set-key [?\C-а] 'forward-char)           ; C-f
 (global-set-key [?\C-и] 'backward-char)          ; C-b
 (global-set-key [?\M-а] 'forward-word)           ; M-f
 (global-set-key [?\M-и] 'backward-word)          ; M-b
+
+(global-set-key [?\C-ы] 'isearch-forward)        ; C-s
+(global-set-key [?\C-к] 'isearch-backward)       ; C-r
 
 (global-set-key [?\C-щ] 'open-line)              ; C-o
 (global-set-key [?\C-п] 'keyboard-quit)          ; C-g
