@@ -37,6 +37,7 @@
   - vagrant-aws
   - vagrant-cachier
   - vagrant-vbguest
+  #- vagrant-sshfs
   when: item not in vagrant_plugin_list.stdout
 
 - name: Update plugins
