@@ -1,4 +1,12 @@
 ---
+- name: Copy scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - vagrant-sshfs
+
 - name: Set vars
   set_fact:
     # See 'Curl Set HTTP Proxy'

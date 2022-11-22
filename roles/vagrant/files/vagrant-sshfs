@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+#
+# Poor man's 'vagrant sshfs'
+#
+
+if [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
+    echo "usage: $(basename $0) <MACHINE_ID> <REMOTE_DIR> [LOCAL_DIR]"
+    exit 1
+fi
+
+MACHINE_ID=$1
+REMOTE_DIR=$2
+LOCAL_DIR=${3:-$(mktemp -d)}
+
+TMP=$(mktemp)
+vagrant ssh-config ${MACHINE_ID} >& ${TMP}
+if [[ $? -ne 0 ]]; then
+    echo "Machine ID is NOT valid"
+    vagrant global-status --prune | awk 'BEGIN { show = 1 } NF == 0 { show = 0; next } { if (show) print $0 }'
+    rm -f ${TMP}
+    exit 1
+fi
+cat ${TMP} | awk "
+    /HostName /     { host = \$2 }
+    /Port /         { port = \$2 }
+    /User /         { user = \$2 }
+    /IdentityFile / { id   = \$2 }
+    END             { printf(\"sshfs -p%s -o'IdentityFile=%s' %s@%s:${REMOTE_DIR} ${LOCAL_DIR}\n\", port, id, user, host) }
+" | bash
+if [[ $? -ne 0 ]]; then
+    rm -f ${TMP}
+    exit 2
+fi
+rm -f ${TMP}
+
+echo "Remote '${REMOTE_DIR}' is mounted to '${LOCAL_DIR}'"
+echo "To exit and unmount, run: $ exit"
+echo "To manually unmount, run: $ fusermount -u ${LOCAL_DIR}"
+
+cd ${LOCAL_DIR}; bash -i; cd ..
+fusermount -u ${LOCAL_DIR}
