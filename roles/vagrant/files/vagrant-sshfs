@@ -19,7 +19,7 @@ if [[ $? -ne 0 ]]; then
     echo "Machine ID is NOT valid"
     vagrant global-status --prune | awk 'BEGIN { show = 1 } NF == 0 { show = 0; next } { if (show) print $0 }'
     rm -f ${TMP}
-    exit 1
+    exit 2
 fi
 cat ${TMP} | awk "
     /HostName /     { host = \$2 }
@@ -30,7 +30,7 @@ cat ${TMP} | awk "
 " | bash
 if [[ $? -ne 0 ]]; then
     rm -f ${TMP}
-    exit 2
+    exit 3
 fi
 rm -f ${TMP}
 
