@@ -177,7 +177,7 @@
     - picocom # like minicom
     - pv # monitor the progress of data through a pipe
     - pwgen
-    - rdesktop # see also RDP server https://github.com/neutrinolabs/xrdp
+    - rdesktop # see also RDP server http://xrdp.org/ & https://www.freerdp.com/
     - rlwrap
     - sip-tester # SIPp
     - sipsak # SIP Swiss Army Knife
