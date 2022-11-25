@@ -543,6 +543,24 @@
 (global-set-key "\C-x\C-c" 'ask-before-closing)
 
 ;;;----------------------------------------
+;;; open & read ~/.emacs
+;;;----------------------------------------
+
+(defun open-dot-emacs ()
+  "Open ~/.emacs"
+  (interactive)
+  (find-file "~/.emacs"))
+
+(defun read-dot-emacs ()
+  "Read ~/.emacs"
+  (interactive)
+  (load-file "~/.emacs")
+  (switch-to-buffer (current-buffer)))
+
+(global-set-key "\C-c\C-e" 'open-dot-emacs)
+(global-set-key "\C-c\C-r" 'read-dot-emacs)
+
+;;;----------------------------------------
 ;;; backward kill line
 ;;;----------------------------------------
 
