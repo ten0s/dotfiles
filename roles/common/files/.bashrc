@@ -9,8 +9,7 @@ shopt -s histappend
 export HISTCONTROL=erasedups:ignorespace:ignoredups
 export HISTTIMEFORMAT='%F %T '
 
-alias open=exo-open
-
+alias open="xdg-open"
 alias sudo="sudo "
 alias ls="ls --color=auto -v"
 alias ll="ls -lF --color=auto -v"
