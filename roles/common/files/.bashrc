@@ -4,8 +4,6 @@ export PATH=~/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=/opt/bin:$PATH
 
-export SHELLCHECK_OPTS="-f gcc -e SC1090 -e SC2086 -e SC2087"
-
 # don't overwrite history of another session
 shopt -s histappend
 export HISTCONTROL=erasedups:ignorespace:ignoredups
