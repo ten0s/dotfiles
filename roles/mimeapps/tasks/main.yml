@@ -34,7 +34,7 @@
     dest: /home/{{user}}/.config/
   when: not config.stat.exists
 
-- name: Add schemes
+- name: Add association schemes
   lineinfile:
     path: /home/{{user}}/.config/mimeapps.list
     backup: true

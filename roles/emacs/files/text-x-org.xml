@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="text/x-org">
+        <comment>Emacs Org Mode</comment>
+        <icon name="emacs"/>
+        <glob-deleteall/>
+        <glob pattern="*.org"/>
+    </mime-type>
+</mime-info>

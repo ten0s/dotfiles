@@ -1,4 +1,8 @@
 ---
+- set_fact:
+    filetypes:
+    - {scheme: "text/x-org", file: "text-x-org.xml"}
+
 ##
 # After clean install run M-x list-packages
 ##
@@ -25,3 +29,24 @@
   copy: src=01-bashrc-emacs
         dest=/home/{{user}}/.bashrc.d/
         backup=true
+
+- name: Copy filetypes
+  copy: src={{item.file}}
+        dest=/home/{{user}}/.local/share/mime/packages/
+        backup=true
+  with_items:
+  - "{{filetypes}}"
+
+- name: Add association schemes
+  lineinfile:
+    path: /home/{{user}}/.config/mimeapps.list
+    backup: true
+    regexp: "{{item.scheme}}=emacs.desktop"
+    insertafter: "^[Added Associations]"
+    line: "{{item.scheme}}=emacs.desktop;"
+    state: present
+  with_items:
+  - "{{filetypes}}"
+
+- name: Register file types
+  shell: update-mime-database /home/{{user}}/.local/share/mime
