@@ -29,7 +29,7 @@
 # ${XDG_CONFIG_HOME:-$HOME/.config}/mimeapps.list
 # under '[Default Applications]'
 # $ xdg-mime query default x-scheme-handler/pdfx
-# SCHEME.desktop
+# pfdx.desktop
 # $ xdg-open pdfx://PATH/TO/FILE.pdf
 #
 - name: Register MIME types
