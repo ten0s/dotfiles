@@ -1,7 +1,7 @@
 ---
 - set_fact:
     filetypes:
-    - {scheme: "text/x-org", file: "text-x-org.xml"}
+    - {type: "text/x-org", file: "text-x-org.xml"}
 
 ##
 # After clean install run M-x list-packages
@@ -30,6 +30,7 @@
         dest=/home/{{user}}/.bashrc.d/
         backup=true
 
+# ${XDG_DATA_HOME:-$HOME/.local/share}/mime/packages/
 - name: Copy filetypes
   copy: src={{item.file}}
         dest=/home/{{user}}/.local/share/mime/packages/
@@ -37,16 +38,19 @@
   with_items:
   - "{{filetypes}}"
 
-- name: Add association schemes
-  lineinfile:
-    path: /home/{{user}}/.config/mimeapps.list
-    backup: true
-    regexp: "{{item.scheme}}=emacs.desktop"
-    insertafter: "^[Added Associations]"
-    line: "{{item.scheme}}=emacs.desktop;"
-    state: present
+#
+# Adds 'TYPE=emacs.desktop' to
+# ${XDG_CONFIG_HOME:-$HOME/.config}/mimeapps.list
+# under '[Default Applications]'
+# $ xdg-mime query filetype PATH/TO/FILE.org
+# text/x-org
+# $ xdg-mime query default text/x-org
+# emacs.desktop
+#
+- name: Register MIME types
+  command: xdg-mime default emacs.desktop {{item.type}}
   with_items:
   - "{{filetypes}}"
 
-- name: Register file types
-  shell: update-mime-database /home/{{user}}/.local/share/mime
+- name: Update MIME database
+  command: update-mime-database /home/{{user}}/.local/share/mime

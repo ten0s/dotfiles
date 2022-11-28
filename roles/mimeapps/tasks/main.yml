@@ -16,6 +16,7 @@
   with_items:
   - "{{handlers}}"
 
+# ${XDG_DATA_HOME:-$HOME/.local/share}/applications/
 - name: Copy desktops
   copy: src={{item.desktop}}
         dest=/home/{{user}}/.local/share/applications/{{item.desktop}}
@@ -23,24 +24,18 @@
   with_items:
   - "{{handlers}}"
 
-- name: Stat mimeapps.list
-  stat:
-    path: /home/{{user}}/.config/mimeapps.list
-  register: config
-
-- name: Create mimeapps.list
-  copy:
-    src: mimeapps.list
-    dest: /home/{{user}}/.config/
-  when: not config.stat.exists
-
-- name: Add association schemes
-  lineinfile:
-    path: /home/{{user}}/.config/mimeapps.list
-    backup: true
-    regexp: "x-scheme-handler/{{item.scheme}}={{item.desktop}}"
-    insertafter: "^[Added Associations]"
-    line: "x-scheme-handler/{{item.scheme}}={{item.desktop}};"
-    state: present
+#
+# Adds 'x-scheme-handler/SCHEME=SCHEME.desktop' to
+# ${XDG_CONFIG_HOME:-$HOME/.config}/mimeapps.list
+# under '[Default Applications]'
+# $ xdg-mime query default x-scheme-handler/pdfx
+# SCHEME.desktop
+# $ xdg-open pdfx://PATH/TO/FILE.pdf
+#
+- name: Register MIME types
+  command: xdg-mime default {{item.desktop}} {{item.scheme}}
   with_items:
   - "{{handlers}}"
+
+- name: Update MIME database
+  command: update-mime-database /home/{{user}}/.local/share/mime
