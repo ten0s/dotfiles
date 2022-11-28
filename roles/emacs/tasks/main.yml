@@ -31,7 +31,10 @@
         backup=true
 
 #
+# Copies MIME-TYPE.xml to
 # ${XDG_DATA_HOME:-$HOME/.local/share}/mime/packages/
+# like the below command does
+# $ xdg-mime install PATH/TO/MIME-TYPE.xml
 #
 - name: Copy filetypes
   copy: src={{item.file}}
