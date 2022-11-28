@@ -16,7 +16,9 @@
   with_items:
   - "{{handlers}}"
 
+#
 # ${XDG_DATA_HOME:-$HOME/.local/share}/applications/
+#
 - name: Copy desktops
   copy: src={{item.desktop}}
         dest=/home/{{user}}/.local/share/applications/{{item.desktop}}

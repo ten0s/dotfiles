@@ -30,7 +30,9 @@
         dest=/home/{{user}}/.bashrc.d/
         backup=true
 
+#
 # ${XDG_DATA_HOME:-$HOME/.local/share}/mime/packages/
+#
 - name: Copy filetypes
   copy: src={{item.file}}
         dest=/home/{{user}}/.local/share/mime/packages/
