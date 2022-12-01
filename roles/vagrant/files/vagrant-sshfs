@@ -4,8 +4,13 @@
 # Poor man's 'vagrant sshfs'
 #
 
+vagrant-machines() {
+    vagrant global-status --prune | awk 'BEGIN { show = 1 } NF == 0 { show = 0; next } { if (show) print $0 }'
+}
+
 if [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
     echo "usage: $(basename $0) <MACHINE_ID> <REMOTE_DIR> [LOCAL_DIR]"
+    vagrant-machines
     exit 1
 fi
 
@@ -17,7 +22,7 @@ TMP=$(mktemp)
 vagrant ssh-config ${MACHINE_ID} >& ${TMP}
 if [[ $? -ne 0 ]]; then
     echo "Machine ID is NOT valid"
-    vagrant global-status --prune | awk 'BEGIN { show = 1 } NF == 0 { show = 0; next } { if (show) print $0 }'
+    vagrant-machines
     rm -f ${TMP}
     exit 2
 fi
