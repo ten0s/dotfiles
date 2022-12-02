@@ -39,9 +39,10 @@ if [[ $? -ne 0 ]]; then
 fi
 rm -f ${TMP}
 
-echo "Remote '${REMOTE_DIR}' is mounted to '${LOCAL_DIR}'"
+LOCAL_ABS_DIR=$(realpath ${LOCAL_DIR})
+echo "Remote '${REMOTE_DIR}' is mounted to '${LOCAL_ABS_DIR}'"
 echo "To exit and unmount, run: $ exit"
-echo "To manually unmount, run: $ fusermount -u ${LOCAL_DIR}"
+echo "To manually unmount, run: $ fusermount -u ${LOCAL_ABS_DIR}"
 
-cd ${LOCAL_DIR}; bash -i; cd ..
-fusermount -u ${LOCAL_DIR}
+pushd ${LOCAL_DIR} > /dev/null; bash -i; popd > /dev/null
+fusermount -u ${LOCAL_ABS_DIR}
