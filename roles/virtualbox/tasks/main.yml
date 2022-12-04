@@ -3,6 +3,15 @@
 # https://www.virtualbox.org/wiki/Linux_Downloads
 #
 
+- name: Copy scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - vbox-pretend-machw.sh
+  - vbox-set-resolution.sh
+
 - name: Set vars
   set_fact:
     virtualbox_ver: 7.0
