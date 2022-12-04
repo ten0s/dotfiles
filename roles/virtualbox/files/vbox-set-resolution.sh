@@ -9,4 +9,5 @@ if [[ $# -ne 1 ]]; then
 fi
 
 VM="${1}"
-vboxmanage setextradata "${VM}" "VBoxInternal2/EfiGraphicsResolution" 1920x1080
+RES="${2}"
+vboxmanage setextradata "${VM}" "VBoxInternal2/EfiGraphicsResolution" "${RES}"
