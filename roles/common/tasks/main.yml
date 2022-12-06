@@ -203,6 +203,7 @@
     - xfce4-panel             # see also xfce4-panel.xml
     - xfce4-power-manager-plugins
     - xfce4-pulseaudio-plugin
+    - xfce4-screenshooter
     - xfce4-weather-plugin    # see also xfce4-panel.xml
     state: latest
 
