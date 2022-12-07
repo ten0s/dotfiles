@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+vagrant-machines() {
+    vagrant global-status | awk 'BEGIN { show = 1 } NF == 0 { show = 0; next } { if (show) print $0 }'
+}
+
+if [[ $# -ne 2 ]]; then
+    echo "usage: $(basename $0) <MACHINE_ID:SRC_PATH> <DST_PATH>"
+    echo "usage: $(basename $0) <SRC_PATH> <MACHINE_ID:DST_PATH>"
+    vagrant-machines
+    exit 1
+fi
+
+if [[ ${1%%:*} != ${1} ]]; then
+    MACHINE_ID=${1%%:*}
+    SRC_PATH=${1#*:}
+    DST_PATH=${2}
+    DOWNLOAD=1
+else
+    MACHINE_ID=${2%%:*}
+    DST_PATH=${2#*:}
+    SRC_PATH=${1}
+    DOWNLOAD=0
+fi
+
+if [[ ${DEBUG} == "1" ]]; then
+    echo "MACHINE_ID: ${MACHINE_ID}"
+    echo "SRC_PATH  : ${SRC_PATH}"
+    echo "DST_PATH  : ${DST_PATH}"
+    echo "DOWNLOAD  : ${DOWNLOAD}"
+    DEVICE=/dev/stderr
+else
+    DEVICE=/dev/null
+fi
+
+TMP=$(mktemp)
+vagrant ssh-config ${MACHINE_ID} >& ${TMP}
+if [[ $? -ne 0 ]]; then
+    echo "Machine ID is NOT valid"
+    vagrant-machines
+    rm -f ${TMP}
+    exit 2
+fi
+
+if [[ ${DOWNLOAD} -eq 1 ]]; then
+    cat ${TMP} | awk "
+        /HostName /     { host = \$2 }
+        /Port /         { port = \$2 }
+        /User /         { user = \$2 }
+        /IdentityFile / { id   = \$2 }
+        END             { printf(\"scp -o'Port=%s' -o'IdentityFile=%s' %s@%s:${SRC_PATH} ${DST_PATH}\n\", port, id, user, host) }
+    " | tee ${DEVICE} | bash
+else
+    cat ${TMP} | awk "
+        /HostName /     { host = \$2 }
+        /Port /         { port = \$2 }
+        /User /         { user = \$2 }
+        /IdentityFile / { id   = \$2 }
+        END             { printf(\"scp -o'Port=%s' -o'IdentityFile=%s' ${SRC_PATH} %s@%s:${DST_PATH}\n\", port, id, user, host) }
+    " | tee ${DEVICE} | bash
+fi
+
+if [[ $? -ne 0 ]]; then
+    rm -f ${TMP}
+    exit 3
+fi
+rm -f ${TMP}
