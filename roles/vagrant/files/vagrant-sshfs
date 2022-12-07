@@ -5,18 +5,18 @@
 #
 
 vagrant-machines() {
-    vagrant global-status --prune | awk 'BEGIN { show = 1 } NF == 0 { show = 0; next } { if (show) print $0 }'
+    vagrant global-status | awk 'BEGIN { show = 1 } NF == 0 { show = 0; next } { if (show) print $0 }'
 }
 
-if [[ $# -ne 2 ]] && [[ $# -ne 3 ]]; then
-    echo "usage: $(basename $0) <MACHINE_ID> <REMOTE_DIR> [LOCAL_DIR]"
+if [[ $# -ne 1 ]] && [[ $# -ne 2 ]]; then
+    echo "usage: $(basename $0) <MACHINE_ID:REMOTE_DIR> [LOCAL_DIR]"
     vagrant-machines
     exit 1
 fi
 
-MACHINE_ID=$1
-REMOTE_DIR=$2
-LOCAL_DIR=${3:-$(mktemp -d)}
+MACHINE_ID=${1%%:*}
+REMOTE_DIR=${1#*:}
+LOCAL_DIR=${2:-$(mktemp -d)}
 
 TMP=$(mktemp)
 vagrant ssh-config ${MACHINE_ID} >& ${TMP}
