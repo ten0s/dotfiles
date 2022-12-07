@@ -31,7 +31,7 @@ cat ${TMP} | awk "
     /Port /         { port = \$2 }
     /User /         { user = \$2 }
     /IdentityFile / { id   = \$2 }
-    END             { printf(\"sshfs -p%s -o'IdentityFile=%s' %s@%s:${REMOTE_DIR} ${LOCAL_DIR}\n\", port, id, user, host) }
+    END             { printf(\"sshfs -o'Port=%s' -o'IdentityFile=%s' %s@%s:${REMOTE_DIR} ${LOCAL_DIR}\n\", port, id, user, host) }
 " | bash
 if [[ $? -ne 0 ]]; then
     rm -f ${TMP}
