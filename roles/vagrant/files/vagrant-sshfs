@@ -18,6 +18,15 @@ MACHINE_ID=${1%%:*}
 REMOTE_DIR=${1#*:}
 LOCAL_DIR=${2:-$(mktemp -d)}
 
+if [[ ${DEBUG} == "1" ]]; then
+    echo "MACHINE_ID: ${MACHINE_ID}"
+    echo "REMOTE_DIR: ${REMOTE_DIR}"
+    echo "LOCAL_DIR : ${LOCAL_DIR}"
+    DEVICE=/dev/stderr
+else
+    DEVICE=/dev/null
+fi
+
 TMP=$(mktemp)
 vagrant ssh-config ${MACHINE_ID} >& ${TMP}
 if [[ $? -ne 0 ]]; then
@@ -26,13 +35,15 @@ if [[ $? -ne 0 ]]; then
     rm -f ${TMP}
     exit 2
 fi
+
 cat ${TMP} | awk "
     /HostName /     { host = \$2 }
     /Port /         { port = \$2 }
     /User /         { user = \$2 }
     /IdentityFile / { id   = \$2 }
     END             { printf(\"sshfs -o'Port=%s' -o'IdentityFile=%s' %s@%s:${REMOTE_DIR} ${LOCAL_DIR}\n\", port, id, user, host) }
-" | bash
+" | tee ${DEVICE} | bash
+
 if [[ $? -ne 0 ]]; then
     rm -f ${TMP}
     exit 3
