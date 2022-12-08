@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#
+# vagrant ssh helper
+#
+
+vagrant-machines() {
+    vagrant global-status | awk 'BEGIN { show = 1 } NF == 0 { show = 0; next } { if (show) print $0 }'
+}
+
+if [[ $# -lt 1 ]]; then
+    echo "usage: $(basename $0) <MACHINE_ID> [OPTIONS]"
+    vagrant-machines
+    exit 1
+fi
+
+MACHINE_ID=${1}
+shift
+OPTIONS="$@"
+
+if [[ ${DEBUG} == "1" ]]; then
+    echo "MACHINE_ID: ${MACHINE_ID}"
+    echo "OPTIONS   : ${OPTIONS}"
+    DEVICE=/dev/stderr
+else
+    DEVICE=/dev/null
+fi
+
+vagrant ssh-config ${MACHINE_ID} >& /dev/null
+if [[ $? -ne 0 ]]; then
+    echo "Machine ID is NOT valid"
+    vagrant-machines
+    exit 2
+fi
+
+vagrant ssh ${MACHINE_ID} ${OPTIONS}

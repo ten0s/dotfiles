@@ -5,6 +5,8 @@
         mode=0755
         backup=true
   with_items:
+  - vagrant-scp
+  - vagrant-ssh
   - vagrant-sshfs
 
 - name: Set vars
