@@ -9,7 +9,7 @@ vagrant-machines() {
 }
 
 if [[ $# -ne 1 ]] && [[ $# -ne 2 ]]; then
-    echo "usage: $(basename $0) <MACHINE_ID:REMOTE_DIR> [LOCAL_DIR]"
+    echo "usage: $(basename $0) <[MACHINE_ID]:REMOTE_DIR> [LOCAL_DIR]"
     vagrant-machines
     exit 1
 fi

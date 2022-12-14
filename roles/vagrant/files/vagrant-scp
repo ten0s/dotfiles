@@ -5,8 +5,8 @@ vagrant-machines() {
 }
 
 if [[ $# -ne 2 ]]; then
-    echo "usage: $(basename $0) <MACHINE_ID:SRC_PATH> <DST_PATH>"
-    echo "usage: $(basename $0) <SRC_PATH> <MACHINE_ID:DST_PATH>"
+    echo "usage: $(basename $0) <[MACHINE_ID]:SRC_PATH> <DST_PATH>"
+    echo "usage: $(basename $0) <SRC_PATH> <[MACHINE_ID]:DST_PATH>"
     vagrant-machines
     exit 1
 fi
