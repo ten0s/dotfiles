@@ -3,6 +3,8 @@
   become: true
   apt:
     name:
+    - binutils
+    - binutils-doc
     - ddd # debuggers front-end
     - gdb
 #    - ltrace # build from source
