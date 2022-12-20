@@ -19,6 +19,7 @@
   - {import_role: name=asdf        , tags: ["asdf"]}
   - {import_role: name=autokey     , tags: ["autokey"]}
   - {import_role: name=awscli2     , tags: ["awscli2"]}
+  - {import_role: name=bastyon     , tags: ["bastyon"]}
   - {import_role: name=chrome      , tags: ["chrome"]}
   - {import_role: name=cpp         , tags: ["cpp"]}
   - {import_role: name=debug       , tags: ["debug"]}

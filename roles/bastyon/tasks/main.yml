@@ -1,0 +1,23 @@
+---
+- name: Set vars
+  set_fact:
+    bastyon_ver: 0.8.34
+
+- name: Download APK
+  become: true
+  get_url:
+    url: https://github.com/pocketnetteam/pocketnet.gui/releases/download/v{{bastyon_ver}}/Bastyon.apk
+    dest: "{{cache_dir}}/bastyon-{{bastyon_ver}}.apk"
+    checksum: sha256:a0802ca7da7032b8d2b301fcfb26f1a6021a91ce7f054b8bccab3eab64bce933
+
+- name: Download Deb
+  become: true
+  get_url:
+    url: https://github.com/pocketnetteam/pocketnet.gui/releases/download/v{{bastyon_ver}}/BastyonSetup.deb
+    dest: "{{cache_dir}}/bastyon-{{bastyon_ver}}.deb"
+    checksum: sha256:065170ab1aa50134efd7239ec3081c5fc02ae0ed41f156b15f7b2c85bf057dd4
+
+- name: Install Deb
+  become: true
+  apt:
+    deb: "{{cache_dir}}/bastyon-{{bastyon_ver}}.deb"
