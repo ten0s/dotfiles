@@ -1,0 +1,8 @@
+---
+- name: Install
+  become: true
+  apt:
+    name:
+    - dvipng
+    - texlive
+    state: latest
