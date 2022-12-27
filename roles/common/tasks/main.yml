@@ -155,6 +155,7 @@
     - gsfonts-x11 # dia recommends
     - hexdiff
     - htop
+    - hypnotix # IPTV App
     - iftop # display bandwidth usage on an interface by host
     - inotify-tools
     - kcachegrind
