@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    anki2_ver: 2.1.22-linux-amd64
+    anki2_ver: 2.1.55-linux-qt6
 
 - name: Symlink $HOME/anki2
   file: src=/home/{{user}}/Dropbox/refs/anki2
@@ -9,20 +9,12 @@
         state=link
         force=true
 
-- name: Install deps
-  become: true
-  apt:
-    name:
-    - dvipng
-    - texlive-latex-base
-    state: present
-
 - name: Install 1/5
-  get_url: url=https://apps.ankiweb.net/downloads/current/anki-{{anki2_ver}}.tar.bz2
-           dest={{cache_dir}}/anki-{{anki2_ver}}.tar.bz2
+  get_url: url=https://apps.ankiweb.net/downloads/archive/anki-{{anki2_ver}}.tar.zst
+           dest={{cache_dir}}/anki-{{anki2_ver}}.tar.zst
 
 - name: Install 2/5
-  unarchive: src={{cache_dir}}/anki-{{anki2_ver}}.tar.bz2
+  unarchive: src={{cache_dir}}/anki-{{anki2_ver}}.tar.zst
              dest=/home/{{user}}/tmp/
              creates=/home/{{user}}/tmp/anki-{{anki2_ver}}
   register: anki
@@ -33,7 +25,7 @@
   when: anki.changed
 
 - name: Install 4/5
-  copy: src={{item}}
+  template: src={{item}}.j2
         dest=/home/{{user}}/bin/{{item}}
         mode=0755
   with_items:
