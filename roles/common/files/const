@@ -17,12 +17,12 @@ TMP_SRC=`mktemp --suffix .c`
 TMP_OUT=`mktemp`
 
 sed -e "s/{{HEADER}}/$HEADER/" -e "s/{{CONST}}/$CONST/g"  << EOF > $TMP_SRC
-#include <stdio.h>
+#include <iostream>
 #include "{{HEADER}}"
-void main() {
-    printf("%s: %d\n", "{{CONST}}", {{CONST}});
+int main() {
+    std::cout << "{{CONST}}" << ": " << {{CONST}} << std::endl;
 }
 EOF
 
-gcc $TMP_SRC -o $TMP_OUT && $TMP_OUT
+g++ $TMP_SRC -o $TMP_OUT && $TMP_OUT
 rm -f $TMP_SRC $TMP_OUT
