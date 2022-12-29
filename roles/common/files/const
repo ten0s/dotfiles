@@ -20,6 +20,7 @@ sed -e "s/{{HEADER}}/$HEADER/" -e "s/{{CONST}}/$CONST/g"  << EOF > $TMP_SRC
 #include <iostream>
 #include "{{HEADER}}"
 int main() {
+    std::cout.precision(16);
     std::cout << "{{CONST}}" << ": " << {{CONST}} << std::endl;
 }
 EOF
