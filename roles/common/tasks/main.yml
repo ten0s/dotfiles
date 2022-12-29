@@ -47,6 +47,7 @@
         backup=true
   with_items:
   - capslock-to-control.sh
+  - const
   - jekyll
   - suggest
 
