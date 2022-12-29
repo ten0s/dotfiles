@@ -1,4 +1,9 @@
+# https://sourceware.org/gdb/onlinedocs/gdb/Mode-Options.html#Mode-Options
+set startup-quietly on
+
 # Allows to auto-load .gdbinit files
 # located in any dir inside HOME
 # https://sourceware.org/gdb/onlinedocs/gdb/Auto_002dloading-safe-path.html
 set auto-load safe-path ~/
+set auto-load safe-path /usr/share/gdb/auto-load/
+set auto-load safe-path /usr/share/glib-2.0/gdb/
