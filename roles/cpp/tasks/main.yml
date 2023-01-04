@@ -27,6 +27,9 @@
   apt:
     name:
     - gcc-{{gcc_ver}}
+    - g++-{{gcc_ver}}
+    - gcc-multilib # for -m32
+    - g++-multilib
     state: latest
 
 - name: Install static checkers
