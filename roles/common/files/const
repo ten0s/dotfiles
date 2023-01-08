@@ -8,6 +8,8 @@ if [[ $# -ne 2 ]]; then
     echo "Example:"
     echo "$ $PROG dlfcn.h RTLD_LAZY"
     echo "RTLD_LAZY: 1"
+    echo "$ $PROG fcntl.h 'O_WRONLY|O_CREAT|O_APPEND'"
+    echo "O_WRONLY|O_CREAT|O_APPEND: 1089"
     exit 1
 fi
 
@@ -23,7 +25,7 @@ sed -e "s/{{HEADER}}/$HEADER/" -e "s/{{CONST}}/$CONST/g"  << EOF > $TMP_SRC
 using namespace std;
 int main() {
     cout << fixed << setprecision(18)
-         << "{{CONST}}" << ": " << {{CONST}}
+         << "{{CONST}}" << ": " << ({{CONST}})
          << endl;
 }
 EOF
