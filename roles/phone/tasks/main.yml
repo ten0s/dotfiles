@@ -11,10 +11,11 @@
   connection: ssh
   delegate_to: phone
   file: path={{item.path}}
-        mode={{item.mode}}
+        mode=0755
         state=directory
   with_items:
-  - {path: .shortcuts/tasks, mode: 755}
+  - {path: bin}
+  - {path: .shortcuts/tasks}
 
 - name: Copy phone scripts
   connection: ssh
@@ -24,5 +25,6 @@
         mode=0755
         backup=true
   with_items:
+  - {src: phone/bin/termux-url-opener     , dest: bin}
   - {src: phone/shortcuts/tasks/start-sshd, dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/stop-sshd , dest: .shortcuts/tasks}
