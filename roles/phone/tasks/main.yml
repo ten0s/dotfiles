@@ -1,8 +1,17 @@
 ---
-- name: Copy scripts
+- name: Copy local scripts
   copy: src={{item}}
         dest=/home/{{user}}/bin/{{item}}
         mode=0755
         backup=true
   with_items:
   - phone-sshfs
+
+# How to make this work?
+#- name: Create phone dirs
+#  file: path={{item.path}}
+#        mode={{item.mode}}
+#        state=directory
+#  delegate_to: phone
+#  with_items:
+#  - {path: "~/.shortcuts/tasks", mode: 755}
