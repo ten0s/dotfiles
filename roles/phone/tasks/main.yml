@@ -7,11 +7,22 @@
   with_items:
   - phone-sshfs
 
-# How to make this work?
-#- name: Create phone dirs
-#  file: path={{item.path}}
-#        mode={{item.mode}}
-#        state=directory
-#  delegate_to: phone
-#  with_items:
-#  - {path: "~/.shortcuts/tasks", mode: 755}
+- name: Create phone dirs
+  connection: ssh
+  delegate_to: phone
+  file: path={{item.path}}
+        mode={{item.mode}}
+        state=directory
+  with_items:
+  - {path: .shortcuts/tasks, mode: 755}
+
+- name: Copy phone scripts
+  connection: ssh
+  delegate_to: phone
+  copy: src={{item.src}}
+        dest={{item.dest}}
+        mode=0755
+        backup=true
+  with_items:
+  - {src: phone/shortcuts/tasks/start-sshd, dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/stop-sshd , dest: .shortcuts/tasks}
