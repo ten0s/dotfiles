@@ -1,0 +1,6 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+if pidof sshd; then
+    termux-wake-unlock
+    pkill sshd
+fi
