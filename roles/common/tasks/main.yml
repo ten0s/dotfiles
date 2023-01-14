@@ -187,7 +187,7 @@
     - spell
     - stoken
     - stress  # see also stress-ng
-    - sysbench
+    #- sysbench # benchmark tool for database systems
     - sysstat # iostat
     - testdisk # deleted file recovery (photorec)
     - thunar # xfce4 file manager
