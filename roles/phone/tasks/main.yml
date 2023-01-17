@@ -28,3 +28,7 @@
   - {src: phone/bin/termux-url-opener     , dest: bin}
   - {src: phone/shortcuts/tasks/start-sshd, dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/stop-sshd , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/open-wiki       , dest: .shortcuts}
+  - {src: phone/shortcuts/tasks/pull-wiki , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/start-wiki, dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/stop-wiki , dest: .shortcuts/tasks}

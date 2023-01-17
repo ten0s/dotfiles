@@ -1,0 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+if nc -z 127.0.0.1 8080; then
+    pkill python3
+fi

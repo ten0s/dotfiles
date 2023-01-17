@@ -1,0 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+cd ~/wiki
+git pull origin master
