@@ -1,4 +1,10 @@
 ---
+- name: Install ADB
+  become: true
+  apt:
+    name: adb
+    state: present
+
 - name: Copy local scripts
   copy: src={{item}}
         dest=/home/{{user}}/bin/{{item}}
