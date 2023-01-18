@@ -13,6 +13,11 @@
   with_items:
   - phone-sshfs
 
+#- name: Install phone deps
+#  connection: ssh
+#  delegate_to: phone
+#  command: pkg install htop
+
 - name: Create phone dirs
   connection: ssh
   delegate_to: phone
@@ -29,12 +34,12 @@
   copy: src={{item.src}}
         dest={{item.dest}}
         mode=0755
-        backup=true
+        #backup=true
   with_items:
   - {src: phone/bin/termux-url-opener     , dest: bin}
-  - {src: phone/shortcuts/tasks/start-sshd, dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/stop-sshd , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/open-wiki       , dest: .shortcuts}
-  - {src: phone/shortcuts/tasks/pull-wiki , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/start-wiki, dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/stop-wiki , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/sshd-start, dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/sshd-stop , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/wiki-open       , dest: .shortcuts}
+  - {src: phone/shortcuts/tasks/wiki-pull , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/wiki-start, dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/wiki-stop , dest: .shortcuts/tasks}
