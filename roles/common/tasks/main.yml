@@ -179,6 +179,7 @@
     - picocom # like minicom
     - pv # monitor the progress of data through a pipe
     - pwgen
+    - qpdf # for zlib-flate
     - rdesktop # see also RDP server http://xrdp.org/ & https://www.freerdp.com/
     - rlwrap
     - sip-tester # SIPp
