@@ -1,8 +1,10 @@
 ---
-- name: Install ADB
+- name: Install tools
   become: true
   apt:
-    name: adb
+    name:
+    - adb
+    - aapt
     state: present
 
 - name: Copy local scripts
