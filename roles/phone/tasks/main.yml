@@ -3,8 +3,9 @@
   become: true
   apt:
     name:
-    - adb
     - aapt
+    - adb
+    - apktool
     state: present
 
 - name: Copy local scripts
