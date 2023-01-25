@@ -68,6 +68,14 @@
     - libgtest-dev
     state: latest
 
+- name: Install Manpages
+  become: true
+  apt:
+    name:
+    - manpages
+    - manpages-dev
+    state: latest
+
 # https://en.cppreference.com/w/Cppreference:Archives
 - name: Install C and C++ standard library reference for Devhelp
   become: true

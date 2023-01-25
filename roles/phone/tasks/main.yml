@@ -16,10 +16,10 @@
   with_items:
   - phone-sshfs
 
-#- name: Install phone deps
-#  connection: ssh
-#  delegate_to: phone
-#  command: pkg install htop
+- name: Install phone deps
+  connection: ssh
+  delegate_to: phone
+  command: pkg install manpages htop
 
 - name: Create phone dirs
   connection: ssh
