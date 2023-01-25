@@ -49,6 +49,7 @@
   - capslock-to-control.sh
   - const
   - jekyll
+  - man-examples
   - suggest
 
 - name: Copy autostart configs

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ $# -lt 1 ]]; then
+    echo "Usage: $(basename $1) [section] page"
+    exit 1
+fi
+
+man "$@" | awk '
+    BEGIN { skip=1 }
+    /EXAMPLES/ { skip=0; next }
+    /SEE ALSO/ { skip=1; next}
+    { if (!skip) { print } }
+'
