@@ -50,6 +50,7 @@
   - const
   - jekyll
   - man-examples
+  - stat-file
   - suggest
 
 - name: Copy autostart configs

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $(basename $0) <FILE>"
+    echo "See also stat(1) and stat(2)"
+    exit 1
+fi
+
+FILE="$1"
+
+RAW_MODE_BIN=$(bc <<EOF
+ibase=16
+obase=2
+$(stat --format='%f' $FILE | tr 'abcdef' 'ABCDEF')
+EOF
+)
+
+stat $FILE --printf="\
+File name        : %n ( %N )
+File size        : %s bytes
+File type        : %F
+Access           : 0o0%a (       %A )
+Raw mode         : 0x%f ( $RAW_MODE_BIN )
+Uid              : %u ( %U )
+Gid              : %g ( %G )
+Inode            : %i
+Mount point      : %m
+Allocated Blocks : %b
+Block size       : %B bytes
+Optimal IO Block : %o bytes
+Device number    : 0x%D ( %d )
+Device type      : %t %T
+Hard links       : %h
+Access time      : %X ( %x )
+Modify time      : %Y ( %y )
+Change time      : %Z ( %z )
+Birth time       : %W ( %w )
+"
