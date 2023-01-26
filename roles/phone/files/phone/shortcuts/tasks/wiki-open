@@ -1,0 +1,9 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+# Requires the following permissions:
+# * Display pop-up window
+# * Display pop-up windows while running in background
+# * Permanent notification
+
+# See wiki-{start,stop,pull}
+termux-open "http://127.0.0.1:8080/"

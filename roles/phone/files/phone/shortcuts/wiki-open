@@ -1,4 +1,0 @@
-#!/data/data/com.termux/files/usr/bin/bash
-
-# See tasks/wiki-{start,stop,pull}
-termux-open "http://127.0.0.1:8080/"

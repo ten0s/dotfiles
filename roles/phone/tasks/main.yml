@@ -42,7 +42,7 @@
   - {src: phone/bin/termux-url-opener     , dest: bin}
   - {src: phone/shortcuts/tasks/sshd-start, dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/sshd-stop , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/wiki-open       , dest: .shortcuts}
+  - {src: phone/shortcuts/tasks/wiki-open , dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/wiki-pull , dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/wiki-start, dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/wiki-stop , dest: .shortcuts/tasks}
