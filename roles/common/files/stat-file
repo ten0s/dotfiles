@@ -15,12 +15,14 @@ $(stat --format='%f' $FILE | tr 'abcdef' 'ABCDEF')
 EOF
 )
 
+RAW_MODE_STR=$(printf '%16s' $RAW_MODE_BIN)
+
 stat $FILE --printf="\
 File name        : %n ( %N )
 File size        : %s bytes
 File type        : %F
-Access           : 0o0%a (       %A )
-Raw mode         : 0x%f ( $RAW_MODE_BIN )
+Access           : 0o%04a ( %16A )
+Raw mode         : 0x%f ( $RAW_MODE_STR )
 Uid              : %u ( %U )
 Gid              : %g ( %G )
 Inode            : %i
