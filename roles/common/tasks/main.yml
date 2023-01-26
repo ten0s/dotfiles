@@ -51,6 +51,7 @@
   - jekyll
   - man-examples
   - stat-file
+  - stat-fs
   - suggest
 
 - name: Copy autostart configs

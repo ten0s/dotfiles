@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $(basename $0) <FILE>"
+    echo "See also stat(1), stat(2) and statx(2)"
+    exit 1
+fi
+
+FILE="$1"
+
+stat $FILE --file-system --printf="\
+File name              : %n
+File system ID         : %i
+File system type       : 0x%t ( %T )
+Max name length        : %l
+Optimal block size     : %s bytes
+Fundamental block size : %S bytes
+Total blocks           : %b
+Free blocks            : %f
+Available blocks       : %a
+Total inodes           : %c
+Free inodes            : %d
+"
