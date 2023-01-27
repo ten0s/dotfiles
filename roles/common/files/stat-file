@@ -26,13 +26,13 @@ Raw mode         : 0x%f ( $RAW_MODE_STR )
 Uid              : %u ( %U )
 Gid              : %g ( %G )
 Inode            : %i
+Device number    : 0x%D ( %d )
+Device type      : %t %T
+Hard links       : %h
 Mount point      : %m
 Allocated blocks : %b
 Block size       : %B bytes
 Optimal IO block : %o bytes
-Device number    : 0x%D ( %d )
-Device type      : %t %T
-Hard links       : %h
 Access time      : %X ( %x )
 Modify time      : %Y ( %y )
 Change time      : %Z ( %z )
