@@ -14,8 +14,24 @@ obase=2
 $(stat --format='%f' $FILE | tr 'abcdef' 'ABCDEF')
 EOF
 )
-
 RAW_MODE_STR=$(printf '%16s' $RAW_MODE_BIN)
+
+DEV=$(stat --format='%d' $FILE)
+DEV_MAJOR=$(($DEV >> 8))
+DEV_MINOR=$(($DEV - ($DEV_MAJOR << 8)))
+
+RDEV_MAJOR=$(bc <<EOF
+ibase=16
+obase=A
+$(stat --format='%t' $FILE)
+EOF
+)
+RDEV_MINOR=$(bc <<EOF
+ibase=16
+obase=A
+$(stat --format='%T' $FILE)
+EOF
+)
 
 stat $FILE --printf="\
 File name        : %n ( %N )
@@ -26,8 +42,8 @@ Raw mode         : 0x%f ( $RAW_MODE_STR )
 Uid              : %u ( %U )
 Gid              : %g ( %G )
 Inode            : %i
-Device number    : 0x%D ( %d )
-Device type      : 0x%t 0x%T
+Device number    : $DEV_MAJOR / $DEV_MINOR ( %d )
+Device type      : $RDEV_MAJOR / $RDEV_MINOR
 Hard links       : %h
 Mount point      : %m
 Allocated blocks : %b
