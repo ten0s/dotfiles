@@ -42,8 +42,8 @@ Raw mode         : 0x%f ( $RAW_MODE_STR )
 Uid              : %u ( %U )
 Gid              : %g ( %G )
 Inode            : %i
-Device number    : $DEV_MAJOR / $DEV_MINOR ( %d )
-Device type      : $RDEV_MAJOR / $RDEV_MINOR
+Device number    : $DEV_MAJOR:$DEV_MINOR ( %d )
+Device type      : $RDEV_MAJOR:$RDEV_MINOR
 Hard links       : %h
 Mount point      : %m
 Allocated blocks : %b
