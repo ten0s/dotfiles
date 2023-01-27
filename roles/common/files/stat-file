@@ -27,7 +27,7 @@ Uid              : %u ( %U )
 Gid              : %g ( %G )
 Inode            : %i
 Device number    : 0x%D ( %d )
-Device type      : %t %T
+Device type      : 0x%t 0x%T
 Hard links       : %h
 Mount point      : %m
 Allocated blocks : %b
