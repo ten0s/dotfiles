@@ -8,6 +8,11 @@ fi
 
 FILE="$1"
 
+if [[ ! -e $FILE ]]; then
+    echo "$FILE: No such file or directory"
+    exit 2
+fi
+
 RAW_MODE_BIN=$(bc <<EOF
 ibase=16
 obase=2
@@ -36,14 +41,13 @@ EOF
 stat $FILE --printf="\
 File name        : %n ( %N )
 File size        : %s bytes
-File type        : %F
+File type        : %F ( $RDEV_MAJOR:$RDEV_MINOR )
 Access           : 0o%04a ( %16A )
 Raw mode         : 0x%f ( $RAW_MODE_STR )
 Uid              : %u ( %U )
 Gid              : %g ( %G )
-Inode            : %i
-Device number    : $DEV_MAJOR:$DEV_MINOR ( %d )
-Device type      : $RDEV_MAJOR:$RDEV_MINOR
+Device ID        : %d ( $DEV_MAJOR:$DEV_MINOR )
+Inode number     : %i
 Hard links       : %h
 Mount point      : %m
 Allocated blocks : %b

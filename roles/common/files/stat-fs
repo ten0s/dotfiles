@@ -8,6 +8,11 @@ fi
 
 FILE="$1"
 
+if [[ ! -e $FILE ]]; then
+    echo "$FILE: No such file or directory"
+    exit 2
+fi
+
 stat $FILE --file-system --printf="\
 File name              : %n
 File system ID         : %i
