@@ -114,6 +114,7 @@
     - totem
     - vino     # VNC server
     - vinagre  # VNC client
+    - warpinator # Local network file sharing
     - xplayer  # Mint's port of totem
     - xreader  # Mint's port of evince
     - xterm
