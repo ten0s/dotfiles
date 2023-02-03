@@ -94,6 +94,8 @@
   apt:
     name:
     - aisleriot
+    - apache2
+    - apache2-utils # ab, logrotate, etc
     - aptitude
     - banshee
     - celluloid # Video Player
