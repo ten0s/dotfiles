@@ -82,5 +82,12 @@
   apt: name=cppreference-doc-en-html
        state=latest
 
+- name: Install docs
+  become: true
+  apt:
+    name:
+    - libcairo2-doc
+    state: latest
+
 # GTK C++
 # sudo apt install libgtkmm-3.0-{dev,doc}
