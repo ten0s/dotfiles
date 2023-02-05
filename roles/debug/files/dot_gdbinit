@@ -1,3 +1,8 @@
+set history save on
+set print pretty on
+set pagination off
+set confirm off
+
 # https://sourceware.org/gdb/onlinedocs/gdb/Mode-Options.html#Mode-Options
 set startup-quietly on
 
@@ -5,5 +10,12 @@ set startup-quietly on
 # located in any dir inside HOME
 # https://sourceware.org/gdb/onlinedocs/gdb/Auto_002dloading-safe-path.html
 set auto-load safe-path ~/
-set auto-load safe-path /usr/share/gdb/auto-load/
-set auto-load safe-path /usr/share/glib-2.0/gdb/
+add-auto-load-safe-path /usr/share/gdb/
+add-auto-load-safe-path /usr/share/glib-2.0/gdb/
+
+#python
+#import sys
+#sys.path.insert(0, '/usr/share/gcc/python')
+#from libstdcxx.v6.printers import register_libstdcxx_printers
+#register_libstdcxx_printers(None)
+#end
