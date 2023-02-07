@@ -74,6 +74,8 @@
     name:
     - manpages
     - manpages-dev
+    - manpages-posix
+    - manpages-posix-dev
     state: latest
 
 # https://en.cppreference.com/w/Cppreference:Archives
