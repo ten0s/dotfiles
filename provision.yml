@@ -31,6 +31,7 @@
   - {import_role: name=exercism    , tags: ["exercism"]}
   - {import_role: name=git         , tags: ["git"]}
   - {import_role: name=googledrive , tags: ["googledrive"]}
+  - {import_role: name=help        , tags: ["help"]}
   - {import_role: name=java        , tags: ["java"]}
   - {import_role: name=jq          , tags: ["jq"]}
   - {import_role: name=jupyter     , tags: ["jupyter"]}

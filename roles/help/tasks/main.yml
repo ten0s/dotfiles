@@ -1,0 +1,28 @@
+---
+- name: Install Manpages
+  become: true
+  apt:
+    name:
+    - glibc-doc
+    - manpages
+    - manpages-dev
+    - manpages-posix
+    - manpages-posix-dev
+    state: latest
+
+- name: Install Devhelp
+  become: true
+  apt: name=devhelp
+       state=latest
+
+- name: Install Devhelp books/docs
+  become: true
+  apt:
+    name:
+    # C and C++ standard library reference for Devhelp
+    # https://en.cppreference.com/w/Cppreference:Archives
+    - cppreference-doc-en-html
+    - libcairo2-doc
+    - libglib2.0-doc
+    - libgtk-3-doc
+    state: latest

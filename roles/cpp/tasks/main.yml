@@ -68,28 +68,5 @@
     - libgtest-dev
     state: latest
 
-- name: Install Manpages
-  become: true
-  apt:
-    name:
-    - manpages
-    - manpages-dev
-    - manpages-posix
-    - manpages-posix-dev
-    state: latest
-
-# https://en.cppreference.com/w/Cppreference:Archives
-- name: Install C and C++ standard library reference for Devhelp
-  become: true
-  apt: name=cppreference-doc-en-html
-       state=latest
-
-- name: Install docs
-  become: true
-  apt:
-    name:
-    - libcairo2-doc
-    state: latest
-
 # GTK C++
 # sudo apt install libgtkmm-3.0-{dev,doc}
