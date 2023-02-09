@@ -2,5 +2,18 @@
 
 if ! pidof sshd; then
     termux-wake-lock
-    sshd -D -e
+    timeout --kill-after=61m 60m sshd -D -e
+    ret=$?
+    case $ret in
+    124)
+        termux-notification -c "sshd terminated after timeout ($ret)"
+        ;;
+    137)
+        termux-notification -c "sshd killed after timeout ($ret)"
+        ;;
+    *)
+        termux-notification -c "sshd stopped ($ret)"
+        ;;
+    esac
+    termux-wake-unlock
 fi
