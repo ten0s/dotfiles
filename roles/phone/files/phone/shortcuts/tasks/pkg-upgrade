@@ -1,0 +1,27 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+pkg update -y
+if [[ $? -ne 0 ]]; then
+    termux-notification -c "pkg update failed!"
+    exit 1
+fi
+
+pkg upgrade -y
+if [[ $? -ne 0 ]]; then
+    termux-notification -c "pkg upgrade failed!"
+    exit 2
+fi
+
+apt autoremove -y
+if [[ $? -ne 0 ]]; then
+    termux-notification -c "apt autoremove failed!"
+    exit 3
+fi
+
+apt autoclean -y
+if [[ $? -ne 0 ]]; then
+    termux-notification -c "apt autoclean failed!"
+    exit 3
+fi
+
+termux-notification -c "Upgrade succeded!"
