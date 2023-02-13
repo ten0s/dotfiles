@@ -2,7 +2,7 @@
 - name: Set vars
   set_fact:
     # $ curl -s --head https://telegram.org/dl/desktop/linux | grep location
-    telegram_ver: 4.0.2
+    telegram_ver: 4.6.2
 
 - name: Download
   get_url: url=https://updates.tdesktop.com/tlinux/tsetup.{{telegram_ver}}.tar.xz
