@@ -2,7 +2,7 @@
 
 if [[ $# -ne 1 ]]; then
     echo "Usage: $(basename $0) <FILE>"
-    echo "See also stat(1), stat(2), statx(2) and inode(7)"
+    echo "See also stat(1), stat(2), chattr(1) and inode(7)"
     exit 1
 fi
 
@@ -20,6 +20,8 @@ $(stat --format='%f' $FILE | tr 'abcdef' 'ABCDEF')
 EOF
 )
 RAW_MODE_STR=$(printf '%16s' $RAW_MODE_BIN)
+
+ATTR=$(lsattr $FILE | cut -d' ' -f1)
 
 DEV=$(stat --format='%d' $FILE)
 DEV_MAJOR=$(($DEV >> 8))
@@ -44,6 +46,7 @@ File size        : %s bytes
 File type        : %F ( $RDEV_MAJOR:$RDEV_MINOR )
 Access           : 0o%04a ( %16A )
 Raw mode         : 0x%f ( $RAW_MODE_STR )
+Attr             : (  $ATTR )
 Uid              : %u ( %U )
 Gid              : %g ( %G )
 Device ID        : %d ( $DEV_MAJOR:$DEV_MINOR )
