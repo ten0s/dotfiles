@@ -9,13 +9,19 @@ if [[ $# -ne 1 ]]; then
     exit 1
 fi
 
+# SYSLOG=1
+# $ tail -f /var/log/syslog
+source $(dirname $0)/utilx.sh
+
 URI="$1"
 FILE=$(echo $URI | sed -rn 's;(pdfx|djvux)://(.+\.(pdf|djvu)).*;\2;p')
 PAGE=$(echo $URI | sed -rn 's;(pdfx|djvux)://.+::([[:digit:]]+).*;\2;p')
 [[ -z "$PAGE" ]] && PAGE=1
 
-echo "URI : $URI"
-echo "FILE: $FILE"
-echo "PAGE: $PAGE"
+echo "--- $(basename $0) ---" | log
+echo "ARGV[1]: $1"            | log
+echo "URI    : $URI"          | log
+echo "FILE   : $FILE"         | log
+echo "PAGE   : $PAGE"         | log
 
 evince "$(bash -c "echo $FILE")" --page-label="$PAGE"

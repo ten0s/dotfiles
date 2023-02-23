@@ -7,15 +7,21 @@ if [[ $# -ne 1 ]]; then
     exit 1
 fi
 
+# SYSLOG=1
+# $ tail -f /var/log/syslog
+source $(dirname $0)/utilx.sh
+
 URI="$1"
 USER=$(echo $URI | sed -rn 's;ssh://(.*)@.*;\1;p')
 HOST=$(echo $URI | sed -rn 's;ssh://(.*@)?([^:]*)(:.*)?;\2;p')
 PORT=$(echo $URI | sed -rn 's;ssh://(.*@)?(.*):(.*);\3;p')
 
-echo "URI : $URI"
-echo "USER: $USER"
-echo "HOST: $HOST"
-echo "PORT: $PORT"
+echo "--- $(basename $0) ---" | log
+echo "ARGV[1]: $1"            | log
+echo "URI    : $URI"          | log
+echo "USER   : $USER"         | log
+echo "HOST   : $HOST"         | log
+echo "PORT   : $PORT"         | log
 
 if [[ ! -z $USER ]]; then
     USER="$USER@"

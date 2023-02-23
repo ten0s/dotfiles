@@ -9,6 +9,13 @@
     - {scheme: remsh   , desktop: remshx.desktop  , handler: remshx.sh}
     - {scheme: ssh     , desktop: sshx.desktop    , handler: sshx.sh}
 
+- name: Copy files
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+  with_items:
+  - utilx.sh
+
 - name: Copy handlers
   copy: src={{item.handler}}
         dest=/home/{{user}}/bin/{{item.handler}}
