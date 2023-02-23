@@ -29,9 +29,9 @@ alias uuid="uuid -v4"
 alias cdtemp="cd `mktemp -d`"
 alias pushdtemp="pushd `mktemp -d`"
 
-alias perror='python -c "import os, sys; print os.strerror(int(sys.argv[1]))"'
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
-alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
+alias perror='python3 -c "import os, sys; print(os.strerror(int(sys.argv[1])))"'
+alias urlencode='python3 -c "import sys, urllib.parse; print(urllib.parse.quote_plus(sys.argv[1]))"'
+alias urldecode='python3 -c "import sys, urllib.parse; print(urllib.parse.unquote_plus(sys.argv[1]))"'
 function b64e() { base64 <<< $1; }
 function b64d() { base64 -d <<< $1; }
 
