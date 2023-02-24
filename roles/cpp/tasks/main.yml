@@ -55,8 +55,11 @@
 
 - name: Install Boost
   become: true
-  apt: name=libboost-all-dev
-       state=latest
+  apt:
+    name:
+    - libboost-all-dev
+    - libboost-doc # /usr/share/doc/libboost1.74-doc/
+    state: latest
 
 # https://github.com/google/googletest/tree/main/googletest
 # https://developer.ibm.com/articles/au-googletestingframework/
