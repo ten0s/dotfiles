@@ -15,8 +15,8 @@
     # $ https_proxy=HOST:PORT elinks https://releases.hashicorp.com/vagrant/
     # $ https_proxy=HOST:PORT curl -s https://releases.hashicorp.com/vagrant/ | elinks -dump
     # $ https_proxy=HOST:PORT ./provision.sh vagrant
-    vagrant_ver: 2.3.3
-    vagrant_deb_ver: 2.3.3-1
+    vagrant_ver: 2.3.7
+    vagrant_deb_ver: 2.3.7-1
 
 - name: Download package
   get_url: url=https://releases.hashicorp.com/vagrant/{{vagrant_ver}}/vagrant_{{vagrant_deb_ver}}_amd64.deb
