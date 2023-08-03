@@ -1,0 +1,68 @@
+---
+- name: Set vars
+  set_fact:
+    desktop_ver: 0.0.18
+    ffmpeg_ver: 0.78.1
+
+# https://github.com/TiddlyWiki/TiddlyDesktop
+- name: Download TiddlyDesktop
+  get_url:
+    url: https://github.com/TiddlyWiki/TiddlyDesktop/releases/download/v{{desktop_ver}}/tiddlydesktop-linux64-v{{desktop_ver}}.zip
+    dest: "{{cache_dir}}/tiddlydesktop-{{desktop_ver}}.zip"
+
+- name: Unarchive TiddlyDesktop
+  become: true
+  unarchive:
+    src: "{{cache_dir}}/tiddlydesktop-{{desktop_ver}}.zip"
+    dest: /opt/
+
+- name: Adjust TiddlyDesktop directory 1/3
+  become: true
+  copy:
+    remote_src: True
+    src: /opt/TiddlyDesktop-linux64-v{{desktop_ver}}/
+    dest: /opt/TiddlyDesktop
+
+- name: Adjust TiddlyDesktop directory 2/3
+  become: true
+  file:
+    path: /opt/TiddlyDesktop-linux64-v{{desktop_ver}}
+    state: absent
+
+- name: Adjust TiddlyDesktop directory 3/3
+  become: true
+  file:
+    path: /opt/TiddlyDesktop
+    state: directory
+    recurse: yes
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: Install TiddlyDesktop
+  copy: src={{item}}
+        dest=/home/{{user}}/.local/share/applications/{{item}}
+  with_items:
+  - tiddlydesktop.desktop
+
+# https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt
+# To make NW.js play mp4 we need to replace lib/libffmpeg.so built with proprietary codecs
+- name: Download FFmpeg
+  get_url:
+    url: https://github.com/nwjs-ffmpeg-prebuilt/nwjs-ffmpeg-prebuilt/releases/download/{{ffmpeg_ver}}/{{ffmpeg_ver}}-linux-x64.zip
+    dest: "{{cache_dir}}/nwjs_ffmpeg-{{ffmpeg_ver}}.zip"
+
+- name: Backup FFmpeg
+  copy:
+    src: /opt/TiddlyDesktop/lib/libffmpeg.so
+    dest: /opt/TiddlyDesktop/lib/libffmpeg.so.bak
+
+- name: Unarchive FFmpeg 1/2
+  unarchive:
+    src: "{{cache_dir}}/nwjs_ffmpeg-{{ffmpeg_ver}}.zip"
+    dest: /opt/TiddlyDesktop/lib/
+
+- name: Unarchive FFmpeg 2/2
+  file:
+    path: /opt/TiddlyDesktop/lib/libffmpeg.so
+    state: touch
+    mode: 0700

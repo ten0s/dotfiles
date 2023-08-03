@@ -5,16 +5,19 @@
     telegram_ver: 4.8.10
 
 - name: Download
-  get_url: url=https://updates.tdesktop.com/tlinux/tsetup.{{telegram_ver}}.tar.xz
-           dest={{cache_dir}}/tsetup.{{telegram_ver}}.tar.xz
+  get_url:
+    url: https://updates.tdesktop.com/tlinux/tsetup.{{telegram_ver}}.tar.xz
+    dest: "{{cache_dir}}/tsetup.{{telegram_ver}}.tar.xz"
 
 - name: Unarchive
   become: true
-  unarchive: src={{cache_dir}}/tsetup.{{telegram_ver}}.tar.xz
-             dest=/opt/
+  unarchive:
+    src: "{{cache_dir}}/tsetup.{{telegram_ver}}.tar.xz"
+    dest: /opt/
 
 - name: Install
-  copy: src={{item}}
-        dest=/home/{{user}}/.local/share/applications/{{item}}
+  copy:
+    src: "{{item}}"
+    dest: "/home/{{user}}/.local/share/applications/{{item}}"
   with_items:
   - telegramdesktop.desktop
