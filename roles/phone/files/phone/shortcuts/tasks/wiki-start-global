@@ -1,5 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 if ! nc -z 127.0.0.1 8080; then
-    python3 -m http.server 8080 --directory ~/wiki
+    tudo http-server ~/wiki -a 0.0.0.0 -p 8080 &> ~/log/http-server.log
 fi

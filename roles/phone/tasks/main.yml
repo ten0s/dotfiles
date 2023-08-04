@@ -1,4 +1,8 @@
 ---
+- name: Set vars
+  set_fact:
+    termux_bin: /data/data/com.termux/files/usr/bin
+
 - name: Install tools
   become: true
   apt:
@@ -19,7 +23,20 @@
 - name: Install phone deps
   connection: ssh
   delegate_to: phone
-  command: pkg install manpages htop
+  command: pkg install curl htop manpages nodejs-lts which
+
+- name: Install phone HTTP Server
+  connection: ssh
+  delegate_to: phone
+  command: npm install -g http-server
+
+# https://www.reddit.com/r/termux/comments/12c3fvp/sh_1_httpserver_not_found_when_trying_to_run_a/
+- name: Install phone tudo
+  connection: ssh
+  delegate_to: phone
+  shell: >
+    curl -sL https://github.com/agnostic-apollo/tudo/releases/latest/download/tudo -o "{{termux_bin}}/tudo" &&
+    chmod 755 "{{termux_bin}}/tudo"
 
 - name: Create phone dirs
   connection: ssh
@@ -29,6 +46,7 @@
         state=directory
   with_items:
   - {path: bin}
+  - {path: log}
   - {path: .shortcuts/tasks}
 
 - name: Copy phone scripts
@@ -39,11 +57,12 @@
         mode=0755
         #backup=true
   with_items:
-  - {src: phone/bin/termux-url-opener      , dest: bin}
-  - {src: phone/shortcuts/tasks/pkg-upgrade, dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/sshd-start , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/sshd-stop  , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/wiki-open  , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/wiki-pull  , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/wiki-start , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/wiki-stop  , dest: .shortcuts/tasks}
+  - {src: phone/bin/termux-url-opener            , dest: bin}
+  - {src: phone/shortcuts/tasks/pkg-upgrade      , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/sshd-start       , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/sshd-stop        , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/wiki-open        , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/wiki-pull        , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/wiki-start-global, dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/wiki-start-local , dest: .shortcuts/tasks}
+  - {src: phone/shortcuts/tasks/wiki-stop        , dest: .shortcuts/tasks}

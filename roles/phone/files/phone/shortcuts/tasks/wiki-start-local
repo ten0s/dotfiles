@@ -1,0 +1,5 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+if ! nc -z 127.0.0.1 8080; then
+    tudo http-server ~/wiki -a 127.0.0.1 -p 8080 &> ~/log/http-server.log
+fi
