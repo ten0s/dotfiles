@@ -8,7 +8,7 @@
 - name: Auto-save Wiki Recipes
   cron:
     name: "Auto-save Wiki Recipes"
-    minute: "*/15"
+    minute: "*/5"
     job: "(cd ~/projects/recipes ; git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
 
 - name: Sync Wiki Gym
