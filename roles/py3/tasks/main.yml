@@ -47,6 +47,13 @@
     state: latest
     executable: pip3
 
+- name: Install yt-dlp
+  pip:
+    name: yt-dlp
+    extra_args: --user
+    state: latest
+    executable: pip3
+
 # https://streamlink.github.io/index.html
 - name: Install streamlink
   pip:

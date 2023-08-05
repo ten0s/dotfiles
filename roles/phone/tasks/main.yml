@@ -23,7 +23,12 @@
 - name: Install phone deps
   connection: ssh
   delegate_to: phone
-  command: pkg install curl htop manpages nodejs-lts which
+  command: pkg install curl ffmpeg htop manpages nodejs-lts which
+
+- name: Install phone yt-dlp
+  connection: ssh
+  delegate_to: phone
+  command: pip install -U yt-dlp
 
 - name: Install phone HTTP Server
   connection: ssh

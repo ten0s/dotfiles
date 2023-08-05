@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TERMUX_STORAGE=/data/data/com.termux/files/home/storage
+
 clear
 bold=$(tput bold)
 normal=$(tput sgr0)
@@ -8,16 +10,16 @@ if [[ $1 =~ ^.*youtu.*$ ]]; then
 	echo "${bold}Youtube-dl${normal}"
 	echo "> ${1}"
 
-	echo $'\nDownload as an mp3 file ? (Y/N/E)'
+	echo $'\nDownload as mp3 file? (Y/N/E)'
 	read -p "> " -n 1 -r
 	echo $'\n'
 
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		echo 'Downloading mp3 file...'
-		youtube-dl -f 'bestaudio' -o '/data/data/com.termux/files/home/storage/music/%(title)s.f%(format_id)s.%(ext)s' $1
+		echo 'Downloading audio...'
+		yt-dlp -f 'bestaudio' --extract-audio --audio-format mp3 -o "$TERMUX_STORAGE/music/%(title)s%(ext)s" $1
 	elif [[ $REPLY =~ ^[Nn]$ ]]; then
 		echo 'Downloading video...'
-		youtube-dl -o "/data/data/com.termux/files/home/storage/movies/%(title)s.%(ext)s" -f "best[height<=480]" $1
+		yt-dlp -f 'bestvideo+bestaudio/best' --remux-video mp4 -o "$TERMUX_STORAGE/movies/%(title)s.%(ext)s" $1
 	else
 		echo "Exiting..."
 	fi
@@ -26,4 +28,3 @@ elif [[ $1 =~ ^.*nourlselected.*$ ]]; then
 else
 	echo Unhandled URL type: $1
 fi
-
