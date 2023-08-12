@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    anki2_ver: 2.1.55-linux-qt6
+    anki2_ver: 2.1.65-linux-qt6
 
 - name: Symlink $HOME/anki2
   file: src=/home/{{user}}/Dropbox/refs/anki2
