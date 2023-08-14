@@ -170,6 +170,8 @@
     - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
     - libxml2-utils # provides xmllint
     - mc
+    - mediainfo
+    - mediainfo-gui
     - mercurial
     - minicom
     - moreutils # for errno
