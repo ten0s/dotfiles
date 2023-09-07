@@ -16,6 +16,7 @@ alias ll="ls -lF --color=auto -v"
 alias l="ls -lF --color=auto -v"
 alias llh="ls -lFh --color=auto -v"
 alias lla="ls -lFa --color=auto -v"
+alias la="ls -lFa --color=auto -v"
 alias llah="ls -lFah --color=auto -v"
 alias llha="ls -lFah --color=auto -v"
 #alias less="less -R" don't needed as above is auto
