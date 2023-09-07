@@ -16,6 +16,8 @@ set auto-load safe-path ~/
 add-auto-load-safe-path /usr/share/gdb/
 add-auto-load-safe-path /usr/share/glib-2.0/gdb/
 
+source ~/.gdb/env.py
+
 #python
 #import sys
 #sys.path.insert(0, '/usr/share/gcc/python')

@@ -1,4 +1,11 @@
 ---
+- name: Create user dirs
+  file: path={{item.path}}
+        mode={{item.mode}}
+        state=directory
+  with_items:
+  - {path: "/home/{{user}}/.gdb", mode: 755}
+
 - name: Install
   become: true
   apt:
@@ -24,3 +31,10 @@
   copy: src=dot_gdbinit
         dest=/home/{{user}}/.gdbinit
         backup=true
+
+- name: Copy gdb scripts
+  copy: src=gdb/{{item}}
+        dest=/home/{{user}}/.gdb/
+        backup=true
+  with_items:
+  - env.py
