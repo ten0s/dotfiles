@@ -18,6 +18,7 @@
 #    - ltrace # build from source
     - latrace
     - pax-utils # dumpelf lddtree scanelf
+    - rr # record & replay debugger
     - strace # https://strace.io/
     - valgrind
     state: latest
