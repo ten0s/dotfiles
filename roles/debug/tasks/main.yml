@@ -15,6 +15,7 @@
     - cgdb # gdb console front-end
     - ddd  # gdb graphical front-end
     - gdb
+    - glibc-tools # catchsegv libSegFault.so
 #    - ltrace # build from source
     - latrace
     - pax-utils # dumpelf lddtree scanelf
