@@ -10,7 +10,7 @@
   become: true
   apt:
     name:
-    - binutils
+    - binutils # addr2line ar as objdump readelf strings strip ...
     - binutils-doc
     - cgdb # gdb console front-end
     - ddd  # gdb graphical front-end
