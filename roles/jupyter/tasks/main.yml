@@ -1,13 +1,19 @@
 ---
+
+#
+#- name: Install Jupyter Lab
+#  pip:
+#    name: jupyterlab
+#    extra_args: --user
+#    state: latest
+#    executable: pip3
+
 #
 # https://jupyter.org/install
+# https://github.com/jupyter-xeus/xeus-cling
+# https://xeus-cling.readthedocs.io/en/latest/index.html
+# See 'Install Mamba + Jupyter + Xeus-Cling'
 #
-- name: Install Jupyter Lab
-  pip:
-    name: jupyterlab
-    extra_args: --user
-    state: latest
-    executable: pip3
 
 #
 # https://pypi.org/project/bash_kernel/
@@ -22,15 +28,11 @@
 - name: Install Bash Kernel 2/2
   shell: python3 -m bash_kernel.install
 
-#
-# https://github.com/root-project/cling
-# See 'Jupyter Install C++ Cling Kernel'
-# check out:
-# https://xeus-cling.readthedocs.io/en/latest/index.html
-# https://github.com/jupyter-xeus/xeus-cling
-# https://blog.jupyter.org/xeus-is-now-a-jupyter-subproject-c4ec5a1bf30b
-#
-
 - name: Copy bashrc config
   copy: src=10-bashrc-jupyter
         dest=/home/{{user}}/.bashrc.d/
+
+- name: Copy desktop
+  copy: src=jupyter-lab.desktop
+        dest=/home/{{user}}/.local/share/applications/
+        backup=true
