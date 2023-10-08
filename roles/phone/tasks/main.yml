@@ -20,15 +20,55 @@
   with_items:
   - phone-sshfs
 
-- name: Install phone deps
+- name: Install phone curl
   connection: ssh
   delegate_to: phone
-  command: pkg install curl ffmpeg htop manpages nodejs-lts which
+  command: pkg install -y curl
+
+- name: Install phone ffmpeg
+  connection: ssh
+  delegate_to: phone
+  command: pkg install -y ffmpeg
+
+- name: Install phone htop
+  connection: ssh
+  delegate_to: phone
+  command: pkg install -y htop
+
+- name: Install phone git
+  connection: ssh
+  delegate_to: phone
+  command: pkg install -y git
+
+- name: Install phone manpages
+  connection: ssh
+  delegate_to: phone
+  command: pkg install -y manpages
+
+- name: Install phone mc
+  connection: ssh
+  delegate_to: phone
+  command: pkg install -y mc
+
+- name: Install phone netcat-openbsd
+  connection: ssh
+  delegate_to: phone
+  command: pkg install -y netcat-openbsd
+
+- name: Install phone which
+  connection: ssh
+  delegate_to: phone
+  command: pkg install -y which
 
 - name: Install phone yt-dlp
   connection: ssh
   delegate_to: phone
   command: pip install -U yt-dlp
+
+- name: Install phone Node.js
+  connection: ssh
+  delegate_to: phone
+  command: pkg install -y nodejs-lts
 
 - name: Install phone HTTP Server
   connection: ssh
@@ -50,9 +90,10 @@
         mode=0755
         state=directory
   with_items:
+  - {path: .shortcuts/tasks}
   - {path: bin}
   - {path: log}
-  - {path: .shortcuts/tasks}
+  - {path: tmp}
 
 - name: Copy phone scripts
   connection: ssh
@@ -62,6 +103,8 @@
         mode=0755
         #backup=true
   with_items:
+  - {src: phone/dot_bashrc                       , dest: .bashrc}
+  - {src: phone/dot_gitconfig                    , dest: .gitconfig}
   - {src: phone/bin/termux-url-opener            , dest: bin}
   - {src: phone/shortcuts/tasks/pkg-upgrade      , dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/sshd-start       , dest: .shortcuts/tasks}

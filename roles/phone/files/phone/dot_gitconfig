@@ -1,0 +1,6 @@
+[user]
+	email = dm.klionsky@gmail.com
+	name = Dmitry Klionsky
+
+[url "https://"]
+    insteadOf = git://

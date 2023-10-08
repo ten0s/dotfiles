@@ -1,4 +1,8 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+if [[ ! -d ~/wiki ]]; then
+    git clone git@github.com:ten0s/wiki.git ~/wiki
+fi
+
 cd ~/wiki
 git pull origin master
