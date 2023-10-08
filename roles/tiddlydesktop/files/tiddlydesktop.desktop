@@ -6,4 +6,4 @@ Exec=/opt/TiddlyDesktop/nw --user-agent="TiddlyDesktop"
 Terminal=false
 StartupWMClass=TiddlyDesktop
 Type=Application
-Categories=Utility;Education;
+Categories=Development;Education;
