@@ -2,8 +2,8 @@
 Version=1.0
 Name=Tiddly Desktop
 Comment=TiddlyDesktop is a special purpose web browser for working with locally stored TiddlyWikis
-Exec=/opt/TiddlyDesktop/nw
+Exec=/opt/TiddlyDesktop/nw --user-agent="TiddlyDesktop"
 Terminal=false
 StartupWMClass=TiddlyDesktop
 Type=Application
-Categories=Utility;
+Categories=Utility;Education;
