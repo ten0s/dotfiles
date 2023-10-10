@@ -8,5 +8,4 @@ if [[ $# -ne 1 ]]; then
 fi
 
 PACKAGE=${1}
-#echo -n "${PACKAGE} "
 adb shell dumpsys package ${PACKAGE} | grep versionName | awk -F= '{ print $2 }'
