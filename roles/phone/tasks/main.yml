@@ -18,6 +18,9 @@
         mode=0755
         backup=true
   with_items:
+  - adb-list-packages.sh
+  - adb-package-version.sh
+  - adb-pull-package.sh
   - phone-sshfs
 
 - name: Install phone curl
