@@ -164,6 +164,7 @@
     - htop
     - hypnotix # IPTV App
     - iftop # display bandwidth usage on an interface by host
+    - inetutils-traceroute # traceroute
     - inotify-tools
     - kcachegrind
     - keepassx
