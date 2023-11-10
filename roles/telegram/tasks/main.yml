@@ -2,7 +2,7 @@
 - name: Set vars
   set_fact:
     # $ curl -s --head https://telegram.org/dl/desktop/linux | grep location
-    telegram_ver: 4.10.2
+    telegram_ver: 4.11.6
 
 - name: Download
   get_url:
