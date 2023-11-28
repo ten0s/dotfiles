@@ -168,6 +168,7 @@
     - inotify-tools
     - kcachegrind
     - keepassx
+    - keepassxc
     - libnss3 # to fix "NSS >= 3.26 is required..." google-chome startup error
     - libxml2-utils # provides xmllint
     - mc
