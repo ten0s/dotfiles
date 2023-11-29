@@ -137,6 +137,7 @@
     - build-essential
     - ca-certificates
     - cheese # Camera App, see also fswebcam
+    - socat
     - curl
     - cutecom # GUI mini,pico com
     - dante-client # socksify
