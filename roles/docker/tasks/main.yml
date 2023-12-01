@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    docker_compose_ver: 1.29.2 # https://github.com/docker/compose/releases
+    docker_compose_ver: 2.23.3 # https://github.com/docker/compose/releases
 
 - name: Add apt key
   become: true
@@ -29,7 +29,7 @@
 #
 - name: Install Docker Compose
   become: true
-  get_url: url=https://github.com/docker/compose/releases/download/{{docker_compose_ver}}/docker-compose-Linux-x86_64
+  get_url: url=https://github.com/docker/compose/releases/download/v{{docker_compose_ver}}/docker-compose-Linux-x86_64
            dest=/usr/local/bin/docker-compose
            mode=0755
            force=true
