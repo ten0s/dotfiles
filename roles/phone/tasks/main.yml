@@ -33,35 +33,20 @@
   delegate_to: phone
   command: pkg install -y ffmpeg
 
-- name: Install phone htop
+- name: Install phone Sys utils
   connection: ssh
   delegate_to: phone
-  command: pkg install -y htop
+  command: pkg install -y htop mc which
 
-- name: Install phone git
+- name: Install phone Dev utils
   connection: ssh
   delegate_to: phone
-  command: pkg install -y git
+  command: pkg install -y git manpages
 
-- name: Install phone manpages
+- name: Install phone Net utils
   connection: ssh
   delegate_to: phone
-  command: pkg install -y manpages
-
-- name: Install phone mc
-  connection: ssh
-  delegate_to: phone
-  command: pkg install -y mc
-
-- name: Install phone netcat-openbsd
-  connection: ssh
-  delegate_to: phone
-  command: pkg install -y netcat-openbsd
-
-- name: Install phone which
-  connection: ssh
-  delegate_to: phone
-  command: pkg install -y which
+  command: pkg install -y netcat-openbsd dnsutils whois
 
 - name: Install phone yt-dlp
   connection: ssh
