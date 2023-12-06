@@ -7,6 +7,7 @@
     - {scheme: openx   , desktop: openx.desktop   , handler: openx.sh}
     - {scheme: pdfx    , desktop: pdfx.desktop    , handler: evincex.sh}
     - {scheme: remsh   , desktop: remshx.desktop  , handler: remshx.sh}
+    - {scheme: runx    , desktop: runx.desktop    , handler: runx.sh}
     - {scheme: ssh     , desktop: sshx.desktop    , handler: sshx.sh}
 
 - name: Copy files
@@ -47,4 +48,7 @@
   - "{{handlers}}"
 
 - name: Update MIME database
-  command: update-mime-database /home/{{user}}/.local/share/mime
+  command: update-desktop-database /home/{{user}}/.local/share/applications
+
+#- name: Update MIME database
+#  command: update-mime-database /home/{{user}}/.local/share/mime
