@@ -25,7 +25,16 @@
   - "{{handlers}}"
 
 #
+# See [[XDG Custom URI Handler]]
+#
+
+#
 # ${XDG_DATA_HOME:-$HOME/.local/share}/applications/
+# Now the below should work:
+# $ xdg-mime query default x-scheme-handler/openx
+# openx.desktop
+# But the below still doesn't work:
+# $ xdg-open openx:///etc/passwd
 #
 - name: Copy desktops
   copy: src={{item.desktop}}
@@ -37,18 +46,20 @@
 #
 # Adds 'x-scheme-handler/SCHEME=SCHEME.desktop' to
 # ${XDG_CONFIG_HOME:-$HOME/.config}/mimeapps.list
-# under '[Default Applications]'
-# $ xdg-mime query default x-scheme-handler/pdfx
-# pfdx.desktop
-# $ xdg-open pdfx://PATH/TO/FILE.pdf
+# under [Default Applications]
+# Now the below does work:
+# $ xdg-open openx:///etc/passwd
 #
 - name: Register MIME types
-  command: xdg-mime default {{item.desktop}} {{item.scheme}}
+  command: xdg-mime default {{item.desktop}} x-scheme-handler/{{item.scheme}}
   with_items:
   - "{{handlers}}"
 
-- name: Update MIME database
+#
+# Adds 'x-scheme-handler/SCHEME=SCHEME.desktop' to
+# ${XDG_DATA_HOME:-$HOME/.local/share}/applications/mimeinfo.cache
+# under [MIME Cache]
+# Not really needed, but good to have.
+#
+- name: Update Desktop database
   command: update-desktop-database /home/{{user}}/.local/share/applications
-
-#- name: Update MIME database
-#  command: update-mime-database /home/{{user}}/.local/share/mime

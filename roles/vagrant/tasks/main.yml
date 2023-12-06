@@ -11,7 +11,7 @@
 
 - name: Set vars
   set_fact:
-    # See 'Curl Set HTTP Proxy'
+    # See [[Curl Set HTTP Proxy]]
     # $ https_proxy=HOST:PORT elinks https://releases.hashicorp.com/vagrant/
     # $ https_proxy=HOST:PORT curl -s https://releases.hashicorp.com/vagrant/ | elinks -dump
     # $ https_proxy=HOST:PORT ./provision.sh vagrant
