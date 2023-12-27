@@ -1,0 +1,19 @@
+---
+#
+# https://osquery.io/
+# https://github.com/osquery/osquery
+#
+
+- name: Set vars
+  set_fact:
+    osquery_ver: 5.10.2-1
+
+- name: Download
+  become: true
+  get_url: url=https://pkg.osquery.io/deb/osquery_{{osquery_ver}}.linux_amd64.deb
+           dest={{cache_dir}}/
+
+- name: Install
+  become: true
+  apt: deb={{cache_dir}}/osquery_{{osquery_ver}}.linux_amd64.deb
+       state=present
