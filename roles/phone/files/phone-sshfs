@@ -2,6 +2,8 @@
 
 if [[ $# -ne 1 ]] && [[ $# -ne 2 ]]; then
     echo "usage: $(basename $0) <REMOTE_DIR> [LOCAL_DIR]"
+    echo "example:"
+    echo "  \$ $(basename $0) storage/downloads"
     exit 1
 fi
 
