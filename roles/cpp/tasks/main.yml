@@ -37,6 +37,7 @@
     name:
     - cppcheck # Tool for static C/C++ code analysis
     - splint   # A tool for statically checking C programs
+    - splint-doc-html # file:///usr/share/doc/splint-doc-html/html/manual.html
     state: latest
 
 # $ sudo update-alternatives --config c++
