@@ -255,22 +255,3 @@
   service: name=ssh
            enabled=true
            state=started
-
-- name: Update /etc/security/limits.conf file
-  become: true
-  blockinfile:
-    dest: /etc/security/limits.conf
-    backup: yes
-    insertafter: EOF
-    block: |
-      {{user}} soft nofile 100000
-      {{user}} hard nofile 200000
-    state: present
-
-- name: Update /etc/pam.d/su file
-  become: true
-  lineinfile: dest=/etc/pam.d/su
-              regexp="^session    required   pam_limits.so"
-              insertafter='^# session    required   pam_limits.so'
-              line="session    required   pam_limits.so"
-              state=present
