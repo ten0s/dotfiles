@@ -3,6 +3,10 @@
 # https://wiki.winehq.org/Ubuntu
 #
 
+- name: Add i386 arch
+  become: true
+  command: dpkg --add-architecture i386
+
 - name: Add apt key
   become: true
   apt_key:
@@ -30,7 +34,7 @@
     name:
     # See https://wiki.winehq.org/Ubuntu for 'Ubuntu 22.04 and Wine stable'
     # See https://forum.winehq.org/viewtopic.php?t=36232 for 'Wine is too slow'
-    - winehq-devel # stable
+    - winehq-stable # stable | devel
     install_recommends: true
     state: latest
   register: wine
