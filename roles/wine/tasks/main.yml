@@ -28,13 +28,15 @@
     - mingw-w64-tools
     state: latest
 
+# See https://wiki.winehq.org/Ubuntu for 'Ubuntu 22.04 and Wine stable'
+# See https://forum.winehq.org/viewtopic.php?t=36232 for 'Wine is too slow'
+
 - name: Install
   become: true
   apt:
     name:
-    # See https://wiki.winehq.org/Ubuntu for 'Ubuntu 22.04 and Wine stable'
-    # See https://forum.winehq.org/viewtopic.php?t=36232 for 'Wine is too slow'
-    - winehq-stable # stable | devel
+    - winehq-stable   # stable | devel
+    - wine-stable-dev # headers
     install_recommends: true
     state: latest
   register: wine
