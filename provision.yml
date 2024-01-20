@@ -36,6 +36,7 @@
   - {import_role: name=java          , tags: ["java"]}
   - {import_role: name=jq            , tags: ["jq"]}
   - {import_role: name=jupyter       , tags: ["jupyter"]}
+  - {import_role: name=keepass       , tags: ["keepass"]}
   - {import_role: name=latex         , tags: ["latex"]}
   - {import_role: name=limits        , tags: ["limits"]}
   - {import_role: name=meld          , tags: ["meld"]}

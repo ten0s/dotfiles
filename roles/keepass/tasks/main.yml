@@ -1,0 +1,13 @@
+---
+- name: Install Gnome-Keyring
+  become: true
+  apt:
+    name:
+    - libsecret-tools # secret-tool
+    - seahorse        # GUI
+
+- name: Install KeePassXC
+  become: true
+  apt:
+    name:
+    - keepassxc
