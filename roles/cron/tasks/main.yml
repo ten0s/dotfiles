@@ -16,3 +16,9 @@
     name: "Sync Wiki Gym"
     minute: "*/5"
     job: "(cd ~/projects/wiki-gym ; rsync -avh --delete ./ serverpi:/media/Transcend/Public/wiki-gym/)"
+
+- name: Sync Wiki
+  cron:
+    name: "Sync Wiki"
+    minute: "*/5"
+    job: "(cd ~/projects/wiki ; rsync -avh --delete ./ serverpi:/media/Transcend/Public/wiki/)"
