@@ -26,6 +26,7 @@
     name:
     - mingw-w64
     - mingw-w64-tools
+    - msitools        # msiextract
     state: latest
 
 # See https://wiki.winehq.org/Ubuntu for 'Ubuntu 22.04 and Wine stable'
