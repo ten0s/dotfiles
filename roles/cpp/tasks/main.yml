@@ -11,6 +11,7 @@
     - autoconf
     - autoconf-archive
     - automake
+    - ccache
     - cmake
     state: latest
 
