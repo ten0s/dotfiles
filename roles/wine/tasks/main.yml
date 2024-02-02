@@ -32,10 +32,20 @@
 # See https://wiki.winehq.org/Ubuntu for 'Ubuntu 22.04 and Wine stable'
 # See https://forum.winehq.org/viewtopic.php?t=36232 for 'Wine is too slow'
 
+# Maybe needed for having winscard.dll
+# $ sudo apt install pcscd pcsc-tools libpcsclite1
+
+#wine-stable-i386
+#wine-stable-amd64
+#winehq-stable
+#wine-stable
+#wine-stable-dev
+
 - name: Install
   become: true
   apt:
     name:
+    - winbind
     - winehq-stable   # stable | devel
     - wine-stable-dev # headers
     install_recommends: true
