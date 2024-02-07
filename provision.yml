@@ -68,6 +68,7 @@
   - {import_role: name=telegram      , tags: ["telegram"]}
   - {import_role: name=tiddlydesktop , tags: ["tiddlydesktop"]}
   - {import_role: name=vagrant       , tags: ["vagrant"]}
+  - {import_role: name=viber         , tags: ["viber"]}
   - {import_role: name=virtualbox    , tags: ["virtualbox"]}
   - {import_role: name=wine          , tags: ["wine"]}
   - {import_role: name=work          , tags: ["work"]}

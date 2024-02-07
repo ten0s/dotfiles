@@ -1,0 +1,10 @@
+---
+- name: Download
+  get_url:
+    url: https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb
+    dest: "{{cache_dir}}/viber.deb"
+
+- name: Install
+  become: true
+  apt: deb={{cache_dir}}/viber.deb
+       state=present
