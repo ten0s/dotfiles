@@ -17,6 +17,7 @@ add-auto-load-safe-path /usr/share/gdb/
 add-auto-load-safe-path /usr/share/glib-2.0/gdb/
 
 source ~/.gdb/env.py
+source ~/.gdb/substr.py
 
 #python
 #import sys

@@ -2,8 +2,10 @@ import os
 
 class Env(gdb.Function):
   """
-  Return value of environment variable
+  Return value of environment variable:
+  string $env(string)
   (gdb) print $env("USER")
+  (gdb) $1 = ten0s
 """
 
   def __init__(self):

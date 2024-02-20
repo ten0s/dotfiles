@@ -40,3 +40,4 @@
         backup=true
   with_items:
   - env.py
+  - substr.py
