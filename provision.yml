@@ -22,6 +22,7 @@
   - {import_role: name=bastyon       , tags: ["bastyon"]}
   - {import_role: name=chrome        , tags: ["chrome"]}
   - {import_role: name=cpp           , tags: ["cpp"]}
+  - {import_role: name=cpro          , tags: ["cpro"]}
   - {import_role: name=cron          , tags: ["cron"]}
   - {import_role: name=debug         , tags: ["debug"]}
   - {import_role: name=docker        , tags: ["docker"]}

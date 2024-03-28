@@ -1,0 +1,5 @@
+---
+
+- name: Copy bashrc config
+  copy: src=10-bashrc-cpro
+        dest=/home/{{user}}/.bashrc.d/10-bashrc-cpro
