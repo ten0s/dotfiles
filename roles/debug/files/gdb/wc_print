@@ -1,0 +1,19 @@
+# https://www.firstobject.com/wchar_t-gdb.htm
+define wc_print
+printf "\""
+set $c = (wchar_t*)$arg0
+while (*$c)
+  if (*$c > 0x7f)
+    printf "[%x]", *$c
+  else
+    printf "%c", *$c
+  end
+  set $c++
+end
+printf "\"\n"
+end
+
+document wc_print
+wc_print <wide_string_variable_name>
+Display <wide_string_variable_name> which is a wchar_t* or wstring.
+end
