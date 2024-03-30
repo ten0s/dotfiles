@@ -1,1 +1,1 @@
-export PATH=/opt/cprocsp/bin/amd64/:$PATH
+export PATH=/opt/cprocsp/bin/amd64/:/opt/cprocsp/sbin/amd64/:$PATH
