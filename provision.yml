@@ -40,6 +40,7 @@
   - {import_role: name=keepass       , tags: ["keepass"]}
   - {import_role: name=latex         , tags: ["latex"]}
   - {import_role: name=limits        , tags: ["limits"]}
+  - {import_role: name=makeself      , tags: ["makeself"]}
   - {import_role: name=meld          , tags: ["meld"]}
   - {import_role: name=mfakeys       , tags: ["mfakeys"]}
   - {import_role: name=mimeapps      , tags: ["mimeapps"]}

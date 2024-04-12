@@ -1,0 +1,23 @@
+---
+#
+# https://makeself.io/
+#
+
+- name: Set vars
+  set_fact:
+    makeself_ver: 2.5.0
+
+- name: Download Makeself.sh
+  get_url:
+    url: https://github.com/megastep/makeself/releases/download/release-{{makeself_ver}}/makeself-{{makeself_ver}}.run
+    dest: "{{cache_dir}}/makeself-{{makeself_ver}}.run"
+
+- name: Install Makeself.sh
+  become: true
+  shell: >
+    sh {{cache_dir}}/makeself-{{makeself_ver}}.run --target /opt/makeself --nox11 &&
+    chmod 755 /opt/makeself
+
+- name: Copy bashrc config
+  copy: src=10-bashrc-makeself
+        dest=/home/{{user}}/.bashrc.d/
