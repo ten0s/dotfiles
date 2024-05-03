@@ -53,5 +53,21 @@
     state: latest
   register: wine
 
-- debug: msg='Now run Wine -> Configure Wine (winecfg) and install everything it will ask'
-  when: wine is changed
+#- debug: msg='Now run Wine -> Configure Wine (winecfg) and install everything it will ask'
+#  when: wine is changed
+
+- name: Configure Wine
+  command: winecfg /v win10
+
+#
+# Add Wine menu missing in upstream Wine
+# https://linuxmint.com/rel_virginia.php
+#
+
+- name: Install wine-installer
+  become: true
+  apt:
+    name:
+    - wine-installer
+    install_recommends: false
+    state: latest
