@@ -15,6 +15,7 @@
   with_items:
   - {path: "/home/{{user}}/.bashrc.d", mode: 755}
   - {path: "/home/{{user}}/.config/autostart", mode: 755}
+  - {path: "/home/{{user}}/.config/xfce4/terminal", mode: 755}
   - {path: "/home/{{user}}/.local/bin", mode: 755}
   - {path: "/home/{{user}}/bin", mode: 755}
   - {path: "/home/{{user}}/tmp", mode: 755}

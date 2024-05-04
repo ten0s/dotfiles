@@ -27,6 +27,7 @@
 # Default 172.18.0.1/16 conflicts with VPN
 #
 - name: Copy dockerd config
+  become: true
   copy: src=daemon.json
         dest=/etc/docker/
         mode=0644

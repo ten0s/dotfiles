@@ -1,10 +1,4 @@
 ---
-- name: Create dirs
-  file: path={{item}}
-        state=directory
-  with_items:
-  - /home/{{user}}/Dropbox/refs
-
 - name: Install deps
   become: true
   apt:
