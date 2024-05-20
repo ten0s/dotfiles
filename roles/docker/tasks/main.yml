@@ -26,6 +26,7 @@
 #
 # Default 172.18.0.1/16 conflicts with VPN
 # Setup custom default bridge network
+# https://docs.docker.com/network/drivers/bridge/
 #
 - name: Copy dockerd config
   become: true
