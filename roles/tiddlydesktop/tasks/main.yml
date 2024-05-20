@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    desktop_ver: 0.0.18
+    desktop_ver: 0.0.20
     ffmpeg_ver: 0.78.1
 
 # https://github.com/TiddlyWiki/TiddlyDesktop
