@@ -3,22 +3,22 @@
   cron:
     name: "Auto-save Wiki"
     minute: "*/1"
-    job: "(cd ~/projects/wiki ; git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
+    job: "(cd ~/projects/wiki && git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
 
 - name: Auto-save Wiki Recipes
   cron:
     name: "Auto-save Wiki Recipes"
     minute: "*/5"
-    job: "(cd ~/projects/recipes ; git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
+    job: "(cd ~/projects/recipes && git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
 
 - name: Sync Wiki Gym
   cron:
     name: "Sync Wiki Gym"
     minute: "*/5"
-    job: "(cd ~/projects/wiki-gym ; rsync -avh --delete ./ serverpi:/media/Transcend/Public/wiki-gym/)"
+    job: "(cd ~/projects/wiki-gym && rsync -avh --delete ./ serverpi:/media/Transcend/Public/wiki-gym/)"
 
 - name: Sync Wiki
   cron:
     name: "Sync Wiki"
     minute: "*/5"
-    job: "(cd ~/projects/wiki ; rsync -avh --delete ./ serverpi:/media/Transcend/Public/wiki/)"
+    job: "(cd ~/projects/wiki && rsync -avh --delete ./ serverpi:/media/Transcend/Public/wiki/)"

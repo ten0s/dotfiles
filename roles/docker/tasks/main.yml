@@ -46,7 +46,7 @@
 
 #
 # Docker w/o sudo
-# https://docs.docker.com/engine/installation/ubuntulinux/#create-a-docker-group
+# https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 #
 
 - name: Create docker group
