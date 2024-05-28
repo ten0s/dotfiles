@@ -30,5 +30,5 @@ int main() {
 }
 EOF
 
-g++ $TMP_SRC -o $TMP_OUT && $TMP_OUT
+g++ $TMP_SRC -o -I$PWD $TMP_OUT && $TMP_OUT
 rm -f $TMP_SRC $TMP_OUT
