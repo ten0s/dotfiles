@@ -54,6 +54,7 @@
   - stat-file
   - stat-fs
   - suggest
+  - wineconst
 
 - name: Copy autostart configs
   copy: src={{item}}
