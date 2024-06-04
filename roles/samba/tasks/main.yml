@@ -1,0 +1,27 @@
+---
+- name: Install Samba
+  apt: name=samba
+       state=present
+
+- name: Enable Samba service
+  service: name={{item}}
+           enabled=true
+           state=started
+  with_items:
+  - smbd
+  - nmbd
+
+- name: Provision Samba config
+  become: true
+  blockinfile:
+    path: /etc/samba/smb.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK (Public Dir)"
+    block: |
+      [Public]
+        comment = Public Dir
+        path = "/public"
+        browseable = yes
+        writeable = yes
+        read only = no
+        guest ok = yes
+  notify: Restart Samba

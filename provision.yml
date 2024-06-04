@@ -60,6 +60,7 @@
   - {import_role: name=rds           , tags: ["rds"]}
   - {import_role: name=rerl          , tags: ["rerl"]}
   - {import_role: name=rust          , tags: ["rust"]}
+  - {import_role: name=samba         , tags: ["samba"]}
   - {import_role: name=scala         , tags: ["scala"]}
   - {import_role: name=shellcheck    , tags: ["shellcheck"]}
   - {import_role: name=skype         , tags: ["skype"]}
