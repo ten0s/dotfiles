@@ -4,7 +4,6 @@
     antlr_ver: 4.10.1
 
 - name: Download Antlr
-  become: true
   get_url:
     url=https://www.antlr.org/download/antlr-{{antlr_ver}}-complete.jar
     dest=/home/{{user}}/.java_libs/antlr-{{antlr_ver}}-complete.jar
