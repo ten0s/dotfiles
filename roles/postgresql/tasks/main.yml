@@ -6,20 +6,24 @@
     - postgresql-client-common
     - postgresql-client
 
-- name: Add pgAdmin apt key
-  become: true
-  apt_key: keyserver=https://www.postgresql.org/media/keys/ACCC4CF8.asc
-           id=ACCC4CF8
-           state=present
+#
+# pgAdmin is not available from `apt' any more
+#
 
-- name: Add pgAdmin apt repo
-  become: true
-  apt_repository: repo='deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt {{ubuntu_codename}}-pgdg main'
-                  state=present
+#- name: Add pgAdmin apt key
+#  become: true
+#  apt_key: keyserver=https://www.postgresql.org/media/keys/ACCC4CF8.asc
+#           id=ACCC4CF8
+#           state=present
 
-- name: Install pgAdmin
-  become: true
-  apt:
-    name:
-    - pgadmin4
-    state: present
+#- name: Add pgAdmin apt repo
+#  become: true
+#  apt_repository: repo='deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt {{ubuntu_codename}}-pgdg main'
+#                  state=present
+
+#- name: Install pgAdmin
+#  become: true
+#  apt:
+#    name:
+#    - pgadmin4
+#    state: present
