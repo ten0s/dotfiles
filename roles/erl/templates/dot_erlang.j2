@@ -1,6 +1,6 @@
 {ok, [[HOME]]} = init:get_argument(home).
 
-StdAppPath = fun(App) ->
+StdAppPath = fun (App) ->
   ErlLib = HOME ++ "/.kerl/installations/{{erl_ver}}/lib/",
   [Path | _] = filelib:wildcard([ErlLib, App, "-*/ebin"]),
   Path
@@ -17,12 +17,12 @@ Paths = filelib:wildcard(ERL_LIBS ++ "/*/_build/*/lib/*/ebin") ++
 %io:format("~p~n", [Paths]).
 
 lists:foreach(
-   fun(Path) ->
+   fun (Path) ->
       true = code:add_pathz(Path),
       Beams = filelib:wildcard(filename:join(Path, "*.beam")),
       %io:format("~p~n", [Beams]),
       lists:foreach(
-         fun(Beam) ->
+         fun (Beam) ->
             BeamMod = filename:rootname(Beam, ".beam"),
             {module, _} = code:load_abs(BeamMod)
          end, Beams)
