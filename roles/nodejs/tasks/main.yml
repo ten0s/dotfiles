@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    nodejs_ver: v18.14.1
+    nodejs_ver: v20.15.0
 
 #
 # https://github.com/nvm-sh/nvm
@@ -11,7 +11,7 @@
 - name: Pull NVM
   git: repo=https://github.com/nvm-sh/nvm.git
        dest=/home/{{user}}/.nvm
-       version=v0.39.2
+       version=v0.39.7
 
 - name: Copy bashrc config
   copy: src=01-bashrc-nvm
@@ -32,8 +32,8 @@
     creates: "/home/{{user}}/.nvm/versions/node/{{item}}/bin"
     executable: /bin/bash
   with_items:
-  - v16.19.1
   - v18.14.1
+  - v20.15.0
 
 - name: Set default Node.js
   shell: |
