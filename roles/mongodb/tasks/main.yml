@@ -1,21 +1,30 @@
 ---
-##
-# http://docs.mongodb.org/v2.6/tutorial/install-mongodb-on-ubuntu/
-##
+#
+# https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+#
+
 - name: Add apt key
   become: true
-  apt_key: keyserver=keyserver.ubuntu.com
-           id=7F0CEB10
-           state=present
+  apt_key:
+    url: https://www.mongodb.org/static/pgp/server-7.0.asc
+    state: present
 
-- name: Add 2.6 apt repo
+- name: Add apt repo
   become: true
-  apt_repository: repo='deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen'
-                  state=present
+  apt_repository:
+    repo: 'deb https://repo.mongodb.org/apt/ubuntu {{ubuntu_codename}}/mongodb-org/7.0 multiverse'
+    state: present
 
-- name: Install 2.6 tools
+- name: Install
   become: true
-  apt: name={{item}} state=present
-  with_items:
-  - mongodb-org-shell
-  - mongodb-org-tools
+  apt:
+    name:
+    - mongodb-org # Metapackage
+    state: latest
+
+- name: Start
+  become: true
+  service:
+    name: mongod
+    enabled: true
+    state: started

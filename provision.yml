@@ -46,6 +46,7 @@
   - {import_role: name=mfakeys       , tags: ["mfakeys"]}
   - {import_role: name=mimeapps      , tags: ["mimeapps"]}
   - {import_role: name=minizinc      , tags: ["minizinc"]}
+  - {import_role: name=mongodb       , tags: ["mongodb"]}
   - {import_role: name=mysql         , tags: ["mysql"]}
   - {import_role: name=nodejs        , tags: ["nodejs"]}
   - {import_role: name=openscad      , tags: ["openscad"]}
