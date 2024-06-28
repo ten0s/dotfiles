@@ -8,7 +8,7 @@ if [[ $# -ne 2 ]]; then
     echo "Example:"
     echo "$ $PROG wincrypt.h CALG_DH_EPHEM"
     echo "CALG_DH_EPHEM: 43522"
-    echo "$ $PROG sys/stat.h 'ALG_CLASS_KEY_EXCHANGE | ALG_TYPE_DH | ALG_SID_DH_EPHEM'"
+    echo "$ $PROG wincrypt.h 'ALG_CLASS_KEY_EXCHANGE | ALG_TYPE_DH | ALG_SID_DH_EPHEM'"
     echo "ALG_CLASS_KEY_EXCHANGE | ALG_TYPE_DH | ALG_SID_DH_EPHEM: 43522"
     exit 1
 fi
@@ -24,6 +24,7 @@ sed -e "s;{{HEADER}};$HEADER;" -e "s;{{CONST}};$CONST;g"  << EOF > $TMP_SRC
 #include "{{HEADER}}"
 void print(const char *n, const char *s) { printf("%s: %s\n", n, s); }
 void print(const char *n, int i)         { printf("%s: %ld | 0x%lx\n", n, i, i); }
+void print(const char *n, long int i)    { printf("%s: %ld | 0x%lx\n", n, i, i); }
 void print(const char *n, double d)      { printf("%s: %.20lf\n", n, d); }
 int main() {
     print("{{CONST}}", ({{CONST}}));
