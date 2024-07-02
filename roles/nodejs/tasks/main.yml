@@ -73,4 +73,5 @@
     state: latest
     executable: "/home/{{user}}/.nvm/versions/node/{{nodejs_ver}}/bin/npm"
   with_items:
+  - {name: "nodemon", version: "3.1.4"}
   - {name: "yarn", version: "1.22.10"}
