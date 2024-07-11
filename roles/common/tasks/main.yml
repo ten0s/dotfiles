@@ -51,6 +51,7 @@
   - const
   - jekyll
   - man-examples
+  - press-capslock.sh
   - stat-file
   - stat-fs
   - suggest
@@ -216,6 +217,7 @@
     - wireshark
     - wxhexeditor # hex editor
     - xclip
+    - xdotool
     - xfce4-panel             # see also xfce4-panel.xml
     - xfce4-power-manager-plugins
     - xfce4-pulseaudio-plugin
