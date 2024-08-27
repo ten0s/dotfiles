@@ -6,6 +6,8 @@ set confirm off
 # https://sourceware.org/gdb/onlinedocs/gdb/Mode-Options.html#Mode-Options
 set startup-quietly on
 
+set breakpoint pending on
+
 set disassembly-flavor intel
 set disable-randomization on
 
