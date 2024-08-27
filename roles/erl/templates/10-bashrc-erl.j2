@@ -1,4 +1,6 @@
 source ~/.kerl/installations/{{erl_ver}}/activate
+# FIX automatically set MANPATH
+unset MANPATH
 
 # FIX: ~/.kerl/installations/{{erl_ver}}/bin/start takes precedence over /sbin/start
 export PATH=/sbin:$PATH
