@@ -37,6 +37,7 @@
   apt:
     name:
     - cppcheck # Tool for static C/C++ code analysis
+    - cpplint  # Static code checker for C++
     - splint   # A tool for statically checking C programs
     - splint-doc-html # file:///usr/share/doc/splint-doc-html/html/manual.html
     state: latest
