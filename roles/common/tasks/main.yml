@@ -214,7 +214,7 @@
     - vpnc
     - wget
     - whois
-    - wireshark
+    - wireshark # TODO: sudo apt remove wireshark && sudo add-apt-repository ppa:wireshark-dev/stable -y && sudo apt update && sudo apt install wireshark # sudo apt install ssldump
     - wxhexeditor # hex editor
     - xclip
     - xdotool
