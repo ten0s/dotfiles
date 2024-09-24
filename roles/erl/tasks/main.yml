@@ -87,7 +87,7 @@
     creates=/home/{{user}}/.kerl/builds/{{item.release}}
   with_items:
   - {release: '25.3.2.13', env: ''}
-# - {release: '27.0.1', env: 'KERL_CONFIGURE_DISABLE_APPLICATIONS="megaco jinterface"'}
+  - {release: '27.1', env: 'KERL_CONFIGURE_DISABLE_APPLICATIONS="megaco jinterface ssh"'}
 
 - name: Install versions
   command: >
@@ -95,7 +95,7 @@
     creates=/home/{{user}}/.kerl/installations/{{item}}
   with_items:
   - '25.3.2.13'
-#  - '27.0.1'
+  - '27.1'
 
 - name: Pull user_default
   git: repo=git@github.com:ten0s/user_default.git
