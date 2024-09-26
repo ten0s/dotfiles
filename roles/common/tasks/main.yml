@@ -194,6 +194,7 @@
     - pv # monitor the progress of data through a pipe
     - pwgen
     - qpdf # for zlib-flate
+    - rar # see unrar
     - rdesktop # see also RDP server http://xrdp.org/ & https://www.freerdp.com/
     - rlwrap
     - sip-tester # SIPp
@@ -209,6 +210,7 @@
     - timeshift
     - tree
     - tzdata # for DMU
+    - unrar # see rar
     - uuid
     - vlc
     - vpnc
