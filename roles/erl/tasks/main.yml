@@ -73,20 +73,21 @@
   command: >
     kerl delete installation {{item}}
     removes=/home/{{user}}/.kerl/installations/{{item}}
-  with_items: []
+  with_items:
+  - 25.3.2.13
 
 - name: Delete builds
   command: >
     kerl delete build {{item}}
     removes=/home/{{user}}/.kerl/builds/{{item}}
-  with_items: []
+  with_items:
+  - 25.3.2.13
 
 - name: Build versions
   shell: >
     {{item.env}} kerl build {{item.release}} {{item.release}}
     creates=/home/{{user}}/.kerl/builds/{{item.release}}
   with_items:
-  - {release: '25.3.2.13', env: ''}
   - {release: '27.1', env: 'KERL_CONFIGURE_DISABLE_APPLICATIONS="megaco jinterface ssh"'}
 
 - name: Install versions
@@ -94,7 +95,6 @@
     kerl install {{item}} /home/{{user}}/.kerl/installations/{{item}}
     creates=/home/{{user}}/.kerl/installations/{{item}}
   with_items:
-  - '25.3.2.13'
   - '27.1'
 
 - name: Pull user_default
@@ -161,21 +161,21 @@
 #  command: make chdir=/home/{{user}}/.erl_libs/sync/
 #  when: sync.changed
 
-- name: Pull elvis
-  git: repo=https://github.com/inaka/elvis
-       dest=/home/{{user}}/projects/elvis
-       force=true
-       version=1.0.1
-  register: elvis
+#- name: Pull elvis
+#  git: repo=https://github.com/inaka/elvis
+#       dest=/home/{{user}}/projects/elvis
+#       force=true
+#       version=1.0.1
+#  register: elvis
 
-- name: Build elvis
-  command: rebar3 escriptize chdir=/home/{{user}}/projects/elvis/
-  when: elvis.changed
+#- name: Build elvis
+#  command: rebar3 escriptize chdir=/home/{{user}}/projects/elvis/
+#  when: elvis.changed
 
-- name: Create elvis link
-  file: src=/home/{{user}}/projects/elvis/_build/default/bin/elvis
-        dest=/home/{{user}}/bin/elvis
-        state=link
+#- name: Create elvis link
+#  file: src=/home/{{user}}/projects/elvis/_build/default/bin/elvis
+#        dest=/home/{{user}}/bin/elvis
+#        state=link
 
 # Consider moving to https://github.com/massemanet/redbug
 # But the above doesn't have the shell script

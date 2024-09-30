@@ -6,7 +6,7 @@
   vars:
     user: ten0s
     cache_dir: /var/cache/ansible
-    erl_ver: 25.3.2.13
+    erl_ver: 27.1
     cpp_std: c++17
     ubuntu_codename: jammy # cat /etc/os-release
   tasks:
