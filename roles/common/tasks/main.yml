@@ -151,6 +151,7 @@
     - dos2unix
     - dumpasn1 # Dump/check ANS.1 binary
     - elinks   # ELinks is a text mode WWW browser
+    - entr # inotify runner
     - evince
     - expect
     - expect-dev # autoexpect
