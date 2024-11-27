@@ -1,8 +1,8 @@
 !
 ! Remap Menu to Control_R
 !
-keysym Menu = Control_R
-add Control = Control_R
+!keysym Menu = Control_R
+!add Control = Control_R
 
 !
 ! Remap Caps_Lock to Control_L
