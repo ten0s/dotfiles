@@ -1,4 +1,10 @@
 ---
+#
+# https://docs.ansible.com/ansible/latest/collections/community/general/snap_module.html
+#
+# $ ansible-galaxy collection install community.general
+#
+
 - name: No 'nosnap.pref'
   become: true
   file: path=/etc/apt/preferences.d/nosnap.pref

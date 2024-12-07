@@ -1,7 +1,7 @@
 ---
 - name: Install 1/2
   become: true
-  snap:
+  community.general.snap:
     name: minizinc
     classic: true
 
