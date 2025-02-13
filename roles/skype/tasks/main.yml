@@ -8,21 +8,16 @@
     state: absent
     purge: true
 
-- name: Add apt key
-  become: true
-  apt_key: url=https://repo.skype.com/data/SKYPE-GPG-KEY
-           state=present
-           validate_certs=true
+#
+# https://snapcraft.io/skype
+#
 
-- name: Add apt repo
+- name: Install 1/2
   become: true
-  apt_repository:
-    repo: 'deb [arch=amd64] https://repo.skype.com/deb stable main'
-    filename: 'skype-stable.list'
-    state: present
+  community.general.snap:
+    name: skype
+    classic: true
 
-- name: Install
-  become: true
-  apt:
-    name: skypeforlinux
-    state: present
+- name: Install 2/2
+  copy: src=/snap/skype/current/meta/gui/skypeforlinux.desktop
+        dest=/home/{{user}}/.local/share/applications/
