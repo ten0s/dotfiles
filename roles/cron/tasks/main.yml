@@ -1,24 +1,30 @@
 ---
-- name: Auto-save Wiki
+- name: Git Pull Wiki
   cron:
-    name: "Auto-save Wiki"
+    name: "Git Pull Wiki"
+    special_time: "reboot"
+    job: "(cd ~/projects/wiki && git pull origin master)"
+
+- name: Git Push Wiki
+  cron:
+    name: "Git Push Wiki"
     minute: "*/1"
     job: "(cd ~/projects/wiki && git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
 
-- name: Auto-save Wiki Recipes
+- name: RSync Wiki
   cron:
-    name: "Auto-save Wiki Recipes"
+    name: "RSync Wiki"
+    minute: "*/5"
+    job: "(cd ~/projects/wiki && rsync -avh --exclude=.git --delete --log-file=/tmp/rsync-wiki.log ./ serverpi:/media/Transcend/Public/wiki/)"
+
+- name: Git Push Wiki Recipes
+  cron:
+    name: "Git Push Wiki Recipes"
     minute: "*/5"
     job: "(cd ~/projects/recipes && git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
 
-- name: Sync Wiki Gym
+- name: RSync Wiki Gym
   cron:
-    name: "Sync Wiki Gym"
+    name: "RSync Wiki Gym"
     minute: "*/5"
     job: "(cd ~/projects/wiki-gym && rsync -avh --delete --log-file=/tmp/rsync-wiki-gym.log ./ serverpi:/media/Transcend/Public/wiki-gym/)"
-
-- name: Sync Wiki
-  cron:
-    name: "Sync Wiki"
-    minute: "*/5"
-    job: "(cd ~/projects/wiki && rsync -avh --exclude=.git --delete --log-file=/tmp/rsync-wiki.log ./ serverpi:/media/Transcend/Public/wiki/)"
