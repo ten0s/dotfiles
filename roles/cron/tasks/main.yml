@@ -4,11 +4,12 @@
     name: "Git Pull Wiki"
     special_time: "reboot"
     job: "(cd ~/projects/wiki && git pull origin master)"
+    disabled: True
 
 - name: Git Push Wiki
   cron:
     name: "Git Push Wiki"
-    minute: "*/1"
+    minute: "*/5"
     job: "(cd ~/projects/wiki && git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
 
 - name: RSync Wiki
