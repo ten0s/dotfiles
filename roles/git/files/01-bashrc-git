@@ -15,6 +15,8 @@ alias gcommita='git commit --amend -m'
 
 alias gpushom='git push origin master'
 alias gpullom='git pull origin master'
+alias gpushmm='git push mirror master'
+alias gpullmm='git pull mirror master'
 
 alias gpush='git push origin $(git branch --show-current 2>/dev/null)'
 alias gpull='git pull origin $(git branch --show-current 2>/dev/null)'
