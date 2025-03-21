@@ -5,6 +5,7 @@
     name:
     - skype
     - skype-bin:i386
+    - skypeforlinux
     state: absent
     purge: true
 
