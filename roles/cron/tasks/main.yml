@@ -16,7 +16,7 @@
   cron:
     name: "RSync Wiki"
     minute: "*/5"
-    job: "(cd ~/projects/wiki && rsync -avh --exclude=.git --delete --log-file=/tmp/rsync-wiki.log ./ serverpi:/media/Transcend/Public/wiki/)"
+    job: "(cd ~/projects/wiki && rsync -avh --exclude=.git --log-file=/tmp/rsync-wiki.log ./ serverpi:/media/Transcend/Public/wiki/)"
 
 - name: Git Push Wiki Recipes
   cron:
@@ -28,4 +28,4 @@
   cron:
     name: "RSync Wiki Gym"
     minute: "*/5"
-    job: "(cd ~/projects/wiki-gym && rsync -avh --delete --log-file=/tmp/rsync-wiki-gym.log ./ serverpi:/media/Transcend/Public/wiki-gym/)"
+    job: "(cd ~/projects/wiki-gym && rsync -avh --log-file=/tmp/rsync-wiki-gym.log ./ serverpi:/media/Transcend/Public/wiki-gym/)"
