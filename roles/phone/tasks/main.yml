@@ -53,10 +53,10 @@
   delegate_to: phone
   command: pip install -U yt-dlp
 
-- name: Install phone Termux:GUI Python bindings
-  connection: ssh
-  delegate_to: phone
-  command: pip install -U termuxgui
+#- name: Install phone Termux:GUI Python bindings
+#  connection: ssh
+#  delegate_to: phone
+#  command: pip install -U termuxgui
 
 #  Build the lib from sources
 #- name: Install phone Termux:GUI C/C++ bindings
@@ -64,10 +64,10 @@
 #  delegate_to: phone
 #  command: pkg install -y termux-gui-c
 
-- name: Install phone Termux:GUI utils
-  connection: ssh
-  delegate_to: phone
-  command: pkg install -y termux-gui-package
+#- name: Install phone Termux:GUI utils
+#  connection: ssh
+#  delegate_to: phone
+#  command: pkg install -y termux-gui-package
 
 - name: Install phone Node.js
   connection: ssh
@@ -99,6 +99,10 @@
   - {path: log}
   - {path: tmp}
 
+# Create link to wiki
+# cd ~
+# ln -sf storage/shared/wiki/
+
 - name: Copy phone scripts
   connection: ssh
   delegate_to: phone
@@ -114,7 +118,7 @@
   - {src: phone/shortcuts/tasks/sshd-start       , dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/sshd-stop        , dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/wiki-open        , dest: .shortcuts/tasks}
-  - {src: phone/shortcuts/tasks/wiki-pull        , dest: .shortcuts/tasks}
+#  - {src: phone/shortcuts/tasks/wiki-pull        , dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/wiki-start-global, dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/wiki-start-local , dest: .shortcuts/tasks}
   - {src: phone/shortcuts/tasks/wiki-stop        , dest: .shortcuts/tasks}
