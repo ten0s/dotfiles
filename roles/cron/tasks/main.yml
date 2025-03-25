@@ -1,18 +1,4 @@
 ---
-- name: Git Pull Wiki
-  cron:
-    name: "Git Pull Wiki"
-    special_time: "reboot"
-    job: "(cd ~/projects/wiki && git pull origin master)"
-    state: absent
-
-- name: Git Push Wiki
-  cron:
-    name: "Git Push Wiki"
-    minute: "*/5"
-    job: "(cd ~/projects/wiki && git add index.html && git commit -m 'Auto-saved' ; git remote | xargs -I{} git push {} master)"
-    state: absent
-
 - name: RSync Wiki
   cron:
     name: "RSync Wiki"
