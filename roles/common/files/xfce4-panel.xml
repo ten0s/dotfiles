@@ -57,6 +57,7 @@
     <property name="plugin-2" type="string" value="xkb">
       <property name="display-type" type="uint" value="2"/>
       <property name="display-name" type="uint" value="1"/>
+      <property name="group-policy" type="uint" value="0"/>
     </property>
     <property name="plugin-3" type="string" value="pulseaudio">
       <property name="items" type="empty"/>
@@ -168,7 +169,6 @@
     <property name="plugin-25" type="string" value="systray">
       <property name="known-items" type="array">
         <value type="string" value="blueman"/>
-        <value type="string" value="TeamViewer"/>
         <value type="string" value="vlc"/>
         <value type="string" value="Skype1"/>
         <value type="string" value="dropbox-client-2680"/>
