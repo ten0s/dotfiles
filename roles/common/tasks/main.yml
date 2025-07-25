@@ -226,6 +226,7 @@
     - xfce4-pulseaudio-plugin
     - xfce4-screenshooter
     - xfce4-weather-plugin    # see also xfce4-panel.xml
+    - xfce4-xkb-plugin        # see also xfce4-panel.xml
     state: latest
 
 - name: Use correct time zone
