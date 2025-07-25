@@ -1,7 +1,7 @@
 ---
 - name: Set vars
   set_fact:
-    nodejs_ver: v20.15.0
+    nodejs_ver: v20.19.3
 
 #
 # https://github.com/nvm-sh/nvm
@@ -33,7 +33,6 @@
     executable: /bin/bash
   with_items:
   - v18.14.1
-  - v20.15.0
   - v20.19.3
 
 - name: Set default Node.js
@@ -53,6 +52,7 @@
   - v16.19.0
   - v18.12.0
   - v18.12.1
+  - v20.15.0
 
 - name: Update NPM package
   npm:
