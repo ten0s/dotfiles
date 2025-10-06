@@ -168,6 +168,7 @@
     - graphviz-doc
     - gsfonts-x11 # dia recommends
     - hexdiff
+    - hping3
     - htop
     - hypnotix # IPTV App
     - iftop # display bandwidth usage on an interface by host
