@@ -225,26 +225,26 @@
 ;;; erlang-mode
 ;;;----------------------------------------
 
-(setq erlang-root-dir "~/.kerl/installations/{{erl_ver}}")
-(setq load-path (cons (car (file-expand-wildcards (concat erlang-root-dir "/lib/tools-*/emacs"))) load-path))
-(setq erlang-electric-commands nil)
-(require 'erlang-start)
+;(setq erlang-root-dir "~/.kerl/installations/{{erl_ver}}")
+;(setq load-path (cons (car (file-expand-wildcards (concat erlang-root-dir "/lib/tools-*/emacs"))) load-path))
+;(setq erlang-electric-commands nil)
+;(require 'erlang-start)
 
-(add-hook 'erlang-mode-hook
-  '(lambda ()
-     (setq tab-width 4)
-     (setq tab-stop-list
-        '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
-     (setq indent-tabs-mode nil)
-     (setq indent-line-function 'insert-tab)
+;(add-hook 'erlang-mode-hook
+;  '(lambda ()
+;     (setq tab-width 4)
+;     (setq tab-stop-list
+;        '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80))
+;     (setq indent-tabs-mode nil)
+;     (setq indent-line-function 'insert-tab)
 
-     (imenu-add-to-menubar "Imenu")
+;     (imenu-add-to-menubar "Imenu")
 
-     (local-set-key "\C-cm" 'erlang-man-module)
-     (local-set-key "\C-cf" 'erlang-man-function)
+;     (local-set-key "\C-cm" 'erlang-man-module)
+;     (local-set-key "\C-cf" 'erlang-man-function)
 
-     (if (not tags-table-list)
-         (setq tags-table-list '("~/.emacs.d")))
+;     (if (not tags-table-list)
+;         (setq tags-table-list '("~/.emacs.d")))
 
      ; M-. find tag
      ; M-0 M-. find next tag
@@ -254,44 +254,44 @@
      ; M-x tags-search
      ; tags-file-name
      ; tags-table-list
-))
+;))
 
 ; define name and cookie for internally loaded erlang shell.
-(setq inferior-erlang-machine-options
-      '("-name" "emacs@127.0.0.1" "-setcookie" "emacs" "-pa" "../ebin"))
+;(setq inferior-erlang-machine-options
+;      '("-name" "emacs@127.0.0.1" "-setcookie" "emacs" "-pa" "../ebin"))
 
 ; define auto erlang mode for these files/extensions.
-(add-to-list 'auto-mode-alist '(".*\\.app\\'"     . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*app\\.src\\'"  . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.config\\'"  . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.rel\\'"     . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.script\\'"  . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.es\\'"      . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.xrl\\'"     . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.yrl\\'"     . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*\\.app\\'"     . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*app\\.src\\'"  . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*\\.config\\'"  . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*\\.rel\\'"     . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*\\.script\\'"  . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*\\.es\\'"      . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*\\.xrl\\'"     . erlang-mode))
+;(add-to-list 'auto-mode-alist '(".*\\.yrl\\'"     . erlang-mode))
 
 ; add include directory to default compile path.
-(defvar erlang-compile-extra-opts
-  '(bin_opt_info debug_info (d . \'TEST\') (i . "../include") (i . "../deps") (i . "../deps/*/ebin") (i . "../../") (i . "../../../deps")))
+;(defvar erlang-compile-extra-opts
+;  '(bin_opt_info debug_info (d . \'TEST\') (i . "../include") (i . "../deps") (i . "../deps/*/ebin") (i . "../../") (i . "../../../deps")))
 
 ; define where put beam files.
-(setq erlang-compile-outdir "../ebin")
+;(setq erlang-compile-outdir "../ebin")
 
 ;;;----------------------------------------
 ;;; elixir-mode
 ;;;----------------------------------------
 
-(unless (package-installed-p 'elixir-mode)
-  (package-install 'elixir-mode))
-(require 'elixir-mode)
+;(unless (package-installed-p 'elixir-mode)
+;  (package-install 'elixir-mode))
+;(require 'elixir-mode)
 
-;(unless (package-installed-p 'flycheck-mix)
-;  (package-install 'flycheck-mix))
-;(require 'flycheck-mix)
-;(flycheck-mix-setup)
+;;(unless (package-installed-p 'flycheck-mix)
+;;  (package-install 'flycheck-mix))
+;;(require 'flycheck-mix)
+;;(flycheck-mix-setup)
 
-(add-hook 'elixir-mode-hook 'flycheck-mode)
+;(add-hook 'elixir-mode-hook 'flycheck-mode)
 
 ;;;----------------------------------------
 ;;; rust-mode
