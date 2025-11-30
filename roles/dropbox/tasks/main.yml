@@ -17,6 +17,12 @@
         state=link
         force=true
 
+- name: Symlink 'wiki'
+  file: src=/home/{{user}}/Dropbox/wiki
+        dest=/home/{{user}}/wiki
+        state=link
+        force=true
+
 - name: Copy autostart config
   copy: src={{item}}
         dest=/home/{{user}}/.config/autostart/{{item}}
