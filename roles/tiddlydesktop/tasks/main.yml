@@ -38,9 +38,15 @@
     owner: "{{user}}"
     group: "{{user}}"
 
-- name: Install TiddlyDesktop
+- name: Add TiddlyDesktop to Menu
   copy: src={{item}}
         dest=/home/{{user}}/.local/share/applications/{{item}}
+  with_items:
+  - tiddlydesktop.desktop
+
+- name: Add TiddlyDesktop to Desktop
+  copy: src={{item}}
+        dest=/home/{{user}}/Desktop/{{item}}
   with_items:
   - tiddlydesktop.desktop
 
