@@ -15,7 +15,7 @@
     src: "{{cache_dir}}/tsetup.{{telegram_ver}}.tar.xz"
     dest: /opt/
 
-- name: Install
+- name: Install to Menu
   copy:
     src: "{{item}}"
     dest: "/home/{{user}}/.local/share/applications/{{item}}"

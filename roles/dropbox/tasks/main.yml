@@ -23,9 +23,20 @@
         state=link
         force=true
 
-- name: Copy autostart config
-  copy: src={{item}}
-        dest=/home/{{user}}/.config/autostart/{{item}}
-        backup=true
-  with_items:
-  - my-dropbox.desktop
+#
+# Dropbox starts again w/o help
+#
+
+#- name: Copy autostart config
+#  copy: src={{item}}
+#        dest=/home/{{user}}/.config/autostart/{{item}}
+#        backup=true
+#  with_items:
+#  - my-dropbox.desktop
+
+#- name: Install to Menu
+#  copy: src={{item}}
+#        dest=/home/{{user}}/.local/share/applications//{{item}}
+#        backup=true
+#  with_items:
+#  - my-dropbox.desktop
