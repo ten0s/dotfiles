@@ -63,6 +63,7 @@
         backup=true
   with_items:
   - capslock-to-control.desktop
+  - pulseaudio-start.desktop
 
 - name: Update apt's cache
   become: true
