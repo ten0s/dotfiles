@@ -18,6 +18,14 @@
     name: google-chrome-stable
     state: latest
 
+- name: Copy local scripts
+  copy: src={{item}}
+        dest=/home/{{user}}/bin/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - chrome.sh
+
 - name: Add policies 1/2
   become: true
   file:
