@@ -18,8 +18,11 @@
 
 - name: Add apt key
   become: true
-  apt_key: url=https://www.virtualbox.org/download/oracle_vbox_2016.asc
-           state=present
+  get_url:
+    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    dest: /etc/apt/trusted.gpg.d/
+    mode: '0644'
+    force: true
 
 - name: Add apt repo
   become: true

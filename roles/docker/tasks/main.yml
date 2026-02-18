@@ -5,9 +5,11 @@
 
 - name: Add apt key
   become: true
-  apt_key: keyserver=https://download.docker.com/linux/ubuntu/gpg
-           id=9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-           state=present
+  get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /etc/apt/trusted.gpg.d/docker.key
+    mode: '0644'
+    force: true
 
 - name: Add apt repo
   become: true

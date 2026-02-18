@@ -1,10 +1,11 @@
 ---
 - name: Add apt key
   become: true
-  apt_key:
+  get_url:
     url: https://dl-ssl.google.com/linux/linux_signing_key.pub
-    state: present
-    validate_certs: true
+    dest: /etc/apt/trusted.gpg.d/google-chrome.gpg
+    mode: '0644'
+    force: true
 
 - name: Add apt repo
   become: true

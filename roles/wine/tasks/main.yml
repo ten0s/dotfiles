@@ -9,10 +9,11 @@
 
 - name: Add apt key
   become: true
-  apt_key:
+  get_url:
     url: https://dl.winehq.org/wine-builds/winehq.key
-    state: present
-    validate_certs: true
+    dest: /etc/apt/trusted.gpg.d/
+    mode: '0644'
+    force: true
 
 - name: Add apt repo
   become: true
