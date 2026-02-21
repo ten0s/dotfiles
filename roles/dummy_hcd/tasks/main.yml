@@ -1,0 +1,49 @@
+---
+- name: Ensure DKMS installed
+  become: true
+  apt:
+    name:
+    - dkms
+    state: present
+
+- name: Determine Linux Kernel version
+  shell: uname -r | awk -F. '{ printf("%s.%s", $1, $2) }'
+  register: kernel_version
+  changed_when: false
+
+- name: Create DKMS dir
+  become: true
+  file:
+    path: /usr/src/dummy_hcd-1.0
+    state: directory
+
+- name: Download dummy_hcd.c to DKMS dir
+  become: true
+  get_url:
+    url: "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/plain/drivers/usb/gadget/udc/dummy_hcd.c?h=v{{kernel_version.stdout}}"
+    dest: /usr/src/dummy_hcd-1.0/dummy_hcd.c
+
+- name: Copy config files to DKMS dir
+  become: true
+  copy:
+    src: "{{item}}"
+    dest: "/usr/src/dummy_hcd-1.0/{{item}}"
+  with_items:
+  - dkms.conf
+  - Makefile
+
+- name: Add module
+  become: true
+  command: dkms add -m dummy_hcd -v 1.0
+  register: result
+  failed_when:
+  - result.rc != 0
+  - "'Error! DKMS tree already contains: dummy_hcd-1.0' not in result.stderr_lines[0]"
+
+- name: Build module
+  become: true
+  command: dkms build -m dummy_hcd -v 1.0
+
+- name: Install module
+  become: true
+  command: dkms install -m dummy_hcd -v 1.0

@@ -28,6 +28,7 @@
   - {import_role: name=debug         , tags: ["debug"]}
   - {import_role: name=docker        , tags: ["docker"]}
   - {import_role: name=dropbox       , tags: ["dropbox"]}
+  - {import_role: name=dummy_hcd     , tags: ["dummy_hcd"]}
   - {import_role: name=elixir        , tags: ["elixir"]}
   - {import_role: name=emacs         , tags: ["emacs"]}
   - {import_role: name=erl           , tags: ["erl"]}
