@@ -160,6 +160,7 @@
     - ffmpeg
     - fping
     - fswebcam # Camera App, see also cheese
+    - ghex # hex edior
     - gimp
     - gimp-help-en
     - gnupg-agent
@@ -170,6 +171,7 @@
     - graphviz-doc
     - gsfonts-x11 # dia recommends
     - hexdiff
+    - hexedit # console hex editor
     - hping3
     - htop
     - hypnotix # IPTV App
@@ -221,7 +223,6 @@
     - wget
     - whois
     - wireshark # TODO: sudo apt remove wireshark && sudo add-apt-repository ppa:wireshark-dev/stable -y && sudo apt update && sudo apt install wireshark # sudo apt install ssldump
-    - wxhexeditor # hex editor
     - xclip
     - xdotool
     - xfce4-panel             # see also xfce4-panel.xml
