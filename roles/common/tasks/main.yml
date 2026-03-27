@@ -18,6 +18,7 @@
   - {path: "/home/{{user}}/.config/xfce4/terminal", mode: 755}
   - {path: "/home/{{user}}/.local/bin", mode: 755}
   - {path: "/home/{{user}}/bin", mode: 755}
+  - {path: "/home/{{user}}/lib", mode: 755}
   - {path: "/home/{{user}}/tmp", mode: 755}
   - {path: "/home/{{user}}/projects", mode: 755}
   - {path: "/home/{{user}}/projects/tmp", mode: 755}
@@ -57,6 +58,14 @@
   - stat-fs
   - suggest
   - wineconst
+
+- name: Copy local libs
+  copy: src={{item}}
+        dest=/home/{{user}}/lib/{{item}}
+        mode=0755
+        backup=true
+  with_items:
+  - secret-value.sh
 
 - name: Copy autostart configs
   copy: src={{item}}
