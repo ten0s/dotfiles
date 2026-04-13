@@ -9,6 +9,9 @@ shopt -s histappend
 export HISTCONTROL=erasedups:ignorespace
 export HISTTIMEFORMAT='%F %T '
 
+# don't freeze terminal on accidental ^S
+stty stop undef
+
 alias open='xdg-open'
 alias sudo='sudo '
 alias ls='ls --color=auto -v'
