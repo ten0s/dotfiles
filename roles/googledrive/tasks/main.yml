@@ -9,13 +9,13 @@
   with_items:
   - /home/{{user}}/GoogleDrive
 
-- name: Copy autostart config
-  template:
-    src={{item}}.j2
-    dest=/home/{{user}}/.config/autostart/{{item}}
-    backup=true
-  with_items:
-  - googledrive-start.desktop
+#- name: Copy autostart config
+#  template:
+#    src={{item}}.j2
+#    dest=/home/{{user}}/.config/autostart/{{item}}
+#    backup=true
+#  with_items:
+#  - googledrive-start.desktop
 
 - name: Copy menu config
   template:
