@@ -1,9 +1,9 @@
 source ~/.kerl/installations/{{erl_ver}}/activate
 # FIX automatically set MANPATH
+# TODO https://github.com/kerl/kerl/issues/498
 unset MANPATH
 
 # FIX: ~/.kerl/installations/{{erl_ver}}/bin/start takes precedence over /sbin/start
 export PATH=/sbin:$PATH
-export ERL_AFLAGS="-kernel shell_history enabled"
 
 alias cdv="$_KERL_ACTIVE_DIR/lib/observer-*/priv/bin/cdv"
