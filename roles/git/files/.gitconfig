@@ -1,6 +1,6 @@
-[user]
-    name = Dmitry Klionsky
-    email = dm.klionsky@gmail.com
+#[user]
+#    name = Dmitry Klionsky
+#    email = dm.klionsky@gmail.com
 
 [core]
     editor = emacs
